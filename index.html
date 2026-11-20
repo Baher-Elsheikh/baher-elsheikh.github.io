@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Engineering knowledge beyond the textbook | Static equipment, materials, welding and asset integrity</title>
+<meta name="description" content="Practical technical articles, engineering calculators with equations shown, lessons from the field and codes and standards references for static equipment, materials, welding, inspection and asset integrity.">
+<meta name="author" content="Baher Elsheikh">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://baher-elsheikh.github.io/">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baher-elsheikh.github.io/">
+<meta property="og:site_name" content="Baher Elsheikh">
+<meta property="og:title" content="Engineering knowledge beyond the textbook | Static equipment, materials, welding and asset integrity">
+<meta property="og:description" content="Practical technical articles, engineering calculators with equations shown, lessons from the field and codes and standards references for static equipment, materials, welding, inspection and asset integrity.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"WebSite","@id":"https://baher-elsheikh.github.io/#website","url":"https://baher-elsheikh.github.io/","name":"Baher Elsheikh: engineering knowledge","inLanguage":"en","publisher":{"@id":"https://baher-elsheikh.github.io/#person"},
+  "potentialAction":{"@type":"SearchAction","target":"https://baher-elsheikh.github.io/search/?q={query}","query-input":"required name=query"}},
+ {"@type":"Person","@id":"https://baher-elsheikh.github.io/#person","name":"Baher Elsheikh","url":"https://baher-elsheikh.github.io/about/","description":"Engineer with 25 years of experience in static equipment, risk-based inspection, damage mechanisms and steam reformer integrity.","sameAs":["https://www.linkedin.com/in/baher-elsheikh/","https://www.youtube.com/@baherelsheikh4942"]}
+]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="home">
+<a class="skip" href="#main">Skip to content</a>
+<div class="beta-bar" role="note"><div class="wrap"><span class="beta-tag">Beta</span> This site is in its testing period. Spotted a mistake? Please tell me on <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</div></div>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href=""><img class="lg-light" src="assets/gear-light.png" alt="" width="41" height="34"><img class="lg-dark" src="assets/gear-dark.png" alt="" width="41" height="34"><span>Baher Elsheikh</span></a>
+    <div class="hdr-right">
+      <nav class="tabs" id="mainnav" aria-label="Main"><a href="" aria-current="page">Home</a><a href="knowledge/">Knowledge Areas</a><a href="documents/">Technical Documents</a><a href="articles/">Articles</a><a href="news/">Industry News</a><a href="lessons/">Lessons Learned</a><a href="calculators/">Calculators</a><a href="about/">About</a></nav>
+      <a class="nav-search" href="search/"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20.5 20.5"/></svg><span>Search</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav">Menu</button>
+    </div>
+  </div>
+</header>
+<main class="wrap" id="main">
+  <section class="hero" aria-labelledby="h-home">
+    <div>
+      <h1 id="h-home">Engineering knowledge that goes beyond the textbook</h1>
+      <p class="lead">Practical knowledge for engineers working with static equipment, materials, welding, inspection and asset integrity: technical articles, calculation tools with their equations shown, lessons from real equipment and the codes behind them.</p>
+      <div class="cta">
+        <a class="btn primary" href="knowledge/">Explore knowledge</a>
+        <a class="btn" href="articles/">Latest insights</a>
+      </div>
+      <p class="by">By Baher Elsheikh · <a href="about/">About</a></p>
+    </div>
+    <div class="hero-logo">
+      <img class="lg-light" src="assets/logo-light.png" alt="" width="704" height="692" fetchpriority="low">
+      <img class="lg-dark" src="assets/logo-dark.png" alt="" width="704" height="692" fetchpriority="low">
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-areas">
+    <div class="sec-head"><h2 id="h-areas">Knowledge areas</h2><a href="knowledge/">All knowledge areas</a></div>
+    <p class="sec-sub">Articles, documents, calculators and code explanations, organised by technical subject.</p>
+    <div class="areas" id="homeAreas"></div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-tools">
+    <div class="sec-head"><h2 id="h-tools">Engineering calculators</h2><a href="calculators/">All calculators</a></div>
+    <p class="sec-sub">Each calculator shows the equations with your values substituted, step by step, with the code reference, assumptions and limitations. <span id="toolsCount"></span>.</p>
+    <div class="grid" id="homeTools"></div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-feat">
+    <div class="sec-head"><h2 id="h-feat">Featured insights</h2><a href="articles/">All articles</a></div>
+    <p class="sec-sub">Selected technical content, chosen for its practical value rather than its date.</p>
+    <div class="feat" id="homeFeatured"></div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-les">
+    <div class="sec-head"><h2 id="h-les">Lessons from the field</h2><a href="lessons/">All lessons</a></div>
+    <p class="sec-sub">Failure mechanisms, inspection findings and practical recommendations from real equipment.</p>
+    <div class="ltypes" aria-label="Lesson types"><span class="ltype">Failure Analysis</span><span class="ltype">Field Experience</span><span class="ltype">Troubleshooting</span><span class="ltype">Inspection Findings</span><span class="ltype">Lessons Learned</span></div>
+    <div class="grid" id="homeLessons"></div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-latest">
+    <div class="sec-head"><h2 id="h-latest">Latest articles</h2><a href="articles/">All articles</a></div>
+    <div class="alist" id="homeLatest"></div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-codes">
+    <div class="sec-head"><h2 id="h-codes">Codes and standards</h2><a href="standards/">Standards index</a></div>
+    <p class="sec-sub">Quick reference to the standards discussed on this site, with the content that applies them. Titles are for identification only; refer to the official publications.</p>
+    <div class="codes" id="homeCodes"></div>
+  </section>
+
+  <section class="sec authorrow" aria-labelledby="h-about">
+    <div>
+      <h2 id="h-about">About</h2>
+      <p class="sec-sub" style="margin-top:10px">Baher Elsheikh has 25 years of experience with static equipment in petrochemical, methanol and refining plants, with a focus on risk-based inspection, damage mechanisms and steam reformer integrity, and more than 11 technical publications.</p>
+      <div class="links"><a class="btn small" href="about/">About and certifications</a><a class="btn small" href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a class="btn small" href="articles/">Publications</a></div>
+    </div>
+    <div class="strip">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M10 9.2v5.6l4.8-2.8z"/></svg>
+      <p>Technical videos on the YouTube channel.</p>
+      <a class="btn small" href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+    </div>
+  </section>
+  <noscript><p class="empty">This page needs JavaScript to list its content. All articles and calculators also have their own pages.</p></noscript>
+</main>
+<footer>
+  <div class="wrap">
+    <nav class="fnav" aria-label="Footer"><a href="">Home</a><a href="knowledge/">Knowledge Areas</a><a href="documents/">Technical Documents</a><a href="articles/">Articles</a><a href="news/">Industry News</a><a href="lessons/">Lessons Learned</a><a href="calculators/">Calculators</a><a href="about/">About</a><a href="standards/">Standards Index</a><a href="search/">Search</a></nav>
+    <div>Knowledge grows when it is communicated. <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a></div>
+    <div>Articles, documents and calculators are aids for engineering work, not a substitute for a complete engineering assessment. Users remain responsible for verifying the applicable design basis, code requirements and edition, assumptions and engineering decisions; results must be checked by a qualified engineer before use.</div>
+    <div>© 2026 Baher Elsheikh. Content and tools free to use; not to be copied or redistributed without permission.</div>
+  </div>
+</footer>
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

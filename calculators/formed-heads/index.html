@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Formed Heads Calculator | Ellipsoidal, Hemispherical, Torispherical, ASME VIII-1</title>
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="description" content="Free online calculator for formed pressure vessel heads to ASME VIII-1: 2:1 ellipsoidal, general ellipsoidal, hemispherical and torispherical (F&D) heads under internal pressure (UG-32, Appendix 1-4) and external pressure (UG-33), with thinning after forming, MAWP and hydrotest pressure. Step-by-step equations and PDF output.">
+<meta name="keywords" content="formed head thickness calculator, ellipsoidal head thickness, 2:1 head, hemispherical head, torispherical head, F&D head, ASME VIII-1 UG-32, UG-33, Appendix 1-4, head MAWP">
+<meta name="author" content="Baher Elsheikh">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://baher-elsheikh.github.io/calculators/formed-heads/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baher-elsheikh.github.io/calculators/formed-heads/">
+<meta property="og:title" content="Formed Heads Calculator">
+<meta property="og:description" content="Free ASME VIII-1 check of ellipsoidal, hemispherical and torispherical heads for internal and external pressure, step by step. Prepared by Baher Elsheikh.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Formed Heads Calculator","url":"https://baher-elsheikh.github.io/calculators/formed-heads/","applicationCategory":"EngineeringApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Required thickness and MAWP of ellipsoidal, hemispherical and torispherical heads under internal and external pressure to ASME VIII-1 UG-32, UG-33 and Appendix 1-4.","author":{"@type":"Person","name":"Baher Elsheikh","sameAs":["https://www.linkedin.com/in/baher-elsheikh/","https://www.youtube.com/@baherelsheikh4942"]}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF0F5; --panel:#FFFFFF; --ink:#121A30; --steel:#545E74; --rule:#CDD2DE;
+  --accent:#14245E; --accent-soft:#E1E5F2; --ok:#1E7A4C; --ok-soft:#DDF0E5;
+  --bad:#AE2A1F; --bad-soft:#F7DEDA; --warn:#8A5A00; --warn-soft:#F6EAD0;
+  --field:#F7F8FB; --wall:#7E8E98; --tol:#B9C4CA;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --math:"STIX Two Text","Cambria Math",Cambria,"Times New Roman",serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+    --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+    --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+  --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+  --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans);font-variant-numeric:tabular-nums}
+.wrap{max-width:1320px;margin:0 auto;padding:28px 24px 48px}
+header.top{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+h1{font-family:var(--math);font-weight:600;font-size:clamp(26px,3.4vw,38px);line-height:1.1;margin:0;letter-spacing:-.01em}
+.home{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14.5px;margin-bottom:14px}
+.home img{height:40px;width:auto}
+.home:hover span{color:var(--accent)}
+.lg-dark{display:none}
+.f input:disabled,.f select:disabled{opacity:.45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:inline}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:inline}
+.basis{color:var(--steel);font-size:13.5px;margin-top:8px;max-width:70ch}
+.byline{font-size:14px;margin-top:10px;color:var(--ink);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.byline .links{display:inline-flex;gap:12px}
+.byline a,footer a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;font-weight:500}
+.byline a:hover,footer a:hover{text-decoration-thickness:2px}
+@media print{.byline a::after{content:" (" attr(href) ")";font-weight:400;color:var(--steel)}}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{font:500 14px var(--sans);border-radius:6px;padding:8px 14px;cursor:pointer;border:1px solid var(--rule);background:var(--panel);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--panel)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* verdict + wall gauge */
+.verdict{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:22px 24px;display:grid;grid-template-columns:minmax(260px,1fr) minmax(320px,1.6fr);gap:20px 32px;align-items:center;margin-bottom:22px}
+.verdict .state{font-family:var(--math);font-size:clamp(22px,2.6vw,30px);line-height:1.2}
+.verdict .state.ok{color:var(--ok)} .verdict .state.bad{color:var(--bad)}
+.verdict .sub{color:var(--steel);margin-top:6px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-size:12.5px;padding:3px 9px;border-radius:999px;border:1px solid transparent}
+.chip.ok{background:var(--ok-soft);color:var(--ok)} .chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)} .chip.info{background:var(--accent-soft);color:var(--accent)}
+.gauge svg{width:100%;height:auto;display:block}
+.gauge text{font-family:var(--sans);font-size:11px;fill:var(--steel);paint-order:stroke;stroke:var(--panel);stroke-width:3px;stroke-linejoin:round}
+.gauge .lab{fill:var(--ink);font-weight:500}
+.gcap{font-size:12px;color:var(--steel);margin-top:4px}
+
+/* layout */
+.cols{display:grid;grid-template-columns:380px minmax(0,1fr);gap:22px;align-items:start}
+aside.inputs{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:6px 18px 18px;position:sticky;top:calc(12px + env(safe-area-inset-top,0px));max-height:calc(100vh - 24px - env(safe-area-inset-top,0px));overflow:auto}
+fieldset{border:0;border-top:1px solid var(--rule);margin:14px 0 0;padding:12px 0 0}
+fieldset:first-of-type{border-top:0}
+legend{font-weight:600;font-size:14px;padding:0}
+.f{display:grid;grid-template-columns:1fr 112px 46px;gap:6px;align-items:center;margin-top:7px}
+.f.wide{grid-template-columns:1fr 1.4fr}
+.f label{font-size:13px;color:var(--ink)}
+.f label i{font-family:var(--math);font-size:15px}
+.f .u{font-size:12px;color:var(--steel)}
+input,select{font:14px var(--sans);color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:5px;padding:5px 7px;width:100%;font-variant-numeric:tabular-nums}
+input[type=number]{text-align:right}
+input:disabled{opacity:.6}
+input.need{background:#FFF7D6;border-color:#D9B84A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) input.need{background:#33290F;border-color:#7A6420}}
+:root[data-theme="dark"] input.need{background:#33290F;border-color:#7A6420}
+.hint{font-size:12px;color:var(--steel);margin:4px 0 0;line-height:1.4}
+
+/* calculation report */
+main.report{display:flex;flex-direction:column;gap:18px;min-width:0}
+section.step{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 20px 12px}
+.step h2{font-size:17px;font-weight:600;margin:0;display:flex;gap:10px;align-items:baseline}
+.step h2 .n{font-family:var(--math);color:var(--accent);font-size:20px;min-width:1.2em}
+.step .ref{color:var(--steel);font-size:12.5px;margin:2px 0 8px 32px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td{padding:7px 8px;border-top:1px solid var(--rule);vertical-align:baseline}
+td.lb{width:30%;color:var(--ink)}
+td.eq{font-family:var(--math);font-size:15.5px;white-space:nowrap}
+td.sb{font-family:var(--math);font-size:15px;color:var(--steel);white-space:nowrap}
+td.v{text-align:right;font-weight:600;white-space:nowrap}
+td.v small{display:block;font-weight:400;color:var(--steel);font-size:12px}
+td.un{color:var(--steel);font-size:12.5px;white-space:nowrap;width:44px}
+.result{margin:10px 0 4px;padding:9px 12px;border-radius:6px;font-weight:500;font-size:14px}
+.result.ok{background:var(--ok-soft);color:var(--ok)} .result.bad{background:var(--bad-soft);color:var(--bad)}
+.result.warn{background:var(--warn-soft);color:var(--warn)} .result.info{background:var(--accent-soft);color:var(--accent)}
+.note{font-size:12.5px;color:var(--steel);margin:6px 0 0}
+.schtbl td{text-align:center;font-size:12.5px;padding:5px 4px}
+.schtbl td.sel{outline:2px solid var(--accent);font-weight:600}
+.schtbl td.okc{background:var(--ok-soft);color:var(--ok)} .schtbl td.badc{color:var(--steel)}
+.schtbl th{font-size:12px;font-weight:600;padding:5px 4px;border-bottom:1px solid var(--rule)}
+
+/* how to use */
+section.howto{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:18px 22px 14px;margin-top:22px}
+.howto h2{font-family:var(--math);font-weight:600;font-size:24px;margin:0 0 4px}
+.howto h3{font-size:15px;font-weight:600;margin:18px 0 6px}
+.howto p,.howto li{font-size:14px;max-width:85ch}
+.howto ol,.howto ul{padding-left:22px;margin:6px 0}
+.howto li{margin:5px 0}
+.howto .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4px 32px}
+
+footer{margin-top:28px;font-size:12.5px;color:var(--steel);border-top:1px solid var(--rule);padding-top:14px;display:grid;gap:6px}
+.printhead{display:none}
+
+@media (max-width:980px){
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none}
+  .verdict{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .wrap{padding:18px 14px 36px}
+  td.eq,td.sb{white-space:normal}
+  td.lb{width:auto}
+  .howto{padding:16px 14px 12px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .verdict .state{transition:color .25s}
+}
+@media print{
+  :root{--bg:#fff;--panel:#fff}
+  body{font-size:11px}
+  .actions,.noprint{display:none!important}
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none;border:0;padding:0}
+  section.step,.verdict{break-inside:avoid;border-color:#999}
+  .printhead{display:block;font-size:11px;margin-bottom:8px}
+  input,select{border:0;background:none;padding:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <a class="home" href="../"><img class="lg-light" src="../../assets/gear-light.png" alt=""><img class="lg-dark" src="../../assets/gear-dark.png" alt=""><span>Baher Elsheikh</span><span style="font-weight:400;color:var(--steel)">| All calculators</span></a>
+      <h1>Formed heads</h1>
+      <div class="byline">Prepared by: <strong>Baher Elsheikh</strong>
+        <span class="links"><a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube channel</a></span></div>
+      <div class="basis">ASME BPVC Section VIII Division 1: UG-32 and Mandatory Appendix 1-4 (internal pressure: ellipsoidal, hemispherical, torispherical), UG-33 (external pressure), UG-99(b) (hydrotest). Thinning after forming included. Metric units.</div>
+    </div>
+    <div class="actions">
+      <button type="button" id="btnHow">How to use</button>
+      <button type="button" id="btnExample">Load example</button>
+      <button type="button" id="btnClear">Clear inputs</button>
+      <button type="button" class="primary" id="btnPrint">Print / save PDF</button>
+    </div>
+  </header>
+
+  <div class="printhead" id="printhead"></div>
+
+  <div class="verdict" aria-live="polite">
+    <div>
+      <div class="state" id="vState">—</div>
+      <div class="sub" id="vSub"></div>
+      <div class="chips" id="vChips"></div>
+    </div>
+    <div class="gauge">
+      <svg id="profile" viewBox="0 0 640 150" role="img" aria-label="Head profile sketch"></svg>
+      <svg id="gauge" viewBox="0 0 640 112" role="img" aria-label="Head wall thickness gauge"></svg>
+      <div class="gcap">Top: head profile for the selected type, not to scale. Bottom: wall to scale, nominal plate against the minimum after forming and the required t + CA.</div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <aside class="inputs" aria-label="Inputs">
+      <fieldset>
+        <legend>Equipment</legend>
+        <div class="f wide"><label for="tag">Tag / description</label><input id="tag" type="text" placeholder="e.g. V-101 bottom head"></div>
+        <div class="f wide"><label for="prep">Prepared by</label><input id="prep" type="text"></div>
+        <div class="f wide"><label for="date">Date</label><input id="date" type="date"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Head</legend>
+        <div class="f wide"><label for="type">Head type</label>
+          <select id="type"><option value="1">2:1 Ellipsoidal</option><option value="2">Ellipsoidal (general)</option><option value="3">Hemispherical</option><option value="4">Torispherical (standard F&amp;D)</option><option value="5">Torispherical (general)</option></select></div>
+        <div class="f"><label for="D">Skirt inside diameter <i>D</i></label><input id="D" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="h">Ellipsoid inside depth <i>h</i></label><input id="h" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="L">Inside crown radius <i>L</i></label><input id="L" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="r">Inside knuckle radius <i>r</i></label><input id="r" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">h is used only for a general ellipsoidal head (2:1: h = D/4). L and r only for a general torispherical head (standard F&amp;D: L = skirt OD, r = 6% of skirt OD).</p>
+        <div class="f"><label for="tn">Nominal plate thickness <i>t</i><sub>n</sub></label><input id="tn" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="thin">Thinning in forming</label><input id="thin" type="number" step="any"><span class="u">%</span></div>
+        <p class="hint">From the head manufacturer; typically 8% to 15% for pressed heads.</p>
+        <div class="f"><label for="CA">Corrosion allowance</label><input id="CA" type="number" step="any"><span class="u">mm</span></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Material and design conditions</legend>
+        <div class="f wide"><label for="mat">Material</label><input id="mat" type="text"></div>
+        <div class="f"><label for="S">Allowable at design temp. <i>S</i></label><input id="S" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="St">Allowable at test temp. <i>S</i><sub>t</sub></label><input id="St" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="E">Joint efficiency <i>E</i></label><input id="E" type="number" step="any"><span class="u"></span></div>
+        <p class="hint">1.0 for a seamless head or a fully radiographed welded head (UW-12).</p>
+        <div class="f"><label for="Td">Design temperature</label><input id="Td" type="number" step="any"><span class="u">°C</span></div>
+        <div class="f wide"><label for="punit">Pressure unit</label>
+          <select id="punit"><option value="MPa">MPa (g)</option><option value="kgcm2">kg/cm² (g)</option><option value="bar">bar (g)</option><option value="psi">psi (g)</option></select></div>
+        <div class="f"><label for="P">Internal pressure <i>P</i></label><input id="P" type="number" step="any"><span class="u pu">MPa</span></div>
+        <p class="hint">At the head, including any static head.</p>
+        <div class="f wide"><label for="ext">External pressure</label>
+          <select id="ext"><option value="none">None</option><option value="fv">Full vacuum (0.101 MPa)</option><option value="other">Other value</option></select></div>
+        <div class="f"><label for="Pex">External, if other <i>P</i><sub>e</sub></label><input id="Pex" type="number" step="any"><span class="u pu">MPa</span></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>External pressure chart factors</legend>
+        <p class="hint">Read from Section II Part D, Subpart 3, at the factor A shown in step 6.</p>
+        <div class="f"><label for="B">Factor <i>B</i> (material chart)</label><input id="B" type="number" step="any"><span class="u">MPa</span></div>
+        <label class="check" style="display:flex;gap:8px;align-items:center;font-size:13px;margin-top:8px"><input id="left" type="checkbox" style="width:auto"> A falls to the left of the material curve</label>
+        <div class="f"><label for="Em">Modulus <i>E</i><sub>m</sub></label><input id="Em" type="number" step="any"><span class="u">MPa</span></div>
+      </fieldset>
+    </aside>
+
+    <main class="report" id="report"></main>
+  </div>
+
+  <section class="howto noprint" id="howto" aria-labelledby="h-how">
+    <h2 id="h-how">How to use this calculator</h2>
+    <p>The calculator checks a formed head for a pressure vessel against ASME VIII-1. It works in the corroded condition, allows for the thinning that happens when the plate is pressed or spun into a head, and gives the required thickness, MAWP, hydrotest pressure and, if needed, the external pressure check. Every equation is shown with your values in it.</p>
+    <div class="grid">
+      <div>
+        <h3>Steps</h3>
+        <ol>
+          <li><strong>Choose the head type.</strong> For a 2:1 ellipsoidal or a standard F&amp;D torispherical head, only the skirt inside diameter is needed: the head proportions are set automatically. For a general ellipsoidal head, enter the inside depth h; for a general torispherical head, the crown radius L and knuckle radius r.</li>
+          <li><strong>Enter the nominal plate thickness and the forming thinning</strong> from the head manufacturer, and the corrosion allowance.</li>
+          <li><strong>Enter the material allowable stresses</strong> at design and test temperature from Section II Part D, and the joint efficiency.</li>
+          <li><strong>Enter the internal pressure</strong> at the head. Pick the pressure unit first.</li>
+          <li><strong>For external pressure</strong>, choose full vacuum or another value. Step 6 shows factor A: read factor B from the material chart in Section II Part D and enter it. If A falls to the left of the curve, tick the box and enter the modulus instead.</li>
+          <li><strong>Read the result.</strong> The banner turns green only when the thickness, the formula limits, the MAWP and (if any) the external pressure checks all pass. Step 3 gives the nominal plate thickness needed if the check fails.</li>
+          <li><strong>Print or save as PDF</strong> to keep the calculation with your inputs.</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Good practice</h3>
+        <ul>
+          <li>Order the plate thick enough to cover thinning: the minimum thickness after forming, not the plate thickness, must meet t + CA. The head manufacturer should guarantee the minimum after forming.</li>
+          <li>For the same pressure and diameter, a hemispherical head needs about half the wall of a 2:1 ellipsoidal head, and a standard F&amp;D head about 1.75 times.</li>
+          <li>Torispherical heads must have a knuckle radius of at least 6% of the skirt OD and at least 3 times the head thickness, and a crown radius not larger than the skirt OD.</li>
+          <li>For hydrotest, use the lowest stress ratio S<sub>t</sub>/S of all the pressure parts.</li>
+          <li>The external-pressure check is iterative: after changing the thickness, read B again at the new factor A.</li>
+        </ul>
+        <h3>Not covered</h3>
+        <ul>
+          <li>Conical, toriconical and flat heads; forming strain and heat treatment after forming (UG-79, UCS-79); nozzles in the knuckle; very thin heads needing Appendix 1-4(f).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>Prepared by: Baher Elsheikh (<a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a>). Version 1.0, November 2026 (from the spreadsheet Formed Heads Calculator, revision 1).</div>
+    <div>© 2026 Baher Elsheikh. Free to use; not to be copied, modified or redistributed without permission.</div>
+    <div>This tool is an aid for engineering screening. Allowable stresses, factor B and the modulus are entered by the user from ASME Section II Part D and are not supplied here; the K1 values used must be verified against the current edition of ASME VIII-1. Results must be verified by a qualified engineer before use. No warranty is given.</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const PCONV = {kgcm2:0.0980665, MPa:1, bar:0.1, psi:0.00689476};
+  const PLAB = {kgcm2:'kg/cm²', MPa:'MPa', bar:'bar', psi:'psi'};
+  const TYPES = {1:'2:1 ellipsoidal',2:'ellipsoidal',3:'hemispherical',4:'standard F&D torispherical',5:'torispherical'};
+  const K1T = [[1.0,0.50],[1.2,0.57],[1.4,0.65],[1.6,0.73],[1.8,0.81],[2.0,0.90],[2.2,0.99],[2.4,1.08],[2.6,1.18],[2.8,1.27],[3.0,1.36]];
+  const EXAMPLE = {tag:'Example: vertical drum bottom head', prep:'', date:'', type:'1', D:1500, h:375, L:1500, r:90, tn:14, thin:10, CA:3,
+    mat:'SA-516 Gr. 70', S:138, St:138, E:1, Td:200, punit:'MPa', P:1.6, ext:'none', Pex:'', B:'', left:false, Em:''};
+  const IDS = Object.keys(EXAMPLE);
+  const STORE = 'formed-heads-inputs-v1';
+  const $ = id => document.getElementById(id);
+  function setInputs(d){ IDS.forEach(k=>{const el=$(k); if(!el) return; if(el.type==='checkbox') el.checked=!!d[k]; else el.value=(d[k]===undefined||d[k]===null)?'':d[k];}); }
+  function getInputs(){ const d={}; IDS.forEach(k=>{const el=$(k); d[k]= el.type==='checkbox'?el.checked:el.value;}); return d; }
+  function num(k){ const v=parseFloat($(k).value); return isFinite(v)?v:NaN; }
+  function f(x,d){ if(!isFinite(x)) return '—'; return x.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+  const v = s => `<i>${s}</i>`;
+  function row(label, eq, sub, val, unit, d, small){
+    return `<tr><td class="lb">${label}</td><td class="eq">${eq||''}</td><td class="sb">${sub||''}</td>`+
+      `<td class="v">${typeof val==='string'?val:f(val,d)}${small?`<small>${small}</small>`:''}</td><td class="un">${unit||''}</td></tr>`;
+  }
+  function step(n,title,ref,rows,results,notes){
+    return `<section class="step"><h2><span class="n">${n}</span>${title}</h2><div class="ref">${ref}</div>`+
+      (rows.length?`<div class="tbl"><table>${rows.filter(Boolean).join('')}</table></div>`:'')+
+      (results||[]).map(r=>`<div class="result ${r[0]}">${r[1]}</div>`).join('')+
+      (notes||[]).map(t=>`<p class="note">${t}</p>`).join('')+`</section>`;
+  }
+  function k1For(x){ if(!(x>1)) return 0.5; if(x>=3) return 1.36; let i=0; while(x>=K1T[i+1][0]) i++; return K1T[i][1]+(x-K1T[i][0])*(K1T[i+1][1]-K1T[i][1])/(K1T[i+1][0]-K1T[i][0]); }
+
+  function compute(){
+    const pu=$('punit').value, pc=PCONV[pu], pl=PLAB[pu];
+    document.querySelectorAll('.pu').forEach(e=>e.textContent=pl);
+    const back = p => isFinite(p)&&pu!=='MPa'? f(p/pc,3)+' '+pl : '';
+    const idx=+$('type').value, ell=idx<=2, hemi=idx===3, tori=idx>=4;
+    $('h').disabled = idx!==2; $('L').disabled = idx!==5; $('r').disabled = idx!==5;
+    const extMode=$('ext').value; $('Pex').disabled = extMode!=='other';
+    const hasExt = extMode!=='none'; ['B','Em','left'].forEach(k=>$(k).disabled=!hasExt);
+
+    const D=num('D'), h=num('h'), L=num('L'), r=num('r'), tn=num('tn'), thin=num('thin')||0, CA=num('CA')||0;
+    const S=num('S'), St=num('St'), E=num('E'), P=num('P')*pc;
+    const Pe = extMode==='fv'?0.101:(extMode==='other'?num('Pex')*pc:0);
+    const B=num('B'), Em=num('Em'), left=$('left').checked;
+    const need=['D','tn','S','St','E','P'].concat(idx===2?['h']:[]).concat(idx===5?['L','r']:[]);
+    need.forEach(k=>$(k).classList.toggle('need', !isFinite(num(k))));
+    ['h','L','r'].forEach(k=>{ if($(k).disabled) $(k).classList.remove('need'); });
+    const ready = need.every(k=>isFinite(num(k)));
+
+    const Dc=D+2*CA, Do=D+2*tn, taf=tn*(1-thin/100), tc=taf-CA;
+    const hc = idx===1? Dc/4 : h+CA;
+    const K = ell? (2+Math.pow(Dc/(2*hc),2))/6 : NaN;
+    const Lc = idx===4? Do+CA : (idx===5? L+CA : (hemi? Dc/2 : NaN));
+    const rc = idx===4? 0.06*Do+CA : (idx===5? r+CA : NaN);
+    const M = tori? (3+Math.sqrt(Lc/rc))/4 : NaN;
+    const den = 2*S*E-0.2*P;
+    const t = ell? P*Dc*K/den : (hemi? P*Lc/den : P*Lc*M/den);
+    const tmin=t+CA, tord=tmin/(1-thin/100), okT = taf>=tmin;
+    const lim = ell ? (idx===1? [tc/(0.9*Dc)>=0.002] : [Dc/(2*hc)<=3, tc/(K*0.9*Dc)>=0.002])
+              : hemi ? [t<=0.356*Lc, P<=0.665*S*E]
+              : [tc/Lc>=0.002, rc>=0.06*Do, rc>=3*tn, Lc<=Do+CA];
+    const okV = lim.every(Boolean);
+    const MAWP = ell? 2*S*E*tc/(K*Dc+0.2*tc) : (hemi? 2*S*E*tc/(Lc+0.2*tc) : 2*S*E*tc/(Lc*M+0.2*tc));
+    const okM = MAWP>=P, PT = 1.3*MAWP*St/S;
+    // external
+    const ho = ell? hc-CA+tn : NaN, rat = ell? Do/(2*ho) : NaN, K1 = ell? k1For(rat) : NaN;
+    const Ro = ell? K1*Do : (hemi? Do/2 : Lc-CA+tn);
+    const Rt = Ro/tc, A = 0.125/Rt;
+    const Pa = left? 0.0625*Em/(Rt*Rt) : B/Rt;
+    const te = (hasExt && !hemi) ? (ell? 1.67*Pe*Dc*K/(2*S-0.2*1.67*Pe) : 1.67*Pe*Lc*M/(2*S-0.2*1.67*Pe)) : NaN;
+    const extReady = !hasExt || (left? isFinite(Em) : isFinite(B));
+    const okE = !hasExt || (extReady && Pa>=Pe && (hemi || te<=tc));
+    $('B').classList.toggle('need', hasExt && !left && !isFinite(B)); $('Em').classList.toggle('need', hasExt && left && !isFinite(Em));
+    const all = okT && okV && okM && (!hasExt || (extReady && okE));
+
+    let out='';
+    out += step(1,'Dimensions and thickness after forming','Corroded inside dimensions; minimum thickness after forming',[
+      row('Inside diameter, corroded', `${v('D')}<sub>c</sub> = ${v('D')} + 2CA`, `${f(D,1)} + 2 × ${f(CA,2)}`, Dc,'mm',2),
+      row('Skirt outside diameter', `${v('D')}<sub>o</sub> = ${v('D')} + 2${v('t')}<sub>n</sub>`, `${f(D,1)} + 2 × ${f(tn,2)}`, Do,'mm',2),
+      row('Minimum thickness after forming', `${v('t')}<sub>f</sub> = ${v('t')}<sub>n</sub>(1 − thinning)`, `${f(tn,2)} × (1 − ${f(thin/100,3)})`, taf,'mm',3),
+      row('Corroded thickness', `${v('t')}<sub>c</sub> = ${v('t')}<sub>f</sub> − CA`, `${f(taf,3)} − ${f(CA,2)}`, tc,'mm',3)
+    ],[]);
+
+    const r2 = ell ? [
+      row('Ellipsoid depth, corroded', `${v('h')}<sub>c</sub>`, idx===1?`${v('D')}<sub>c</sub>/4 (2:1)`:`${f(h,1)} + ${f(CA,2)}`, hc,'mm',2),
+      row('Factor K', `${v('K')} = [2 + (${v('D')}<sub>c</sub>/2${v('h')}<sub>c</sub>)²] / 6`, `[2 + (${f(Dc,1)} / ${f(2*hc,1)})²] / 6`, K,'',4)
+    ] : hemi ? [
+      row('Inside radius, corroded', `${v('L')} = ${v('D')}<sub>c</sub>/2`, `${f(Dc,1)} / 2`, Lc,'mm',2)
+    ] : [
+      row('Crown radius, corroded', `${v('L')}<sub>c</sub>`, idx===4?`skirt OD + CA = ${f(Do,1)} + ${f(CA,2)}`:`${f(L,1)} + ${f(CA,2)}`, Lc,'mm',2),
+      row('Knuckle radius, corroded', `${v('r')}<sub>c</sub>`, idx===4?`0.06 × ${f(Do,1)} + ${f(CA,2)}`:`${f(r,1)} + ${f(CA,2)}`, rc,'mm',2),
+      row('Factor M', `${v('M')} = [3 + √(${v('L')}<sub>c</sub>/${v('r')}<sub>c</sub>)] / 4`, `[3 + √(${f(Lc,1)} / ${f(rc,2)})] / 4`, M,'',4)
+    ];
+    out += step(2,'Head geometry factors', ell?'Appendix 1-4(c); K = 1 for a 2:1 head': hemi?'UG-32, hemispherical head':'Appendix 1-4(d); M = 1.77 for a standard F&D head', r2, []);
+
+    const teq = ell? `${v('t')} = ${v('P')}${v('D')}<sub>c</sub>${v('K')} / (2${v('S')}${v('E')} − 0.2${v('P')})` : hemi? `${v('t')} = ${v('P')}${v('L')} / (2${v('S')}${v('E')} − 0.2${v('P')})` : `${v('t')} = ${v('P')}${v('L')}<sub>c</sub>${v('M')} / (2${v('S')}${v('E')} − 0.2${v('P')})`;
+    const tsub = ell? `${f(P,3)} × ${f(Dc,1)} × ${f(K,4)} / (2 × ${f(S,1)} × ${f(E,2)} − 0.2 × ${f(P,3)})` : hemi? `${f(P,3)} × ${f(Lc,2)} / (2 × ${f(S,1)} × ${f(E,2)} − 0.2 × ${f(P,3)})` : `${f(P,3)} × ${f(Lc,1)} × ${f(M,4)} / (2 × ${f(S,1)} × ${f(E,2)} − 0.2 × ${f(P,3)})`;
+    out += step(3,'Required thickness, internal pressure','UG-32 and Appendix 1-4; minimum after forming against t + CA',[
+      row('Internal pressure', v('P'), `${f(num('P'),3)} ${pl}`, P,'MPa',3),
+      row('Required thickness', teq, tsub, t,'mm',3),
+      row('Minimum required', `${v('t')} + CA`, `${f(t,3)} + ${f(CA,2)}`, tmin,'mm',3),
+      row('Nominal plate needed', `(${v('t')} + CA)/(1 − thinning)`, `${f(tmin,3)} / (1 − ${f(thin/100,3)})`, tord,'mm',3)
+    ],[ okT?['ok',`t<sub>f</sub> ${f(taf,3)} ≥ t + CA ${f(tmin,3)} mm: head thickness adequate.`]:['bad',`t<sub>f</sub> ${f(taf,3)} < t + CA ${f(tmin,3)} mm: increase the plate to at least ${f(tord,2)} mm.`] ]);
+
+    const limRows = ell ? [
+      idx===2? row('Shape limit', `${v('D')}<sub>c</sub>/2${v('h')}<sub>c</sub> ≤ 3`, `${f(Dc/(2*hc),3)}`, Dc/(2*hc)<=3?'OK':'Not OK','',0):'',
+      row('Thin head limit', `${v('t')}<sub>c</sub>/${v('L')} ≥ 0.002`, `L = ${f(K*0.9,3)} × ${f(Dc,1)}`, tc/(K*0.9*Dc),'',4)
+    ] : hemi ? [
+      row('Thickness limit', `${v('t')} ≤ 0.356${v('L')}`, `${f(t,3)} ≤ ${f(0.356*Lc,1)}`, t<=0.356*Lc?'OK':'Not OK','',0),
+      row('Pressure limit', `${v('P')} ≤ 0.665${v('S')}${v('E')}`, `${f(P,3)} ≤ ${f(0.665*S*E,2)}`, P<=0.665*S*E?'OK':'Not OK','',0)
+    ] : [
+      row('Thin head limit', `${v('t')}<sub>c</sub>/${v('L')}<sub>c</sub> ≥ 0.002`, `${f(tc,3)} / ${f(Lc,1)}`, tc/Lc,'',4),
+      row('Knuckle radius', `${v('r')} ≥ 0.06${v('D')}<sub>o</sub> and ≥ 3${v('t')}<sub>n</sub>`, `${f(rc,1)} ≥ ${f(0.06*Do,1)} and ≥ ${f(3*tn,1)}`, rc>=0.06*Do&&rc>=3*tn?'OK':'Not OK','',0),
+      row('Crown radius', `${v('L')} ≤ ${v('D')}<sub>o</sub>`, `${f(Lc-CA,1)} ≤ ${f(Do,1)}`, Lc<=Do+CA?'OK':'Not OK','',0)
+    ];
+    out += step(4,'Formula limits','UG-32 and Appendix 1-4', limRows, [ okV?['ok','The formula limits are met.']:['bad','A limit is not met: see the rows above (Appendix 1-4(f) for very thin heads).'] ]);
+
+    out += step(5,'MAWP and hydrotest','Step 3 formula rearranged with the corroded thickness; UG-99(b)',[
+      row('MAWP, hot and corroded', ell?`2${v('S')}${v('E')}${v('t')}<sub>c</sub> / (${v('K')}${v('D')}<sub>c</sub> + 0.2${v('t')}<sub>c</sub>)`: hemi?`2${v('S')}${v('E')}${v('t')}<sub>c</sub> / (${v('L')} + 0.2${v('t')}<sub>c</sub>)`:`2${v('S')}${v('E')}${v('t')}<sub>c</sub> / (${v('L')}<sub>c</sub>${v('M')} + 0.2${v('t')}<sub>c</sub>)`, `t<sub>c</sub> = ${f(tc,3)}`, MAWP,'MPa',3, back(MAWP)),
+      row('Hydrotest pressure', `${v('P')}<sub>T</sub> = 1.3 × MAWP × ${v('S')}<sub>t</sub>/${v('S')}`, `1.3 × ${f(MAWP,3)} × ${f(St/S,3)}`, PT,'MPa',3, back(PT))
+    ],[ okM?['ok',`MAWP ${f(MAWP,3)} ≥ P ${f(P,3)} MPa.`]:['bad',`MAWP ${f(MAWP,3)} < P ${f(P,3)} MPa.`] ],['Use the lowest stress ratio of all pressure parts for the vessel test pressure.']);
+
+    if(!hasExt){
+      out += step(6,'External pressure','UG-33',[],[['info','No external pressure specified.']]);
+    } else {
+      const r6 = [
+        row('External pressure', `${v('P')}<sub>e</sub>`, extMode==='fv'?'full vacuum':'entered', Pe,'MPa',4),
+        ell? row('Ratio', `${v('D')}<sub>o</sub>/2${v('h')}<sub>o</sub>`, `${f(Do,1)} / (2 × ${f(ho,2)})`, rat,'',3):'',
+        ell? row('Factor K₁', `Table UG-33.1`, 'interpolated', K1,'',3):'',
+        row('Equivalent sphere radius', `${v('R')}<sub>o</sub>`, ell?`K₁${v('D')}<sub>o</sub> = ${f(K1,3)} × ${f(Do,1)}`:(hemi?`${v('D')}<sub>o</sub>/2`:'outside crown radius'), Ro,'mm',2),
+        row('Factor A', `${v('A')} = 0.125 / (${v('R')}<sub>o</sub>/${v('t')}<sub>c</sub>)`, `0.125 / (${f(Ro,1)} / ${f(tc,3)})`, A,'',6),
+        row('Allowable external pressure', left?`${v('P')}<sub>a</sub> = 0.0625${v('E')}<sub>m</sub> / (${v('R')}<sub>o</sub>/${v('t')}<sub>c</sub>)²`:`${v('P')}<sub>a</sub> = ${v('B')} / (${v('R')}<sub>o</sub>/${v('t')}<sub>c</sub>)`, left?`0.0625 × ${f(Em,0)} / ${f(Rt,2)}²`:`${f(B,2)} / ${f(Rt,2)}`, Pa,'MPa',4, back(Pa)),
+        !hemi? row('Thickness for 1.67 P<sub>e</sub>, E = 1', 'internal formula', `1.67 × ${f(Pe,4)}`, te,'mm',3):''
+      ];
+      const res6 = !extReady ? [['warn','Enter factor B (or the modulus, if A is left of the curve) to complete the external pressure check.']]
+        : okE ? [['ok',`P<sub>a</sub> ${f(Pa,4)} ≥ P<sub>e</sub> ${f(Pe,4)} MPa${hemi?'':` and t<sub>c</sub> ≥ ${f(te,3)} mm`}: adequate for external pressure.`]]
+              : [['bad',`Not adequate for external pressure: increase t<sub>n</sub> (then read B again).`]];
+      out += step(6,'External pressure','UG-33: equivalent sphere with corroded thickness; ellipsoidal and torispherical also checked at 1.67 P<sub>e</sub>', r6, res6);
+    }
+    $('report').innerHTML = out;
+
+    const margin = (taf-tmin)/taf;
+    const st=$('vState');
+    if(!ready){ st.textContent='Enter the highlighted inputs'; st.className='state'; }
+    else if(all){ st.textContent=`Head accepted with ${f(margin*100,1)}% thickness margin`; st.className='state ok'; }
+    else if(hasExt && !extReady && okT && okV && okM){ st.textContent='Pending external pressure factor B'; st.className='state'; }
+    else { st.textContent=`Not accepted: use at least ${f(tord,2)} mm plate`; st.className='state bad'; if(okT&&okM&&!okV) st.textContent='Not accepted: formula limits not met'; }
+    $('vSub').innerHTML = `${$('tag').value||'Head'}: ${TYPES[idx]}, ${f(D,0)} mm ID × ${f(tn,2)} mm plate, ${$('mat').value||'material not stated'}.`;
+    const chip=(ok,lab)=>`<span class="chip ${ok===null?'warn':(ok?'ok':'bad')}">${lab}</span>`;
+    $('vChips').innerHTML = ready ? chip(okT,'Thickness')+chip(okV,'Formula limits')+chip(okM,'MAWP')+(hasExt?chip(extReady?okE:null,'External pressure'):'<span class="chip info">No external pressure</span>') : '';
+    drawProfile(idx); drawGauge(tn,taf,CA,tmin);
+    $('printhead').textContent = `${$('tag').value||''}  ${$('prep').value?'Prepared by: '+$('prep').value:''}  ${$('date').value||''}`;
+    try{ localStorage.setItem(STORE, JSON.stringify(getInputs())); }catch(e){}
+  }
+
+  function drawProfile(idx){
+    const g=$('profile'), cs=getComputedStyle(document.documentElement), c=n=>cs.getPropertyValue(n).trim();
+    const acc=c('--accent'), steel=c('--steel'), soft=c('--accent-soft');
+    const cx=320, base=128, R=150, sk=16;
+    let path;
+    if(idx<=2){ const hh = idx===1? R/2 : R/2; path=`M${cx-R},${base} L${cx-R},${base-sk} A${R},${hh} 0 0 1 ${cx+R},${base-sk} L${cx+R},${base}`; }
+    else if(idx===3){ path=`M${cx-R},${base} L${cx-R},${base-sk} A${R},${R*0.72} 0 0 1 ${cx+R},${base-sk} L${cx+R},${base}`; }
+    else { const kr=26, cr=300; const y1=base-sk, xk=cx-R+kr;
+      const ang=Math.asin((R-kr)/(cr-kr)), cy=y1+ (cr-kr)*Math.cos(ang) - 0, ytop=cy-cr;
+      const px=cx-(cr-kr)*Math.sin(ang)-kr*Math.sin(ang), py=cy-(cr-kr)*Math.cos(ang)-kr*Math.cos(ang);
+      path=`M${cx-R},${base} L${cx-R},${y1} A${kr},${kr} 0 0 1 ${px},${py} A${cr},${cr} 0 0 1 ${2*cx-px},${py} A${kr},${kr} 0 0 1 ${cx+R},${y1} L${cx+R},${base}`; }
+    let s=`<path d="${path}" fill="${soft}" stroke="${acc}" stroke-width="3"/>`;
+    s+=`<line x1="${cx-R-20}" y1="${base-sk}" x2="${cx+R+20}" y2="${base-sk}" stroke="${steel}" stroke-dasharray="4 4"/>`;
+    s+=`<text x="${cx+R+24}" y="${base-sk+4}">tangent line</text>`;
+    s+=`<text x="${cx}" y="${base-4}" text-anchor="middle">D</text><line x1="${cx-R+4}" y1="${base-10}" x2="${cx+R-4}" y2="${base-10}" stroke="${steel}"/>`;
+    const lab = idx<=2? (idx===1?'2:1 ellipsoidal, h = D/4':'ellipsoidal, depth h') : idx===3? 'hemispherical, L = D/2' : (idx===4?'standard F&D: L = Do, r = 0.06 Do':'torispherical: crown L, knuckle r');
+    s+=`<text class="lab" x="8" y="20">${lab}</text>`;
+    g.innerHTML=s;
+  }
+
+  function drawGauge(tn,taf,CA,tmin){
+    const g=$('gauge'); if(!isFinite(tn)||tn<=0){ g.innerHTML=''; return; }
+    const maxT=Math.max(tn,tmin||0)*1.08, x0=20, W=600, sx=t=>x0+W*t/maxT;
+    const cs=getComputedStyle(document.documentElement), c=n=>cs.getPropertyValue(n).trim();
+    let s='';
+    s+=`<rect x="${x0}" y="40" width="${Math.max(0,sx(taf)-x0)}" height="24" fill="${c('--wall')}" rx="2"/>`;
+    if(tn>taf) s+=`<rect x="${sx(taf)}" y="40" width="${sx(tn)-sx(taf)}" height="24" fill="${c('--tol')}"/>`;
+    if(CA>0) s+=`<rect x="${sx(Math.max(0,taf-CA))}" y="40" width="${sx(taf)-sx(Math.max(0,taf-CA))}" height="24" fill="${c('--warn')}" opacity=".45"/>`;
+    s+=`<line x1="${x0}" y1="72" x2="${x0+W}" y2="72" stroke="${c('--rule')}"/>`;
+    for(let i=0;i<=4;i++){const t=maxT*i/4,x=sx(t); s+=`<line x1="${x}" y1="72" x2="${x}" y2="76" stroke="${c('--steel')}"/><text x="${x}" y="88" text-anchor="middle">${f(t,1)}</text>`;}
+    s+=`<text x="${x0+W}" y="104" text-anchor="end">mm</text>`;
+    if(isFinite(tmin)){ const x=sx(tmin), col=tmin<=taf?c('--ok'):c('--bad');
+      s+=`<line x1="${x}" y1="22" x2="${x}" y2="68" stroke="${col}" stroke-width="2"/><text class="lab" x="${x}" y="16" text-anchor="middle" style="fill:${col}">t + CA ${f(tmin,2)}</text>`; }
+    s+=`<text x="${x0+4}" y="56" style="fill:#fff;font-weight:500;stroke:none">after forming ${f(taf,2)}</text>`;
+    if(CA>0) s+=`<text x="${sx(taf-CA/2)}" y="36" text-anchor="middle">CA</text>`;
+    s+=`<text x="${sx(tn)}" y="36" text-anchor="end">tn ${f(tn,2)}</text>`;
+    g.innerHTML=s;
+  }
+
+  let saved=null; try{ saved=JSON.parse(localStorage.getItem(STORE)); }catch(e){}
+  setInputs(saved||EXAMPLE);
+  document.querySelectorAll('aside input, aside select').forEach(el=>el.addEventListener('input',compute));
+  document.querySelectorAll('aside input[type=checkbox], aside select').forEach(el=>el.addEventListener('change',compute));
+  $('btnExample').addEventListener('click',()=>{setInputs(EXAMPLE);compute();});
+  $('btnClear').addEventListener('click',()=>{const d={}; IDS.forEach(k=>d[k]=''); d.left=false; d.type='1'; d.punit='MPa'; d.ext='none'; d.E=1; d.thin=10; d.CA=0; setInputs(d); compute();});
+  $('btnHow').addEventListener('click',()=>$('howto').scrollIntoView({behavior:'smooth'}));
+  $('btnPrint').addEventListener('click',()=>window.print());
+  if(window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',compute);
+  compute();
+})();
+</script>
+</body>
+</html>

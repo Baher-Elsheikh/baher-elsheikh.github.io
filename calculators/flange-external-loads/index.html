@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Flange External Loads Calculator | ASME VIII-1 UG-44(b), Code Case 2901-1</title>
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="description" content="Free online check of external moment and axial force on standard welding neck flanges to ASME VIII-1 UG-44(b), with the Code Case 2901-1 option: equivalent pressure, utilisation, maximum allowable moment and force, and the conditions of the method. Step-by-step equations and PDF output.">
+<meta name="keywords" content="flange external loads, UG-44(b), Code Case 2901-1, equivalent pressure method, flange moment factor FM, nozzle loads on flanges, ASME VIII-1 flange external moment">
+<meta name="author" content="Baher Elsheikh">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://baher-elsheikh.github.io/calculators/flange-external-loads/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baher-elsheikh.github.io/calculators/flange-external-loads/">
+<meta property="og:title" content="Flange External Loads Calculator, UG-44(b) and Code Case 2901-1">
+<meta property="og:description" content="Free check of external moment and axial force on welding neck flanges to ASME VIII-1 UG-44(b) or Code Case 2901-1, step by step. Prepared by Baher Elsheikh.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Flange External Loads Calculator","url":"https://baher-elsheikh.github.io/calculators/flange-external-loads/","applicationCategory":"EngineeringApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"External moment and axial force on standard welding neck flanges to ASME VIII-1 UG-44(b), with the Code Case 2901-1 option.","author":{"@type":"Person","name":"Baher Elsheikh","sameAs":["https://www.linkedin.com/in/baher-elsheikh/","https://www.youtube.com/@baherelsheikh4942"]}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF0F5; --panel:#FFFFFF; --ink:#121A30; --steel:#545E74; --rule:#CDD2DE;
+  --accent:#14245E; --accent-soft:#E1E5F2; --ok:#1E7A4C; --ok-soft:#DDF0E5;
+  --bad:#AE2A1F; --bad-soft:#F7DEDA; --warn:#8A5A00; --warn-soft:#F6EAD0;
+  --field:#F7F8FB; --wall:#7E8E98; --tol:#B9C4CA;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --math:"STIX Two Text","Cambria Math",Cambria,"Times New Roman",serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+    --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+    --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+  --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+  --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans);font-variant-numeric:tabular-nums}
+.wrap{max-width:1320px;margin:0 auto;padding:28px 24px 48px}
+header.top{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+h1{font-family:var(--math);font-weight:600;font-size:clamp(26px,3.4vw,38px);line-height:1.1;margin:0;letter-spacing:-.01em}
+.home{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14.5px;margin-bottom:14px}
+.home img{height:40px;width:auto}
+.home:hover span{color:var(--accent)}
+.lg-dark{display:none}
+.f input:disabled,.f select:disabled{opacity:.45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:inline}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:inline}
+.basis{color:var(--steel);font-size:13.5px;margin-top:8px;max-width:70ch}
+.byline{font-size:14px;margin-top:10px;color:var(--ink);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.byline .links{display:inline-flex;gap:12px}
+.byline a,footer a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;font-weight:500}
+.byline a:hover,footer a:hover{text-decoration-thickness:2px}
+@media print{.byline a::after{content:" (" attr(href) ")";font-weight:400;color:var(--steel)}}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{font:500 14px var(--sans);border-radius:6px;padding:8px 14px;cursor:pointer;border:1px solid var(--rule);background:var(--panel);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--panel)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* verdict + wall gauge */
+.verdict{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:22px 24px;display:grid;grid-template-columns:minmax(260px,1fr) minmax(320px,1.6fr);gap:20px 32px;align-items:center;margin-bottom:22px}
+.verdict .state{font-family:var(--math);font-size:clamp(22px,2.6vw,30px);line-height:1.2}
+.verdict .state.ok{color:var(--ok)} .verdict .state.bad{color:var(--bad)}
+.verdict .sub{color:var(--steel);margin-top:6px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-size:12.5px;padding:3px 9px;border-radius:999px;border:1px solid transparent}
+.chip.ok{background:var(--ok-soft);color:var(--ok)} .chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)} .chip.info{background:var(--accent-soft);color:var(--accent)}
+.gauge svg{width:100%;height:auto;display:block}
+.gauge text{font-family:var(--sans);font-size:11px;fill:var(--steel);paint-order:stroke;stroke:var(--panel);stroke-width:3px;stroke-linejoin:round}
+.gauge .lab{fill:var(--ink);font-weight:500}
+.gcap{font-size:12px;color:var(--steel);margin-top:4px}
+
+/* layout */
+.cols{display:grid;grid-template-columns:380px minmax(0,1fr);gap:22px;align-items:start}
+aside.inputs{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:6px 18px 18px;position:sticky;top:calc(12px + env(safe-area-inset-top,0px));max-height:calc(100vh - 24px - env(safe-area-inset-top,0px));overflow:auto}
+fieldset{border:0;border-top:1px solid var(--rule);margin:14px 0 0;padding:12px 0 0}
+fieldset:first-of-type{border-top:0}
+legend{font-weight:600;font-size:14px;padding:0}
+.f{display:grid;grid-template-columns:1fr 112px 46px;gap:6px;align-items:center;margin-top:7px}
+.f.wide{grid-template-columns:1fr 1.4fr}
+.f label{font-size:13px;color:var(--ink)}
+.f label i{font-family:var(--math);font-size:15px}
+.f .u{font-size:12px;color:var(--steel)}
+input,select{font:14px var(--sans);color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:5px;padding:5px 7px;width:100%;font-variant-numeric:tabular-nums}
+input[type=number]{text-align:right}
+input:disabled{opacity:.6}
+input.need{background:#FFF7D6;border-color:#D9B84A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) input.need{background:#33290F;border-color:#7A6420}}
+:root[data-theme="dark"] input.need{background:#33290F;border-color:#7A6420}
+.hint{font-size:12px;color:var(--steel);margin:4px 0 0;line-height:1.4}
+
+/* calculation report */
+main.report{display:flex;flex-direction:column;gap:18px;min-width:0}
+.axes{margin:10px 0 2px}.axes svg{width:100%;height:auto;display:block;max-width:460px;margin:0 auto}.axmap{border-collapse:collapse;font-size:13px;margin:8px 0 0}.axmap th,.axmap td{border:1px solid var(--rule);padding:3px 10px;text-align:left}.axmap th{font-weight:600;background:var(--accent-soft)}.axes figcaption{font-size:12.5px;color:var(--steel);margin-top:4px}
+section.step{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 20px 12px}
+.step h2{font-size:17px;font-weight:600;margin:0;display:flex;gap:10px;align-items:baseline}
+.step h2 .n{font-family:var(--math);color:var(--accent);font-size:20px;min-width:1.2em}
+.step .ref{color:var(--steel);font-size:12.5px;margin:2px 0 8px 32px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td{padding:7px 8px;border-top:1px solid var(--rule);vertical-align:baseline}
+td.lb{width:30%;color:var(--ink)}
+td.eq{font-family:var(--math);font-size:15.5px;white-space:nowrap}
+td.sb{font-family:var(--math);font-size:15px;color:var(--steel);white-space:nowrap}
+td.v{text-align:right;font-weight:600;white-space:nowrap}
+td.v small{display:block;font-weight:400;color:var(--steel);font-size:12px}
+td.un{color:var(--steel);font-size:12.5px;white-space:nowrap;width:44px}
+.result{margin:10px 0 4px;padding:9px 12px;border-radius:6px;font-weight:500;font-size:14px}
+.result.ok{background:var(--ok-soft);color:var(--ok)} .result.bad{background:var(--bad-soft);color:var(--bad)}
+.result.warn{background:var(--warn-soft);color:var(--warn)} .result.info{background:var(--accent-soft);color:var(--accent)}
+.note{font-size:12.5px;color:var(--steel);margin:6px 0 0}
+.schtbl td{text-align:center;font-size:12.5px;padding:5px 4px}
+.schtbl td.sel{outline:2px solid var(--accent);font-weight:600}
+.schtbl td.okc{background:var(--ok-soft);color:var(--ok)} .schtbl td.badc{color:var(--steel)}
+.schtbl th{font-size:12px;font-weight:600;padding:5px 4px;border-bottom:1px solid var(--rule)}
+
+/* how to use */
+section.howto{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:18px 22px 14px;margin-top:22px}
+.howto h2{font-family:var(--math);font-weight:600;font-size:24px;margin:0 0 4px}
+.howto h3{font-size:15px;font-weight:600;margin:18px 0 6px}
+.howto p,.howto li{font-size:14px;max-width:85ch}
+.howto ol,.howto ul{padding-left:22px;margin:6px 0}
+.howto li{margin:5px 0}
+.howto .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4px 32px}
+
+footer{margin-top:28px;font-size:12.5px;color:var(--steel);border-top:1px solid var(--rule);padding-top:14px;display:grid;gap:6px}
+.printhead{display:none}
+
+@media (max-width:980px){
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none}
+  .verdict{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .wrap{padding:18px 14px 36px}
+  td.eq,td.sb{white-space:normal}
+  td.lb{width:auto}
+  .howto{padding:16px 14px 12px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .verdict .state{transition:color .25s}
+}
+@media print{
+  :root{--bg:#fff;--panel:#fff}
+  body{font-size:11px}
+  .actions,.noprint{display:none!important}
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none;border:0;padding:0}
+  section.step,.verdict{break-inside:avoid;border-color:#999}
+  .printhead{display:block;font-size:11px;margin-bottom:8px}
+  input,select{border:0;background:none;padding:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <a class="home" href="../"><img class="lg-light" src="../../assets/gear-light.png" alt=""><img class="lg-dark" src="../../assets/gear-dark.png" alt=""><span>Baher Elsheikh</span><span style="font-weight:400;color:var(--steel)">| All calculators</span></a>
+      <h1>Flange external loads</h1>
+      <div class="byline">Prepared by: <strong>Baher Elsheikh</strong>
+        <span class="links"><a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube channel</a></span></div>
+      <div class="basis">External moment and axial force on standard welding neck flanges (ASME B16.5, B16.47) by the equivalent pressure method of ASME BPVC Section VIII Division 1 UG-44(b), or of Code Case 2901-1. Gasket reaction diameter per Mandatory Appendix 2. Metric units.</div>
+    </div>
+    <div class="actions">
+      <button type="button" id="btnHow">How to use</button>
+      <button type="button" id="btnExample">Load example</button>
+      <button type="button" id="btnClear">Clear inputs</button>
+      <button type="button" class="primary" id="btnPrint">Print / save PDF</button>
+    </div>
+  </header>
+
+  <div class="printhead" id="printhead"></div>
+
+  <div class="verdict" aria-live="polite">
+    <div>
+      <div class="state" id="vState">—</div>
+      <div class="sub" id="vSub"></div>
+      <div class="chips" id="vChips"></div>
+    </div>
+    <div class="gauge">
+      <svg id="chart" viewBox="0 0 640 240" role="img" aria-label="Allowable moment against axial force"></svg>
+      <div class="gcap">Interaction line 16 M<sub>E</sub> + 4 F<sub>E</sub> G = π G³ [(P<sub>R</sub> − P<sub>D</sub>) + F<sub>M</sub> P<sub>R</sub>]: any load point on or below the line is acceptable.</div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <aside class="inputs" aria-label="Inputs">
+      <fieldset>
+        <legend>Flange</legend>
+        <div class="f wide"><label for="tag">Joint / description</label><input id="tag" type="text" placeholder="e.g. N2 nozzle, NPS 6 Cl. 300 WN"></div>
+        <div class="f wide"><label for="prep">Prepared by</label><input id="prep" type="text"></div>
+        <div class="f wide"><label for="meth">Method</label>
+          <select id="meth"><option value="ug">UG-44(b), Table UG-44-1</option><option value="cc">Code Case 2901-1, Table 1</option></select></div>
+        <div class="f wide"><label for="std">Flange standard</label>
+          <select id="std"><option>ASME B16.5</option><option>ASME B16.47 Series A</option><option>ASME B16.47 Series B</option></select></div>
+        <div class="f wide"><label for="size">NPS and class</label><input id="size" type="text" placeholder="e.g. NPS 6, Class 300"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Pressure</legend>
+        <div class="f wide"><label for="punit">Pressure unit</label>
+          <select id="punit"><option value="MPa">MPa (g)</option><option value="kgcm2">kg/cm² (g)</option><option value="bar">bar (g)</option><option value="psi">psi (g)</option></select></div>
+        <div class="f"><label for="P" id="Plab">Vessel MAWP at design temp.</label><input id="P" type="number" step="any"><span class="u pu">MPa</span></div>
+        <div class="f"><label for="Ps">Static pressure on the flange</label><input id="Ps" type="number" step="any"><span class="u pu">MPa</span></div>
+        <div class="f"><label for="PR">Flange rating at design temp. <i>P</i><sub>R</sub></label><input id="PR" type="number" step="any"><span class="u pu">MPa</span></div>
+        <p class="hint">From the B16.5 / B16.47 pressure–temperature rating table for the flange material group and class.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>External loads (piping on the flange)</legend>
+        <div class="f wide"><label for="ax">Nozzle axis, from the vessel towards the piping</label>
+          <select id="ax"><option value="+X">+X</option><option value="-X">−X</option><option value="+Y">+Y</option><option value="-Y">−Y</option><option value="+Z">+Z</option><option value="-Z">−Z</option></select></div>
+        <div class="f"><label for="Fx">Force <i>F</i><sub>x</sub></label><input id="Fx" type="number" step="any"><span class="u">kN</span></div>
+        <div class="f"><label for="Fy">Force <i>F</i><sub>y</sub></label><input id="Fy" type="number" step="any"><span class="u">kN</span></div>
+        <div class="f"><label for="Fz">Force <i>F</i><sub>z</sub></label><input id="Fz" type="number" step="any"><span class="u">kN</span></div>
+        <div class="f"><label for="Mx">Moment <i>M</i><sub>x</sub></label><input id="Mx" type="number" step="any"><span class="u">kN·m</span></div>
+        <div class="f"><label for="My">Moment <i>M</i><sub>y</sub></label><input id="My" type="number" step="any"><span class="u">kN·m</span></div>
+        <div class="f"><label for="Mz">Moment <i>M</i><sub>z</sub></label><input id="Mz" type="number" step="any"><span class="u">kN·m</span></div>
+        <label class="check" style="display:flex;gap:8px;align-items:center;font-size:13px;margin-top:8px"><input id="tors" type="checkbox" style="width:auto"> Include torsion in <i>M</i><sub>E</sub> (conservative)</label>
+        <p class="hint">Global axes of the piping stress model, with the signs of its output; blank = 0. Step 1 of the report shows the axis sketch.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Gasket and moment factor</legend>
+        <div class="f"><label for="GO">Gasket contact OD</label><input id="GO" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="GI">Gasket contact ID</label><input id="GI" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="Gov"><i>G</i> override (optional)</label><input id="Gov" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="FM">Moment factor <i>F</i><sub>M</sub></label><input id="FM" type="number" step="any"><span class="u"></span></div>
+        <p class="hint" id="FMhint">From Table UG-44-1 for the standard, size range and class.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Conditions of the method</legend>
+        <label class="check" style="display:flex;gap:8px;align-items:center;font-size:13px;margin-top:8px"><input id="wn" type="checkbox" style="width:auto"> Welding neck flange per UG-44(a)(2), (a)(9), (a)(10)</label>
+        <label class="check" style="display:flex;gap:8px;align-items:center;font-size:13px;margin-top:8px"><input id="bolt" type="checkbox" style="width:auto"> Bolt allowable stress ≥ SA-193 B8 Cl. 2 at the bolt size and temperature</label>
+        <label class="check" style="display:flex;gap:8px;align-items:center;font-size:13px;margin-top:8px"><input id="pcc" type="checkbox" style="width:auto"> Assembly bolt load per ASME PCC-1 Appendix O</label>
+      </fieldset>
+    </aside>
+
+    <main class="report" id="report"></main>
+  </div>
+
+  <section class="howto noprint" id="howto" aria-labelledby="h-how">
+    <h2 id="h-how">How to use this calculator</h2>
+    <p>Piping loads on a nozzle flange add a bending moment and an axial force to the internal pressure. UG-44(b) lets you check a standard welding neck flange for these loads by converting them into an equivalent pressure and comparing it with the flange rating increased by a moment factor F<sub>M</sub>. Code Case 2901-1 uses the same equation with its own, size-dependent moment factors, which are often higher for small flanges. Both require the bolting and the assembly bolt load to meet minimum conditions.</p>
+    <div class="grid">
+      <div>
+        <h3>Steps</h3>
+        <ol>
+          <li><strong>Choose the method.</strong> UG-44(b) uses Table UG-44-1 and the vessel MAWP; Code Case 2901-1 uses its Table 1 and the vessel design pressure.</li>
+          <li><strong>Enter the pressure</strong> (pick the unit first), any static pressure acting on the flange, and the flange rating P<sub>R</sub> at design temperature from the B16.5 or B16.47 rating table.</li>
+          <li><strong>Select the nozzle axis and enter the six loads</strong> F<sub>x</sub>, F<sub>y</sub>, F<sub>z</sub>, M<sub>x</sub>, M<sub>y</sub>, M<sub>z</sub> from the piping stress analysis or the nozzle load table, in its global axes. The axis is the direction from the vessel towards the piping (for example +X for a shell nozzle pointing east, +Y for a nozzle on the top head). Step 1 shows the sketch and how the loads combine: F<sub>E</sub> is the force along the axis when it pulls the flange away, and M<sub>E</sub> is the resultant of the two moments across the axis.</li>
+          <li><strong>Enter the gasket contact OD and ID</strong>; G is calculated to Mandatory Appendix 2. Or enter G directly.</li>
+          <li><strong>Enter the moment factor F<sub>M</sub></strong> from your copy of Table UG-44-1 or Code Case 2901-1 Table 1, for the flange standard, size and class. A size and class with no value in the table is outside the scope of the method.</li>
+          <li><strong>Confirm the three conditions</strong>: welding neck flange, bolting at least as strong as SA-193 B8 Cl. 2, and assembly bolt load per PCC-1 Appendix O.</li>
+          <li><strong>Read the result</strong> and the interaction diagram; step 3 also gives the largest moment and force the flange can take.</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Good practice</h3>
+        <ul>
+          <li>For small flanges, Code Case 2901-1 usually allows much higher loads than UG-44(b); when it is used, record the case number on the Manufacturer's Data Report.</li>
+          <li>Consider a lower F<sub>M</sub> when the loads are mainly sustained and the joint runs hot enough for gasket creep and relaxation to matter (typically above 232 °C).</li>
+          <li>Set the assembly bolt load with the <a href="../flange-bolt-torque/">PCC-1 bolt torque calculator</a>, and check non-standard flanges with the <a href="../non-standard-flange/">Appendix 2 flange calculator</a>.</li>
+          <li>The two bending moments combine as √(M<sub>1</sub>² + M<sub>2</sub>²). Torsion does not open the joint and is left out; tick the box to include it as √(M<sub>1</sub>² + M<sub>2</sub>² + M<sub>t</sub>²) where a company specification asks for it.</li>
+        </ul>
+        <h3>Not covered</h3>
+        <ul>
+          <li>Slip-on, lap joint and non-standard flanges, compressive axial force (taken as 0), shear force, nozzles not lined up with a global axis (resolve the loads to the nozzle axes first), and the nozzle-to-shell junction (WRC 107 / 297 or FEA).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>Prepared by: Baher Elsheikh (<a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a>). Version 1.1, November 2026 (from the spreadsheet Flange External Loads UG-44(b) / CC 2901-1 Calculator, revision 2).</div>
+    <div>© 2026 Baher Elsheikh. Free to use; not to be copied, modified or redistributed without permission.</div>
+    <div>This tool is an aid for engineering screening. The flange rating and the moment factor are entered by the user from ASME B16.5 / B16.47 and ASME Section VIII Division 1 or Code Case 2901-1 and are not supplied here. Results must be verified by a qualified engineer against the applicable code edition before use. No warranty is given.</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const PCONV = {kgcm2:0.0980665, MPa:1, bar:0.1, psi:0.00689476};
+  const PLAB = {kgcm2:'kg/cm²', MPa:'MPa', bar:'bar', psi:'psi'};
+  const EXAMPLE = {tag:'Example: N2 nozzle flange', prep:'', meth:'cc', std:'ASME B16.5', size:'NPS 6, Class 300', punit:'MPa', P:3.0, Ps:0, PR:4.38,
+    ax:'+X', Fx:20, Fy:3, Fz:-2, Mx:1.5, My:3, Mz:-4, tors:false, GO:209.6, GI:171.5, Gov:'', FM:1.2, wn:true, bolt:true, pcc:true};
+  const IDS = Object.keys(EXAMPLE);
+  const AXES_SVG = `<defs><marker id="aI" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" style="fill:var(--ink)"/></marker><marker id="aA" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" style="fill:var(--accent)"/></marker><marker id="aS" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" style="fill:var(--steel)"/></marker><marker id="aG" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" style="fill:#B07D1A"/></marker></defs>
+<rect x="28" y="22" width="20" height="290" style="fill:var(--tol);stroke:var(--wall);stroke-width:1.2"/>
+<line x1="28" y1="40" x2="48" y2="26" style="stroke:var(--wall);stroke-width:0.8"/>
+<line x1="28" y1="54" x2="48" y2="40" style="stroke:var(--wall);stroke-width:0.8"/>
+<line x1="28" y1="68" x2="48" y2="54" style="stroke:var(--wall);stroke-width:0.8"/>
+<line x1="28" y1="82" x2="48" y2="68" style="stroke:var(--wall);stroke-width:0.8"/>
+<line x1="28" y1="96" x2="48" y2="82" style="stroke:var(--wall);stroke-width:0.8"/>
+<line x1="28" y1="110" x2="48" y2="96" style="stroke:var(--wall);stroke-width:0.8"/>
+<line x1="28" y1="124" x2="48" y2="110" style="stroke:var(--wall);stroke-width:0.8"/>
+<line x1="28" y1="138" x2="48" y2="124" style="stroke:var(--wall);stroke-width:0.8"/>
+<line x1="28" y1="152" x2="48" y2="138" style="stroke:var(--wall);stroke-width:0.8"/>
+<line x1="28" y1="166" x2="48" y2="152" style="stroke:var(--wall);stroke-width:0.8"/>
+<line x1="28" y1="180" x2="48" y2="166" style="stroke:var(--wall);stroke-width:0.8"/>
+<line x1="28" y1="194" x2="48" y2="180" style="stroke:var(--wall);stroke-width:0.8"/>
+<line x1="28" y1="208" x2="48" y2="194" style="stroke:var(--wall);stroke-width:0.8"/>
+<line x1="28" y1="222" x2="48" y2="208" style="stroke:var(--wall);stroke-width:0.8"/>
+<line x1="28" y1="236" x2="48" y2="222" style="stroke:var(--wall);stroke-width:0.8"/>
+<line x1="28" y1="250" x2="48" y2="236" style="stroke:var(--wall);stroke-width:0.8"/>
+<line x1="28" y1="264" x2="48" y2="250" style="stroke:var(--wall);stroke-width:0.8"/>
+<line x1="28" y1="278" x2="48" y2="264" style="stroke:var(--wall);stroke-width:0.8"/>
+<line x1="28" y1="292" x2="48" y2="278" style="stroke:var(--wall);stroke-width:0.8"/>
+<line x1="28" y1="306" x2="48" y2="292" style="stroke:var(--wall);stroke-width:0.8"/>
+<text x="38" y="15" font-size="12" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" style="fill:var(--steel);stroke:var(--panel);stroke-width:3px;paint-order:stroke;stroke-linejoin:round">Vessel</text>
+<path d="M48,148 L140,148 L168,136 L168,204 L140,192 L48,192 Z" style="fill:var(--field);stroke:var(--ink);stroke-width:1.4"/>
+<line x1="48" y1="158" x2="168" y2="158" style="stroke:var(--steel);stroke-width:0.8;stroke-dasharray:4 3"/>
+<line x1="48" y1="182" x2="168" y2="182" style="stroke:var(--steel);stroke-width:0.8;stroke-dasharray:4 3"/>
+<rect x="168" y="108" width="17" height="124" style="fill:var(--field);stroke:var(--ink);stroke-width:1.4"/>
+<rect x="185" y="140" width="4" height="60" style="fill:#B07D1A"/>
+<rect x="189" y="108" width="17" height="124" style="fill:var(--field);stroke:var(--ink);stroke-width:1.4"/>
+<line x1="160" y1="118" x2="214" y2="118" style="stroke:var(--steel);stroke-width:2"/>
+<line x1="160" y1="222" x2="214" y2="222" style="stroke:var(--steel);stroke-width:2"/>
+<path d="M206,136 L232,148 L330,148 M206,204 L232,192 L330,192" style="fill:none;stroke:var(--steel);stroke-width:1.2;stroke-dasharray:6 4"/>
+<text x="212" y="216" font-size="12" text-anchor="start" font-family="Arial, Helvetica, sans-serif" style="fill:var(--steel);stroke:var(--panel);stroke-width:3px;paint-order:stroke;stroke-linejoin:round">Piping</text>
+<text x="95" y="138" font-size="12" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" style="fill:var(--steel);stroke:var(--panel);stroke-width:3px;paint-order:stroke;stroke-linejoin:round">Nozzle</text>
+<line x1="187" y1="170" x2="410" y2="170" style="stroke:var(--ink);stroke-width:1.2" marker-end="url(#aI)"/>
+<line x1="187" y1="170" x2="187" y2="26" style="stroke:var(--ink);stroke-width:1.2" marker-end="url(#aI)"/>
+<line x1="187" y1="170" x2="104" y2="282" style="stroke:var(--ink);stroke-width:1.2" marker-end="url(#aI)"/>
+<text x="414" y="175" font-size="14" text-anchor="start" font-weight="600" font-family="Arial, Helvetica, sans-serif" style="fill:var(--ink);stroke:var(--panel);stroke-width:3px;paint-order:stroke;stroke-linejoin:round">+X</text>
+<text x="195" y="30" font-size="14" text-anchor="start" font-weight="600" font-family="Arial, Helvetica, sans-serif" style="fill:var(--ink);stroke:var(--panel);stroke-width:3px;paint-order:stroke;stroke-linejoin:round">+Y</text>
+<text x="112" y="298" font-size="14" text-anchor="start" font-weight="600" font-family="Arial, Helvetica, sans-serif" style="fill:var(--ink);stroke:var(--panel);stroke-width:3px;paint-order:stroke;stroke-linejoin:round">+Z</text>
+<text x="138" y="298" font-size="11" text-anchor="start" font-family="Arial, Helvetica, sans-serif" style="fill:var(--steel);stroke:var(--panel);stroke-width:3px;paint-order:stroke;stroke-linejoin:round">(towards you)</text>
+<circle cx="187" cy="170" r="4" style="fill:var(--ink)"/>
+<text x="181" y="162" font-size="13" text-anchor="end" font-weight="600" font-family="Arial, Helvetica, sans-serif" style="fill:var(--ink);stroke:var(--panel);stroke-width:3px;paint-order:stroke;stroke-linejoin:round">O</text>
+<line x1="338" y1="170" x2="400" y2="170" style="stroke:#B07D1A;stroke-width:4" marker-end="url(#aG)"/>
+<text x="368" y="160" font-size="13" font-weight="600" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" style="fill:#B07D1A">F<tspan baseline-shift="sub" font-size="10">x</tspan></text>
+<text x="368" y="192" font-size="12" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" style="fill:var(--steel);stroke:var(--panel);stroke-width:3px;paint-order:stroke;stroke-linejoin:round">axial: F<tspan baseline-shift="sub" font-size="10">E</tspan></text>
+<path d="M296,140 A10,32 0 1,1 286,196" style="fill:none;stroke:var(--steel);stroke-width:2" marker-end="url(#aS)"/>
+<text x="296" y="226" font-size="12" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" style="fill:var(--steel);stroke:var(--panel);stroke-width:3px;paint-order:stroke;stroke-linejoin:round">M<tspan baseline-shift="sub" font-size="10">x</tspan> torsion</text>
+<path d="M160,76 A30,9 0 1,0 216,72" style="fill:none;stroke:var(--accent);stroke-width:2.2" marker-end="url(#aA)"/>
+<text x="224" y="64" font-size="12" text-anchor="start" font-weight="600" font-family="Arial, Helvetica, sans-serif" style="fill:var(--accent);stroke:var(--panel);stroke-width:3px;paint-order:stroke;stroke-linejoin:round">M<tspan baseline-shift="sub" font-size="10">y</tspan> bending</text>
+<path d="M250,140 A70,70 0 0,0 217,107" style="fill:none;stroke:var(--accent);stroke-width:2.2" marker-end="url(#aA)"/>
+<text x="232" y="98" font-size="12" text-anchor="start" font-weight="600" font-family="Arial, Helvetica, sans-serif" style="fill:var(--accent);stroke:var(--panel);stroke-width:3px;paint-order:stroke;stroke-linejoin:round">M<tspan baseline-shift="sub" font-size="10">z</tspan> bending</text>
+<text x="179" y="94" font-size="11" text-anchor="end" font-family="Arial, Helvetica, sans-serif" style="fill:var(--steel);stroke:var(--panel);stroke-width:3px;paint-order:stroke;stroke-linejoin:round">F<tspan baseline-shift="sub" font-size="10">y</tspan> shear</text>
+<text x="124" y="272" font-size="11" text-anchor="start" font-family="Arial, Helvetica, sans-serif" style="fill:var(--steel);stroke:var(--panel);stroke-width:3px;paint-order:stroke;stroke-linejoin:round">F<tspan baseline-shift="sub" font-size="10">z</tspan> shear</text>`;
+  const STORE = 'flange-external-loads-inputs-v2';
+  const $ = id => document.getElementById(id);
+  function setInputs(d){ IDS.forEach(k=>{const el=$(k); if(!el) return; if(el.type==='checkbox') el.checked=!!d[k]; else el.value=(d[k]===undefined||d[k]===null)?'':d[k];}); }
+  function getInputs(){ const d={}; IDS.forEach(k=>{const el=$(k); d[k]= el.type==='checkbox'?el.checked:el.value;}); return d; }
+  function num(k){ const v=parseFloat($(k).value); return isFinite(v)?v:NaN; }
+  function f(x,d){ if(!isFinite(x)) return '—'; return x.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+  const v = s => `<i>${s}</i>`;
+  function row(label, eq, sub, val, unit, d, small){
+    return `<tr><td class="lb">${label}</td><td class="eq">${eq||''}</td><td class="sb">${sub||''}</td>`+
+      `<td class="v">${typeof val==='string'?val:f(val,d)}${small?`<small>${small}</small>`:''}</td><td class="un">${unit||''}</td></tr>`;
+  }
+  function step(n,title,ref,rows,results,notes){
+    return `<section class="step"><h2><span class="n">${n}</span>${title}</h2><div class="ref">${ref}</div>`+
+      (rows.length?`<div class="tbl"><table>${rows.filter(Boolean).join('')}</table></div>`:'')+
+      (results||[]).map(r=>`<div class="result ${r[0]}">${r[1]}</div>`).join('')+
+      (notes||[]).map(t=>`<p class="note">${t}</p>`).join('')+`</section>`;
+  }
+
+  function compute(){
+    const pu=$('punit').value, pc=PCONV[pu], pl=PLAB[pu];
+    document.querySelectorAll('.pu').forEach(e=>e.textContent=pl);
+    const cc = $('meth').value==='cc';
+    $('Plab').textContent = cc ? 'Vessel design pressure at design temp.' : 'Vessel MAWP at design temp.';
+    $('FMhint').textContent = cc ? 'From Code Case 2901-1 Table 1 for the standard, NPS and class.' : 'From Table UG-44-1 for the standard, size range and class.';
+    const P=num('P')*pc, Ps=(num('Ps')||0)*pc, PR=num('PR')*pc, GO=num('GO'), GI=num('GI'), Gov=num('Gov'), FM=num('FM');
+    const ax=$('ax').value, ai='XYZ'.indexOf(ax[1]), sg = ax[0]==='-' ? -1 : 1;
+    const Fv=[num('Fx')||0, num('Fy')||0, num('Fz')||0], Mv=[num('Mx')||0, num('My')||0, num('Mz')||0];
+    const j=(ai+1)%3, k=(ai+2)%3, AX='xyz';
+    const Fa = sg*Fv[ai], Vs = Math.hypot(Fv[j],Fv[k]), Mt = Mv[ai], Mb = Math.hypot(Mv[j],Mv[k]);
+    const tors = $('tors').checked, ME = tors ? Math.hypot(Mb,Mt) : Mb, FE = Math.max(0,Fa);
+    const hasG = isFinite(Gov)&&Gov>0;
+    const need=['P','PR','FM'].concat(hasG?[]:['GO','GI']);
+    ['P','PR','FM','GO','GI'].forEach(k=>$(k).classList.remove('need'));
+    need.forEach(k=>$(k).classList.toggle('need', !isFinite(num(k))));
+    const ready = need.every(k=>isFinite(num(k)));
+    const conds = $('wn').checked && $('bolt').checked && $('pcc').checked;
+
+    const PD = P+Ps, N=(GO-GI)/2, bo=N/2, b = bo>6 ? 2.5*Math.sqrt(bo) : bo;
+    const G = hasG ? Gov : (bo>6 ? GO-2*b : (GO+GI)/2);
+    const ok1 = PD<=PR;
+    const L = 16*ME*1e6 + 4*FE*1e3*G;               // N·mm
+    const Cap = Math.PI*G**3*((PR-PD)+FM*PR);        // N·mm
+    const U = L/Cap, ok2 = Cap>0 && U<=1;
+    const Peq = PD + L/(Math.PI*G**3), Pal = (1+FM)*PR;
+    const Mal = Math.max(0,(Cap-4*FE*1e3*G)/16/1e6), Fal = Math.max(0,(Cap-16*ME*1e6)/(4*G)/1e3);
+    const all = ok1 && ok2 && conds;
+    const back = p => isFinite(p)&&pu!=='MPa' ? f(p/pc,3)+' '+pl : '';
+
+    let out='';
+    const m1=AX[j], m2=AX[k], ma=AX[ai];
+    out += step(1,'Loads at the flange', `Nozzle axis ${ax.replace('-','−')}: axial force and torsion along ${ma.toUpperCase()}, bending about ${m1.toUpperCase()} and ${m2.toUpperCase()}`,[
+      row('Axial force (+ = tension)', `${v('F')}<sub>a</sub> = ${sg<0?'−':''}${v('F')}<sub>${ma}</sub>`, `${sg<0?'−':''}(${f(Fv[ai],2)})`, Fa,'kN',2),
+      row('Tensile axial force used', `${v('F')}<sub>E</sub> = max(0, ${v('F')}<sub>a</sub>)`, Fa<0?'compression taken as 0':'', FE,'kN',2),
+      row('Bending moment', `√(${v('M')}<sub>${m1}</sub>² + ${v('M')}<sub>${m2}</sub>²)`, `√(${f(Mv[j],2)}² + ${f(Mv[k],2)}²)`, Mb,'kN·m',2),
+      row('Torsional moment', `${v('M')}<sub>${ma}</sub>`, tors?'included':'not used', Mt,'kN·m',2),
+      row('External moment used', `${v('M')}<sub>E</sub>`, tors?`√(${f(Mb,2)}² + ${f(Mt,2)}²)`:'bending only', ME,'kN·m',2),
+      row('Shear force (not used)', `√(${v('F')}<sub>${m1}</sub>² + ${v('F')}<sub>${m2}</sub>²)`, 'carried by gasket and face friction', Vs,'kN',2)
+    ],[],[]).replace(/<\/section>$/, `<figure class="axes"><svg viewBox="0 0 430 340" role="img" aria-label="Global X, Y and Z axes at the nozzle flange">${AXES_SVG}</svg><figcaption>Loads applied by the piping on the flange at the gasket face O, in the global axes of the stress model. As drawn, the nozzle axis is +X.</figcaption><table class="axmap"><tr><th>Nozzle axis</th><th><i>F</i><sub>E</sub> (if tensile)</th><th><i>M</i><sub>E</sub></th><th>Torsion (not used)</th></tr><tr><td>±X</td><td>±<i>F</i><sub>x</sub></td><td>√(<i>M</i><sub>y</sub>² + <i>M</i><sub>z</sub>²)</td><td><i>M</i><sub>x</sub></td></tr><tr><td>±Y</td><td>±<i>F</i><sub>y</sub></td><td>√(<i>M</i><sub>x</sub>² + <i>M</i><sub>z</sub>²)</td><td><i>M</i><sub>y</sub></td></tr><tr><td>±Z</td><td>±<i>F</i><sub>z</sub></td><td>√(<i>M</i><sub>x</sub>² + <i>M</i><sub>y</sub>²)</td><td><i>M</i><sub>z</sub></td></tr></table><p class="note">Select + or − for the direction the nozzle points from the vessel; a force on the flange in that direction pulls it away (tension). Shear forces across the axis are not used.</p></figure></section>`);
+
+    out += step(2,'Gasket reaction diameter','Mandatory Appendix 2-3, Table 2-5.2 (sketches 1a, 1b)', hasG ? [
+      row('Gasket reaction diameter', v('G'), 'entered', G,'mm',2) ] : [
+      row('Contact width', `${v('N')} = (GO − GI)/2`, `(${f(GO,1)} − ${f(GI,1)}) / 2`, N,'mm',2),
+      row('Basic seating width', `${v('b')}<sub>o</sub> = ${v('N')}/2`, '', bo,'mm',2),
+      row('Effective seating width', `${v('b')} = ${bo>6?'2.5√'+v('b')+'<sub>o</sub>':v('b')+'<sub>o</sub>'}`, bo>6?'b<sub>o</sub> > 6 mm':'b<sub>o</sub> ≤ 6 mm', b,'mm',3),
+      row('Gasket reaction diameter', v('G'), bo>6?`GO − 2b = ${f(GO,1)} − 2 × ${f(b,3)}`:'mean of contact face', G,'mm',2)
+    ], []);
+
+    out += step(3,'Pressure rating', cc?'Code Case 2901-1: design pressure corrected for static pressure on the flange':'UG-44(b)(1): MAWP corrected for static pressure must not exceed the flange rating',[
+      row(cc?'Design pressure on the flange':'MAWP on the flange', `${v('P')}<sub>D</sub> = ${v('P')} + ${v('P')}<sub>static</sub>`, `${f(P,3)} + ${f(Ps,3)}`, PD,'MPa',3, back(PD)),
+      row('Flange rating at design temperature', `${v('P')}<sub>R</sub>`, 'entered', PR,'MPa',3, back(PR))
+    ],[ ok1?['ok',`P<sub>D</sub> ${f(PD,3)} ≤ P<sub>R</sub> ${f(PR,3)} MPa.`]:['bad',`P<sub>D</sub> ${f(PD,3)} > P<sub>R</sub> ${f(PR,3)} MPa: select a higher class.`] ]);
+
+    out += step(4,'External loads', cc?'Code Case 2901-1 (c): P<sub>D</sub> + (16M<sub>E</sub> + 4F<sub>E</sub>G)/(πG³) ≤ (1 + F<sub>M</sub>)P<sub>R</sub>':'UG-44(b)(4): 16M<sub>E</sub> + 4F<sub>E</sub>G ≤ πG³[(P<sub>R</sub> − P<sub>D</sub>) + F<sub>M</sub>P<sub>R</sub>]',[
+      row('Moment factor', v('F')+'<sub>M</sub>', cc?'Code Case 2901-1 Table 1 (entered)':'Table UG-44-1 (entered)', FM,'',3),
+      row('Load term', `16${v('M')}<sub>E</sub> + 4${v('F')}<sub>E</sub>${v('G')}`, `16 × ${f(ME*1e6,0)} + 4 × ${f(FE*1e3,0)} × ${f(G,2)}`, L,'N·mm',0),
+      row('Capacity', `π${v('G')}³[(${v('P')}<sub>R</sub> − ${v('P')}<sub>D</sub>) + ${v('F')}<sub>M</sub>${v('P')}<sub>R</sub>]`, `π × ${f(G,2)}³ × [(${f(PR,3)} − ${f(PD,3)}) + ${f(FM,3)} × ${f(PR,3)}]`, Cap,'N·mm',0),
+      row('Utilisation', 'load / capacity', '', U,'',3),
+      row('Equivalent pressure', `${v('P')}<sub>D</sub> + (16${v('M')}<sub>E</sub> + 4${v('F')}<sub>E</sub>${v('G')})/(π${v('G')}³)`, `≤ (1 + F<sub>M</sub>)P<sub>R</sub> = ${f(Pal,3)}`, Peq,'MPa',3, back(Peq)),
+      row('Maximum moment at this force', `[π${v('G')}³(…) − 4${v('F')}<sub>E</sub>${v('G')}]/16`, '', Mal,'kN·m',2),
+      row('Maximum tensile force at this moment', `[π${v('G')}³(…) − 16${v('M')}<sub>E</sub>]/(4${v('G')})`, '', Fal,'kN',1)
+    ],[ ok2?['ok',`Utilisation ${f(U,3)} ≤ 1: the flange can carry the external loads.`]:['bad',`Utilisation ${f(U,3)} > 1: reduce the loads, use a higher class${cc?'':' or Code Case 2901-1'}.`] ],
+      ['Consider a lower F<sub>M</sub> for mainly sustained loads where gasket creep / relaxation is significant (typically above 232 °C).']);
+
+    out += step(5,'Conditions of the method', cc?'Code Case 2901-1 (a), (b); welding neck flange per UG-44(a)':'UG-44(b)(2), (b)(3); welding neck flange per UG-44(a)(2), (a)(9), (a)(10)',[],[
+      [$('wn').checked?'ok':'bad', $('wn').checked?'Welding neck flange.':'Not a welding neck flange: the method does not apply.'],
+      [$('bolt').checked?'ok':'bad', $('bolt').checked?'Bolting at least as strong as SA-193 B8 Cl. 2.':'Bolting not confirmed: the allowable stress must equal or exceed SA-193 B8 Cl. 2.'],
+      [$('pcc').checked?'ok':'bad', $('pcc').checked?'Assembly bolt load per ASME PCC-1 Appendix O.':'Assembly bolt load per PCC-1 Appendix O not confirmed.']
+    ], cc?['Record the Code Case 2901-1 number on the Manufacturer\'s Data Report (UG-120).']:[]);
+
+    $('report').innerHTML = out;
+    const st=$('vState');
+    if(!ready){ st.textContent='Enter the highlighted inputs'; st.className='state'; }
+    else if(all){ st.textContent=`Flange acceptable: utilisation ${f(U,2)}`; st.className='state ok'; }
+    else if(!conds && ok1 && ok2){ st.textContent='Loads acceptable, but method conditions not confirmed'; st.className='state bad'; }
+    else { st.textContent = !ok1 ? 'Pressure exceeds the flange rating' : `Not acceptable: utilisation ${f(U,2)}`; st.className='state bad'; }
+    $('vSub').innerHTML = `${$('tag').value||'Flange'}: ${$('std').value}${$('size').value?', '+$('size').value:''}; ${cc?'Code Case 2901-1':'UG-44(b)'}, F<sub>M</sub> ${f(FM,3)}, G ${f(G,1)} mm.`;
+    const chip=(ok,lab)=>`<span class="chip ${ok?'ok':'bad'}">${lab}</span>`;
+    $('vChips').innerHTML = ready ? chip(ok1,'Pressure rating')+chip(ok2,'External loads')+chip(conds,'Method conditions')+`<span class="chip info">M<sub>max</sub> ${f(Mal,1)} kN·m</span>` : '';
+    if(ready && Cap>0) drawChart({ME,FE,G,Cap,ok2}); else $('chart').innerHTML='';
+    $('printhead').textContent = `${$('tag').value||''}  ${$('prep').value?'Prepared by: '+$('prep').value:''}`;
+    try{ localStorage.setItem(STORE, JSON.stringify(getInputs())); }catch(e){}
+  }
+
+  function drawChart(d){
+    const g=$('chart'), cs=getComputedStyle(document.documentElement), c=n=>cs.getPropertyValue(n).trim();
+    const M0 = d.Cap/16/1e6, F0 = d.Cap/(4*d.G)/1e3;            // intercepts, kN·m and kN
+    const mMax = Math.max(M0, d.ME)*1.15, fMax = Math.max(F0, d.FE)*1.15;
+    const x0=70, x1=600, y0=20, y1=200, sx=F=>x0+(x1-x0)*F/fMax, sy=M=>y1-(y1-y0)*M/mMax;
+    let s=`<path d="M${sx(0)},${sy(M0)} L${sx(F0)},${sy(0)} L${sx(0)},${sy(0)} Z" fill="${c('--ok-soft')}"/>`;
+    s+=`<line x1="${sx(0)}" y1="${sy(M0)}" x2="${sx(F0)}" y2="${sy(0)}" stroke="${c('--ok')}" stroke-width="2"/>`;
+    s+=`<line x1="${x0}" y1="${y1}" x2="${x1}" y2="${y1}" stroke="${c('--rule')}"/><line x1="${x0}" y1="${y0}" x2="${x0}" y2="${y1}" stroke="${c('--rule')}"/>`;
+    for(let i=0;i<=4;i++){ const F=fMax*i/4, M=mMax*i/4;
+      s+=`<text x="${sx(F)}" y="${y1+15}" text-anchor="middle">${f(F,0)}</text>`;
+      if(i<4) s+=`<text x="${x0-6}" y="${sy(M)+4}" text-anchor="end">${f(M,1)}</text>`; }
+    s+=`<text x="${x1}" y="${y1+30}" text-anchor="end">axial force F<tspan baseline-shift="sub" font-size="9">E</tspan>, kN</text>`;
+    s+=`<text x="${x0-6}" y="${y0-6}" text-anchor="end">M<tspan baseline-shift="sub" font-size="9">E</tspan>, kN·m</text>`;
+    s+=`<text x="${sx(0)+6}" y="${sy(M0)-6}" class="lab" style="fill:${c('--ok')}">${f(M0,1)} kN·m</text>`;
+    s+=`<text x="${sx(F0)}" y="${sy(0)-8}" text-anchor="end" class="lab" style="fill:${c('--ok')}">${f(F0,0)} kN</text>`;
+    const col = d.ok2 ? c('--ok') : c('--bad');
+    s+=`<circle cx="${sx(d.FE)}" cy="${sy(d.ME)}" r="6" fill="${col}"/>`;
+    const right = sx(d.FE) > x1-200, below = sy(d.ME) > y1-20;
+    s+=`<text x="${sx(d.FE)+(right?-10:10)}" y="${sy(d.ME)+(below?-10:4)}" text-anchor="${right?'end':'start'}" class="lab" style="fill:${col}">load (${f(d.FE,0)} kN, ${f(d.ME,1)} kN·m)</text>`;
+    g.innerHTML=s;
+  }
+
+  let saved=null; try{ saved=JSON.parse(localStorage.getItem(STORE)); }catch(e){}
+  setInputs(saved||EXAMPLE);
+  document.querySelectorAll('aside input, aside select').forEach(x=>x.addEventListener('input',compute));
+  document.querySelectorAll('aside select, aside input[type=checkbox]').forEach(x=>x.addEventListener('change',compute));
+  $('btnExample').addEventListener('click',()=>{setInputs(EXAMPLE);compute();});
+  $('btnClear').addEventListener('click',()=>{const d={}; IDS.forEach(x=>d[x]=''); d.meth='cc'; d.std='ASME B16.5'; d.punit='MPa'; d.wn=false; d.bolt=false; d.pcc=false; d.ax='+X'; d.tors=false; setInputs(d); compute();});
+  $('btnHow').addEventListener('click',()=>$('howto').scrollIntoView({behavior:'smooth'}));
+  $('btnPrint').addEventListener('click',()=>window.print());
+  if(window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',compute);
+  compute();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Charpy Impact Energy and Specimen Orientation in Rolled Plate | Baher Elsheikh</title>
+<meta name="description" content="Why the same rolled plate gives different Charpy results in the longitudinal, transverse and through-thickness directions, and what to specify on purchase orders and test requests.">
+<meta name="keywords" content="Charpy impact test, specimen orientation, longitudinal, transverse, through thickness, rolled plate, anisotropy, manganese sulphide inclusions, lamellar tearing, impact toughness, ASTM A770, EN 10164">
+<meta name="author" content="Baher Elsheikh">
+<link rel="canonical" href="https://baher-elsheikh.github.io/articles/charpy-impact-energy-specimen-orientation/">
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://baher-elsheikh.github.io/articles/charpy-impact-energy-specimen-orientation/">
+<meta property="og:title" content="Charpy Impact Energy and Specimen Orientation in Rolled Plate">
+<meta property="og:description" content="Why the same rolled plate gives different Charpy results in the longitudinal, transverse and through-thickness directions, and what to specify on purchase orders and test requests.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Charpy Impact Energy and Specimen Orientation in Rolled Plate", "description": "Why the same rolled plate gives different Charpy results in the longitudinal, transverse and through-thickness directions, and what to specify on purchase orders and test requests.", "url": "https://baher-elsheikh.github.io/articles/charpy-impact-energy-specimen-orientation/", "inLanguage": "en", "datePublished": "2026-11", "author": {"@type": "Person", "name": "Baher Elsheikh", "url": "https://baher-elsheikh.github.io/about/", "sameAs": ["https://www.linkedin.com/in/baher-elsheikh/", "https://www.youtube.com/@baherelsheikh4942"]}, "about": "Charpy impact test, specimen orientation, rolled plate, anisotropy, inclusions, lamellar tearing"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F7F9; --panel:#FFFFFF; --ink:#16203A; --steel:#566074; --rule:#DCE0E7;
+  --accent:#14245E; --accent-soft:#E7EAF3; --brass:#8A6320; --brass-soft:#F4ECDD; --fig:#EEF1F7;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --serif:"STIX Two Text",Cambria,Georgia,"Times New Roman",serif;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 var(--sans);overflow-x:clip}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.lg-dark{display:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:block}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:block}
+header.site{background:var(--panel);border-bottom:1px solid var(--rule)}
+header.site .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;min-height:62px}
+.brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px}
+.brand img{height:34px;width:auto}
+nav.tabs{display:flex;flex-wrap:wrap;gap:2px}
+nav.tabs a{font-size:15px;font-weight:500;color:var(--steel);text-decoration:none;padding:6px 10px;border-radius:5px}
+nav.tabs a:hover{color:var(--ink);background:var(--accent-soft)}
+nav.tabs a.cur{color:var(--accent);background:var(--accent-soft)}
+article{max-width:760px;margin:0 auto;padding:40px 0 56px}
+.crumb{font-size:14px;color:var(--steel);margin:0 0 18px}
+.crumb a{color:var(--steel)}
+.lab{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none}
+.lab svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.22;letter-spacing:-.005em}
+h1{font-size:clamp(29px,3.6vw,40px);margin:10px 0 0}
+.lead{font-size:19px;line-height:1.6;color:var(--steel);margin:16px 0 0}
+.byline{font-size:14.5px;color:var(--steel);margin:18px 0 0;padding-bottom:22px;border-bottom:1px solid var(--rule)}
+h2{font-size:24px;margin:38px 0 6px}
+h3{font-size:19px;margin:28px 0 4px}
+p{margin:14px 0}
+ul,ol{padding-left:1.3em} li{margin:6px 0}
+figure{margin:28px 0}
+figure .frame{background:var(--fig);border:1px solid var(--rule);border-radius:6px;overflow:hidden;color:var(--accent)}
+figure .frame svg{display:block;width:100%;height:auto}
+figure img{display:block;width:100%;height:auto}
+figcaption{font-size:14.5px;color:var(--steel);margin-top:8px}
+.tbl{overflow-x:auto;margin:24px 0}
+table{border-collapse:collapse;width:100%;font-size:15.5px;background:var(--panel)}
+caption{caption-side:bottom;text-align:left;font-size:14.5px;color:var(--steel);padding-top:8px}
+th,td{border:1px solid var(--rule);padding:8px 12px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+td.n{text-align:center;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{width:34%}
+.eq{font-family:var(--serif);font-size:19px;text-align:center;margin:20px 0;padding:12px;background:var(--panel);border:1px solid var(--rule);border-radius:6px}
+.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 16px;margin:22px 0;font-size:16px}
+.refs{font-size:14.5px;color:var(--steel)}
+.refs li{margin:4px 0}
+.related{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule)}
+.related h2{font-size:20px;margin:0 0 8px}
+.related ul{list-style:none;padding:0;margin:0}
+.related li{padding:6px 0}
+.flag{font-size:12.5px;font-weight:500;color:var(--brass);background:var(--brass-soft);border-radius:3px;padding:1px 7px}
+.disc{font-size:14px;color:var(--steel);margin-top:30px}
+footer{border-top:1px solid var(--rule);padding:20px 0 30px;font-size:13.5px;color:var(--steel);background:var(--panel)}
+footer .wrap{display:grid;gap:6px}
+@media (max-width:600px){.wrap{padding:0 16px} article{padding-top:26px} body{font-size:16.5px}}
+@media print{header.site,footer,.related{display:none} body{background:#fff}}
+</style>
+<link rel="stylesheet" href="../../assets/chrome.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="beta-bar" role="note"><div class="wrap"><span class="beta-tag">Beta</span> This site is in its testing period. Spotted a mistake? Please tell me on <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</div></div>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../../"><img class="lg-light" src="../../assets/gear-light.png" alt="" width="41" height="34"><img class="lg-dark" src="../../assets/gear-dark.png" alt="" width="41" height="34"><span>Baher Elsheikh</span></a>
+    <div class="hdr-right">
+      <nav class="tabs" id="mainnav" aria-label="Main"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/" aria-current="page">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a></nav>
+      <a class="nav-search" href="../../search/"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20.5 20.5"/></svg><span>Search</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav">Menu</button>
+    </div>
+  </div>
+</header>
+<main id="main" class="wrap">
+<article>
+  <p class="crumb"><a href="../">Articles</a></p>
+  <a class="lab" href="../../knowledge/#materials-and-metallurgy"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 5.5l5-2 4 2.5-1 5-5 1.5-3-3z"/><path d="M12.5 6l5-1.5 3 4-2 3.5-4.5-.5-2.5-.5"/><path d="M6.5 12.5l1 5 5 2.5 3-4-1.5-4.5"/><path d="M15.5 16l4.5 1 .5-5.5"/></svg>Materials and Metallurgy</a>
+  <h1>Charpy Impact Energy and Specimen Orientation in Rolled Plate</h1>
+  <p class="lead">The same plate, from the same heat and tested at the same temperature, can give very different Charpy results. The difference comes from the direction in which the specimen is cut. Why this happens, and what to specify so that the test answers the right question.</p>
+  <p class="byline">By Baher Elsheikh. November 2026. 3 min read.</p>
+
+  <h2>Same plate, different results</h2>
+  <p>A plate is tested three times, at the same temperature, with specimens from the same heat. One set passes comfortably, one is marginal and one fails. The material did not change; only the orientation of the specimen did.</p>
+
+  <h2>Why orientation matters</h2>
+  <p>Rolling does more than reduce the thickness. Non-metallic inclusions, mainly manganese sulphides, are elongated into thin stringers along the rolling direction and flattened into layers parallel to the plate surface, and banding of the microstructure can add to the effect. The plate becomes anisotropic: its toughness depends on how a crack meets these features.</p>
+  <figure><img style="max-width:480px;margin:0 auto" src="specimen-orientations.png" width="480" height="258" alt="Rolled plate with Charpy specimens cut in the longitudinal, transverse and through-thickness directions" loading="lazy"><figcaption>Figure 1. Charpy specimen orientations in a rolled plate: L, longitudinal (along the rolling direction); T, transverse; S, through thickness. The axis letters in brackets are the author's labels; conventions for X, Y and Z differ between standards, so check the one used in your specification.</figcaption></figure>
+  <div class="tbl"><table>
+    <thead><tr><th>Orientation</th><th>Specimen axis</th><th>Crack path relative to the inclusions</th><th>Charpy energy</th></tr></thead>
+    <tbody>
+      <tr><td><strong>L</strong>, longitudinal</td><td>Parallel to the rolling direction</td><td>Cuts across the inclusions</td><td>Highest</td></tr>
+      <tr><td><strong>T</strong>, transverse</td><td>Across the rolling direction</td><td>Runs along the inclusions</td><td>Lower</td></tr>
+      <tr><td><strong>S</strong>, through thickness</td><td>Through the plate thickness</td><td>Runs between the inclusion layers</td><td>Lowest</td></tr>
+    </tbody></table></div>
+  <p>The order is always the same: <strong>L &gt; T &gt; S</strong>.</p>
+  <figure><img style="max-width:480px;margin:0 auto" src="relative-charpy-energy.png" width="480" height="333" alt="Bar chart of relative Charpy energy: longitudinal highest, transverse lower, through thickness lowest" loading="lazy"><figcaption>Figure 2. Relative Charpy energy against specimen orientation (L = 100). Illustrative values: actual ratios depend on the steel's cleanliness, sulphur content and processing.</figcaption></figure>
+
+  <h2>What this means in practice</h2>
+  <ul>
+    <li><strong>Transverse specimens are the conservative choice.</strong> Many codes and specifications require transverse specimens for plate for this reason. Always check the governing specification.</li>
+    <li><strong>State the orientation clearly</strong> on the purchase order and on the test request. A passing L result does not prove T compliance.</li>
+    <li><strong>Check the mill certificate</strong> reports the orientation actually tested, and ask if it does not.</li>
+    <li><strong>Through-thickness loading.</strong> Where a component is loaded through its thickness (T-joints, nozzle and attachment welds on thick plate), the S direction governs the risk of lamellar tearing. Through-thickness properties are normally specified by the reduction of area in a through-thickness tensile test (ASTM A770, EN 10164 Z-grades), not by Charpy.</li>
+    <li><strong>Cleaner steels</strong> (low sulphur, inclusion shape control) reduce the difference between directions, but they do not remove it.</li>
+  </ul>
+  <p class="note">The right test in the wrong direction gives the wrong answer.</p>
+
+  <h2>References</h2>
+  <ol class="refs">
+    <li>ASTM A770/A770M, Standard Specification for Through-Thickness Tension Testing of Steel Plates for Special Applications.</li>
+    <li>EN 10164, Steel products with improved deformation properties perpendicular to the surface of the product.</li>
+  </ol>
+  <p class="disc">This article is for general engineering guidance. Apply it with the current edition of the governing codes and specifications and the judgement of a qualified engineer.</p>
+  <aside class="related"><h2>Related on this site</h2><ul><li>Calculator: <a href="../../calculators/cylindrical-shell/">Cylindrical shell thickness</a> (includes the UCS-66 MDMT check)</li><li>Knowledge area: <a href="../../knowledge/#materials-and-metallurgy">Materials and Metallurgy</a></li></ul></aside>
+</article>
+</main>
+<footer>
+  <div class="wrap">
+    <nav class="fnav" aria-label="Footer"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a><a href="../../standards/">Standards Index</a><a href="../../search/">Search</a></nav>
+    <div>Knowledge grows when it is communicated. <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a></div>
+    <div>Articles, documents and calculators are aids for engineering work, not a substitute for a complete engineering assessment. Users remain responsible for verifying the applicable design basis, code requirements and edition, assumptions and engineering decisions; results must be checked by a qualified engineer before use.</div>
+    <div>© 2026 Baher Elsheikh. Content and tools free to use; not to be copied or redistributed without permission.</div>
+  </div>
+</footer>
+<script src="../../assets/chrome.js"></script>
+</body>
+</html>

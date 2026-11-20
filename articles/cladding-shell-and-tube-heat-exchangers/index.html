@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cladding Applications in Shell and Tube Heat Exchangers | Baher Elsheikh</title>
+<meta name="description" content="Why and how cladding and weld overlay are used in shell and tube heat exchangers: corrosion, erosion, dissimilar welds, plug PWHT, hydrogen and nitriding, cladding methods, API 660 and TEMA thicknesses, and joint preparation.">
+<meta name="keywords" content="cladding, weld overlay, clad tubesheet, explosion bonding, hot roll bonding, hydrogen disbonding, ASTM G146, API 660, TEMA, nitriding, bimetallic tubes, ferrule, flow-accelerated corrosion">
+<meta name="author" content="Baher Elsheikh">
+<link rel="canonical" href="https://baher-elsheikh.github.io/articles/cladding-shell-and-tube-heat-exchangers/">
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://baher-elsheikh.github.io/articles/cladding-shell-and-tube-heat-exchangers/">
+<meta property="og:title" content="Cladding Applications in Shell and Tube Heat Exchangers">
+<meta property="og:description" content="Why and how cladding and weld overlay are used in shell and tube heat exchangers: corrosion, erosion, dissimilar welds, plug PWHT, hydrogen and nitriding, cladding methods, API 660 and TEMA thicknesses, and joint preparation.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Cladding Applications in Shell and Tube Heat Exchangers", "description": "Why and how cladding and weld overlay are used in shell and tube heat exchangers: corrosion, erosion, dissimilar welds, plug PWHT, hydrogen and nitriding, cladding methods, API 660 and TEMA thicknesses, and joint preparation.", "url": "https://baher-elsheikh.github.io/articles/cladding-shell-and-tube-heat-exchangers/", "inLanguage": "en", "author": {"@type": "Person", "name": "Baher Elsheikh", "url": "https://baher-elsheikh.github.io/#about", "sameAs": ["https://www.linkedin.com/in/baher-elsheikh/", "https://www.youtube.com/@baherelsheikh4942"]}, "about": "cladding, weld overlay, clad tubesheet, explosion bonding, hot roll bonding, hydrogen disbonding, ASTM G146, API 660, TEMA, nitriding, bimetallic tubes, ferrule, flow-accelerated corrosion"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F7F9; --panel:#FFFFFF; --ink:#16203A; --steel:#566074; --rule:#DCE0E7;
+  --accent:#14245E; --accent-soft:#E7EAF3; --brass:#8A6320; --brass-soft:#F4ECDD; --fig:#EEF1F7;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --serif:"STIX Two Text",Cambria,Georgia,"Times New Roman",serif;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 var(--sans);overflow-x:clip}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.lg-dark{display:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:block}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:block}
+header.site{background:var(--panel);border-bottom:1px solid var(--rule)}
+header.site .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;min-height:62px}
+.brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px}
+.brand img{height:34px;width:auto}
+nav.tabs{display:flex;flex-wrap:wrap;gap:2px}
+nav.tabs a{font-size:15px;font-weight:500;color:var(--steel);text-decoration:none;padding:6px 10px;border-radius:5px}
+nav.tabs a:hover{color:var(--ink);background:var(--accent-soft)}
+nav.tabs a.cur{color:var(--accent);background:var(--accent-soft)}
+article{max-width:760px;margin:0 auto;padding:40px 0 56px}
+.crumb{font-size:14px;color:var(--steel);margin:0 0 18px}
+.crumb a{color:var(--steel)}
+.lab{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none}
+.lab svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.22;letter-spacing:-.005em}
+h1{font-size:clamp(29px,3.6vw,40px);margin:10px 0 0}
+.lead{font-size:19px;line-height:1.6;color:var(--steel);margin:16px 0 0}
+.byline{font-size:14.5px;color:var(--steel);margin:18px 0 0;padding-bottom:22px;border-bottom:1px solid var(--rule)}
+h2{font-size:24px;margin:38px 0 6px}
+h3{font-size:19px;margin:28px 0 4px}
+p{margin:14px 0}
+ul,ol{padding-left:1.3em} li{margin:6px 0}
+figure{margin:28px 0}
+figure .frame{background:var(--fig);border:1px solid var(--rule);border-radius:6px;overflow:hidden;color:var(--accent)}
+figure .frame svg{display:block;width:100%;height:auto}
+figure img{display:block;width:100%;height:auto}
+figcaption{font-size:14.5px;color:var(--steel);margin-top:8px}
+.tbl{overflow-x:auto;margin:24px 0}
+table{border-collapse:collapse;width:100%;font-size:15.5px;background:var(--panel)}
+caption{caption-side:bottom;text-align:left;font-size:14.5px;color:var(--steel);padding-top:8px}
+th,td{border:1px solid var(--rule);padding:8px 12px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+td.n{text-align:center;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{width:34%}
+.eq{font-family:var(--serif);font-size:19px;text-align:center;margin:20px 0;padding:12px;background:var(--panel);border:1px solid var(--rule);border-radius:6px}
+.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 16px;margin:22px 0;font-size:16px}
+.refs{font-size:14.5px;color:var(--steel)}
+.refs li{margin:4px 0}
+.related{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule)}
+.related h2{font-size:20px;margin:0 0 8px}
+.related ul{list-style:none;padding:0;margin:0}
+.related li{padding:6px 0}
+.flag{font-size:12.5px;font-weight:500;color:var(--brass);background:var(--brass-soft);border-radius:3px;padding:1px 7px}
+.disc{font-size:14px;color:var(--steel);margin-top:30px}
+footer{border-top:1px solid var(--rule);padding:20px 0 30px;font-size:13.5px;color:var(--steel);background:var(--panel)}
+footer .wrap{display:grid;gap:6px}
+@media (max-width:600px){.wrap{padding:0 16px} article{padding-top:26px} body{font-size:16.5px}}
+@media print{header.site,footer,.related{display:none} body{background:#fff}}
+</style>
+<link rel="stylesheet" href="../../assets/chrome.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="beta-bar" role="note"><div class="wrap"><span class="beta-tag">Beta</span> This site is in its testing period. Spotted a mistake? Please tell me on <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</div></div>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../../"><img class="lg-light" src="../../assets/gear-light.png" alt="" width="41" height="34"><img class="lg-dark" src="../../assets/gear-dark.png" alt="" width="41" height="34"><span>Baher Elsheikh</span></a>
+    <div class="hdr-right">
+      <nav class="tabs" id="mainnav" aria-label="Main"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/" aria-current="page">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a></nav>
+      <a class="nav-search" href="../../search/"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20.5 20.5"/></svg><span>Search</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav">Menu</button>
+    </div>
+  </div>
+</header>
+<main id="main" class="wrap">
+<article>
+  <p class="crumb"><a href="../">Articles</a></p>
+  <a class="lab" href="../../#materials-and-metallurgy"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 5.5l5-2 4 2.5-1 5-5 1.5-3-3z"/><path d="M12.5 6l5-1.5 3 4-2 3.5-4.5-.5-2.5-.5"/><path d="M6.5 12.5l1 5 5 2.5 3-4-1.5-4.5"/><path d="M15.5 16l4.5 1 .5-5.5"/></svg>Materials &amp; Metallurgy</a>
+  <h1>Cladding Applications in Shell and Tube Heat Exchangers</h1>
+  <p class="lead">A thin layer of the right alloy can do the work of a solid high-alloy component. Where cladding pays off in heat exchangers, how it is made, and the details that decide whether it lasts.</p>
+  <p class="byline">By Baher Elsheikh. 8 min read. An earlier version was published in <a href="https://heat-exchanger-world.com/cladding-applications-in-shell-and-tube-heat-exchangers/" target="_blank" rel="noopener noreferrer">Heat Exchanger World</a>, 2024.</p>
+
+  <p>Weld overlay and cladding are widely used to add a protective metallic layer to a base material. The cladding material has better properties for the service, mainly corrosion resistance, while a less costly substrate provides the strength to carry the loads, the required thermal conductivity and good fabricability. This is a cost-effective alternative to making the whole component from a high alloy. This article covers the main aspects of applying cladding correctly: design, fabrication, inspection and in-service considerations.</p>
+  <h2>Advantages of cladding</h2>
+  <h3>Corrosion resistance</h3>
+  <p>Cladding addresses corrosion directly by adding a layer of highly corrosion-resistant material, avoiding the need to upgrade the full thickness, whether for cost or fabricability reasons.</p>
+  <h3>Erosion resistance</h3>
+  <p>In some situations localized erosion is a major concern, for example at the tube entrance, especially under flow-accelerated corrosion (FAC). FAC is metal loss in carbon steel equipment when the normally protective magnetite (Fe<sub>3</sub>O<sub>4</sub>) layer dissolves into a flowing stream of water or water and steam. Cladding the tubesheet and fitting insert ferrules at the tube entrances can mitigate FAC and erosion at these critical locations.</p>
+  <figure><div class="frame"><svg viewBox="0 0 680 260" role="img" aria-label="Tube entrance protected by an insert ferrule and a weld overlay on the tubesheet face"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><rect x="230" y="30" width="110" height="200" fill="currentColor" fill-opacity=".2"/><rect x="214" y="30" width="16" height="200" style="fill:var(--brass)" fill-opacity=".45"/><rect x="214" y="104" width="456" height="52" style="fill:var(--fig)" stroke="none"/><path d="M214 104 H670 M214 156 H670" /><path d="M214 110 H660 M214 150 H660" stroke-width=".8" opacity=".6"/><path d="M170 112 H214 M170 148 H214 M214 112 V104 M170 112 V148" stroke-width="1.6"/><rect x="170" y="112" width="200" height="36" fill="currentColor" fill-opacity=".18"/><path d="M40.0 130.0L150.0 130.0" stroke-width="1.6" style="stroke:var(--brass)"/><path d="M150.0 130.0L142.6 133.1L142.6 126.9Z" style="stroke:var(--brass);fill:var(--brass)" stroke-width="1"/><text x="40" y="118" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="start" fill="currentColor" stroke="none" style="fill:var(--brass)">inlet flow</text><text x="205" y="22" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" text-anchor="end" fill="currentColor" stroke="none" font-weight="600" style="fill:var(--brass)">weld overlay</text><path d="M207 18 L220 32" stroke-width="1" style="stroke:var(--brass)"/><text x="285" y="22" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">tubesheet</text><text x="270" y="182" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" text-anchor="start" fill="currentColor" stroke="none" font-weight="600">ferrule</text><path d="M290 168 L300 146" stroke-width="1"/><text x="520" y="94" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="currentColor" stroke="none">tube</text><text x="100" y="220" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">Tube side</text><text x="520" y="220" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">Shell side</text></g></svg></div><figcaption>Figure 1. Weld overlay on the tubesheet face and an insert ferrule protecting the tube entrance.</figcaption></figure>
+  <figure><img src="tube-inlet-erosion.jpg" width="277" height="206" style="max-width:277px;border-radius:6px" alt="Eroded tube entrances on a tubesheet face"><figcaption>Figure 2. Erosion at tube entrances.</figcaption></figure>
+  <h3>Avoiding dissimilar welds between tubes and tubesheet</h3>
+  <p>Where the tube material differs from the tubesheet material, dissimilar welds can be a concern. Cladding the tubesheet with a material matching the tubes avoids the problems of dissimilar welds, including thermal stresses, galvanic corrosion and quality assurance difficulties during welding.</p>
+  <figure><img src="clad-tubesheet.png" width="827" height="738" alt="Tubesheet clad on the tube side, with tubes passing through the tubesheet and cladding" style="max-width:520px;background:#fff;border:1px solid var(--rule);border-radius:6px" loading="lazy"><figcaption>Figure 3. Tubesheet clad with the tube material, so the tubes are welded to a matching material.</figcaption></figure>
+  <h3>Avoiding PWHT when plugging tubes in service</h3>
+  <p>For tubesheets made of materials that require PWHT, such as Cr-Mo steels, plug welds made after in-service degradation should also be post-weld heat treated. This is difficult because of the large heat sink of a thick tubesheet and the susceptibility of the tubesheet ligaments to high thermal stresses. With a cladding layer on the tube-side face of the tubesheet, plugs can be welded to the cladding, in a plug material matching the cladding, and no PWHT is needed.</p>
+  <figure><img src="plug-on-overlay.png" width="1707" height="1181" alt="Incoloy plug welded to an Inconel weld overlay on the tubesheet face, with an Incoloy tube" style="max-width:620px;background:#fff;border:1px solid var(--rule);border-radius:6px" loading="lazy"><figcaption>Figure 4. Incoloy plug welded to an Inconel overlay on the tubesheet face, so the plug weld needs no PWHT.</figcaption></figure>
+  <h3>Resistance to hydrogen diffusion</h3>
+  <p>In hydrogen service, cladding reduces hydrogen diffusion into and out of the base material. It does not eliminate diffusion, but it is an effective mitigation. Because hydrogen diffuses slowly through stainless cladding and similar corrosion-resistant overlays, the effective hydrogen pressure at the cladding-to-base-metal interface (the bond line) is lower than in the process stream. The steel beneath the cladding can therefore see a much lower effective hydrogen partial pressure.</p>
+  <figure><div class="frame"><svg viewBox="0 0 680 280" role="img" aria-label="Hydrogen pressure falls across the stainless cladding, so the base metal sees a much lower effective hydrogen partial pressure"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><rect x="200" y="40" width="70" height="200" style="fill:var(--brass)" fill-opacity=".45"/><rect x="270" y="40" width="260" height="200" fill="currentColor" fill-opacity=".18"/><path d="M60 70 H200 L270 180 Q350 205 530 220" stroke-width="2.6"/><path d="M270 40 V240" stroke-dasharray="4 3" stroke-width="1.2"/><text x="130" y="58" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="currentColor" stroke="none">process H₂ pressure</text><text x="235" y="30" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600" style="fill:var(--brass)">cladding</text><text x="400" y="30" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">base metal</text><text x="300" y="130" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="start" fill="currentColor" stroke="none">lower effective pressure</text><text x="300" y="146" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="start" fill="currentColor" stroke="none">at the bond line</text><path d="M298 150 L273 178" stroke-width="1"/><text x="130" y="262" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="currentColor" stroke="none">Process side</text><text x="400" y="262" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.85">Hydrogen pressure across the wall</text></g></svg></div><figcaption>Figure 5. Hydrogen pressure falls across the cladding (schematic).</figcaption></figure>
+  <h3>Resistance to nitriding</h3>
+  <p>Nitriding is the formation of a hard, brittle surface layer on some alloys exposed to high-temperature process streams containing high levels of nitrogen compounds such as ammonia or cyanides, particularly under reducing conditions. Nickel alloy cladding is used successfully to protect against nitriding. One example is the weld overlay on the shell side of the effluent cooler in the synthesis loop of ammonia plants, which resists both nitriding and hydrogen embrittlement.</p>
+  <h2>Cladding methods</h2>
+  <p>Several techniques are used to apply cladding. The three most common are:</p>
+  <h3>Hot roll bonding</h3>
+  <p>The steel mill heats the steel and the corrosion-resistant alloy together and rolls them as one package; the high temperature and pressure bond the two metals. A roll-bonded clad plate is generally accepted to have the lowest bond shear strength of the three methods. It is the main production method for stainless-clad steel plate, accounting for more than 90% of clad plate production worldwide.</p>
+  <figure><img src="clad-plate.jpg" width="1374" height="733" alt="Edge of a clad steel plate showing the thin corrosion-resistant layer bonded to the thicker steel backing" loading="lazy"><figcaption>Figure 6. Clad steel plate.</figcaption></figure>
+  <h3>Explosion bonding</h3>
+  <p>Explosion bonding uses the very short, high-energy impulse of an explosion to drive two metal surfaces together, cleaning away surface oxide films and creating a metallic bond at the same time. It resists the most aggressive hydrogen charging conditions.</p>
+  <h3>Weld overlay</h3>
+  <p>Weld overlay is fusion deposition of a corrosion-resistant alloy onto a carbon or alloy steel substrate. It is usually done after the pressure vessel has been through many fabrication steps, though not always. Dilution often requires buttering passes and over-alloying to achieve the required composition at the surface.</p>
+  <h2>Special care in hydrogen service</h2>
+  <p>Clad disbonding tests should be performed for any 1¼Cr-½Mo and 1Cr-½Mo vessel in high-pressure hydrogen service that may be cooled down rapidly from service. Vessels that have experienced disbonding had been through a rapid shutdown, which does not allow the hydrogen to diffuse out before the metal reaches ambient temperature. Hydrogen disbonding tests on the proposed overlay welding procedures should be done to ASTM G146, at test conditions defined by the purchaser.</p>
+  <figure><div class="frame"><svg viewBox="0 0 680 280" role="img" aria-label="Schematic of a hydrogen disbonding test: clad specimens are charged with hydrogen at high temperature and pressure in an autoclave, then cooled rapidly"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><rect x="220" y="30" width="240" height="220" rx="18" fill="currentColor" fill-opacity=".06"/><rect x="260" y="90" width="40" height="110" fill="currentColor" fill-opacity=".2"/><rect x="260" y="90" width="40" height="14" style="fill:var(--brass)" fill-opacity=".45"/><rect x="320" y="90" width="40" height="110" fill="currentColor" fill-opacity=".2"/><rect x="320" y="90" width="40" height="14" style="fill:var(--brass)" fill-opacity=".45"/><rect x="380" y="90" width="40" height="110" fill="currentColor" fill-opacity=".2"/><rect x="380" y="90" width="40" height="14" style="fill:var(--brass)" fill-opacity=".45"/><path d="M130.0 70.0L218.0 70.0" stroke-width="1.6" style="stroke:var(--brass)"/><path d="M218.0 70.0L210.6 73.1L210.6 66.9Z" style="stroke:var(--brass);fill:var(--brass)" stroke-width="1"/><text x="40" y="62" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="start" fill="currentColor" stroke="none">hydrogen at</text><text x="40" y="78" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="start" fill="currentColor" stroke="none">high T and P</text><text x="340" y="230" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">autoclave</text><text x="340" y="80" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="currentColor" stroke="none">clad specimens</text><path d="M470.0 160.0L560.0 160.0" stroke-width="1.6"/><path d="M560.0 160.0L552.6 163.1L552.6 156.9Z" fill="currentColor" stroke-width="1"/><text x="570" y="150" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="start" fill="currentColor" stroke="none">rapid cooling,</text><text x="570" y="166" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="start" fill="currentColor" stroke="none">then UT for</text><text x="570" y="182" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="start" fill="currentColor" stroke="none">disbonding</text></g></svg></div><figcaption>Figure 7. Principle of the hydrogen disbonding test (schematic).</figcaption></figure>
+  <h2>Bimetallic (duplex) tubing</h2>
+  <p>Bimetallic tubing consists of two concentric tubes of different materials, for services that need different corrosion resistance on the shell and tube sides. One example is the bimetallic tubes in urea strippers, with an outer stainless steel tube and an inner zirconium tube to resist highly corrosive carbamate. Another is Omega Bond™ urea stripper tubes, made of an inner zirconium tube and an outer titanium tube.</p>
+  <h2>Cladding thickness</h2>
+  <p>In general, design codes and company specifications do not allow the clad thickness to be counted as pressure-resisting thickness; it is treated only as corrosion allowance. For weld overlay, the thickness must give an acceptable depth of the required chemical composition (1.5 mm per API 660), allowing for dilution at the interface with the base metal.</p>
+  <p>The cladding or overlay thickness on a tubesheet depends on the type of tube-to-tubesheet joint. When the tubes are only expanded, a thicker cladding is needed than when they are strength welded, to give enough length to expand the tube into the cladding and keep corrosive media away from the tubesheet base metal. Expansion grooves, where used, should be in the tubesheet base metal, not in the cladding.</p>
+  <div class="tbl"><table>
+    <caption>Table 1. Minimum cladding thickness on tubesheet faces.</caption>
+    <thead><tr><th>Location</th><th>API 660</th><th>TEMA classes R and B (nominal)</th></tr></thead>
+    <tbody>
+      <tr><td>Tube-side face, tubes expanded only</td><td class="n">10 mm</td><td class="n">7.8 mm</td></tr>
+      <tr><td>Tube-side face, tubes welded</td><td class="n">5 mm</td><td class="n">3.2 mm</td></tr>
+      <tr><td>Shell-side face</td><td class="n">–</td><td class="n">9.5 mm</td></tr>
+    </tbody></table></div>
+  <p>In hydrogen service, the effective clad thickness needs special consideration: it should reduce the effective hydrogen partial pressure enough to eliminate the risk of high-temperature hydrogen attack on the base metal.</p>
+  <h2>Repair and joint preparation of clad and overlaid steel</h2>
+  <ul>
+    <li>Strip the cladding back at least 4.8 mm (3/16 in.) from the edge of the weld bevel.</li>
+    <li>Round the cladding edge to a radius of at least 1.5 mm (1/16 in.), or taper it at an angle of at least 30°.</li>
+    <li>For carbon and low-alloy steel backing, etch the stripped area with nitric acid or copper sulfate solution to confirm the cladding has been completely removed.</li>
+    <li>Before back-cladding butt joints, take care not to cross-contaminate the cladding weld metal and the backing weld metal.</li>
+  </ul>
+  <h2>Conclusion</h2>
+  <p>Cladding in shell and tube heat exchangers offers corrosion and erosion resistance, avoids dissimilar welds and PWHT of plug welds, and resists hydrogen diffusion and nitriding. It can be applied by hot roll bonding, explosion bonding or weld overlay. Hydrogen service needs special care, and bimetallic tubing serves applications that need different corrosion resistance on each side. The cladding must be thick enough to provide the required chemical composition and keep corrosive media away from the tubesheet base metal. Overall, cladding is a cost-effective way to improve the performance and life of shell and tube heat exchangers.</p>
+  <h2>Standards referred to</h2>
+  <ol class="refs">
+    <li>API Standard 660, Shell-and-Tube Heat Exchangers.</li>
+    <li>TEMA, Standards of the Tubular Exchanger Manufacturers Association.</li>
+    <li>ASTM G146, Standard Practice for Evaluation of Disbonding of Bimetallic Stainless Alloy/Steel Plate for Use in High-Pressure, High-Temperature Refinery Hydrogen Service.</li>
+  </ol>
+  <p class="disc">This article is for general engineering guidance. Apply it with the current edition of the referenced codes and standards and the judgement of a qualified engineer.</p>
+  <aside class="related"><h2>Related on this site</h2><ul><li>Article: <a href="../fluid-allocation-shell-and-tube-heat-exchangers/">Fluid Allocation in Shell and Tube Heat Exchangers</a></li><li>Calculator: Welded tube plug <span class="flag">Coming soon</span></li></ul></aside>
+</article>
+</main>
+<footer>
+  <div class="wrap">
+    <nav class="fnav" aria-label="Footer"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a><a href="../../standards/">Standards Index</a><a href="../../search/">Search</a></nav>
+    <div>Knowledge grows when it is communicated. <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a></div>
+    <div>Articles, documents and calculators are aids for engineering work, not a substitute for a complete engineering assessment. Users remain responsible for verifying the applicable design basis, code requirements and edition, assumptions and engineering decisions; results must be checked by a qualified engineer before use.</div>
+    <div>© 2026 Baher Elsheikh. Content and tools free to use; not to be copied or redistributed without permission.</div>
+  </div>
+</footer>
+<script src="../../assets/chrome.js"></script>
+</body>
+</html>

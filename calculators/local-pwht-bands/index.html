@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Local PWHT Band Calculator | WRC 452, AWS D10.10, ASME VIII-1</title>
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="description" content="Free online calculator for local post-weld heat treatment band widths: soak band, heated band and gradient control band to WRC 452 and AWS D10.10, compared with PD 5500 / AS 1210, plus ASME VIII-1 UCS-56 holding time and heating and cooling rates for P-No. 1. Step-by-step equations and PDF output.">
+<meta name="keywords" content="local PWHT calculator, PWHT band width, soak band, heated band, gradient control band, WRC 452, AWS D10.10, UCS-56 holding time, PWHT heating rate">
+<meta name="author" content="Baher Elsheikh">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://baher-elsheikh.github.io/calculators/local-pwht-bands/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baher-elsheikh.github.io/calculators/local-pwht-bands/">
+<meta property="og:title" content="Local PWHT Band Calculator, WRC 452">
+<meta property="og:description" content="Free soak, heated and gradient control band widths for local PWHT to WRC 452 and AWS D10.10, step by step. Prepared by Baher Elsheikh.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Local PWHT Band Calculator","url":"https://baher-elsheikh.github.io/calculators/local-pwht-bands/","applicationCategory":"EngineeringApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Soak band, heated band and gradient control band widths for local PWHT of circumferential welds to WRC 452 and AWS D10.10, with ASME VIII-1 holding time and rates for P-No. 1.","author":{"@type":"Person","name":"Baher Elsheikh","sameAs":["https://www.linkedin.com/in/baher-elsheikh/","https://www.youtube.com/@baherelsheikh4942"]}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF0F5; --panel:#FFFFFF; --ink:#121A30; --steel:#545E74; --rule:#CDD2DE;
+  --accent:#14245E; --accent-soft:#E1E5F2; --ok:#1E7A4C; --ok-soft:#DDF0E5;
+  --bad:#AE2A1F; --bad-soft:#F7DEDA; --warn:#8A5A00; --warn-soft:#F6EAD0;
+  --field:#F7F8FB; --wall:#7E8E98; --tol:#B9C4CA;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --math:"STIX Two Text","Cambria Math",Cambria,"Times New Roman",serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+    --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+    --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+  --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+  --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans);font-variant-numeric:tabular-nums}
+.wrap{max-width:1320px;margin:0 auto;padding:28px 24px 48px}
+header.top{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+h1{font-family:var(--math);font-weight:600;font-size:clamp(26px,3.4vw,38px);line-height:1.1;margin:0;letter-spacing:-.01em}
+.home{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14.5px;margin-bottom:14px}
+.home img{height:40px;width:auto}
+.home:hover span{color:var(--accent)}
+.lg-dark{display:none}
+.f input:disabled,.f select:disabled{opacity:.45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:inline}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:inline}
+.basis{color:var(--steel);font-size:13.5px;margin-top:8px;max-width:70ch}
+.byline{font-size:14px;margin-top:10px;color:var(--ink);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.byline .links{display:inline-flex;gap:12px}
+.byline a,footer a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;font-weight:500}
+.byline a:hover,footer a:hover{text-decoration-thickness:2px}
+@media print{.byline a::after{content:" (" attr(href) ")";font-weight:400;color:var(--steel)}}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{font:500 14px var(--sans);border-radius:6px;padding:8px 14px;cursor:pointer;border:1px solid var(--rule);background:var(--panel);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--panel)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* verdict + wall gauge */
+.verdict{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:22px 24px;display:grid;grid-template-columns:minmax(260px,1fr) minmax(320px,1.6fr);gap:20px 32px;align-items:center;margin-bottom:22px}
+.verdict .state{font-family:var(--math);font-size:clamp(22px,2.6vw,30px);line-height:1.2}
+.verdict .state.ok{color:var(--ok)} .verdict .state.bad{color:var(--bad)}
+.verdict .sub{color:var(--steel);margin-top:6px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-size:12.5px;padding:3px 9px;border-radius:999px;border:1px solid transparent}
+.chip.ok{background:var(--ok-soft);color:var(--ok)} .chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)} .chip.info{background:var(--accent-soft);color:var(--accent)}
+.gauge svg{width:100%;height:auto;display:block}
+.gauge text{font-family:var(--sans);font-size:11px;fill:var(--steel);paint-order:stroke;stroke:var(--panel);stroke-width:3px;stroke-linejoin:round}
+.gauge .lab{fill:var(--ink);font-weight:500}
+.gcap{font-size:12px;color:var(--steel);margin-top:4px}
+
+/* layout */
+.cols{display:grid;grid-template-columns:380px minmax(0,1fr);gap:22px;align-items:start}
+aside.inputs{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:6px 18px 18px;position:sticky;top:calc(12px + env(safe-area-inset-top,0px));max-height:calc(100vh - 24px - env(safe-area-inset-top,0px));overflow:auto}
+fieldset{border:0;border-top:1px solid var(--rule);margin:14px 0 0;padding:12px 0 0}
+fieldset:first-of-type{border-top:0}
+legend{font-weight:600;font-size:14px;padding:0}
+.f{display:grid;grid-template-columns:1fr 112px 46px;gap:6px;align-items:center;margin-top:7px}
+.f.wide{grid-template-columns:1fr 1.4fr}
+.f label{font-size:13px;color:var(--ink)}
+.f label i{font-family:var(--math);font-size:15px}
+.f .u{font-size:12px;color:var(--steel)}
+input,select{font:14px var(--sans);color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:5px;padding:5px 7px;width:100%;font-variant-numeric:tabular-nums}
+input[type=number]{text-align:right}
+input:disabled{opacity:.6}
+input.need{background:#FFF7D6;border-color:#D9B84A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) input.need{background:#33290F;border-color:#7A6420}}
+:root[data-theme="dark"] input.need{background:#33290F;border-color:#7A6420}
+.hint{font-size:12px;color:var(--steel);margin:4px 0 0;line-height:1.4}
+
+/* calculation report */
+main.report{display:flex;flex-direction:column;gap:18px;min-width:0}
+section.step{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 20px 12px}
+.step h2{font-size:17px;font-weight:600;margin:0;display:flex;gap:10px;align-items:baseline}
+.step h2 .n{font-family:var(--math);color:var(--accent);font-size:20px;min-width:1.2em}
+.step .ref{color:var(--steel);font-size:12.5px;margin:2px 0 8px 32px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td{padding:7px 8px;border-top:1px solid var(--rule);vertical-align:baseline}
+td.lb{width:30%;color:var(--ink)}
+td.eq{font-family:var(--math);font-size:15.5px;white-space:nowrap}
+td.sb{font-family:var(--math);font-size:15px;color:var(--steel);white-space:nowrap}
+td.v{text-align:right;font-weight:600;white-space:nowrap}
+td.v small{display:block;font-weight:400;color:var(--steel);font-size:12px}
+td.un{color:var(--steel);font-size:12.5px;white-space:nowrap;width:44px}
+.result{margin:10px 0 4px;padding:9px 12px;border-radius:6px;font-weight:500;font-size:14px}
+.result.ok{background:var(--ok-soft);color:var(--ok)} .result.bad{background:var(--bad-soft);color:var(--bad)}
+.result.warn{background:var(--warn-soft);color:var(--warn)} .result.info{background:var(--accent-soft);color:var(--accent)}
+.note{font-size:12.5px;color:var(--steel);margin:6px 0 0}
+.schtbl td{text-align:center;font-size:12.5px;padding:5px 4px}
+.schtbl td.sel{outline:2px solid var(--accent);font-weight:600}
+.schtbl td.okc{background:var(--ok-soft);color:var(--ok)} .schtbl td.badc{color:var(--steel)}
+.schtbl th{font-size:12px;font-weight:600;padding:5px 4px;border-bottom:1px solid var(--rule)}
+
+/* how to use */
+section.howto{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:18px 22px 14px;margin-top:22px}
+.howto h2{font-family:var(--math);font-weight:600;font-size:24px;margin:0 0 4px}
+.howto h3{font-size:15px;font-weight:600;margin:18px 0 6px}
+.howto p,.howto li{font-size:14px;max-width:85ch}
+.howto ol,.howto ul{padding-left:22px;margin:6px 0}
+.howto li{margin:5px 0}
+.howto .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4px 32px}
+
+footer{margin-top:28px;font-size:12.5px;color:var(--steel);border-top:1px solid var(--rule);padding-top:14px;display:grid;gap:6px}
+.printhead{display:none}
+
+@media (max-width:980px){
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none}
+  .verdict{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .wrap{padding:18px 14px 36px}
+  td.eq,td.sb{white-space:normal}
+  td.lb{width:auto}
+  .howto{padding:16px 14px 12px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .verdict .state{transition:color .25s}
+}
+@media print{
+  :root{--bg:#fff;--panel:#fff}
+  body{font-size:11px}
+  .actions,.noprint{display:none!important}
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none;border:0;padding:0}
+  section.step,.verdict{break-inside:avoid;border-color:#999}
+  .printhead{display:block;font-size:11px;margin-bottom:8px}
+  input,select{border:0;background:none;padding:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <a class="home" href="../"><img class="lg-light" src="../../assets/gear-light.png" alt=""><img class="lg-dark" src="../../assets/gear-dark.png" alt=""><span>Baher Elsheikh</span><span style="font-weight:400;color:var(--steel)">| All calculators</span></a>
+      <h1>Local PWHT heating bands</h1>
+      <div class="byline">Prepared by: <strong>Baher Elsheikh</strong>
+        <span class="links"><a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube channel</a></span></div>
+      <div class="basis">Local post-weld heat treatment of circumferential welds: soak band to ASME VIII-1 (UW-40, UCS-56); heated band and gradient control band to WRC Bulletin 452 and AWS D10.10; PD 5500 / AS 1210 bands as quoted in WRC 452 for comparison; UCS-56 holding time and rates for P-No. 1. Metric units.</div>
+    </div>
+    <div class="actions">
+      <button type="button" id="btnHow">How to use</button>
+      <button type="button" id="btnExample">Load example</button>
+      <button type="button" id="btnClear">Clear inputs</button>
+      <button type="button" class="primary" id="btnPrint">Print / save PDF</button>
+    </div>
+  </header>
+
+  <div class="printhead" id="printhead"></div>
+
+  <div class="verdict" aria-live="polite">
+    <div>
+      <div class="state" id="vState">—</div>
+      <div class="sub" id="vSub"></div>
+      <div class="chips" id="vChips"></div>
+    </div>
+    <div class="gauge">
+      <svg id="bands" viewBox="0 0 640 170" role="img" aria-label="Local PWHT bands to scale"></svg>
+      <div class="gcap">Pipe wall along its axis, to scale, centred on the weld: soak band, heated band and gradient control band (insulation) per WRC 452. Dashed marks: PD 5500 / AS 1210 widths.</div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <aside class="inputs" aria-label="Inputs">
+      <fieldset>
+        <legend>Weld</legend>
+        <div class="f wide"><label for="tag">Component / weld</label><input id="tag" type="text" placeholder="e.g. closure weld, V-101"></div>
+        <div class="f wide"><label for="prep">Prepared by</label><input id="prep" type="text"></div>
+        <div class="f wide"><label for="date">Date</label><input id="date" type="date"></div>
+        <div class="f wide"><label for="mat">Material</label><input id="mat" type="text"></div>
+        <div class="f wide"><label for="pno">P-Number group</label>
+          <select id="pno"><option>P-No. 1</option><option>P-No. 3</option><option>P-No. 4</option><option>P-No. 5A</option><option>P-No. 15E</option><option>Other</option></select></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Geometry</legend>
+        <div class="f"><label for="OD">Outside diameter</label><input id="OD" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="t">Nominal thickness <i>t</i></label><input id="t" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">At the weld; use the thicker part where thicknesses differ.</p>
+        <div class="f"><label for="W">Widest width of weld <i>W</i></label><input id="W" type="number" step="any"><span class="u">mm</span></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Temperature</legend>
+        <div class="f"><label for="Ts">Minimum soak temperature</label><input id="Ts" type="number" step="any"><span class="u">°C</span></div>
+        <p class="hint">From the code table or the PWHT procedure (595 °C minimum for P-No. 1 in ASME VIII-1).</p>
+      </fieldset>
+    </aside>
+
+    <main class="report" id="report"></main>
+  </div>
+
+  <section class="howto noprint" id="howto" aria-labelledby="h-how">
+    <h2 id="h-how">How to use this calculator</h2>
+    <p>Local PWHT heats only a band around the weld, so the heated and insulated areas must be wide enough to bring the whole soak band, through the wall, to temperature without harmful gradients. ASME VIII-1 sets the soak band but gives no size for the heated band or the insulation; WRC 452 and AWS D10.10 do. The calculator gives all three bands, compares them with PD 5500 / AS 1210, and for P-No. 1 material gives the UCS-56 holding time and heating and cooling rates. The background is explained in the article <a href="../../articles/local-pwht-pressure-vessels/">Local PWHT for Pressure Vessels and Piping</a>.</p>
+    <div class="grid">
+      <div>
+        <h3>Steps</h3>
+        <ol>
+          <li><strong>Enter the outside diameter and thickness</strong> of the shell, pipe or nozzle at the weld, and the widest width of the finished weld.</li>
+          <li><strong>Choose the P-Number group</strong> and enter the minimum soak temperature from the code table or procedure.</li>
+          <li><strong>Read the bands.</strong> Each is centred on the weld; step 3 also gives the distance from the weld centreline to each edge, for marking the component.</li>
+          <li><strong>Compare with PD 5500 / AS 1210</strong> in step 4. Where the vessel code gives no band size, using the wider of the two is a prudent choice.</li>
+          <li><strong>For P-No. 1</strong>, read the minimum holding time and the maximum heating and cooling rates above 425 °C in step 5.</li>
+          <li><strong>Print or save as PDF</strong> and attach it to the PWHT procedure.</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Good practice</h3>
+        <ul>
+          <li>The heated band controls the through-wall temperature difference; the gradient control band (insulation) controls the axial gradient. Keep the temperature at the edge of the heated band at least half the soak temperature.</li>
+          <li>Place thermocouples at the weld centreline and at the soak band edges on the outside surface, and on the inside surface where accessible.</li>
+          <li>Support the component so that the heated section can expand and does not sag; poor local PWHT can distort a vessel.</li>
+          <li>For Grade 91 and other P-No. 15E steels, ASME Section I Appendix VIII and ASME B31P Appendix B have their own band and temperature rules; check the filler metal Ni + Mn limits too.</li>
+          <li>For nozzles, heads and other non-cylindrical geometry, or welds near structural discontinuities, consider FEA of the heating arrangement.</li>
+        </ul>
+        <h3>Not covered</h3>
+        <ul>
+          <li>Holding times and rates for P-Numbers other than P-No. 1, band sizes of ASME Section I and B31P, thermocouple and heater layout, and spot or bulls-eye PWHT.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>Prepared by: Baher Elsheikh (<a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a>). Version 1.0, November 2026 (from the spreadsheet Local PWHT Bands WRC 452 Calculator, revision 1).</div>
+    <div>© 2026 Baher Elsheikh. Free to use; not to be copied, modified or redistributed without permission.</div>
+    <div>This tool is an aid for planning local PWHT. Band widths, holding times and rates must be confirmed against the applicable construction code and the qualified PWHT procedure by a qualified engineer before use. No warranty is given.</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const EXAMPLE = {tag:'Example: Grade 91 steam pipe, NPS 20, closure weld', prep:'', date:'', mat:'SA-335 P91', pno:'P-No. 15E', OD:508, t:30, W:30, Ts:745};
+  const IDS = Object.keys(EXAMPLE);
+  const STORE = 'pwht-bands-inputs-v1';
+  const $ = id => document.getElementById(id);
+  function setInputs(d){ IDS.forEach(k=>{const el=$(k); if(!el) return; el.value=(d[k]===undefined||d[k]===null)?'':d[k];}); if(!$('pno').value) $('pno').value='P-No. 1'; }
+  function getInputs(){ const d={}; IDS.forEach(k=>{d[k]=$(k).value;}); return d; }
+  function num(k){ const v=parseFloat($(k).value); return isFinite(v)?v:NaN; }
+  function f(x,d){ if(!isFinite(x)) return '—'; return x.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+  const v = s => `<i>${s}</i>`;
+  function row(label, eq, sub, val, unit, d, small){
+    return `<tr><td class="lb">${label}</td><td class="eq">${eq||''}</td><td class="sb">${sub||''}</td>`+
+      `<td class="v">${typeof val==='string'?val:f(val,d)}${small?`<small>${small}</small>`:''}</td><td class="un">${unit||''}</td></tr>`;
+  }
+  function step(n,title,ref,rows,results,notes){
+    return `<section class="step"><h2><span class="n">${n}</span>${title}</h2><div class="ref">${ref}</div>`+
+      (rows.length?`<div class="tbl"><table>${rows.filter(Boolean).join('')}</table></div>`:'')+
+      (results||[]).map(r=>`<div class="result ${r[0]}">${r[1]}</div>`).join('')+
+      (notes||[]).map(t=>`<p class="note">${t}</p>`).join('')+`</section>`;
+  }
+
+  function compute(){
+    const OD=num('OD'), t=num('t'), W=num('W'), Ts=num('Ts'), pno=$('pno').value, p1 = pno==='P-No. 1';
+    const need=['OD','t','W'];
+    need.forEach(k=>$(k).classList.toggle('need', !isFinite(num(k))));
+    const ready = need.every(k=>isFinite(num(k)));
+    const R=OD/2-t, rt=Math.sqrt(R*t), sbs=Math.min(t,50), SB=W+2*sbs, HB=SB+4*rt, GCB=HB+4*rt;
+    const HBp=5*rt, GCBp=10*rt, Tedge=0.5*Ts;
+    const hold = t<=50 ? Math.max(15, 60*t/25) : 120+15*(t-50)/25;
+    const heat = Math.max(55, Math.min(222, 222/(t/25))), cool = Math.max(55, Math.min(278, 278/(t/25)));
+    const okT = !p1 || !isFinite(Ts) || Ts>=595;
+
+    let out='';
+    out += step(1,'Geometry','Inside radius and the characteristic length √(Rt)',[
+      row('Inside radius', `${v('R')} = OD/2 − ${v('t')}`, `${f(OD,1)}/2 − ${f(t,1)}`, R,'mm',1),
+      row('Characteristic length', `√(${v('R')}${v('t')})`, `√(${f(R,1)} × ${f(t,1)})`, rt,'mm',2)
+    ],[]);
+    out += step(2,'Soak band','ASME VIII-1 UW-40 / UCS-56; WRC 452: weld plus t or 50 mm, whichever is less, on each side',[
+      row('Beyond each side of the weld', `min(${v('t')}, 50)`, `min(${f(t,1)}, 50)`, sbs,'mm',1),
+      row('Soak band width', `SB = ${v('W')} + 2 min(${v('t')}, 50)`, `${f(W,1)} + 2 × ${f(sbs,1)}`, SB,'mm',1)
+    ],[]);
+    out += step(3,'Heated band and gradient control band','WRC 452 / AWS D10.10: each band adds 2√(Rt) on each side',[
+      row('Heated band', `HB = SB + 4√(${v('R')}${v('t')})`, `${f(SB,1)} + 4 × ${f(rt,2)}`, HB,'mm',1),
+      row('Gradient control band', `GCB = HB + 4√(${v('R')}${v('t')})`, `${f(HB,1)} + 4 × ${f(rt,2)}`, GCB,'mm',1),
+      row('From weld centreline to edge', 'SB/2 ; HB/2 ; GCB/2', 'for marking the component', `${f(SB/2,1)} ; ${f(HB/2,1)} ; ${f(GCB/2,1)}`,'mm',0),
+      isFinite(Ts)? row('Minimum temperature at HB edge', `0.5 × soak temperature`, `0.5 × ${f(Ts,0)}`, Tedge,'°C',0):''
+    ],[['info',`Mark the heated band ${f(HB/2,0)} mm and the insulation ${f(GCB/2,0)} mm each side of the weld centreline.`]],
+      ['The heated band limits the through-wall temperature difference; the insulated gradient control band limits the axial gradient.']);
+    out += step(4,'Comparison with PD 5500 / AS 1210','As quoted in WRC 452: bands centred on the weld',[
+      row('Heated band', `5√(${v('R')}${v('t')})`, `5 × ${f(rt,2)}`, HBp,'mm',1, HBp>HB?'wider than WRC 452':'narrower than WRC 452'),
+      row('Gradient control band', `10√(${v('R')}${v('t')})`, `10 × ${f(rt,2)}`, GCBp,'mm',1, GCBp>GCB?'wider than WRC 452':'narrower than WRC 452'),
+      row('Wider of the two methods', 'HB ; GCB', '', `${f(Math.max(HB,HBp),1)} ; ${f(Math.max(GCB,GCBp),1)}`,'mm',0)
+    ],[],['ASME VIII-1 gives no heated or gradient control band size; where it governs, the wider of the two methods is a prudent choice.']);
+    out += step(5,'Holding time and rates','ASME VIII-1 UCS-56 for P-No. 1', p1 ? [
+      row('Minimum holding time', t<=50?'1 h per 25 mm, min 15 min':'2 h + 15 min per 25 mm over 50 mm', `t = ${f(t,1)} mm`, hold,'min',0, f(hold/60,2)+' h'),
+      row('Max heating rate above 425 °C', '222/(t/25), ≤ 222, need not be < 55', '', heat,'°C/h',0),
+      row('Max cooling rate above 425 °C', '278/(t/25), ≤ 278, need not be < 55', '', cool,'°C/h',0)
+    ] : [], p1 ? [ okT?['ok',`Soak temperature ${f(Ts,0)} °C ≥ 595 °C (P-No. 1 minimum).`]:['bad',`Soak temperature ${f(Ts,0)} °C below the 595 °C minimum for P-No. 1.`] ]
+              : [['info',`${pno}: use the applicable UCS-56 table (and for P-No. 15E, the special rules of ASME Section I Appendix VIII / B31P Appendix B) for holding time, temperature and rates.`]]);
+
+    $('report').innerHTML = out;
+    const st=$('vState');
+    if(!ready){ st.textContent='Enter the highlighted inputs'; st.className='state'; }
+    else { st.textContent=`HB ${f(HB,0)} mm, insulation ${f(GCB,0)} mm`; st.className = okT?'state ok':'state bad'; }
+    $('vSub').innerHTML = `${$('tag').value||'Weld'}: OD ${f(OD,0)} × ${f(t,1)} mm, ${$('mat').value||''} (${pno}). Soak band ${f(SB,0)} mm.`;
+    $('vChips').innerHTML = ready ? `<span class="chip ok">SB ${f(SB,0)}</span><span class="chip ok">HB ${f(HB,0)}</span><span class="chip ok">GCB ${f(GCB,0)}</span><span class="chip info">PD 5500 GCB ${f(GCBp,0)}</span>`+(p1?`<span class="chip ${okT?'ok':'bad'}">Hold ${f(hold,0)} min</span>`:'') : '';
+    drawBands({W,SB,HB,GCB,HBp,GCBp,t});
+    $('printhead').textContent = `${$('tag').value||''}  ${$('prep').value?'Prepared by: '+$('prep').value:''}  ${$('date').value||''}`;
+    try{ localStorage.setItem(STORE, JSON.stringify(getInputs())); }catch(e){}
+  }
+
+  function drawBands(d){
+    const g=$('bands'); if(![d.W,d.SB,d.HB,d.GCB].every(isFinite)){ g.innerHTML=''; return; }
+    const cs=getComputedStyle(document.documentElement), c=n=>cs.getPropertyValue(n).trim();
+    const span=Math.max(d.GCB,d.GCBp)*1.06, cx=320, sx=x=>x*600/span, yW=70, hW=26;
+    const band=(w,y,h,fill,op)=>`<rect x="${cx-sx(w)/2}" y="${y}" width="${sx(w)}" height="${h}" fill="${fill}" opacity="${op}"/>`;
+    let s=`<rect x="10" y="${yW}" width="620" height="${hW}" fill="${c('--tol')}" opacity=".5"/>`;
+    s+=band(d.GCB, yW-14, hW+28, c('--accent-soft'), 1);
+    s+=band(d.HB, yW-8, hW+16, c('--warn-soft'), 1);
+    s+=band(d.SB, yW, hW, c('--ok'), .55);
+    s+=band(Math.max(d.W,2*span/600), yW, hW, c('--ink'), .85);
+    const dim=(w,y,lab,col)=>{ const x1=cx-sx(w)/2, x2=cx+sx(w)/2;
+      return `<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="${col}" stroke-width="1.2"/><line x1="${x1}" y1="${y-4}" x2="${x1}" y2="${y+4}" stroke="${col}"/><line x1="${x2}" y1="${y-4}" x2="${x2}" y2="${y+4}" stroke="${col}"/>`+
+        `<text x="${cx}" y="${y-4}" text-anchor="middle" style="fill:${col}">${lab}</text>`; };
+    s+=dim(d.GCB, 28, `GCB ${f(d.GCB,0)} mm (insulation)`, c('--accent'));
+    s+=dim(d.HB, 48, `HB ${f(d.HB,0)} mm (heated)`, c('--warn'));
+    s+=dim(d.SB, 122, `SB ${f(d.SB,0)}`, c('--ok'));
+    [[d.HBp,'PD 5500 HB'],[d.GCBp,'PD 5500 GCB']].forEach(([w,lab],i)=>{ [-1,1].forEach(sg=>{ const x=cx+sg*sx(w)/2;
+      s+=`<line x1="${x}" y1="${yW-18}" x2="${x}" y2="${yW+hW+18}" stroke="${c('--steel')}" stroke-dasharray="3 3"/>`; });
+      s+=`<text x="${cx+sx(w)/2-3}" y="${146+i*14}" text-anchor="end" style="fill:${c('--steel')}">${lab} ${f(w,0)}</text>`; });
+    s+=`<text x="${cx}" y="${yW+hW/2+4}" text-anchor="middle" style="fill:#fff;stroke:none;font-weight:600">weld</text>`;
+    g.innerHTML=s;
+  }
+
+  let saved=null; try{ saved=JSON.parse(localStorage.getItem(STORE)); }catch(e){}
+  setInputs(saved||EXAMPLE);
+  document.querySelectorAll('aside input, aside select').forEach(el=>el.addEventListener('input',compute));
+  document.querySelectorAll('aside select').forEach(el=>el.addEventListener('change',compute));
+  $('btnExample').addEventListener('click',()=>{setInputs(EXAMPLE);compute();});
+  $('btnClear').addEventListener('click',()=>{const d={}; IDS.forEach(k=>d[k]=''); d.pno='P-No. 1'; setInputs(d); compute();});
+  $('btnHow').addEventListener('click',()=>$('howto').scrollIntoView({behavior:'smooth'}));
+  $('btnPrint').addEventListener('click',()=>window.print());
+  if(window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',compute);
+  compute();
+})();
+</script>
+</body>
+</html>

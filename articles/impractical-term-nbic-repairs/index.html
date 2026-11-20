@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Impractical in the NBIC: A Technical Decision, Not a Shortcut | Baher Elsheikh</title>
+<meta name="description" content="What “impractical” and “not practicable” mean in the National Board Inspection Code, using PWHT alternatives and tube plugging as examples, and why NB Interpretation 17-01 requires a technical basis rather than time or cost savings.">
+<meta name="keywords" content="NBIC, National Board Inspection Code, impractical, practicable, repair, alteration, PWHT, postweld heat treatment alternatives, tube plugging, firetube boiler, NB Interpretation 17-01">
+<meta name="author" content="Baher Elsheikh">
+<link rel="canonical" href="https://baher-elsheikh.github.io/articles/impractical-term-nbic-repairs/">
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://baher-elsheikh.github.io/articles/impractical-term-nbic-repairs/">
+<meta property="og:title" content="Impractical in the NBIC: A Technical Decision, Not a Shortcut">
+<meta property="og:description" content="What “impractical” and “not practicable” mean in the National Board Inspection Code, using PWHT alternatives and tube plugging as examples, and why NB Interpretation 17-01 requires a technical basis rather than time or cost savings.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Impractical in the NBIC: A Technical Decision, Not a Shortcut", "description": "What “impractical” and “not practicable” mean in the National Board Inspection Code, using PWHT alternatives and tube plugging as examples, and why NB Interpretation 17-01 requires a technical basis rather than time or cost savings.", "url": "https://baher-elsheikh.github.io/articles/impractical-term-nbic-repairs/", "inLanguage": "en", "datePublished": "2026-11", "author": {"@type": "Person", "name": "Baher Elsheikh", "url": "https://baher-elsheikh.github.io/about/", "sameAs": ["https://www.linkedin.com/in/baher-elsheikh/", "https://www.youtube.com/@baherelsheikh4942"]}, "about": "NBIC, impractical, practicable, repair, alteration, PWHT alternatives, NB Interpretation 17-01"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F7F9; --panel:#FFFFFF; --ink:#16203A; --steel:#566074; --rule:#DCE0E7;
+  --accent:#14245E; --accent-soft:#E7EAF3; --brass:#8A6320; --brass-soft:#F4ECDD; --fig:#EEF1F7;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --serif:"STIX Two Text",Cambria,Georgia,"Times New Roman",serif;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 var(--sans);overflow-x:clip}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.lg-dark{display:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:block}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:block}
+header.site{background:var(--panel);border-bottom:1px solid var(--rule)}
+header.site .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;min-height:62px}
+.brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px}
+.brand img{height:34px;width:auto}
+nav.tabs{display:flex;flex-wrap:wrap;gap:2px}
+nav.tabs a{font-size:15px;font-weight:500;color:var(--steel);text-decoration:none;padding:6px 10px;border-radius:5px}
+nav.tabs a:hover{color:var(--ink);background:var(--accent-soft)}
+nav.tabs a.cur{color:var(--accent);background:var(--accent-soft)}
+article{max-width:760px;margin:0 auto;padding:40px 0 56px}
+.crumb{font-size:14px;color:var(--steel);margin:0 0 18px}
+.crumb a{color:var(--steel)}
+.lab{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none}
+.lab svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.22;letter-spacing:-.005em}
+h1{font-size:clamp(29px,3.6vw,40px);margin:10px 0 0}
+.lead{font-size:19px;line-height:1.6;color:var(--steel);margin:16px 0 0}
+.byline{font-size:14.5px;color:var(--steel);margin:18px 0 0;padding-bottom:22px;border-bottom:1px solid var(--rule)}
+h2{font-size:24px;margin:38px 0 6px}
+h3{font-size:19px;margin:28px 0 4px}
+p{margin:14px 0}
+ul,ol{padding-left:1.3em} li{margin:6px 0}
+figure{margin:28px 0}
+figure .frame{background:var(--fig);border:1px solid var(--rule);border-radius:6px;overflow:hidden;color:var(--accent)}
+figure .frame svg{display:block;width:100%;height:auto}
+figure img{display:block;width:100%;height:auto}
+figcaption{font-size:14.5px;color:var(--steel);margin-top:8px}
+.tbl{overflow-x:auto;margin:24px 0}
+table{border-collapse:collapse;width:100%;font-size:15.5px;background:var(--panel)}
+caption{caption-side:bottom;text-align:left;font-size:14.5px;color:var(--steel);padding-top:8px}
+th,td{border:1px solid var(--rule);padding:8px 12px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+td.n{text-align:center;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{width:34%}
+.eq{font-family:var(--serif);font-size:19px;text-align:center;margin:20px 0;padding:12px;background:var(--panel);border:1px solid var(--rule);border-radius:6px}
+.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 16px;margin:22px 0;font-size:16px}
+.refs{font-size:14.5px;color:var(--steel)}
+.refs li{margin:4px 0}
+.related{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule)}
+.related h2{font-size:20px;margin:0 0 8px}
+.related ul{list-style:none;padding:0;margin:0}
+.related li{padding:6px 0}
+.flag{font-size:12.5px;font-weight:500;color:var(--brass);background:var(--brass-soft);border-radius:3px;padding:1px 7px}
+.disc{font-size:14px;color:var(--steel);margin-top:30px}
+footer{border-top:1px solid var(--rule);padding:20px 0 30px;font-size:13.5px;color:var(--steel);background:var(--panel)}
+footer .wrap{display:grid;gap:6px}
+@media (max-width:600px){.wrap{padding:0 16px} article{padding-top:26px} body{font-size:16.5px}}
+@media print{header.site,footer,.related{display:none} body{background:#fff}}
+.quote{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:6px;padding:14px 18px;margin:20px 0}
+.quote .src{display:block;font-size:13px;font-weight:600;color:var(--accent);margin-bottom:6px;letter-spacing:.02em}
+.quote p{margin:0}
+.points{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:18px 0;padding:0;list-style:none}
+.points li{background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:12px 14px;font-size:15.5px}
+</style>
+<link rel="stylesheet" href="../../assets/chrome.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="beta-bar" role="note"><div class="wrap"><span class="beta-tag">Beta</span> This site is in its testing period. Spotted a mistake? Please tell me on <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</div></div>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../../"><img class="lg-light" src="../../assets/gear-light.png" alt="" width="41" height="34"><img class="lg-dark" src="../../assets/gear-dark.png" alt="" width="41" height="34"><span>Baher Elsheikh</span></a>
+    <div class="hdr-right">
+      <nav class="tabs" id="mainnav" aria-label="Main"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/" aria-current="page">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a></nav>
+      <a class="nav-search" href="../../search/"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20.5 20.5"/></svg><span>Search</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav">Menu</button>
+    </div>
+  </div>
+</header>
+<main id="main" class="wrap">
+<article>
+  <p class="crumb"><a href="../">Articles</a></p>
+  <a class="lab" href="../../knowledge/#codes-and-standards"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h11.5A2.5 2.5 0 0 1 19 7v13H7.5A2.5 2.5 0 0 1 5 17.5z"/><path d="M5 17.5A2.5 2.5 0 0 1 7.5 15H19"/><path d="M9 8.5h6M9 11.5h4"/></svg>Codes and Standards</a>
+  <h1>“Impractical” in the NBIC: A Technical Decision, Not a Shortcut</h1>
+  <p class="lead">Several NBIC paragraphs allow an alternative method of repair when the normal method is “impractical” or “not practicable”. That flexibility is useful, but it is not a loophole: the decision must rest on technical grounds, and saving time or cost must not be what drives it.</p>
+  <p class="byline">By Baher Elsheikh. November 2026. 4 min read.</p>
+
+  <h2>Where the NBIC allows an alternative</h2>
+  <p>In several places, the National Board Inspection Code (NBIC) recognises that the method normally required for a repair or inspection cannot always be used, and allows an alternative. Two examples show how the wording works.</p>
+  <div class="quote"><span class="src">NBIC 2.5.3 Alternative welding methods without postweld heat treatment, (a)</span>
+    <p>“Under certain conditions, postweld heat treatment, in accordance with the original code of construction, may be inadvisable or impractical. In such instances, the following alternative methods may be used.”</p></div>
+  <div class="quote"><span class="src">NBIC 3.3.4.9 Tube plugging in firetube boilers</span>
+    <p>“When the replacement of a tube in a firetube boiler is not practicable at the time the defective tube is detected, with the concurrence of the owner, Inspector, and where required, the Jurisdiction, the tube may be plugged using the following course of repair.”</p></div>
+  <p>In both cases the preferred method comes first (PWHT to the original code of construction; replacing the tube), and the alternative applies only when the preferred method is shown to be impractical. The tube plugging paragraph also names who must agree: the owner, the Inspector and, where required, the Jurisdiction.</p>
+
+  <h2>Example: repairs without PWHT</h2>
+  <p>Avoiding postweld heat treatment is one of the most common uses of this flexibility. In a repair, the equipment is already built and often in place. Its geometry, attached components, access, and the risk of distortion or of high and non-uniform residual stresses from local heating can make PWHT difficult, or even harmful to the equipment. These are technical reasons, and they are what the alternative welding methods of 2.5.3 are for.</p>
+  <p>What these reasons have in common is that they concern the equipment and the quality of the repair. A shorter outage or a lower repair cost is a real benefit, but it says nothing about whether PWHT is technically inadvisable.</p>
+
+  <h2>NB Interpretation 17-01</h2>
+  <p>The National Board has answered this question directly.</p>
+  <div class="quote"><span class="src">NB Interpretation 17-01 (2017 edition). Subject: application of the term “practicable”</span>
+    <p><strong>Question:</strong> May the desire to save time and/or expense be used solely in determining if a repair and/or alteration activity is practicable?</p>
+    <p style="margin-top:8px"><strong>Reply:</strong> No. The determination of “practicable” shall be based on technical consideration of the nature and scope of repair and/or alteration activities.</p></div>
+  <p>Time and cost can be part of planning a repair, but they cannot be the basis for declaring the normal method impractical. The decision has to be made, and defended, on the nature and scope of the repair.</p>
+
+  <h2>What a sound justification looks like</h2>
+  <ul>
+    <li><strong>State the technical reason</strong> the normal method is inadvisable or impractical for this repair: what would go wrong, or what cannot be achieved.</li>
+    <li><strong>Show that the alternative is acceptable</strong> for the material, thickness and service, within the conditions the NBIC paragraph sets.</li>
+    <li><strong>Check the service, not only the code.</strong> Where PWHT is needed for the service environment rather than for the code of construction, avoiding it may not be acceptable even if the code allows an alternative.</li>
+    <li><strong>Get the required concurrence</strong> (owner, Inspector and, where required, the Jurisdiction) before the work, not after.</li>
+    <li><strong>Record the basis</strong> in the repair documentation, so that the next engineer can see why the alternative was used.</li>
+  </ul>
+
+  <h2>In short</h2>
+  <ul class="points">
+    <li>“Impractical” means flexibility, not a loophole.</li>
+    <li>The decision is based on technical justification, not convenience.</li>
+    <li>Saving time or cost is not the main driver (NB Interpretation 17-01).</li>
+    <li>Integrity and safety of the equipment come first.</li>
+  </ul>
+
+  <h2>References</h2>
+  <ol class="refs">
+    <li>National Board Inspection Code (NBIC), ANSI/NB-23, The National Board of Boiler and Pressure Vessel Inspectors: 2.5.3 and 3.3.4.9.</li>
+    <li>NB Interpretation 17-01, Application of the term “practicable”, 2017 edition.</li>
+  </ol>
+  <p class="disc">This article is for general engineering guidance. Apply the edition of the NBIC adopted by the Jurisdiction, with the judgement of a qualified engineer and the Inspector.</p>
+  <aside class="related"><h2>Related on this site</h2><ul><li>Article: <a href="../local-pwht-pressure-vessels/">Local PWHT for Pressure Vessels and Piping</a></li><li>Knowledge area: <a href="../../knowledge/#codes-and-standards">Codes and Standards</a></li></ul></aside>
+</article>
+</main>
+<footer>
+  <div class="wrap">
+    <nav class="fnav" aria-label="Footer"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a><a href="../../standards/">Standards Index</a><a href="../../search/">Search</a></nav>
+    <div>Knowledge grows when it is communicated. <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a></div>
+    <div>Articles, documents and calculators are aids for engineering work, not a substitute for a complete engineering assessment. Users remain responsible for verifying the applicable design basis, code requirements and edition, assumptions and engineering decisions; results must be checked by a qualified engineer before use.</div>
+    <div>© 2026 Baher Elsheikh. Content and tools free to use; not to be copied or redistributed without permission.</div>
+  </div>
+</footer>
+<script src="../../assets/chrome.js"></script>
+</body>
+</html>

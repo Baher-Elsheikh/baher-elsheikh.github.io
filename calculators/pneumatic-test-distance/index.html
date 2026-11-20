@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pneumatic Test Safe Distance Calculator | ASME PCC-2 Appendix 501-III</title>
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="description" content="Free online calculator for the minimum safe distance during a pneumatic pressure test to ASME PCC-2: stored energy and TNT equivalent, blast wave distance (501-III-1, Eq. III-1), fragment throw distance (Table 501-III-2-1) and consequence distances for alternative scaled factors. Step-by-step equations and PDF output.">
+<meta name="keywords" content="pneumatic test safe distance, pneumatic pressure test stored energy, TNT equivalent, ASME PCC-2 501, blast wave distance, fragment throw distance, exclusion zone pneumatic test">
+<meta name="author" content="Baher Elsheikh">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://baher-elsheikh.github.io/calculators/pneumatic-test-distance/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baher-elsheikh.github.io/calculators/pneumatic-test-distance/">
+<meta property="og:title" content="Pneumatic Test Safe Distance Calculator, ASME PCC-2">
+<meta property="og:description" content="Free stored energy, TNT equivalent and minimum safe distance for pneumatic pressure tests to ASME PCC-2, step by step. Prepared by Baher Elsheikh.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Pneumatic Test Safe Distance Calculator","url":"https://baher-elsheikh.github.io/calculators/pneumatic-test-distance/","applicationCategory":"EngineeringApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Stored energy, TNT equivalent, blast wave and fragment throw distances for pneumatic pressure tests to ASME PCC-2 Mandatory Appendix 501-III.","author":{"@type":"Person","name":"Baher Elsheikh","sameAs":["https://www.linkedin.com/in/baher-elsheikh/","https://www.youtube.com/@baherelsheikh4942"]}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF0F5; --panel:#FFFFFF; --ink:#121A30; --steel:#545E74; --rule:#CDD2DE;
+  --accent:#14245E; --accent-soft:#E1E5F2; --ok:#1E7A4C; --ok-soft:#DDF0E5;
+  --bad:#AE2A1F; --bad-soft:#F7DEDA; --warn:#8A5A00; --warn-soft:#F6EAD0;
+  --field:#F7F8FB; --wall:#7E8E98; --tol:#B9C4CA;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --math:"STIX Two Text","Cambria Math",Cambria,"Times New Roman",serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+    --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+    --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+  --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+  --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans);font-variant-numeric:tabular-nums}
+.wrap{max-width:1320px;margin:0 auto;padding:28px 24px 48px}
+header.top{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+h1{font-family:var(--math);font-weight:600;font-size:clamp(26px,3.4vw,38px);line-height:1.1;margin:0;letter-spacing:-.01em}
+.home{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14.5px;margin-bottom:14px}
+.home img{height:40px;width:auto}
+.home:hover span{color:var(--accent)}
+.lg-dark{display:none}
+.f input:disabled,.f select:disabled{opacity:.45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:inline}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:inline}
+.basis{color:var(--steel);font-size:13.5px;margin-top:8px;max-width:70ch}
+.byline{font-size:14px;margin-top:10px;color:var(--ink);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.byline .links{display:inline-flex;gap:12px}
+.byline a,footer a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;font-weight:500}
+.byline a:hover,footer a:hover{text-decoration-thickness:2px}
+@media print{.byline a::after{content:" (" attr(href) ")";font-weight:400;color:var(--steel)}}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{font:500 14px var(--sans);border-radius:6px;padding:8px 14px;cursor:pointer;border:1px solid var(--rule);background:var(--panel);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--panel)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* verdict + wall gauge */
+.verdict{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:22px 24px;display:grid;grid-template-columns:minmax(260px,1fr) minmax(320px,1.6fr);gap:20px 32px;align-items:center;margin-bottom:22px}
+.verdict .state{font-family:var(--math);font-size:clamp(22px,2.6vw,30px);line-height:1.2}
+.verdict .state.ok{color:var(--ok)} .verdict .state.bad{color:var(--bad)}
+.verdict .sub{color:var(--steel);margin-top:6px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-size:12.5px;padding:3px 9px;border-radius:999px;border:1px solid transparent}
+.chip.ok{background:var(--ok-soft);color:var(--ok)} .chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)} .chip.info{background:var(--accent-soft);color:var(--accent)}
+.gauge svg{width:100%;height:auto;display:block}
+.gauge text{font-family:var(--sans);font-size:11px;fill:var(--steel);paint-order:stroke;stroke:var(--panel);stroke-width:3px;stroke-linejoin:round}
+.gauge .lab{fill:var(--ink);font-weight:500}
+.gcap{font-size:12px;color:var(--steel);margin-top:4px}
+
+/* layout */
+.cols{display:grid;grid-template-columns:380px minmax(0,1fr);gap:22px;align-items:start}
+aside.inputs{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:6px 18px 18px;position:sticky;top:calc(12px + env(safe-area-inset-top,0px));max-height:calc(100vh - 24px - env(safe-area-inset-top,0px));overflow:auto}
+fieldset{border:0;border-top:1px solid var(--rule);margin:14px 0 0;padding:12px 0 0}
+fieldset:first-of-type{border-top:0}
+legend{font-weight:600;font-size:14px;padding:0}
+.f{display:grid;grid-template-columns:1fr 112px 46px;gap:6px;align-items:center;margin-top:7px}
+.f.wide{grid-template-columns:1fr 1.4fr}
+.f label{font-size:13px;color:var(--ink)}
+.f label i{font-family:var(--math);font-size:15px}
+.f .u{font-size:12px;color:var(--steel)}
+input,select{font:14px var(--sans);color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:5px;padding:5px 7px;width:100%;font-variant-numeric:tabular-nums}
+input[type=number]{text-align:right}
+input:disabled{opacity:.6}
+input.need{background:#FFF7D6;border-color:#D9B84A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) input.need{background:#33290F;border-color:#7A6420}}
+:root[data-theme="dark"] input.need{background:#33290F;border-color:#7A6420}
+.hint{font-size:12px;color:var(--steel);margin:4px 0 0;line-height:1.4}
+
+/* calculation report */
+main.report{display:flex;flex-direction:column;gap:18px;min-width:0}
+section.step{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 20px 12px}
+.step h2{font-size:17px;font-weight:600;margin:0;display:flex;gap:10px;align-items:baseline}
+.step h2 .n{font-family:var(--math);color:var(--accent);font-size:20px;min-width:1.2em}
+.step .ref{color:var(--steel);font-size:12.5px;margin:2px 0 8px 32px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td{padding:7px 8px;border-top:1px solid var(--rule);vertical-align:baseline}
+td.lb{width:30%;color:var(--ink)}
+td.eq{font-family:var(--math);font-size:15.5px;white-space:nowrap}
+td.sb{font-family:var(--math);font-size:15px;color:var(--steel);white-space:nowrap}
+td.v{text-align:right;font-weight:600;white-space:nowrap}
+td.v small{display:block;font-weight:400;color:var(--steel);font-size:12px}
+td.un{color:var(--steel);font-size:12.5px;white-space:nowrap;width:44px}
+.result{margin:10px 0 4px;padding:9px 12px;border-radius:6px;font-weight:500;font-size:14px}
+.result.ok{background:var(--ok-soft);color:var(--ok)} .result.bad{background:var(--bad-soft);color:var(--bad)}
+.result.warn{background:var(--warn-soft);color:var(--warn)} .result.info{background:var(--accent-soft);color:var(--accent)}
+.note{font-size:12.5px;color:var(--steel);margin:6px 0 0}
+.schtbl td{text-align:center;font-size:12.5px;padding:5px 4px}
+.schtbl td.sel{outline:2px solid var(--accent);font-weight:600}
+.schtbl td.okc{background:var(--ok-soft);color:var(--ok)} .schtbl td.badc{color:var(--steel)}
+.schtbl th{font-size:12px;font-weight:600;padding:5px 4px;border-bottom:1px solid var(--rule)}
+
+/* how to use */
+section.howto{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:18px 22px 14px;margin-top:22px}
+.howto h2{font-family:var(--math);font-weight:600;font-size:24px;margin:0 0 4px}
+.howto h3{font-size:15px;font-weight:600;margin:18px 0 6px}
+.howto p,.howto li{font-size:14px;max-width:85ch}
+.howto ol,.howto ul{padding-left:22px;margin:6px 0}
+.howto li{margin:5px 0}
+.howto .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4px 32px}
+
+footer{margin-top:28px;font-size:12.5px;color:var(--steel);border-top:1px solid var(--rule);padding-top:14px;display:grid;gap:6px}
+.printhead{display:none}
+
+@media (max-width:980px){
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none}
+  .verdict{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .wrap{padding:18px 14px 36px}
+  td.eq,td.sb{white-space:normal}
+  td.lb{width:auto}
+  .howto{padding:16px 14px 12px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .verdict .state{transition:color .25s}
+}
+@media print{
+  :root{--bg:#fff;--panel:#fff}
+  body{font-size:11px}
+  .actions,.noprint{display:none!important}
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none;border:0;padding:0}
+  section.step,.verdict{break-inside:avoid;border-color:#999}
+  .printhead{display:block;font-size:11px;margin-bottom:8px}
+  input,select{border:0;background:none;padding:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <a class="home" href="../"><img class="lg-light" src="../../assets/gear-light.png" alt=""><img class="lg-dark" src="../../assets/gear-dark.png" alt=""><span>Baher Elsheikh</span><span style="font-weight:400;color:var(--steel)">| All calculators</span></a>
+      <h1>Pneumatic test safe distance</h1>
+      <div class="byline">Prepared by: <strong>Baher Elsheikh</strong>
+        <span class="links"><a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube channel</a></span></div>
+      <div class="basis">ASME PCC-2 Mandatory Appendix 501-III: blast wave distance (501-III-1, Eq. III-1, Table 501-III-1-1) and fragment throw distance (501-III-2, Table 501-III-2-1), from the stored energy and TNT equivalent of Appendix 501-II. Metric units with US equivalents.</div>
+    </div>
+    <div class="actions">
+      <button type="button" id="btnHow">How to use</button>
+      <button type="button" id="btnExample">Load example</button>
+      <button type="button" id="btnClear">Clear inputs</button>
+      <button type="button" class="primary" id="btnPrint">Print / save PDF</button>
+    </div>
+  </header>
+
+  <div class="printhead" id="printhead"></div>
+
+  <div class="verdict" aria-live="polite">
+    <div>
+      <div class="state" id="vState">—</div>
+      <div class="sub" id="vSub"></div>
+      <div class="chips" id="vChips"></div>
+    </div>
+    <div class="gauge">
+      <svg id="plan" viewBox="0 0 640 260" role="img" aria-label="Exclusion zones in plan"></svg>
+      <div class="gcap">Plan view, to scale: the governing exclusion distance around the equipment under test, with the blast wave and fragment distances and the consequence distances of Table 501-III-1-1.</div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <aside class="inputs" aria-label="Inputs">
+      <fieldset>
+        <legend>Test</legend>
+        <div class="f wide"><label for="tag">Equipment / test</label><input id="tag" type="text" placeholder="e.g. V-101 pneumatic test"></div>
+        <div class="f wide"><label for="prep">Prepared by</label><input id="prep" type="text"></div>
+        <div class="f wide"><label for="date">Date</label><input id="date" type="date"></div>
+        <div class="f wide"><label for="gas">Test gas</label>
+          <select id="gas"><option value="1.4">Air (k = 1.4)</option><option value="1.4n">Nitrogen (k = 1.4)</option><option value="1.67">Helium (k = 1.67)</option><option value="other">Other (enter k)</option></select></div>
+        <div class="f"><label for="k">Specific heat ratio <i>k</i></label><input id="k" type="number" step="any"><span class="u"></span></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Volume and pressure</legend>
+        <div class="f wide"><label for="basis">Volume basis</label>
+          <select id="basis"><option value="vessel">Vessel: total volume</option><option value="piping">Piping: 8 pipe diameters</option></select></div>
+        <div class="f"><label for="V">Total volume <i>V</i></label><input id="V" type="number" step="any"><span class="u">m³</span></div>
+        <p class="hint">Everything pressurised in the test: vessel, piping and connected equipment.</p>
+        <div class="f"><label for="Dp">Pipe inside diameter <i>D</i></label><input id="Dp" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">Piping basis only: 501-II-1 allows a maximum volume of a pipe length of 8 D for any single failure (see 501-6.2(e), (f)).</p>
+        <div class="f wide"><label for="punit">Pressure unit</label>
+          <select id="punit"><option value="MPa">MPa (g)</option><option value="kgcm2">kg/cm² (g)</option><option value="bar">bar (g)</option><option value="psi">psi (g)</option></select></div>
+        <div class="f"><label for="Pt">Test pressure</label><input id="Pt" type="number" step="any"><span class="u pu">MPa</span></div>
+        <div class="f"><label for="Pa">Atmospheric pressure <i>P</i><sub>a</sub></label><input id="Pa" type="number" step="any"><span class="u">kPa</span></div>
+        <p class="hint">Absolute; PCC-2 501-II uses 101 kPa.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>PCC-2 factors</legend>
+        <div class="f"><label for="Rs">Scaled factor <i>R</i><sub>scaled</sub></label><input id="Rs" type="number" step="any"><span class="u">m/kg<sup>⅓</sup></span></div>
+        <p class="hint">20 or greater for Eq. (III-1). A lower value from Table 501-III-1-1 only where the full distance cannot be obtained (see 501-6.2(g)).</p>
+        <div class="f"><label for="qT">TNT energy equivalent</label><input id="qT" type="number" step="any"><span class="u">J/kg</span></div>
+        <p class="hint">Eq. (II-3): TNT = E / 4 266 920 (kg). In U.S. units PCC-2 uses Eq. (II-5) with 1 488 617 ft·lb per lb, about 4% different; this page works in SI.</p>
+        <div class="f wide"><label for="frag">Fragments could reach personnel?</label>
+          <select id="frag"><option value="yes">Yes: apply Table 501-III-2-1</option><option value="no">No</option></select></div>
+      </fieldset>
+    </aside>
+
+    <main class="report" id="report"></main>
+  </div>
+
+  <section class="howto noprint" id="howto" aria-labelledby="h-how">
+    <h2 id="h-how">How to use this calculator</h2>
+    <p>A pneumatic test stores far more energy than a hydrostatic test at the same pressure, because gas is compressible. If the equipment fails, that energy is released as a blast wave and can throw fragments. ASME PCC-2 Appendix 501-III sets the minimum distance between all personnel and the equipment under test for both effects. The calculator works out the stored energy and its TNT equivalent, the blast wave distance, the fragment throw distance and the governing exclusion distance.</p>
+    <div class="grid">
+      <div>
+        <h3>Steps</h3>
+        <ol>
+          <li><strong>Choose the test gas.</strong> Air and nitrogen use k = 1.4.</li>
+          <li><strong>Enter the total volume</strong> that will be under pressure, including piping and connected equipment, and the <strong>test pressure</strong> (gauge; pick the unit first). For a vessel the total volume is used. For a piping system, choose the piping basis and enter the pipe inside diameter: PCC-2 allows the volume of a pipe length of 8 diameters for any single failure, if smaller than the total.</li>
+          <li><strong>Keep R<sub>scaled</sub> = 20</strong> unless the full distance cannot be achieved and an alternative has been justified per Table 501-III-1-1 and 501-6.2(g).</li>
+          <li><strong>Say whether fragments could reach personnel.</strong> If yes, the fragment distance of Table 501-III-2-1 is also applied.</li>
+          <li><strong>Read the governing distance</strong> in the banner: the larger of the blast wave and fragment distances, in metres and feet.</li>
+          <li><strong>Mark and barricade the exclusion zone</strong> at that distance before pressurising, and print or save the calculation with the test procedure.</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Good practice</h3>
+        <ul>
+          <li>Reduce the stored energy where you can: fill most of the volume with water or solid fillers, or test sections separately; the distance falls with the cube root of the energy.</li>
+          <li>For E up to 8 130 000 J (6,000,000 ft·lb) the blast distance is a flat 30 m (100 ft); above that it grows with (2 × TNT)<sup>⅓</sup>.</li>
+          <li>Even at the minimum distance, structural damage such as broken glass is possible; Table 501-III-1-1 lists the consequences for lower scaled factors. Check nearby buildings and equipment.</li>
+          <li>Pressurise in steps with holds, and inspect only at reduced pressure as the test procedure requires.</li>
+          <li>Beyond 10 000 kg TNT, Table 501-III-2-1 ends: evaluate fragment distances by public-domain methods (501-III-2(b)).</li>
+        </ul>
+        <h3>Not covered</h3>
+        <ul>
+          <li>The choice between hydrostatic and pneumatic testing, test pressure, brittle fracture (MDMT) review and the test procedure itself, which are covered elsewhere in PCC-2 Article 501.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>Prepared by: Baher Elsheikh (<a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a>). Version 1.0, November 2026 (from the spreadsheet Pneumatic Test Safe Distance PCC-2 Calculator, revision 1).</div>
+    <div>© 2026 Baher Elsheikh. Free to use; not to be copied, modified or redistributed without permission.</div>
+    <div>This tool is an aid for planning pneumatic tests. The exclusion distance and test procedure must be confirmed against ASME PCC-2 and the applicable construction code by a qualified engineer, and approved under the site safety process, before use. No warranty is given.</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const PCONV = {kgcm2:0.0980665, MPa:1, bar:0.1, psi:0.00689476};
+  const PLAB = {kgcm2:'kg/cm²', MPa:'MPa', bar:'bar', psi:'psi'};
+  const FRAG = [[3,50],[5,60],[10,70],[15,80],[20,90],[25,95],[35,105],[50,120],[65,130],[80,140],[100,150],[120,160],[150,170],[200,190],
+    [250,205],[300,215],[350,225],[400,240],[450,245],[500,255],[600,270],[700,285],[800,300],[900,310],[1100,330],[1300,350],
+    [1500,365],[1900,395],[2300,420],[2800,450],[3300,475],[3800,500],[4400,525],[5000,530],[5500,535],[6500,545],[7500,570],[8500,590],[10000,605]];
+  const RS = [[20,'—','Glass windows'],[12,'Eardrum rupture','Concrete block panels'],[6,'Lung damage','Brick walls'],[2,'Fatal','—']];
+  const EXAMPLE = {tag:'Example: air receiver, pneumatic test', prep:'', date:'', gas:'1.4', k:1.4, basis:'vessel', V:20, Dp:'', punit:'MPa', Pt:1.5, Pa:101, Rs:20, qT:4266920, frag:'yes'};
+  const IDS = Object.keys(EXAMPLE);
+  const STORE = 'pneumatic-distance-inputs-v2';
+  const $ = id => document.getElementById(id);
+  function setInputs(d){ IDS.forEach(k=>{const el=$(k); if(!el) return; el.value=(d[k]===undefined||d[k]===null)?'':d[k];}); }
+  function getInputs(){ const d={}; IDS.forEach(k=>{d[k]=$(k).value;}); return d; }
+  function num(k){ const v=parseFloat($(k).value); return isFinite(v)?v:NaN; }
+  function f(x,d){ if(!isFinite(x)) return '—'; return x.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+  const v = s => `<i>${s}</i>`;
+  function row(label, eq, sub, val, unit, d, small){
+    return `<tr><td class="lb">${label}</td><td class="eq">${eq||''}</td><td class="sb">${sub||''}</td>`+
+      `<td class="v">${typeof val==='string'?val:f(val,d)}${small?`<small>${small}</small>`:''}</td><td class="un">${unit||''}</td></tr>`;
+  }
+  function step(n,title,ref,rows,results,notes){
+    return `<section class="step"><h2><span class="n">${n}</span>${title}</h2><div class="ref">${ref}</div>`+
+      (rows.length?`<div class="tbl"><table>${rows.filter(Boolean).join('')}</table></div>`:'')+
+      (results||[]).map(r=>`<div class="result ${r[0]}">${r[1]}</div>`).join('')+
+      (notes||[]).map(t=>`<p class="note">${t}</p>`).join('')+`</section>`;
+  }
+  $('gas').addEventListener('change',()=>{ const g=$('gas').value; if(g!=='other'){ $('k').value = g==='1.67'?1.67:1.4; } compute(); });
+
+  function compute(){
+    const pu=$('punit').value, pc=PCONV[pu], pl=PLAB[pu];
+    document.querySelectorAll('.pu').forEach(e=>e.textContent=pl);
+    $('k').disabled = $('gas').value!=='other';
+    const k=num('k'), Vt=num('V'), Pt=num('Pt')*pc, Pa=num('Pa'), Rs=num('Rs'), qT=num('qT'), frag=$('frag').value==='yes';
+    const piping = $('basis').value==='piping', Dp=num('Dp');
+    $('Dp').disabled = !piping;
+    const need=['k','V','Pt','Pa','Rs','qT'].concat(piping?['Dp']:[]);
+    need.forEach(x=>$(x).classList.toggle('need', !isFinite(num(x))));
+    if(!piping) $('Dp').classList.remove('need');
+    const ready = need.every(x=>isFinite(num(x)));
+
+    const V8 = piping && isFinite(Dp) ? Math.PI/4*Math.pow(Dp/1000,2)*8*Dp/1000 : NaN;
+    const V = isFinite(V8) ? Math.min(Vt, V8) : Vt;
+    const P = Pt*1000+Pa;                         // kPa abs, Pat
+    const ex = k===1.4 ? 0.286 : (k-1)/k;         // Eq. (II-2) uses 0.286 for air and nitrogen
+    const E = P*1000*V/(k-1)*(1-Math.pow(Pa/P,ex));   // J, Eq. (II-1)
+    const TNT = E/qT;
+    const Rcalc = Rs*Math.cbrt(2*TNT), small = E<=8130000, Rb = small ? 30 : Rcalc;
+    const row6 = FRAG.find(r=>TNT<=r[0]);
+    const Rf = frag ? (row6? row6[1] : NaN) : NaN, beyond = frag && !row6;
+    const Rgov = Math.max(Rb, isFinite(Rf)?Rf:0);
+
+    let out='';
+    out += step(1,'Stored energy and TNT equivalent','Mandatory Appendix 501-II, Eqs. (II-1), (II-2), (II-3)',[
+      piping? row('Volume of 8 pipe diameters', `π/4 ${v('D')}² × 8${v('D')}`, `D = ${f(Dp,1)} mm`, V8,'m³',3, `total ${f(Vt,3)} m³`):'',
+      row('Volume used', v('V'), piping?'lesser of total and 8-diameter volume (501-II-1)':'total volume under test', V,'m³',3),
+      row('Absolute test pressure', `${v('P')}<sub>at</sub> = ${v('P')}<sub>test</sub> + ${v('P')}<sub>a</sub>`, `${f(Pt*1000,1)} + ${f(Pa,3)}`, P,'kPa',1),
+      row('Stored energy', k===1.4 ? `${v('E')} = 2.5 ${v('P')}<sub>at</sub>${v('V')} [1 − (${v('P')}<sub>a</sub>/${v('P')}<sub>at</sub>)<sup>0.286</sup>]` : `${v('E')} = [1/(${v('k')} − 1)] ${v('P')}<sub>at</sub>${v('V')} [1 − (${v('P')}<sub>a</sub>/${v('P')}<sub>at</sub>)<sup>(${v('k')}−1)/${v('k')}</sup>]`,
+          `${f(1/(k-1),3)} × ${f(P*1000,0)} × ${f(V,3)} × [1 − (${f(Pa,1)} / ${f(P,1)})^${f(ex,4)}]`, E,'J',0, `${k===1.4?'Eq. (II-2)':'Eq. (II-1)'}; ${f(E/1.355818,0)} ft·lb`),
+      row('TNT equivalent', `TNT = ${v('E')} / ${f(qT,0)}`, 'Eq. (II-3)', TNT,'kg',2, f(TNT/0.45359237,2)+' lb')
+    ],[], []);
+
+    out += step(2,'Blast wave distance','501-III-1: 30 m (100 ft) for E ≤ 8 130 000 J; Eq. (III-1) above',[
+      row('Eq. (III-1)', `${v('R')} = ${v('R')}<sub>scaled</sub>(2 TNT)<sup>1/3</sup>`, `${f(Rs,1)} × (2 × ${f(TNT,2)})^(1/3)`, Rcalc,'m',1),
+      row('Minimum blast wave distance', v('R'), small?'E ≤ 8 130 000 J: 501-III-1(a)':'E > 8 130 000 J: 501-III-1(b)', Rb,'m',1, f(Rb/0.3048,0)+' ft')
+    ], Rs<20?[['warn',`R<sub>scaled</sub> ${f(Rs,1)} is below 20 m/kg<sup>1/3</sup>: an alternative value per Table 501-III-1-1 and 501-6.2(g); consider the structural damage that can occur.`]]:[]);
+
+    out += step(3,'Fragment throw distance','501-III-2, Table 501-III-2-1 (American Table of Distances, IME)',
+      frag ? [ row('Table range', 'TNT equivalent', `${f(TNT,2)} kg`, row6?`${f(FRAG[FRAG.indexOf(row6)-1]?.[0]||0,0)} to ${f(row6[0],0)} kg`:'beyond 10 000 kg','',0),
+               row('Minimum fragment distance', `${v('R')}<sub>f</sub>`, '', isFinite(Rf)?Rf:'—','m',0, isFinite(Rf)?f(Rf/0.3048,0)+' ft':'') ] : [],
+      frag ? (beyond?[['bad','TNT equivalent beyond Table 501-III-2-1: evaluate the fragment distance by public-domain methods (501-III-2(b)).']]:[]) : [['info','Fragments are not expected to reach personnel: Table 501-III-2-1 not applied.']]);
+
+    out += step(4,'Consequence distances','Table 501-III-1-1, for information: distance at each alternative R<sub>scaled</sub>',
+      RS.map(r=>row(`R<sub>scaled</sub> ${r[0]}`, `${r[0]} × (2 TNT)<sup>1/3</sup>`, `${r[1]}; ${r[2]}`, r[0]*Math.cbrt(2*TNT),'m',1)), [],
+      ['To prevent lung damage, a person should be at a distance giving R<sub>scaled</sub> of more than 6 m/kg<sup>1/3</sup>.']);
+
+    out += step(5,'Result','Minimum distance between all personnel and the equipment under test',[
+      row('Governing distance', `max(blast${frag?', fragment':''})`, '', Rgov,'m',1, f(Rgov/0.3048,0)+' ft')
+    ],[ !ready?['warn','Enter the highlighted inputs.']:(beyond?['bad','Fragment distance beyond the table: complete the evaluation before testing.']:['ok',`Keep all personnel at least ${f(Rgov,0)} m (${f(Rgov/0.3048,0)} ft) from the equipment during the test.`]) ]);
+
+    $('report').innerHTML = out;
+    const st=$('vState');
+    if(!ready){ st.textContent='Enter the highlighted inputs'; st.className='state'; }
+    else if(beyond){ st.textContent='Beyond Table 501-III-2-1: evaluate fragments'; st.className='state bad'; }
+    else { st.textContent=`Exclusion distance ${f(Rgov,0)} m (${f(Rgov/0.3048,0)} ft)`; st.className='state ok'; }
+    $('vSub').innerHTML = `${$('tag').value||'Test'}: ${f(V,2)} m³ at ${f(num('Pt'),2)} ${pl} (g), E = ${f(E/1e6,2)} MJ, TNT ${f(TNT,2)} kg.`;
+    $('vChips').innerHTML = ready ? `<span class="chip info">Blast ${f(Rb,0)} m</span>`+(frag&&isFinite(Rf)?`<span class="chip info">Fragments ${f(Rf,0)} m</span>`:'')+`<span class="chip ok">Governing ${f(Rgov,0)} m</span>`+(Rs<20?'<span class="chip warn">Alternative R scaled</span>':'') : '';
+    drawPlan({Rb,Rf,Rgov,TNT});
+    $('printhead').textContent = `${$('tag').value||''}  ${$('prep').value?'Prepared by: '+$('prep').value:''}  ${$('date').value||''}`;
+    try{ localStorage.setItem(STORE, JSON.stringify(getInputs())); }catch(e){}
+  }
+
+  function drawPlan(d){
+    const g=$('plan'); if(!isFinite(d.Rgov)||d.Rgov<=0){ g.innerHTML=''; return; }
+    const cs=getComputedStyle(document.documentElement), c=n=>cs.getPropertyValue(n).trim();
+    const cx=200, cy=130, sc=118/d.Rgov;
+    let s=`<circle cx="${cx}" cy="${cy}" r="${d.Rgov*sc}" fill="${c('--warn-soft')}" stroke="${c('--warn')}" stroke-width="2" stroke-dasharray="6 4"/>`;
+    const conc=[[6,'Rscaled 6 (lung damage)'],[2,'Rscaled 2 (fatal)']].map(([r,l])=>[r*Math.cbrt(2*d.TNT),l]);
+    conc.forEach(([r])=>{ s+=`<circle cx="${cx}" cy="${cy}" r="${Math.max(2,r*sc)}" fill="none" stroke="${c('--bad')}" stroke-width="1" opacity=".7"/>`; });
+    if(isFinite(d.Rf)) s+=`<circle cx="${cx}" cy="${cy}" r="${d.Rf*sc}" fill="none" stroke="${c('--accent')}" stroke-width="1.5"/>`;
+    s+=`<circle cx="${cx}" cy="${cy}" r="${d.Rb*sc}" fill="none" stroke="${c('--ink')}" stroke-width="1.5" stroke-dasharray="2 3"/>`;
+    s+=`<rect x="${cx-7}" y="${cy-5}" width="14" height="10" rx="3" fill="${c('--ink')}"/>`;
+    // legend on the right
+    const items=[[c('--warn'),'6 4',`Governing exclusion ${f(d.Rgov,0)} m`],[c('--ink'),'2 3',`Blast wave ${f(d.Rb,0)} m`]]
+      .concat(isFinite(d.Rf)?[[c('--accent'),'',`Fragment throw ${f(d.Rf,0)} m`]]:[])
+      .concat(conc.map(([r,l])=>[c('--bad'),'',`${l} ${f(r,1)} m`]));
+    items.forEach((it,i)=>{ const y=40+i*26;
+      s+=`<line x1="360" y1="${y}" x2="392" y2="${y}" stroke="${it[0]}" stroke-width="2" ${it[1]?`stroke-dasharray="${it[1]}"`:''}/><text x="400" y="${y+4}" class="lab">${it[2]}</text>`; });
+    s+=`<text x="${cx}" y="${cy+24}" text-anchor="middle">equipment</text>`;
+    s+=`<text x="400" y="${40+items.length*26+4}">${f(d.TNT,2)} kg TNT equivalent</text>`;
+    g.innerHTML=s;
+  }
+
+  let saved=null; try{ saved=JSON.parse(localStorage.getItem(STORE)); }catch(e){}
+  setInputs(saved||EXAMPLE);
+  document.querySelectorAll('aside input, aside select').forEach(el=>el.addEventListener('input',compute));
+  document.querySelectorAll('aside select').forEach(el=>el.addEventListener('change',compute));
+  $('btnExample').addEventListener('click',()=>{setInputs(EXAMPLE);compute();});
+  $('btnClear').addEventListener('click',()=>{const d={}; IDS.forEach(x=>d[x]=''); d.gas='1.4'; d.k=1.4; d.basis='vessel'; d.punit='MPa'; d.Pa=101; d.Rs=20; d.qT=4266920; d.frag='yes'; setInputs(d); compute();});
+  $('btnHow').addEventListener('click',()=>$('howto').scrollIntoView({behavior:'smooth'}));
+  $('btnPrint').addEventListener('click',()=>window.print());
+  if(window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',compute);
+  compute();
+})();
+</script>
+</body>
+</html>

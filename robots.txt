@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://baher-elsheikh.github.io/sitemap.xml

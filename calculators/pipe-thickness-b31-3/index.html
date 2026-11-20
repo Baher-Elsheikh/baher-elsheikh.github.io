@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pipe Wall Thickness Calculator | ASME B31.3 Process Piping, 304.1.2</title>
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="description" content="Free online pipe wall thickness calculator to ASME B31.3 304.1.2: pressure design thickness, minimum required thickness with allowances and mill tolerance, coefficient Y by material and temperature, ASME B36.10M schedule selection, MAWP and hydrotest pressure. Step-by-step equations and PDF output.">
+<meta name="keywords" content="pipe wall thickness calculator, ASME B31.3 pipe thickness, process piping thickness, 304.1.2, coefficient Y, pipe schedule selection, B36.10M, MAWP pipe, hydrotest pressure B31.3">
+<meta name="author" content="Baher Elsheikh">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://baher-elsheikh.github.io/calculators/pipe-thickness-b31-3/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baher-elsheikh.github.io/calculators/pipe-thickness-b31-3/">
+<meta property="og:title" content="Pipe Wall Thickness Calculator, ASME B31.3">
+<meta property="og:description" content="Free ASME B31.3 pipe wall thickness check with schedule selection, MAWP and hydrotest pressure, step by step. Prepared by Baher Elsheikh.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Pipe Wall Thickness Calculator, ASME B31.3","url":"https://baher-elsheikh.github.io/calculators/pipe-thickness-b31-3/","applicationCategory":"EngineeringApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Straight pipe wall thickness for internal pressure to ASME B31.3 304.1.2, with ASME B36.10M schedule selection, MAWP and hydrotest pressure.","author":{"@type":"Person","name":"Baher Elsheikh","sameAs":["https://www.linkedin.com/in/baher-elsheikh/","https://www.youtube.com/@baherelsheikh4942"]}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF0F5; --panel:#FFFFFF; --ink:#121A30; --steel:#545E74; --rule:#CDD2DE;
+  --accent:#14245E; --accent-soft:#E1E5F2; --ok:#1E7A4C; --ok-soft:#DDF0E5;
+  --bad:#AE2A1F; --bad-soft:#F7DEDA; --warn:#8A5A00; --warn-soft:#F6EAD0;
+  --field:#F7F8FB; --wall:#7E8E98; --tol:#B9C4CA;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --math:"STIX Two Text","Cambria Math",Cambria,"Times New Roman",serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+    --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+    --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+  --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+  --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans);font-variant-numeric:tabular-nums}
+.wrap{max-width:1320px;margin:0 auto;padding:28px 24px 48px}
+header.top{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+h1{font-family:var(--math);font-weight:600;font-size:clamp(26px,3.4vw,38px);line-height:1.1;margin:0;letter-spacing:-.01em}
+.home{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14.5px;margin-bottom:14px}
+.home img{height:40px;width:auto}
+.home:hover span{color:var(--accent)}
+.lg-dark{display:none}
+.f input:disabled,.f select:disabled{opacity:.45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:inline}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:inline}
+.basis{color:var(--steel);font-size:13.5px;margin-top:8px;max-width:70ch}
+.byline{font-size:14px;margin-top:10px;color:var(--ink);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.byline .links{display:inline-flex;gap:12px}
+.byline a,footer a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;font-weight:500}
+.byline a:hover,footer a:hover{text-decoration-thickness:2px}
+@media print{.byline a::after{content:" (" attr(href) ")";font-weight:400;color:var(--steel)}}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{font:500 14px var(--sans);border-radius:6px;padding:8px 14px;cursor:pointer;border:1px solid var(--rule);background:var(--panel);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--panel)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* verdict + wall gauge */
+.verdict{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:22px 24px;display:grid;grid-template-columns:minmax(260px,1fr) minmax(320px,1.6fr);gap:20px 32px;align-items:center;margin-bottom:22px}
+.verdict .state{font-family:var(--math);font-size:clamp(22px,2.6vw,30px);line-height:1.2}
+.verdict .state.ok{color:var(--ok)} .verdict .state.bad{color:var(--bad)}
+.verdict .sub{color:var(--steel);margin-top:6px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-size:12.5px;padding:3px 9px;border-radius:999px;border:1px solid transparent}
+.chip.ok{background:var(--ok-soft);color:var(--ok)} .chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)} .chip.info{background:var(--accent-soft);color:var(--accent)}
+.gauge svg{width:100%;height:auto;display:block}
+.gauge text{font-family:var(--sans);font-size:11px;fill:var(--steel);paint-order:stroke;stroke:var(--panel);stroke-width:3px;stroke-linejoin:round}
+.gauge .lab{fill:var(--ink);font-weight:500}
+.gcap{font-size:12px;color:var(--steel);margin-top:4px}
+
+/* layout */
+.cols{display:grid;grid-template-columns:380px minmax(0,1fr);gap:22px;align-items:start}
+aside.inputs{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:6px 18px 18px;position:sticky;top:calc(12px + env(safe-area-inset-top,0px));max-height:calc(100vh - 24px - env(safe-area-inset-top,0px));overflow:auto}
+fieldset{border:0;border-top:1px solid var(--rule);margin:14px 0 0;padding:12px 0 0}
+fieldset:first-of-type{border-top:0}
+legend{font-weight:600;font-size:14px;padding:0}
+.f{display:grid;grid-template-columns:1fr 112px 46px;gap:6px;align-items:center;margin-top:7px}
+.f.wide{grid-template-columns:1fr 1.4fr}
+.f label{font-size:13px;color:var(--ink)}
+.f label i{font-family:var(--math);font-size:15px}
+.f .u{font-size:12px;color:var(--steel)}
+input,select{font:14px var(--sans);color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:5px;padding:5px 7px;width:100%;font-variant-numeric:tabular-nums}
+input[type=number]{text-align:right}
+input:disabled{opacity:.6}
+input.need{background:#FFF7D6;border-color:#D9B84A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) input.need{background:#33290F;border-color:#7A6420}}
+:root[data-theme="dark"] input.need{background:#33290F;border-color:#7A6420}
+.hint{font-size:12px;color:var(--steel);margin:4px 0 0;line-height:1.4}
+
+/* calculation report */
+main.report{display:flex;flex-direction:column;gap:18px;min-width:0}
+section.step{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 20px 12px}
+.step h2{font-size:17px;font-weight:600;margin:0;display:flex;gap:10px;align-items:baseline}
+.step h2 .n{font-family:var(--math);color:var(--accent);font-size:20px;min-width:1.2em}
+.step .ref{color:var(--steel);font-size:12.5px;margin:2px 0 8px 32px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td{padding:7px 8px;border-top:1px solid var(--rule);vertical-align:baseline}
+td.lb{width:30%;color:var(--ink)}
+td.eq{font-family:var(--math);font-size:15.5px;white-space:nowrap}
+td.sb{font-family:var(--math);font-size:15px;color:var(--steel);white-space:nowrap}
+td.v{text-align:right;font-weight:600;white-space:nowrap}
+td.v small{display:block;font-weight:400;color:var(--steel);font-size:12px}
+td.un{color:var(--steel);font-size:12.5px;white-space:nowrap;width:44px}
+.result{margin:10px 0 4px;padding:9px 12px;border-radius:6px;font-weight:500;font-size:14px}
+.result.ok{background:var(--ok-soft);color:var(--ok)} .result.bad{background:var(--bad-soft);color:var(--bad)}
+.result.warn{background:var(--warn-soft);color:var(--warn)} .result.info{background:var(--accent-soft);color:var(--accent)}
+.note{font-size:12.5px;color:var(--steel);margin:6px 0 0}
+.schtbl td{text-align:center;font-size:12.5px;padding:5px 4px}
+.schtbl td.sel{outline:2px solid var(--accent);font-weight:600}
+.schtbl td.okc{background:var(--ok-soft);color:var(--ok)} .schtbl td.badc{color:var(--steel)}
+.schtbl th{font-size:12px;font-weight:600;padding:5px 4px;border-bottom:1px solid var(--rule)}
+
+/* how to use */
+section.howto{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:18px 22px 14px;margin-top:22px}
+.howto h2{font-family:var(--math);font-weight:600;font-size:24px;margin:0 0 4px}
+.howto h3{font-size:15px;font-weight:600;margin:18px 0 6px}
+.howto p,.howto li{font-size:14px;max-width:85ch}
+.howto ol,.howto ul{padding-left:22px;margin:6px 0}
+.howto li{margin:5px 0}
+.howto .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4px 32px}
+
+footer{margin-top:28px;font-size:12.5px;color:var(--steel);border-top:1px solid var(--rule);padding-top:14px;display:grid;gap:6px}
+.printhead{display:none}
+
+@media (max-width:980px){
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none}
+  .verdict{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .wrap{padding:18px 14px 36px}
+  td.eq,td.sb{white-space:normal}
+  td.lb{width:auto}
+  .howto{padding:16px 14px 12px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .verdict .state{transition:color .25s}
+}
+@media print{
+  :root{--bg:#fff;--panel:#fff}
+  body{font-size:11px}
+  .actions,.noprint{display:none!important}
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none;border:0;padding:0}
+  section.step,.verdict{break-inside:avoid;border-color:#999}
+  .printhead{display:block;font-size:11px;margin-bottom:8px}
+  input,select{border:0;background:none;padding:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <a class="home" href="../"><img class="lg-light" src="../../assets/gear-light.png" alt=""><img class="lg-dark" src="../../assets/gear-dark.png" alt=""><span>Baher Elsheikh</span><span style="font-weight:400;color:var(--steel)">| All calculators</span></a>
+      <h1>Pipe wall thickness, ASME B31.3</h1>
+      <div class="byline">Prepared by: <strong>Baher Elsheikh</strong>
+        <span class="links"><a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube channel</a></span></div>
+      <div class="basis">ASME B31.3 Process Piping: 304.1.1 and 304.1.2 (straight pipe under internal pressure), Table 304.1.1 (coefficient Y), 345.4.2 (hydrostatic test pressure). Pipe dimensions to ASME B36.10M. Metric units.</div>
+    </div>
+    <div class="actions">
+      <button type="button" id="btnHow">How to use</button>
+      <button type="button" id="btnExample">Load example</button>
+      <button type="button" id="btnClear">Clear inputs</button>
+      <button type="button" class="primary" id="btnPrint">Print / save PDF</button>
+    </div>
+  </header>
+
+  <div class="printhead" id="printhead"></div>
+
+  <div class="verdict" aria-live="polite">
+    <div>
+      <div class="state" id="vState">—</div>
+      <div class="sub" id="vSub"></div>
+      <div class="chips" id="vChips"></div>
+    </div>
+    <div class="gauge">
+      <svg id="gauge" viewBox="0 0 640 112" role="img" aria-label="Pipe wall thickness gauge"></svg>
+      <div class="gcap">Pipe wall to scale: nominal wall, the part lost to mill tolerance, and the allowance, against the minimum required thickness t<sub>m</sub>.</div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <aside class="inputs" aria-label="Inputs">
+      <fieldset>
+        <legend>Line</legend>
+        <div class="f wide"><label for="tag">Line number / description</label><input id="tag" type="text" placeholder="e.g. 6&quot;-P-1001"></div>
+        <div class="f wide"><label for="prep">Prepared by</label><input id="prep" type="text"></div>
+        <div class="f wide"><label for="date">Date</label><input id="date" type="date"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Design conditions</legend>
+        <div class="f wide"><label for="punit">Pressure unit</label>
+          <select id="punit"><option value="MPa">MPa (g)</option><option value="kgcm2">kg/cm² (g)</option><option value="bar">bar (g)</option><option value="psi">psi (g)</option></select></div>
+        <div class="f"><label for="P">Design pressure <i>P</i></label><input id="P" type="number" step="any"><span class="u pu">MPa</span></div>
+        <div class="f"><label for="T">Design temperature</label><input id="T" type="number" step="any"><span class="u">°C</span></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Pipe</legend>
+        <div class="f wide"><label for="nps">Nominal pipe size</label><select id="nps"></select></div>
+        <div class="f wide"><label for="sch">Schedule</label><select id="sch"></select></div>
+        <p class="hint">Dimensions from ASME B36.10M. Schedules not listed for the chosen size are marked.</p>
+        <div class="f"><label for="Dov">OD override (optional)</label><input id="Dov" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="Tov">Wall override (optional)</label><input id="Tov" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">Use for non-standard pipe or stainless 5S / 10S walls (B36.19M).</p>
+        <div class="f"><label for="MT">Mill under-tolerance</label><input id="MT" type="number" step="any"><span class="u">%</span></div>
+        <p class="hint">12.5% for A106 and A53 pipe; check the purchase specification.</p>
+        <div class="f"><label for="c">Allowances <i>c</i></label><input id="c" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">Corrosion + erosion + mechanical (thread or groove depth).</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Material and factors</legend>
+        <div class="f wide"><label for="mat">Pipe material</label><input id="mat" type="text"></div>
+        <div class="f"><label for="S">Allowable stress <i>S</i></label><input id="S" type="number" step="any"><span class="u">MPa</span></div>
+        <p class="hint">Basic allowable stress at design temperature, ASME B31.3 Table A-1M.</p>
+        <div class="f"><label for="E">Quality factor <i>E</i></label><input id="E" type="number" step="any"><span class="u"></span></div>
+        <p class="hint">Seamless 1.0; ERW 0.85; EFW 0.80 to 1.0 depending on joint and radiography (Table A-1B).</p>
+        <div class="f"><label for="W">Weld strength reduction <i>W</i></label><input id="W" type="number" step="any"><span class="u"></span></div>
+        <p class="hint">1.0 for seamless pipe and for welded pipe at or below 427 °C (302.3.5).</p>
+        <div class="f wide"><label for="grp">Material group for <i>Y</i></label>
+          <select id="grp"><option>Ferritic steels</option><option>Austenitic steels</option><option>Nickel alloys N06617, N08800, N08810, N08825</option><option>Gray iron</option><option>Other ductile metals</option></select></div>
+        <div class="f"><label for="St">Allowable at test temp. <i>S</i><sub>T</sub></label><input id="St" type="number" step="any"><span class="u">MPa</span></div>
+      </fieldset>
+    </aside>
+
+    <main class="report" id="report"></main>
+  </div>
+
+  <section class="howto noprint" id="howto" aria-labelledby="h-how">
+    <h2 id="h-how">How to use this calculator</h2>
+    <p>The calculator finds the wall a straight process pipe needs for internal pressure to ASME B31.3, adds the allowances and mill tolerance, and checks a schedule from ASME B36.10M. It also gives the lightest schedule that works, the MAWP of the chosen pipe and the hydrotest pressure. Every equation is shown with your values in it.</p>
+    <div class="grid">
+      <div>
+        <h3>Steps</h3>
+        <ol>
+          <li><strong>Enter the design pressure and temperature</strong> of the line. Pick the pressure unit first.</li>
+          <li><strong>Choose the pipe size and a schedule.</strong> The outside diameter and nominal wall come from B36.10M. For other pipe, enter the OD and wall overrides.</li>
+          <li><strong>Enter the mill under-tolerance</strong> from the pipe specification (12.5% for A106 / A53) and the total allowance c.</li>
+          <li><strong>Enter the material allowable stress S</strong> from Table A-1M at design temperature, the quality factor E and the weld strength reduction factor W.</li>
+          <li><strong>Choose the material group.</strong> Y is read from Table 304.1.1 at your temperature, with interpolation between columns.</li>
+          <li><strong>Read the result.</strong> Step 4 compares the schedule wall, less mill tolerance, with t<sub>m</sub>; the table in step 5 shows every schedule for the size and marks those that pass.</li>
+          <li><strong>Enter S<sub>T</sub></strong> to get the hydrotest pressure, then print or save as PDF.</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Good practice</h3>
+        <ul>
+          <li>The equation is valid for t &lt; D/6 and P/(SE) ≤ 0.385. Beyond that, 304.1.2(b) calls for special consideration (theory of failure, fatigue, thermal stress): the calculator flags it.</li>
+          <li>Use the allowable stress at the design temperature, and the lowest value along the line if conditions vary.</li>
+          <li>Include thread or groove depth in c for threaded or grooved pipe.</li>
+          <li>Check the test stress against yield during hydrotest (345.4.2(c)), especially at high design temperature where S<sub>T</sub>/S is large.</li>
+          <li>Pipe dimensions here are from ASME B36.10M; verify them against your copy and use B36.19M for stainless 5S and 10S walls.</li>
+        </ul>
+        <h3>Not covered</h3>
+        <ul>
+          <li>External pressure (304.1.3), pipe bends and miters (304.2), branch reinforcement (304.3), flanges and other components.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>Prepared by: Baher Elsheikh (<a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a>). Version 1.0, November 2026 (from the spreadsheet Pipe Thickness B31.3 Calculator, revision 1).</div>
+    <div>© 2026 Baher Elsheikh. Free to use; not to be copied, modified or redistributed without permission.</div>
+    <div>This tool is an aid for engineering screening. Allowable stresses and factors are entered by the user from ASME B31.3 and are not supplied here; pipe dimensions and Y values shown must be verified against the current editions of ASME B36.10M and ASME B31.3. Results must be verified by a qualified engineer before use. No warranty is given.</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const PCONV = {kgcm2:0.0980665, MPa:1, bar:0.1, psi:0.00689476};
+  const PLAB = {kgcm2:'kg/cm²', MPa:'MPa', bar:'bar', psi:'psi'};
+  const SCH = ['10','20','30','STD','40','60','XS','80','100','120','140','160','XXS'];
+  const PIPES = [
+    ['1/2',21.3,[2.11,,,2.77,2.77,,3.73,3.73,,,,4.78,7.47]],
+    ['3/4',26.7,[2.11,,,2.87,2.87,,3.91,3.91,,,,5.56,7.82]],
+    ['1',33.4,[2.77,,,3.38,3.38,,4.55,4.55,,,,6.35,9.09]],
+    ['1-1/4',42.2,[2.77,,,3.56,3.56,,4.85,4.85,,,,6.35,9.70]],
+    ['1-1/2',48.3,[2.77,,,3.68,3.68,,5.08,5.08,,,,7.14,10.15]],
+    ['2',60.3,[2.77,,,3.91,3.91,,5.54,5.54,,,,8.74,11.07]],
+    ['2-1/2',73.0,[3.05,,,5.16,5.16,,7.01,7.01,,,,9.53,14.02]],
+    ['3',88.9,[3.05,,,5.49,5.49,,7.62,7.62,,,,11.13,15.24]],
+    ['4',114.3,[3.05,,,6.02,6.02,,8.56,8.56,,11.13,,13.49,17.12]],
+    ['6',168.3,[3.40,,,7.11,7.11,,10.97,10.97,,14.27,,18.26,21.95]],
+    ['8',219.1,[3.76,6.35,7.04,8.18,8.18,10.31,12.70,12.70,15.09,18.26,20.62,23.01,22.23]],
+    ['10',273.1,[4.19,6.35,7.80,9.27,9.27,12.70,12.70,15.09,18.26,21.44,25.40,28.58,25.40]],
+    ['12',323.9,[4.57,6.35,8.38,9.53,10.31,14.27,12.70,17.48,21.44,25.40,28.58,33.32,25.40]],
+    ['14',355.6,[6.35,7.92,9.53,9.53,11.13,15.09,12.70,19.05,23.83,27.79,31.75,35.71,]],
+    ['16',406.4,[6.35,7.92,9.53,9.53,12.70,16.66,12.70,21.44,26.19,30.96,36.53,40.49,]],
+    ['18',457.0,[6.35,7.92,11.13,9.53,14.27,19.05,12.70,23.83,29.36,34.93,39.67,45.24,]],
+    ['20',508.0,[6.35,9.53,12.70,9.53,15.09,20.62,12.70,26.19,32.54,38.10,44.45,50.01,]],
+    ['24',610.0,[6.35,9.53,14.27,9.53,17.48,24.61,12.70,30.96,38.89,46.02,52.37,59.54,]]
+  ];
+  const YT = [482,510,538,566,593,621];
+  const YG = {'Ferritic steels':[0.4,0.5,0.7,0.7,0.7,0.7],'Austenitic steels':[0.4,0.4,0.4,0.4,0.5,0.7],
+    'Nickel alloys N06617, N08800, N08810, N08825':[0.4,0.4,0.4,0.4,0.4,0.5],'Gray iron':[0,0,0,0,0,0],'Other ductile metals':[0.4,0.4,0.4,0.4,0.4,0.4]};
+  const EXAMPLE = {tag:'Example: 6 in. process line', prep:'', date:'', punit:'MPa', P:4.0, T:250, nps:'6', sch:'40', Dov:'', Tov:'', MT:12.5, c:3,
+    mat:'A106 Gr. B', S:138, E:1, W:1, grp:'Ferritic steels', St:138};
+  const IDS = Object.keys(EXAMPLE);
+  const STORE = 'pipe-b313-inputs-v1';
+  const $ = id => document.getElementById(id);
+  PIPES.forEach(p=>{ const o=document.createElement('option'); o.value=p[0]; o.textContent='NPS '+p[0]+'  (OD '+p[1].toFixed(1)+' mm)'; $('nps').appendChild(o); });
+  function fillSch(){ const p=PIPES.find(x=>x[0]===$('nps').value)||PIPES[9], cur=$('sch').value; $('sch').innerHTML='';
+    SCH.forEach((s,i)=>{ const o=document.createElement('option'); o.value=s; const wv=p[2][i]; o.textContent = wv?`Sch ${s}  (${wv.toFixed(2)} mm)`:`Sch ${s}  (not listed)`; $('sch').appendChild(o); });
+    if(cur) $('sch').value=cur; }
+  function setInputs(d){ IDS.forEach(k=>{const el=$(k); if(!el) return; el.value=(d[k]===undefined||d[k]===null)?'':d[k]; if(k==='nps') fillSch();}); if(!$('nps').value){$('nps').value='6';fillSch();} if(!$('sch').value) $('sch').value='40'; }
+  function getInputs(){ const d={}; IDS.forEach(k=>{d[k]=$(k).value;}); return d; }
+  function num(k){ const v=parseFloat($(k).value); return isFinite(v)?v:NaN; }
+  function f(x,d){ if(!isFinite(x)) return '—'; return x.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+  const v = s => `<i>${s}</i>`;
+  function row(label, eq, sub, val, unit, d, small){
+    return `<tr><td class="lb">${label}</td><td class="eq">${eq||''}</td><td class="sb">${sub||''}</td>`+
+      `<td class="v">${typeof val==='string'?val:f(val,d)}${small?`<small>${small}</small>`:''}</td><td class="un">${unit||''}</td></tr>`;
+  }
+  function step(n,title,ref,rows,results,notes,extra){
+    return `<section class="step"><h2><span class="n">${n}</span>${title}</h2><div class="ref">${ref}</div>`+
+      (rows.length?`<div class="tbl"><table>${rows.filter(Boolean).join('')}</table></div>`:'')+(extra||'')+
+      (results||[]).map(r=>`<div class="result ${r[0]}">${r[1]}</div>`).join('')+
+      (notes||[]).map(t=>`<p class="note">${t}</p>`).join('')+`</section>`;
+  }
+  function yFor(grp,T){ const ys=YG[grp]||YG['Ferritic steels']; if(!(T>YT[0])) return ys[0]; if(T>=YT[5]) return ys[5];
+    let i=0; while(T>=YT[i+1]) i++; return ys[i]+(T-YT[i])*(ys[i+1]-ys[i])/(YT[i+1]-YT[i]); }
+
+  function compute(){
+    const pu=$('punit').value, pc=PCONV[pu], pl=PLAB[pu];
+    document.querySelectorAll('.pu').forEach(e=>e.textContent=pl);
+    const back = p => isFinite(p)&&pu!=='MPa'? f(p/pc,3)+' '+pl : '';
+    const pipe = PIPES.find(x=>x[0]===$('nps').value)||PIPES[9];
+    const si = SCH.indexOf($('sch').value);
+    const P=num('P')*pc, T=num('T'), MT=num('MT'), c=num('c')||0, S=num('S'), E=num('E'), W=num('W'), St=num('St');
+    const Dov=num('Dov'), Tov=num('Tov');
+    const D = isFinite(Dov)&&Dov>0 ? Dov : pipe[1];
+    const Tn = isFinite(Tov)&&Tov>0 ? Tov : (pipe[2][si]||NaN);
+    const grp=$('grp').value, Y=yFor(grp,T);
+    const need=['P','T','MT','S','E','W'];
+    need.forEach(k=>$(k).classList.toggle('need', !isFinite(num(k))));
+    const ready = need.every(k=>isFinite(num(k))) && isFinite(Tn);
+
+    const t = P*D/(2*(S*E*W+P*Y));
+    const d = D-2*Tn, tb = P*(d+2*c)/(2*(S*E*W-P*(1-Y)));
+    const okV = t<D/6 && P/(S*E)<=0.385;
+    const tm = t+c, k=1-MT/100, tnr = tm/k, tav = Tn*k, okT = tav>=tm;
+    const tc = tav-c, MAWP = 2*S*E*W*tc/(D-2*Y*tc), okM = MAWP>=P;
+    const ratio = Math.min(St/S,6.5), PT = 1.5*P*ratio;
+    // lightest schedule
+    let best=-1; pipe[2].forEach((wv,i)=>{ if(wv && wv*k>=tm && (best<0 || wv<pipe[2][best])) best=i; });
+    const all = okV && okT && okM;
+
+    let out='';
+    out += step(1,'Pipe and coefficient Y','ASME B36.10M dimensions; ASME B31.3 Table 304.1.1',[
+      row('Outside diameter', v('D'), isFinite(Dov)&&Dov>0?'entered':`NPS ${pipe[0]}`, D,'mm',1),
+      row('Nominal wall', v('T'), isFinite(Tov)&&Tov>0?'entered':`Sch ${$('sch').value}`, isFinite(Tn)?Tn:'not listed','mm',2),
+      row('Coefficient Y', v('Y'), `${grp}, ${f(T,0)} °C${T>YT[0]&&T<YT[5]?' (interpolated)':''}`, Y,'',3)
+    ], isFinite(Tn)?[]:[['bad',`Schedule ${$('sch').value} is not listed for NPS ${pipe[0]} in B36.10M: choose another schedule or enter the wall.`]]);
+
+    out += step(2,'Pressure design thickness','304.1.2(a), Eq. (3a); Eq. (3b) on the inside diameter as a check',[
+      row('Design pressure', v('P'), `${f(num('P'),3)} ${pl}`, P,'MPa',3),
+      row('Pressure design thickness', `${v('t')} = ${v('P')}${v('D')} / 2(${v('S')}${v('E')}${v('W')} + ${v('P')}${v('Y')})`, `${f(P,3)} × ${f(D,1)} / (2 × (${f(S,1)} × ${f(E,2)} × ${f(W,2)} + ${f(P,3)} × ${f(Y,3)}))`, t,'mm',3),
+      row('Check on inside diameter', `${v('t')} = ${v('P')}(${v('d')} + 2${v('c')}) / 2(${v('S')}${v('E')}${v('W')} − ${v('P')}(1 − ${v('Y')}))`, `d = ${f(D,1)} − 2 × ${f(Tn,2)} = ${f(d,2)}`, tb,'mm',3, 'information'),
+      row('Validity', `${v('t')} &lt; ${v('D')}/6 ; ${v('P')}/(${v('S')}${v('E')}) ≤ 0.385`, `${f(t,2)} &lt; ${f(D/6,1)} ; ${f(P/(S*E),3)} ≤ 0.385`, okV?'Valid':'Not valid','',0)
+    ],[ okV?['info','Equation (3a) is applicable.']:['warn','t ≥ D/6 or P/(SE) > 0.385: 304.1.2(b) requires special consideration of design and material factors.'] ]);
+
+    out += step(3,'Minimum required thickness','304.1.1: allowances added; nominal wall needed after mill under-tolerance',[
+      row('Minimum required thickness', `${v('t')}<sub>m</sub> = ${v('t')} + ${v('c')}`, `${f(t,3)} + ${f(c,2)}`, tm,'mm',3),
+      row('Required nominal wall', `${v('t')}<sub>m</sub> / (1 − MT)`, `${f(tm,3)} / (1 − ${f(MT/100,3)})`, tnr,'mm',3)
+    ],[]);
+
+    out += step(4,'Selected schedule','Nominal wall less mill tolerance against t<sub>m</sub>; MAWP with the corroded wall',[
+      row('Wall less mill tolerance', `${v('T')}(1 − MT)`, `${f(Tn,2)} × ${f(k,3)}`, tav,'mm',3),
+      row('MAWP', `2${v('S')}${v('E')}${v('W')}${v('t')}<sub>c</sub> / (${v('D')} − 2${v('Y')}${v('t')}<sub>c</sub>)`, `t<sub>c</sub> = ${f(tav,3)} − ${f(c,2)} = ${f(tc,3)}`, MAWP,'MPa',3, back(MAWP))
+    ],[
+      okT?['ok',`T(1 − MT) ${f(tav,3)} ≥ t<sub>m</sub> ${f(tm,3)} mm: Sch ${$('sch').value} is adequate.`]:['bad',`T(1 − MT) ${f(tav,3)} < t<sub>m</sub> ${f(tm,3)} mm: select a heavier schedule.`],
+      okM?['ok',`MAWP ${f(MAWP,3)} ≥ P ${f(P,3)} MPa.`]:['bad',`MAWP ${f(MAWP,3)} < P ${f(P,3)} MPa.`]
+    ]);
+
+    const tbl = `<div class="tbl"><table class="schtbl"><tr>${SCH.map(s=>`<th>${s}</th>`).join('')}</tr><tr>${pipe[2].map((wv,i)=>{
+      if(!wv) return '<td class="badc">—</td>'; const pass=wv*k>=tm; return `<td class="${pass?'okc':'badc'}${i===si?' sel':''}">${wv.toFixed(2)}</td>`; }).join('')}</tr></table></div>`;
+    out += step(5,'Schedules for this size','ASME B36.10M walls for NPS '+pipe[0]+', mm; green = adequate, outlined = selected',[
+      row('Lightest adequate schedule', 'Sch', `T(1 − MT) ≥ ${f(tm,3)} mm`, best>=0?SCH[best]:'none', '',0, best>=0?`${pipe[2][best].toFixed(2)} mm`:'heavier than listed')
+    ],[],[],tbl);
+
+    out += step(6,'Hydrostatic test pressure','345.4.2: 1.5 × P × S<sub>T</sub>/S, ratio not more than 6.5',[
+      row('Stress ratio', `${v('S')}<sub>T</sub>/${v('S')}`, `${f(St,1)} / ${f(S,1)}`, ratio,'',3),
+      row('Test pressure', `${v('P')}<sub>T</sub> = 1.5${v('P')} × ${v('S')}<sub>T</sub>/${v('S')}`, `1.5 × ${f(P,3)} × ${f(ratio,3)}`, PT,'MPa',3, back(PT))
+    ],[],['Check that the test stress does not exceed yield (345.4.2(c)).']);
+
+    $('report').innerHTML = out;
+    const st=$('vState');
+    if(!ready){ st.textContent=isFinite(Tn)?'Enter the highlighted inputs':'Schedule not listed for this size'; st.className='state'; }
+    else if(all){ st.textContent=`Sch ${$('sch').value} adequate: ${f((tav-tm)/tav*100,1)}% wall margin`; st.className='state ok'; }
+    else { st.textContent=okV?`Sch ${$('sch').value} not adequate${best>=0?`: use Sch ${SCH[best]} or heavier`:''}`:'Outside 304.1.2(a): special consideration'; st.className='state bad'; }
+    $('vSub').innerHTML = `${$('tag').value||'Line'}: NPS ${pipe[0]} (${f(D,1)} mm OD), ${f(P,2)} MPa at ${f(T,0)} °C, ${$('mat').value||'material not stated'}.`;
+    const chip=(ok,lab)=>`<span class="chip ${ok?'ok':'bad'}">${lab}</span>`;
+    $('vChips').innerHTML = ready ? chip(okV,'304.1.2(a) valid')+chip(okT,'Wall')+chip(okM,'MAWP')+`<span class="chip info">Y ${f(Y,3)}</span>`+(best>=0?`<span class="chip info">Lightest: Sch ${SCH[best]}</span>`:'') : '';
+    drawGauge(Tn,tav,c,tm,t);
+    $('printhead').textContent = `${$('tag').value||''}  ${$('prep').value?'Prepared by: '+$('prep').value:''}  ${$('date').value||''}`;
+    try{ localStorage.setItem(STORE, JSON.stringify(getInputs())); }catch(e){}
+  }
+
+  function drawGauge(Tn,tav,c,tm,t){
+    const g=$('gauge'); if(!isFinite(Tn)||Tn<=0){ g.innerHTML=''; return; }
+    const maxT=Math.max(Tn,tm||0)*1.08, x0=20, W=600, sx=x=>x0+W*x/maxT;
+    const cs=getComputedStyle(document.documentElement), col=n=>cs.getPropertyValue(n).trim();
+    let s='';
+    s+=`<rect x="${x0}" y="40" width="${Math.max(0,sx(tav)-x0)}" height="24" fill="${col('--wall')}" rx="2"/>`;
+    s+=`<rect x="${sx(tav)}" y="40" width="${sx(Tn)-sx(tav)}" height="24" fill="${col('--tol')}"/>`;
+    if(c>0) s+=`<rect x="${sx(Math.max(0,tav-c))}" y="40" width="${sx(tav)-sx(Math.max(0,tav-c))}" height="24" fill="${col('--warn')}" opacity=".45"/>`;
+    s+=`<line x1="${x0}" y1="72" x2="${x0+W}" y2="72" stroke="${col('--rule')}"/>`;
+    for(let i=0;i<=4;i++){const v=maxT*i/4,x=sx(v); s+=`<line x1="${x}" y1="72" x2="${x}" y2="76" stroke="${col('--steel')}"/><text x="${x}" y="88" text-anchor="middle">${f(v,1)}</text>`;}
+    s+=`<text x="${x0+W}" y="104" text-anchor="end">mm</text>`;
+    if(isFinite(tm)){ const x=sx(tm), cl=tm<=tav?col('--ok'):col('--bad');
+      s+=`<line x1="${x}" y1="22" x2="${x}" y2="68" stroke="${cl}" stroke-width="2"/><text class="lab" x="${x}" y="16" text-anchor="middle" style="fill:${cl}">tm ${f(tm,2)}</text>`; }
+    s+=`<text x="${x0+4}" y="56" style="fill:#fff;font-weight:500;stroke:none">T(1−MT) ${f(tav,2)}</text>`;
+    if(c>0) s+=`<text x="${sx(tav-c/2)}" y="36" text-anchor="middle">c</text>`;
+    s+=`<text x="${sx(Tn)}" y="36" text-anchor="end">T ${f(Tn,2)}</text>`;
+    g.innerHTML=s;
+  }
+
+  let saved=null; try{ saved=JSON.parse(localStorage.getItem(STORE)); }catch(e){}
+  setInputs(saved||EXAMPLE);
+  document.querySelectorAll('aside input, aside select').forEach(el=>el.addEventListener('input',compute));
+  $('nps').addEventListener('change',()=>{fillSch();compute();});
+  document.querySelectorAll('aside select').forEach(el=>el.addEventListener('change',compute));
+  $('btnExample').addEventListener('click',()=>{setInputs(EXAMPLE);compute();});
+  $('btnClear').addEventListener('click',()=>{const d={}; IDS.forEach(k=>d[k]=''); d.punit='MPa'; d.nps='6'; d.sch='40'; d.MT=12.5; d.E=1; d.W=1; d.c=0; d.grp='Ferritic steels'; setInputs(d); compute();});
+  $('btnHow').addEventListener('click',()=>$('howto').scrollIntoView({behavior:'smooth'}));
+  $('btnPrint').addEventListener('click',()=>window.print());
+  if(window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',compute);
+  compute();
+})();
+</script>
+</body>
+</html>

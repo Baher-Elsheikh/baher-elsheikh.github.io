@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Full Penetration Welds for Hydrogen Service | Baher Elsheikh</title>
+<meta name="description" content="Why welded joints in hydrogen service should be full penetration, how diffused hydrogen can build up pressure in enclosed spaces, and the limits and venting of double-welded slip-on flanges under ASME B31.3 and B31.12.">
+<meta name="keywords" content="hydrogen service, full penetration weld, partial penetration, hydrogen diffusion, trapped hydrogen, slip-on flange, double welded slip-on flange, vent hole, ASME B31.3 F308.2, ASME B31.12 IP-5.3.9">
+<meta name="author" content="Baher Elsheikh">
+<link rel="canonical" href="https://baher-elsheikh.github.io/articles/full-penetration-welds-hydrogen-service/">
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://baher-elsheikh.github.io/articles/full-penetration-welds-hydrogen-service/">
+<meta property="og:title" content="Full Penetration Welds for Hydrogen Service">
+<meta property="og:description" content="Why welded joints in hydrogen service should be full penetration, how diffused hydrogen can build up pressure in enclosed spaces, and the limits and venting of double-welded slip-on flanges under ASME B31.3 and B31.12.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Full Penetration Welds for Hydrogen Service", "description": "Why welded joints in hydrogen service should be full penetration, how diffused hydrogen can build up pressure in enclosed spaces, and the limits and venting of double-welded slip-on flanges under ASME B31.3 and B31.12.", "url": "https://baher-elsheikh.github.io/articles/full-penetration-welds-hydrogen-service/", "inLanguage": "en", "datePublished": "2026-11", "author": {"@type": "Person", "name": "Baher Elsheikh", "url": "https://baher-elsheikh.github.io/about/", "sameAs": ["https://www.linkedin.com/in/baher-elsheikh/", "https://www.youtube.com/@baherelsheikh4942"]}, "about": "hydrogen service, full penetration welds, slip-on flanges, venting, ASME B31.3, ASME B31.12"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F7F9; --panel:#FFFFFF; --ink:#16203A; --steel:#566074; --rule:#DCE0E7;
+  --accent:#14245E; --accent-soft:#E7EAF3; --brass:#8A6320; --brass-soft:#F4ECDD; --fig:#EEF1F7;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --serif:"STIX Two Text",Cambria,Georgia,"Times New Roman",serif;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 var(--sans);overflow-x:clip}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.lg-dark{display:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:block}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:block}
+header.site{background:var(--panel);border-bottom:1px solid var(--rule)}
+header.site .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;min-height:62px}
+.brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px}
+.brand img{height:34px;width:auto}
+nav.tabs{display:flex;flex-wrap:wrap;gap:2px}
+nav.tabs a{font-size:15px;font-weight:500;color:var(--steel);text-decoration:none;padding:6px 10px;border-radius:5px}
+nav.tabs a:hover{color:var(--ink);background:var(--accent-soft)}
+nav.tabs a.cur{color:var(--accent);background:var(--accent-soft)}
+article{max-width:760px;margin:0 auto;padding:40px 0 56px}
+.crumb{font-size:14px;color:var(--steel);margin:0 0 18px}
+.crumb a{color:var(--steel)}
+.lab{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none}
+.lab svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.22;letter-spacing:-.005em}
+h1{font-size:clamp(29px,3.6vw,40px);margin:10px 0 0}
+.lead{font-size:19px;line-height:1.6;color:var(--steel);margin:16px 0 0}
+.byline{font-size:14.5px;color:var(--steel);margin:18px 0 0;padding-bottom:22px;border-bottom:1px solid var(--rule)}
+h2{font-size:24px;margin:38px 0 6px}
+h3{font-size:19px;margin:28px 0 4px}
+p{margin:14px 0}
+ul,ol{padding-left:1.3em} li{margin:6px 0}
+figure{margin:28px 0}
+figure .frame{background:var(--fig);border:1px solid var(--rule);border-radius:6px;overflow:hidden;color:var(--accent)}
+figure .frame svg{display:block;width:100%;height:auto}
+figure img{display:block;width:100%;height:auto}
+figcaption{font-size:14.5px;color:var(--steel);margin-top:8px}
+.tbl{overflow-x:auto;margin:24px 0}
+table{border-collapse:collapse;width:100%;font-size:15.5px;background:var(--panel)}
+caption{caption-side:bottom;text-align:left;font-size:14.5px;color:var(--steel);padding-top:8px}
+th,td{border:1px solid var(--rule);padding:8px 12px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+td.n{text-align:center;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{width:34%}
+.eq{font-family:var(--serif);font-size:19px;text-align:center;margin:20px 0;padding:12px;background:var(--panel);border:1px solid var(--rule);border-radius:6px}
+.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 16px;margin:22px 0;font-size:16px}
+.refs{font-size:14.5px;color:var(--steel)}
+.refs li{margin:4px 0}
+.related{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule)}
+.related h2{font-size:20px;margin:0 0 8px}
+.related ul{list-style:none;padding:0;margin:0}
+.related li{padding:6px 0}
+.flag{font-size:12.5px;font-weight:500;color:var(--brass);background:var(--brass-soft);border-radius:3px;padding:1px 7px}
+.disc{font-size:14px;color:var(--steel);margin-top:30px}
+footer{border-top:1px solid var(--rule);padding:20px 0 30px;font-size:13.5px;color:var(--steel);background:var(--panel)}
+footer .wrap{display:grid;gap:6px}
+@media (max-width:600px){.wrap{padding:0 16px} article{padding-top:26px} body{font-size:16.5px}}
+@media print{header.site,footer,.related{display:none} body{background:#fff}}
+.quote{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:6px;padding:14px 18px;margin:16px 0}
+.quote .src{display:block;font-size:13px;font-weight:600;color:var(--accent);margin-bottom:6px}
+.quote p{margin:0}
+</style>
+<link rel="stylesheet" href="../../assets/chrome.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="beta-bar" role="note"><div class="wrap"><span class="beta-tag">Beta</span> This site is in its testing period. Spotted a mistake? Please tell me on <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</div></div>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../../"><img class="lg-light" src="../../assets/gear-light.png" alt="" width="41" height="34"><img class="lg-dark" src="../../assets/gear-dark.png" alt="" width="41" height="34"><span>Baher Elsheikh</span></a>
+    <div class="hdr-right">
+      <nav class="tabs" id="mainnav" aria-label="Main"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/" aria-current="page">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a></nav>
+      <a class="nav-search" href="../../search/"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20.5 20.5"/></svg><span>Search</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav">Menu</button>
+    </div>
+  </div>
+</header>
+<main id="main" class="wrap">
+<article>
+  <p class="crumb"><a href="../">Articles</a></p>
+  <a class="lab" href="../../knowledge/#welding-and-repairs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 17.5h19"/><path d="M2.5 13.5h6.5l3-5.5 3 5.5h6.5"/><path d="M9.5 13.5c.8-1 1.7-1 2.5 0 .8-1 1.7-1 2.5 0"/><path d="M12 4.5v-1.5M8.5 5.5l-1-1M15.5 5.5l1-1"/></svg>Welding and Fabrication</a>
+  <h1>Full Penetration Welds for Hydrogen Service</h1>
+  <p class="lead">In hydrogen service, a welded joint should leave no gap or void inside it. Hydrogen that diffuses into the steel can collect in such spaces and build up pressure, especially at shutdown. This is why full penetration welds are preferred, and why double-welded slip-on flanges need vent holes.</p>
+  <p class="byline">By Baher Elsheikh. November 2026. 3 min read.</p>
+
+  <h2>Hydrogen diffusion in metals</h2>
+  <p>Hydrogen diffusion in metals is the movement of hydrogen atoms through the crystal lattice, where they occupy the interstitial spaces between the metal atoms. The process is driven by concentration gradients, temperature and stress, and it is influenced by the microstructure, grain size and alloy composition of the metal.</p>
+
+  <h2>Why full penetration welds matter</h2>
+  <p>In hydrogen service, welded joints should be full penetration, so that there are no gaps or voids where diffused hydrogen atoms can accumulate. Accumulated hydrogen can build up internal pressure in the enclosed space, particularly during shutdown, when the process pressure drops. This pressure can impose significant stress on the joint and increase the risk of cracking or failure.</p>
+  <p>Figure 1 shows typical examples. Full penetration butt and branch welds give complete fusion between the components, with no weak points or enclosed spaces. Partial penetration welds, and fillet-welded tee joints without full penetration, leave an unfused gap and are not recommended.</p>
+  <figure><img src="welding-in-hydrogen-service.png" width="976" height="558" alt="Welding in hydrogen service: full penetration butt and branch welds recommended, partial penetration and fillet-only tee joints not recommended, and slip-on flange arrangements with and without a vent hole" loading="lazy"><figcaption>Figure 1. Welding in hydrogen service: full penetration joints (recommended), partial penetration joints (not recommended), and double-welded slip-on flanges with a vent hole (conditional, for cyclic service without temperature cycles), with trapped hydrogen (not recommended), and for non-cyclic service at lower pressure (conditional).</figcaption></figure>
+
+  <h2>Special considerations for slip-on flanges</h2>
+  <p>Slip-on flanges are common, but they need special consideration in hydrogen service. Their use is generally limited to smaller sizes and low pressure ratings (Class 150 and Class 300 only), and they are not recommended for lethal or cyclic services because of their inherent limitations.</p>
+  <p>When they are used in hydrogen service, slip-on flanges should be double welded to give sufficient joint strength. The space between the two fillet welds, however, is an enclosed gap where diffused hydrogen can collect and build up pressure. To reduce this risk, a vent hole into that space is recommended.</p>
+
+  <h2>Relevant standards</h2>
+  <div class="quote"><span class="src">ASME B31.3, para. F308.2</span>
+    <p>Highlights the need to consider venting where leak testing is performed or where fluid diffusion could result in pressure build-up in an enclosed space.</p></div>
+  <div class="quote"><span class="src">ASME B31.12, para. IP-5.3.9</span>
+    <p>Specifies that the space between the welds of double-welded slip-on flanges shall be vented for hydrogen service.</p></div>
+
+  <h2>Summary</h2>
+  <p>Use full penetration welds in hydrogen service so that no enclosed space is left for hydrogen to collect. Where double-welded slip-on flanges are used within their limits, vent the space between the welds.</p>
+
+  <h2>References</h2>
+  <ol class="refs">
+    <li>ASME B31.3, Process Piping, para. F308.2.</li>
+    <li>ASME B31.12, Hydrogen Piping and Pipelines, para. IP-5.3.9.</li>
+  </ol>
+  <p class="disc">This article is for general engineering guidance. Apply the edition of the governing code and the project specification, with the judgement of a qualified engineer.</p>
+  <aside class="related"><h2>Related on this site</h2><ul><li>Calculator: <a href="../../calculators/pipe-thickness-b31-3/">Pipe wall thickness (ASME B31.3)</a></li><li>Article: <a href="../common-mistakes-using-standards-static-equipment/">Common Mistakes That Can Be Avoided When Using Standards for Static Equipment</a> (flange standards)</li><li>Knowledge area: <a href="../../knowledge/#welding-and-repairs">Welding and Fabrication</a></li></ul></aside>
+</article>
+</main>
+<footer>
+  <div class="wrap">
+    <nav class="fnav" aria-label="Footer"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a><a href="../../standards/">Standards Index</a><a href="../../search/">Search</a></nav>
+    <div>Knowledge grows when it is communicated. <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a></div>
+    <div>Articles, documents and calculators are aids for engineering work, not a substitute for a complete engineering assessment. Users remain responsible for verifying the applicable design basis, code requirements and edition, assumptions and engineering decisions; results must be checked by a qualified engineer before use.</div>
+    <div>© 2026 Baher Elsheikh. Content and tools free to use; not to be copied or redistributed without permission.</div>
+  </div>
+</footer>
+<script src="../../assets/chrome.js"></script>
+</body>
+</html>

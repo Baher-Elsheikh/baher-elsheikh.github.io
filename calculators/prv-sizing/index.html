@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PRV Sizing Calculator | API 520 Part I Gas and Liquid, API 526 Orifice</title>
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="description" content="Free online pressure relief valve sizing check to API 520 Part I: required orifice area for gas or vapour (critical flow) and non-flashing liquid, API 526 orifice selection, rated capacity and ASME Section XIII capacity check. USC and SI units, step-by-step equations and PDF output.">
+<meta name="keywords" content="PRV sizing calculator, pressure relief valve sizing, safety valve sizing, API 520 Part I, API 526 orifice, relief valve orifice area, gas relief critical flow, liquid relief valve sizing, ASME Section XIII">
+<meta name="author" content="Baher Elsheikh">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://baher-elsheikh.github.io/calculators/prv-sizing/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baher-elsheikh.github.io/calculators/prv-sizing/">
+<meta property="og:title" content="Pressure Relief Valve Sizing Calculator">
+<meta property="og:description" content="Free preliminary PRV sizing to API 520 Part I (gas and liquid) with API 526 orifice selection and step-by-step equations. Prepared by Baher Elsheikh.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Pressure Relief Valve Sizing Calculator","url":"https://baher-elsheikh.github.io/calculators/prv-sizing/","applicationCategory":"EngineeringApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Preliminary sizing of pressure relief valves to API 520 Part I for gas (critical flow) and non-flashing liquid, with API 526 orifice selection and an ASME Section XIII liquid capacity check.","author":{"@type":"Person","name":"Baher Elsheikh","sameAs":["https://www.linkedin.com/in/baher-elsheikh/","https://www.youtube.com/@baherelsheikh4942"]}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF0F5; --panel:#FFFFFF; --ink:#121A30; --steel:#545E74; --rule:#CDD2DE;
+  --accent:#14245E; --accent-soft:#E1E5F2; --ok:#1E7A4C; --ok-soft:#DDF0E5;
+  --bad:#AE2A1F; --bad-soft:#F7DEDA; --warn:#8A5A00; --warn-soft:#F6EAD0;
+  --field:#F7F8FB; --wall:#7E8E98; --tol:#B9C4CA;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --math:"STIX Two Text","Cambria Math",Cambria,"Times New Roman",serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+    --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+    --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+  --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+  --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans);font-variant-numeric:tabular-nums}
+.wrap{max-width:1320px;margin:0 auto;padding:28px 24px 48px}
+header.top{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+h1{font-family:var(--math);font-weight:600;font-size:clamp(26px,3.4vw,38px);line-height:1.1;margin:0;letter-spacing:-.01em}
+.home{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14.5px;margin-bottom:14px}
+.home img{height:40px;width:auto}
+.home:hover span{color:var(--accent)}
+.lg-dark{display:none}
+.f input:disabled,.f select:disabled{opacity:.45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:inline}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:inline}
+.basis{color:var(--steel);font-size:13.5px;margin-top:8px;max-width:70ch}
+.byline{font-size:14px;margin-top:10px;color:var(--ink);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.byline .links{display:inline-flex;gap:12px}
+.byline a,footer a,.howto a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;font-weight:500}
+.byline a:hover,footer a:hover{text-decoration-thickness:2px}
+@media print{.byline a::after{content:" (" attr(href) ")";font-weight:400;color:var(--steel)}}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{font:500 14px var(--sans);border-radius:6px;padding:8px 14px;cursor:pointer;border:1px solid var(--rule);background:var(--panel);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--panel)}
+button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* verdict + orifice ladder */
+.verdict{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:22px 24px;display:grid;grid-template-columns:minmax(260px,1fr) minmax(320px,1.6fr);gap:20px 32px;align-items:center;margin-bottom:22px}
+.verdict .state{font-family:var(--math);font-size:clamp(22px,2.6vw,30px);line-height:1.2}
+.verdict .state.ok{color:var(--ok)} .verdict .state.bad{color:var(--bad)} .verdict .state.warn{color:var(--warn)}
+.verdict .sub{color:var(--steel);margin-top:6px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-size:12.5px;padding:3px 9px;border-radius:999px;border:1px solid transparent}
+.chip.ok{background:var(--ok-soft);color:var(--ok)} .chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)} .chip.info{background:var(--accent-soft);color:var(--accent)}
+.gauge svg{width:100%;height:auto;display:block}
+.gauge text{font-family:var(--sans);font-size:11px;fill:var(--steel)}
+.gauge .lab{fill:var(--ink);font-weight:500}
+.gcap{font-size:12px;color:var(--steel);margin-top:4px}
+
+/* layout */
+.cols{display:grid;grid-template-columns:380px minmax(0,1fr);gap:22px;align-items:start}
+aside.inputs{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:6px 18px 18px;position:sticky;top:calc(12px + env(safe-area-inset-top,0px));max-height:calc(100vh - 24px - env(safe-area-inset-top,0px));overflow:auto}
+fieldset{border:0;border-top:1px solid var(--rule);margin:14px 0 0;padding:12px 0 0}
+fieldset:first-of-type{border-top:0}
+legend{font-weight:600;font-size:14px;padding:0}
+.f{display:grid;grid-template-columns:1fr 112px 58px;gap:6px;align-items:center;margin-top:7px}
+.f.wide{grid-template-columns:1fr 1.4fr}
+.f label{font-size:13px;color:var(--ink)}
+.f label i{font-family:var(--math);font-size:15px}
+.f .u{font-size:12px;color:var(--steel)}
+input,select{font:14px var(--sans);color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:5px;padding:5px 7px;width:100%;font-variant-numeric:tabular-nums}
+input[type=number]{text-align:right}
+input:disabled{opacity:.6}
+input.need{background:#FFF7D6;border-color:#D9B84A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) input.need{background:#33290F;border-color:#7A6420}}
+:root[data-theme="dark"] input.need{background:#33290F;border-color:#7A6420}
+.hint{font-size:12px;color:var(--steel);margin:4px 0 0;line-height:1.4}
+.check{display:flex;gap:8px;align-items:center;font-size:13px;margin-top:8px}
+.check input{width:auto}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:8px;border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.seg label{display:block;text-align:center;font-size:13px;padding:7px 6px;cursor:pointer;background:var(--field);color:var(--ink)}
+.seg input{position:absolute;opacity:0;width:1px;height:1px}
+.seg input:checked + span{font-weight:600;color:var(--accent)}
+.seg label:has(input:checked){background:var(--accent-soft)}
+.seg label:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:-2px}
+
+/* calculation report */
+main.report{display:flex;flex-direction:column;gap:18px;min-width:0}
+section.step{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 20px 12px}
+.step h2{font-size:17px;font-weight:600;margin:0;display:flex;gap:10px;align-items:baseline}
+.step h2 .n{font-family:var(--math);color:var(--accent);font-size:20px;min-width:1.2em}
+.step .ref{color:var(--steel);font-size:12.5px;margin:2px 0 8px 32px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td{padding:7px 8px;border-top:1px solid var(--rule);vertical-align:baseline}
+td.lb{width:30%;color:var(--ink)}
+td.eq{font-family:var(--math);font-size:15.5px;white-space:nowrap}
+td.sb{font-family:var(--math);font-size:15px;color:var(--steel);white-space:nowrap}
+td.v{text-align:right;font-weight:600;white-space:nowrap}
+td.v small{display:block;font-weight:400;color:var(--steel);font-size:12px}
+td.un{color:var(--steel);font-size:12.5px;white-space:nowrap;width:44px}
+.result{margin:10px 0 4px;padding:9px 12px;border-radius:6px;font-weight:500;font-size:14px}
+.result.ok{background:var(--ok-soft);color:var(--ok)} .result.bad{background:var(--bad-soft);color:var(--bad)}
+.result.warn{background:var(--warn-soft);color:var(--warn)} .result.info{background:var(--accent-soft);color:var(--accent)}
+.note{font-size:12.5px;color:var(--steel);margin:6px 0 0}
+
+/* how to use */
+section.howto{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:18px 22px 14px;margin-top:22px}
+.howto h2{font-family:var(--math);font-weight:600;font-size:24px;margin:0 0 4px}
+.howto h3{font-size:15px;font-weight:600;margin:18px 0 6px}
+.howto p,.howto li{font-size:14px;max-width:85ch}
+.howto ol,.howto ul{padding-left:22px;margin:6px 0}
+.howto li{margin:5px 0}
+.howto .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4px 32px}
+.howto table{font-size:13px;max-width:760px}
+.howto th{text-align:left;font-weight:600;padding:6px 8px;border-bottom:1px solid var(--rule)}
+.howto td{padding:5px 8px}
+
+footer{margin-top:28px;font-size:12.5px;color:var(--steel);border-top:1px solid var(--rule);padding-top:14px;display:grid;gap:6px}
+.printhead{display:none}
+
+@media (max-width:980px){
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none}
+  .verdict{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .wrap{padding:18px 14px 36px}
+  td.eq,td.sb{white-space:normal}
+  td.lb{width:auto}
+  .howto{padding:16px 14px 12px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .verdict .state{transition:color .25s}
+}
+@media print{
+  :root{--bg:#fff;--panel:#fff}
+  body{font-size:11px}
+  .actions,.noprint{display:none!important}
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none;border:0;padding:0}
+  section.step,.verdict{break-inside:avoid;border-color:#999}
+  .printhead{display:block;font-size:11px;margin-bottom:8px}
+  input,select{border:0;background:none;padding:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <a class="home" href="../"><img class="lg-light" src="../../assets/gear-light.png" alt=""><img class="lg-dark" src="../../assets/gear-dark.png" alt=""><span>Baher Elsheikh</span><span style="font-weight:400;color:var(--steel)">| All calculators</span></a>
+      <h1>Pressure relief valve sizing</h1>
+      <div class="byline">Prepared by: <strong>Baher Elsheikh</strong>
+        <span class="links"><a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube channel</a></span></div>
+      <div class="basis">API Standard 520 Part I (2020): effective discharge area for gas or vapour in critical flow and for non-flashing liquid; API Standard 526 (2023) standard orifice designations; ASME BPVC Section XIII liquid capacity formula as a cross-check. USC or SI units. Preliminary sizing.</div>
+    </div>
+    <div class="actions">
+      <button type="button" id="btnHow">How to use</button>
+      <button type="button" id="btnExample">Load example</button>
+      <button type="button" id="btnClear">Clear inputs</button>
+      <button type="button" class="primary" id="btnPrint">Print / save PDF</button>
+    </div>
+  </header>
+
+  <div class="printhead" id="printhead"></div>
+
+  <div class="verdict" aria-live="polite">
+    <div>
+      <div class="state" id="vState">—</div>
+      <div class="sub" id="vSub"></div>
+      <div class="chips" id="vChips"></div>
+    </div>
+    <div class="gauge">
+      <svg id="gauge" viewBox="0 0 640 112" role="img" aria-label="API 526 orifice areas against the required area"></svg>
+      <div class="gcap">API 526 orifice letters D to T on a log scale: required area (line) against the selected orifice (filled).</div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <aside class="inputs" aria-label="Inputs">
+      <fieldset>
+        <legend>Service and units</legend>
+        <div class="seg" role="radiogroup" aria-label="Service">
+          <label><input type="radio" name="svc" id="svcG" value="gas"><span>Gas / vapour</span></label>
+          <label><input type="radio" name="svc" id="svcL" value="liq"><span>Liquid</span></label>
+        </div>
+        <div class="seg" role="radiogroup" aria-label="Units">
+          <label><input type="radio" name="units" id="uUSC" value="USC"><span>USC units</span></label>
+          <label><input type="radio" name="units" id="uSI" value="SI"><span>SI units</span></label>
+        </div>
+        <p class="hint">Changing units does not convert values already entered. Use Load example to see each case.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Equipment</legend>
+        <div class="f wide"><label for="tag">Tag / description</label><input id="tag" type="text" placeholder="e.g. PSV-101 on V-101"></div>
+        <div class="f wide"><label for="prep">Prepared by</label><input id="prep" type="text"></div>
+        <div class="f wide"><label for="date">Date</label><input id="date" type="date"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Required relieving rate and fluid</legend>
+        <div class="gas">
+          <div class="f"><label for="W">Mass flow <i>W</i></label><input id="W" type="number" step="any"><span class="u" data-usc="lb/h" data-si="kg/h"></span></div>
+          <div class="f"><label for="M">Molecular weight <i>M</i></label><input id="M" type="number" step="any"><span class="u"></span></div>
+          <div class="f"><label for="k">Specific heat ratio <i>k</i></label><input id="k" type="number" step="any"><span class="u"></span></div>
+          <p class="hint">k = C<sub>p</sub>/C<sub>v</sub> at relieving conditions. API 520 Part I tabulates M and k for common gases.</p>
+          <div class="f"><label for="Z">Compressibility <i>Z</i></label><input id="Z" type="number" step="any"><span class="u"></span></div>
+          <p class="hint">Use 1.0 when not known (conservative for most gases).</p>
+          <div class="f"><label for="T">Relieving temperature <i>T</i></label><input id="T" type="number" step="any"><span class="u" data-usc="°F" data-si="°C"></span></div>
+        </div>
+        <div class="liq">
+          <div class="f"><label for="Q">Volume flow <i>Q</i></label><input id="Q" type="number" step="any"><span class="u" data-usc="gpm" data-si="L/min"></span></div>
+          <div class="f"><label for="G">Specific gravity <i>G</i><sub>1</sub></label><input id="G" type="number" step="any"><span class="u"></span></div>
+          <p class="hint">At flowing temperature, referred to water at standard conditions.</p>
+          <div class="f"><label for="mu">Viscosity <i>μ</i></label><input id="mu" type="number" step="any"><span class="u">cP</span></div>
+          <p class="hint">Absolute viscosity at flowing temperature. Leave blank to take K<sub>v</sub> = 1.</p>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Pressures</legend>
+        <div class="f"><label for="Ps">Set pressure <i>P</i><sub>s</sub></label><input id="Ps" type="number" step="any"><span class="u" data-usc="psig" data-si="kPa g"></span></div>
+        <div class="f"><label for="OP">Allowable overpressure</label><input id="OP" type="number" step="any"><span class="u">%</span></div>
+        <p class="hint">Typically 10% single valve, 16% multiple valves, 21% fire case (ASME XIII / API 520 Part I).</p>
+        <div class="f gas"><label for="PbG">Back pressure <i>P</i><sub>b</sub></label><input id="PbG" type="number" step="any"><span class="u" data-usc="psia" data-si="kPa abs"></span></div>
+        <div class="f gas"><label for="Patm">Atmospheric pressure</label><input id="Patm" type="number" step="any"><span class="u" data-usc="psia" data-si="kPa abs"></span></div>
+        <div class="f liq"><label for="PbL">Back pressure <i>P</i><sub>2</sub></label><input id="PbL" type="number" step="any"><span class="u" data-usc="psig" data-si="kPa g"></span></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Valve and correction factors</legend>
+        <div class="f wide"><label for="vtype">Valve type</label>
+          <select id="vtype"><option value="conv">Conventional spring-loaded</option><option value="bal">Balanced bellows</option><option value="pilot">Pilot-operated</option></select></div>
+        <label class="check"><input id="rd" type="checkbox"> Rupture disk installed upstream (<i>K</i><sub>c</sub> = 0.9)</label>
+        <div class="f"><label for="Kd">Discharge coeff. <i>K</i><sub>d</sub></label><input id="Kd" type="number" step="any"><span class="u"></span></div>
+        <p class="hint gas">Preliminary: 0.975 for a PRV, 0.62 for a rupture disk alone. Use the rated value once a valve is selected.</p>
+        <p class="hint liq">Preliminary: 0.65 for a PRV, 0.62 for a rupture disk alone. Use the rated value once a valve is selected.</p>
+        <div class="f gas"><label for="Kb">Back pressure factor <i>K</i><sub>b</sub></label><input id="Kb" type="number" step="any"><span class="u"></span></div>
+        <p class="hint gas">1.0 for conventional and pilot valves in critical flow. Balanced bellows: from the API 520 Part I back-pressure figure or the manufacturer.</p>
+        <div class="f liq"><label for="Kw">Back pressure factor <i>K</i><sub>w</sub></label><input id="Kw" type="number" step="any"><span class="u"></span></div>
+        <p class="hint liq">1.0 for conventional and pilot valves. Balanced bellows: from the API 520 Part I liquid back-pressure figure or the manufacturer.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Orifice selection</legend>
+        <div class="f wide"><label for="orif">API 526 orifice</label>
+          <select id="orif"><option value="auto">Smallest that fits</option></select></div>
+        <div class="f"><label for="Aman">Manufacturer area (optional)</label><input id="Aman" type="number" step="any"><span class="u" data-usc="in²" data-si="mm²"></span></div>
+        <p class="hint">Leave blank to use the API 526 effective area. If entered, it replaces the API area in the capacity check.</p>
+        <div class="f wide"><label for="rating">Inlet × outlet rating</label><input id="rating" type="text" placeholder="e.g. 150 × 150"></div>
+      </fieldset>
+    </aside>
+
+    <main class="report" id="report"></main>
+  </div>
+
+  <section class="howto noprint" id="howto" aria-labelledby="h-how">
+    <h2 id="h-how">How to use this calculator</h2>
+    <p>The calculator finds the effective discharge area a pressure relief valve needs for a given relieving rate, picks the API 526 orifice letter, and shows the rated capacity of that orifice. Every equation is shown with your values in it, so the result can be checked line by line.</p>
+    <div class="grid">
+      <div>
+        <h3>Steps</h3>
+        <ol>
+          <li><strong>Choose the service and units.</strong> Gas / vapour for gases and vapours relieving in critical flow; Liquid for non-flashing liquids. Then USC or SI.</li>
+          <li><strong>Enter the required relieving rate.</strong> This comes from the governing overpressure scenario (blocked outlet, fire, control valve failure and so on) worked out to API 521. The calculator does not determine the relief load.</li>
+          <li><strong>Enter the fluid properties at relieving conditions.</strong> Gas: M, k, Z and temperature. Liquid: specific gravity and viscosity.</li>
+          <li><strong>Enter the pressures.</strong> Set pressure and allowable overpressure fix the relieving pressure P<sub>1</sub>. For gas, give back pressure and atmospheric pressure in absolute units; for liquid, back pressure in gauge units.</li>
+          <li><strong>Choose the valve type and factors.</strong> Start with the preliminary K<sub>d</sub> shown. Tick the rupture disk box if a disk is installed upstream of the valve. For balanced-bellows valves, enter K<sub>b</sub> or K<sub>w</sub> from API 520 Part I or the manufacturer.</li>
+          <li><strong>Read the required area</strong> in step 3 and the orifice in step 4. Leave the orifice on <em>Smallest that fits</em>, or pick a letter to check a valve you already have.</li>
+          <li><strong>Check the result.</strong> The banner at the top turns green when the selected orifice area is at least the required area. Step 5 gives the rated capacity of the selected orifice.</li>
+          <li><strong>Print or save as PDF</strong> to keep the calculation with your inputs.</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Good practice</h3>
+        <ul>
+          <li>Size with preliminary K<sub>d</sub>, then repeat with the manufacturer's rated K<sub>d</sub> and actual area once the valve is selected. Use either effective area with effective K<sub>d</sub>, or actual area with rated K<sub>d</sub>: do not mix them.</li>
+          <li>Avoid choosing a much larger orifice than needed. An oversized valve, especially in liquid service, can chatter. The calculator flags this.</li>
+          <li>The orifice letter does not fix the inlet and outlet sizes or the pressure rating. Check the API 526 table for the valve material, temperature and pressure class.</li>
+          <li>Check inlet pressure loss (3% of set pressure) and built-up back pressure to API 520 Part II and the manufacturer.</li>
+          <li>For gas, the flow must be critical: the calculator checks P<sub>b</sub>/P<sub>1</sub> against the critical pressure ratio and stops if it is not.</li>
+        </ul>
+        <h3>Not covered</h3>
+        <ul>
+          <li>Subcritical gas flow, steam (K<sub>N</sub>, K<sub>SH</sub>), two-phase and flashing flow.</li>
+          <li>Relief load calculation (API 521) and inlet / outlet piping hydraulics.</li>
+        </ul>
+      </div>
+    </div>
+    <h3>Units used</h3>
+    <div class="tbl"><table>
+      <tr><th>Quantity</th><th>USC</th><th>SI</th></tr>
+      <tr><td>Gas flow <i>W</i></td><td>lb/h</td><td>kg/h</td></tr>
+      <tr><td>Liquid flow <i>Q</i></td><td>US gpm</td><td>L/min</td></tr>
+      <tr><td>Gas pressures (P<sub>1</sub>, P<sub>b</sub>)</td><td>psia</td><td>kPa abs</td></tr>
+      <tr><td>Liquid pressures (P<sub>1</sub>, P<sub>2</sub>)</td><td>psig</td><td>kPa g</td></tr>
+      <tr><td>Temperature</td><td>°F (absolute: °R = °F + 460)</td><td>°C (absolute: K = °C + 273)</td></tr>
+      <tr><td>Area</td><td>in²</td><td>mm²</td></tr>
+    </table></div>
+  </section>
+
+  <footer>
+    <div>Prepared by: Baher Elsheikh (<a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a>). Version 1.0, November 2026 (from the spreadsheet PRV Sizing, revision 1).</div>
+    <div>© 2026 Baher Elsheikh. Free to use; not to be copied, modified or redistributed without permission.</div>
+    <div>This tool is an aid for preliminary sizing. The relieving rate, fluid properties and correction factors are entered by the user and are not supplied here. Final valve selection must use the manufacturer's certified capacity data. Results must be verified by a qualified engineer against the applicable code edition before use. No warranty is given.</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const LET = ['D','E','F','G','H','J','K','L','M','N','P','Q','R','T'];
+  const AIN = [0.110,0.196,0.307,0.503,0.785,1.287,1.838,2.853,3.60,4.34,6.38,11.05,16.0,26.0];
+  const AMM = [71,126,198,324,506,830,1186,1841,2323,2800,4116,7129,10323,16774];
+  const SIZES = {D:'1D2, 1½D2, 1½D3',E:'1E2, 1½E2, 1½E3',F:'1½F2, 1½F3',G:'1½G2½, 2G3',H:'1½H3, 2H3',J:'2J3, 2½J4, 3J4',K:'3K4, 3K6',L:'3L4, 4L6',M:'4M6',N:'4N6',P:'4P6',Q:'6Q8',R:'6R8, 6R10',T:'8T10'};
+  const EX = {
+    'gas-USC':{tag:'Example: gas relief, USC', W:95400, M:80.92, k:1.42, Z:1, T:300, Ps:100, OP:10, PbG:14.7, Patm:14.7, vtype:'bal', rd:false, Kd:0.975, Kb:1, orif:'Q', Aman:'', rating:'150 × 150'},
+    'gas-SI': {tag:'Example: gas relief, SI', W:43270, M:80.92, k:1.42, Z:1, T:150, Ps:690, OP:10, PbG:101.35, Patm:101.325, vtype:'bal', rd:false, Kd:0.975, Kb:1, orif:'Q', Aman:'', rating:'150 × 150'},
+    'liq-USC':{tag:'Example: liquid relief, USC', Q:41.98, G:0.683, mu:1, Ps:414.81, OP:10, PbL:0, vtype:'conv', rd:false, Kd:0.65, Kw:1, orif:'L', Aman:'', rating:'150 × 150'},
+    'liq-SI': {tag:'Example: liquid relief, SI', Q:420, G:1, mu:0.9742, Ps:200, OP:10, PbL:0, vtype:'conv', rd:false, Kd:0.65, Kw:1, orif:'J', Aman:'', rating:'150 × 150'}
+  };
+  const IDS = ['tag','prep','date','W','M','k','Z','T','Q','G','mu','Ps','OP','PbG','Patm','PbL','vtype','rd','Kd','Kb','Kw','orif','Aman','rating'];
+  const STORE = 'prv-sizing-inputs-v1';
+  const $ = id => document.getElementById(id);
+  LET.forEach(l=>{ const o=document.createElement('option'); o.value=l; o.textContent='Orifice '+l; $('orif').appendChild(o); });
+
+  const svc = () => $('svcL').checked ? 'liq' : 'gas';
+  const units = () => $('uSI').checked ? 'SI' : 'USC';
+  function setInputs(d){ IDS.forEach(k=>{const el=$(k); if(!el) return; if(el.type==='checkbox') el.checked=!!d[k]; else el.value=(d[k]===undefined||d[k]===null)?'':d[k];}); if(!$('orif').value) $('orif').value='auto'; if(!$('vtype').value) $('vtype').value='conv'; }
+  function getInputs(){ const d={svc:svc(),units:units()}; IDS.forEach(k=>{const el=$(k); d[k]= el.type==='checkbox'?el.checked:el.value;}); return d; }
+  function num(k){ const v=parseFloat($(k).value); return isFinite(v)?v:NaN; }
+  function f(x,d){ if(!isFinite(x)) return '—'; return x.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+  const v = s => `<i>${s}</i>`;
+  function row(label, eq, sub, val, unit, d, small){
+    return `<tr><td class="lb">${label}</td><td class="eq">${eq||''}</td><td class="sb">${sub||''}</td>`+
+      `<td class="v">${typeof val==='string'?val:f(val,d)}${small?`<small>${small}</small>`:''}</td><td class="un">${unit||''}</td></tr>`;
+  }
+  function step(n,title,ref,rows,results,notes){
+    return `<section class="step"><h2><span class="n">${n}</span>${title}</h2><div class="ref">${ref}</div>`+
+      (rows.length?`<div class="tbl"><table>${rows.filter(Boolean).join('')}</table></div>`:'')+
+      (results||[]).map(r=>`<div class="result ${r[0]}">${r[1]}</div>`).join('')+
+      (notes||[]).map(t=>`<p class="note">${t}</p>`).join('')+`</section>`;
+  }
+
+  function compute(){
+    const S=svc(), U=units(), si=U==='SI', gas=S==='gas';
+    document.querySelectorAll('.gas').forEach(e=>e.hidden=!gas);
+    document.querySelectorAll('.liq').forEach(e=>e.hidden=gas);
+    document.querySelectorAll('.u[data-usc]').forEach(e=>e.textContent=si?e.dataset.si:e.dataset.usc);
+    const AU = si?'mm²':'in²', AT = si?AMM:AIN, ad = si?0:4;
+
+    const Ps=num('Ps'), OP=num('OP'), Kd=num('Kd'), Kc=$('rd').checked?0.9:1;
+    const Aman=num('Aman'), orifSel=$('orif').value;
+    let rows1=[], rows2=[], rows3=[], res3=[], notes3=[], rows5=[], res5=[], notes5=[];
+    let Areq=NaN, A0=NaN, idx=-1, Asel=NaN, okCrit=true, capRatio=NaN, ready=false, oversize=false, smallest=-1;
+    let need=[];
+    let chipsExtra='';
+
+    if(gas){
+      const W=num('W'), M=num('M'), k=num('k'), Z=num('Z'), T=num('T'), Pb=num('PbG'), Patm=num('Patm'), Kb=num('Kb');
+      need=['W','M','k','Z','T','Ps','OP','PbG','Patm','Kd','Kb'];
+      const PU=si?'kPa abs':'psia', TU=si?'K':'°R', WU=si?'kg/h':'lb/h';
+      const Tabs = T + (si?273:460);
+      const P1 = Ps*(1+OP/100)+Patm;
+      const rc = Math.pow(2/(k+1), k/(k-1));
+      const ratio = Pb/P1;
+      okCrit = ratio<=rc;
+      const c0 = si?0.03948:520;
+      const C = c0*Math.sqrt(k*Math.pow(2/(k+1),(k+1)/(k-1)));
+      Areq = W/(C*Kd*P1*Kb*Kc)*Math.sqrt(Tabs*Z/M);
+      ready = need.every(n=>isFinite(num(n)));
+      rows1=[
+        row('Absolute relieving temperature', `${v('T')} = ${si?'°C + 273':'°F + 460'}`, `${f(T,1)} + ${si?273:460}`, Tabs, TU, 1),
+        row('Relieving pressure', `${v('P')}<sub>1</sub> = ${v('P')}<sub>s</sub>(1 + OP) + ${v('P')}<sub>atm</sub>`, `${f(Ps,2)} × (1 + ${f(OP/100,3)}) + ${f(Patm,3)}`, P1, PU, 2),
+        row('Back pressure', `${v('P')}<sub>b</sub>`, 'entered, absolute', Pb, PU, 2)
+      ];
+      rows2=[
+        row('Pressure ratio', `${v('P')}<sub>b</sub>/${v('P')}<sub>1</sub>`, `${f(Pb,2)} / ${f(P1,2)}`, ratio, '', 4),
+        row('Critical pressure ratio', `(2/(${v('k')}+1))<sup>${v('k')}/(${v('k')}−1)</sup>`, `(2 / ${f(k+1,3)})^(${f(k,3)} / ${f(k-1,3)})`, rc, '', 4)
+      ];
+      rows3=[
+        row('Coefficient', `${v('C')} = ${c0}·√[${v('k')}(2/(${v('k')}+1))<sup>(${v('k')}+1)/(${v('k')}−1)</sup>]`, `k = ${f(k,3)}`, C, '', si?6:2),
+        row('Combination factor', `${v('K')}<sub>c</sub>`, $('rd').checked?'rupture disk upstream':'no rupture disk', Kc, '', 2),
+        row('Required effective area', `${v('A')} = ${v('W')} / (${v('C')}${v('K')}<sub>d</sub>${v('P')}<sub>1</sub>${v('K')}<sub>b</sub>${v('K')}<sub>c</sub>) · √(${v('T')}${v('Z')}/${v('M')})`,
+            `${f(W,0)} / (${f(C,si?6:2)} × ${f(Kd,3)} × ${f(P1,2)} × ${f(Kb,3)} × ${f(Kc,2)}) × √(${f(Tabs,1)} × ${f(Z,3)} / ${f(M,2)})`, Areq, AU, si?1:4)
+      ];
+      // orifice
+      smallest = AT.findIndex(a=>a>=Areq);
+      idx = orifSel==='auto' ? smallest : LET.indexOf(orifSel);
+      Asel = isFinite(Aman)&&Aman>0 ? Aman : (idx>=0?AT[idx]:NaN);
+      const Wcap = Asel*C*Kd*P1*Kb*Kc*Math.sqrt(M/(Tabs*Z));
+      capRatio = Wcap/W;
+      rows5=[
+        row('Area used', `${v('A')}<sub>sel</sub>`, isFinite(Aman)&&Aman>0?'manufacturer area':(idx>=0?`API 526 orifice ${LET[idx]}`:'—'), Asel, AU, ad),
+        row('Rated capacity', `${v('W')} = ${v('A')}${v('C')}${v('K')}<sub>d</sub>${v('P')}<sub>1</sub>${v('K')}<sub>b</sub>${v('K')}<sub>c</sub> · √(${v('M')}/(${v('T')}${v('Z')}))`,
+            `${f(Asel,ad)} × ${f(C,si?6:2)} × ${f(Kd,3)} × ${f(P1,2)} × ${f(Kb,3)} × ${f(Kc,2)} × √(${f(M,2)} / (${f(Tabs,1)} × ${f(Z,3)}))`, Wcap, WU, 0),
+        row('Required rate', v('W'), 'entered', W, WU, 0),
+        row('Capacity / required', '', '', isFinite(capRatio)?f(capRatio*100,1)+'%':'—', '', 0)
+      ];
+      if($('vtype').value==='bal' && Kb===1) notes3.push('Balanced bellows valve with K<sub>b</sub> = 1.0: confirm K<sub>b</sub> at the actual back pressure from API 520 Part I or the manufacturer.');
+      chipsExtra = okCrit?`<span class="chip ok">Critical flow</span>`:`<span class="chip bad">Subcritical flow</span>`;
+    } else {
+      const Q=num('Q'), G=num('G'), mu=num('mu'), P2=num('PbL'), Kw=num('Kw');
+      need=['Q','G','Ps','OP','PbL','Kd','Kw'];
+      const PU=si?'kPa g':'psig', QU=si?'L/min':'gpm', WU=si?'kg/h':'lb/h';
+      const P1 = Ps*(1+OP/100), dP = P1-P2;
+      const kq = si?11.78:38, kr = si?18800:2800;
+      const areaFor = Kv => si ? 11.78*Q/(Kd*Kw*Kc*Kv)*Math.sqrt(G/dP) : Q/(38*Kd*Kw*Kc*Kv)*Math.sqrt(G/dP);
+      const KvFor = A => { if(!isFinite(mu)||mu<=0||!isFinite(A)||A<=0) return {Re:NaN,Kv:1}; const Re=Q*kr*G/(mu*Math.sqrt(A)); return {Re, Kv:Math.min(1,1/(0.9935+2.878/Math.sqrt(Re)+342.75/Math.pow(Re,1.5)))}; };
+      A0 = areaFor(1);
+      ready = need.every(n=>isFinite(num(n)));
+      // orifice and viscosity: API procedure (A with Kv = 1, choose orifice, Re with that area, correct)
+      let Re=NaN, Kv=1;
+      if(orifSel==='auto' && !(isFinite(Aman)&&Aman>0)){
+        idx = AT.findIndex(a=>a>=A0);
+        for(let it=0; it<20 && idx>=0; it++){
+          ({Re,Kv} = KvFor(AT[idx])); Areq = areaFor(Kv);
+          if(Areq<=AT[idx]) break; idx = AT.findIndex(a=>a>=Areq);
+        }
+        if(idx<0){ Areq=A0; }
+        Asel = idx>=0?AT[idx]:NaN;
+      } else {
+        idx = orifSel==='auto' ? -1 : LET.indexOf(orifSel);
+        Asel = isFinite(Aman)&&Aman>0 ? Aman : (idx>=0?AT[idx]:NaN);
+        ({Re,Kv} = KvFor(Asel)); Areq = areaFor(Kv);
+      }
+      smallest = AT.findIndex(a=>a>=Areq);
+      rows1=[
+        row('Relieving pressure', `${v('P')}<sub>1</sub> = ${v('P')}<sub>s</sub>(1 + OP)`, `${f(Ps,2)} × (1 + ${f(OP/100,3)})`, P1, PU, 2),
+        row('Back pressure', `${v('P')}<sub>2</sub>`, 'entered, gauge', P2, PU, 2),
+        row('Differential pressure', `${v('P')}<sub>1</sub> − ${v('P')}<sub>2</sub>`, `${f(P1,2)} − ${f(P2,2)}`, dP, PU, 2)
+      ];
+      rows2=[
+        row('Area with K<sub>v</sub> = 1', `${v('A')}<sub>0</sub>`, 'first pass, used to choose the orifice', A0, AU, si?1:4),
+        row('Reynolds number', `${v('R')} = ${v('Q')}·${kr}·${v('G')}<sub>1</sub> / (μ√${v('A')}<sub>sel</sub>)`, isFinite(Re)?`${f(Q,2)} × ${kr} × ${f(G,3)} / (${f(mu,4)} × √${f(Asel,ad)})`:'viscosity not entered', isFinite(Re)?Re:'—', '', 0),
+        row('Viscosity correction', `${v('K')}<sub>v</sub> = (0.9935 + 2.878/${v('R')}<sup>0.5</sup> + 342.75/${v('R')}<sup>1.5</sup>)<sup>−1</sup> ≤ 1`, isFinite(Re)?`R = ${f(Re,0)}`:'taken as 1', Kv, '', 4)
+      ];
+      rows3=[
+        row('Combination factor', `${v('K')}<sub>c</sub>`, $('rd').checked?'rupture disk upstream':'no rupture disk', Kc, '', 2),
+        row('Required effective area', si?`${v('A')} = 11.78${v('Q')} / (${v('K')}<sub>d</sub>${v('K')}<sub>w</sub>${v('K')}<sub>c</sub>${v('K')}<sub>v</sub>) · √(${v('G')}<sub>1</sub>/(${v('P')}<sub>1</sub>−${v('P')}<sub>2</sub>))`
+                                       :`${v('A')} = ${v('Q')} / (38${v('K')}<sub>d</sub>${v('K')}<sub>w</sub>${v('K')}<sub>c</sub>${v('K')}<sub>v</sub>) · √(${v('G')}<sub>1</sub>/(${v('P')}<sub>1</sub>−${v('P')}<sub>2</sub>))`,
+            si?`11.78 × ${f(Q,2)} / (${f(Kd,3)} × ${f(Kw,3)} × ${f(Kc,2)} × ${f(Kv,4)}) × √(${f(G,3)} / ${f(dP,2)})`
+              :`${f(Q,2)} / (38 × ${f(Kd,3)} × ${f(Kw,3)} × ${f(Kc,2)} × ${f(Kv,4)}) × √(${f(G,3)} / ${f(dP,2)})`, Areq, AU, si?1:4)
+      ];
+      const Qcap = si ? Asel*Kd*Kw*Kc*Kv*Math.sqrt(dP/G)/11.78 : Asel*38*Kd*Kw*Kc*Kv*Math.sqrt(dP/G);
+      const Wcap = si ? Qcap*60*G : Qcap*G*8.33*60;
+      const Wasme = si ? 5.092*Kd*Asel*Math.sqrt(dP*G) : 2407*Kd*Asel*Math.sqrt(dP*G*62.4);
+      capRatio = Qcap/Q;
+      rows5=[
+        row('Area used', `${v('A')}<sub>sel</sub>`, isFinite(Aman)&&Aman>0?'manufacturer area':(idx>=0?`API 526 orifice ${LET[idx]}`:'—'), Asel, AU, ad),
+        row('Rated capacity', si?`${v('Q')} = ${v('A')}${v('K')}<sub>d</sub>${v('K')}<sub>w</sub>${v('K')}<sub>c</sub>${v('K')}<sub>v</sub> · √((${v('P')}<sub>1</sub>−${v('P')}<sub>2</sub>)/${v('G')}<sub>1</sub>) / 11.78`
+                                 :`${v('Q')} = 38${v('A')}${v('K')}<sub>d</sub>${v('K')}<sub>w</sub>${v('K')}<sub>c</sub>${v('K')}<sub>v</sub> · √((${v('P')}<sub>1</sub>−${v('P')}<sub>2</sub>)/${v('G')}<sub>1</sub>)`,
+            si?`${f(Asel,ad)} × ${f(Kd,3)} × ${f(Kw,3)} × ${f(Kc,2)} × ${f(Kv,4)} × √(${f(dP,2)} / ${f(G,3)}) / 11.78`
+              :`38 × ${f(Asel,ad)} × ${f(Kd,3)} × ${f(Kw,3)} × ${f(Kc,2)} × ${f(Kv,4)} × √(${f(dP,2)} / ${f(G,3)})`, Qcap, QU, 1),
+        row('Rated capacity, mass', si?`${v('Q')} × 60 × ${v('G')}<sub>1</sub>`:`${v('Q')} × 8.33 × ${v('G')}<sub>1</sub> × 60`, si?`${f(Qcap,1)} × 60 × ${f(G,3)}`:`${f(Qcap,1)} × 8.33 × ${f(G,3)} × 60`, Wcap, WU, 0),
+        row('Required rate', v('Q'), 'entered', Q, QU, 2),
+        row('Capacity / required', '', '', isFinite(capRatio)?f(capRatio*100,1)+'%':'—', '', 0),
+        row('ASME XIII cross-check', si?`${v('W')} = 5.092${v('K')}${v('A')}√((${v('P')}−${v('P')}<sub>d</sub>)ρ)`:`${v('W')} = 2407${v('K')}${v('A')}√((${v('P')}−${v('P')}<sub>d</sub>)${v('w')})`,
+            si?`5.092 × ${f(Kd,3)} × ${f(Asel,ad)} × √(${f(dP/1000,4)} MPa × ${f(G*1000,1)} kg/m³)`:`2407 × ${f(Kd,3)} × ${f(Asel,ad)} × √(${f(dP,2)} × ${f(G*62.4,2)} lb/ft³)`, Wasme, WU, 0, isFinite(Wcap)&&Wcap>0?(()=>{const d=(Wasme/Wcap-1)*100; return Math.abs(d)<0.05?'within 0.1% of API mass rate':`${d>0?'+':'−'}${f(Math.abs(d),1)}% from API mass rate`;})():'')
+      ];
+      notes5.push('The ASME XIII line uses K = K<sub>d</sub> without K<sub>w</sub>, K<sub>c</sub> or K<sub>v</sub>, as a check of the API result. For a certified valve, ASME uses K = 0.9 × the average tested coefficient.');
+      if($('vtype').value==='bal' && Kw===1) notes3.push('Balanced bellows valve with K<sub>w</sub> = 1.0: confirm K<sub>w</sub> at the actual back pressure from API 520 Part I or the manufacturer.');
+      chipsExtra = `<span class="chip info">K<sub>v</sub> ${f(Kv,3)}</span>`;
+    }
+
+    need.forEach(n=>$(n).classList.toggle('need', !isFinite(num(n))));
+    const okArea = isFinite(Asel) && isFinite(Areq) && Asel>=Areq;
+    oversize = idx>=0 && smallest>=0 && idx>smallest+1 && !(isFinite(Aman)&&Aman>0);
+
+    // step 4 orifice
+    const rows4 = [
+      row('Smallest API 526 orifice that fits', 'letter', `area ≥ ${f(Areq,si?1:4)} ${AU}`, smallest>=0?LET[smallest]:'none', '', 0, smallest>=0?`${f(AT[smallest],ad)} ${AU}`:'larger than T'),
+      row('Selected orifice', 'letter', orifSel==='auto'?'smallest that fits':'chosen by user', idx>=0?LET[idx]:'—', '', 0, idx>=0?`${f(AT[idx],ad)} ${AU}`:''),
+      row('Typical API 526 sizes', 'inlet × outlet (in.)', 'check the table for rating and material', idx>=0?SIZES[LET[idx]]:'—', '', 0),
+      isFinite(Aman)&&Aman>0?row('Manufacturer area (entered)', `${v('A')}<sub>m</sub>`, 'replaces the API area', Aman, AU, ad):''
+    ];
+    const res4 = [];
+    const subcrit = gas && ready && !okCrit;
+    if(subcrit) res4.push(['warn','Not evaluated: the flow is subcritical (step 2).']);
+    else if(!ready) res4.push(['warn','Enter the highlighted inputs to complete the sizing.']);
+    else if(smallest<0) res4.push(['bad',`Required area exceeds orifice T (${f(AT[13],ad)} ${AU}): use more than one valve.`]);
+    if(ready && !subcrit && isFinite(Asel)) res4.push(okArea?['ok',`Selected area ${f(Asel,ad)} ≥ required ${f(Areq,si?1:4)} ${AU}.`]:['bad',`Selected area ${f(Asel,ad)} < required ${f(Areq,si?1:4)} ${AU}: select a larger orifice.`]);
+    if(ready && oversize) res4.push(['warn',`Orifice ${LET[idx]} is ${idx-smallest} sizes above the smallest that fits (${LET[smallest]}). An oversized valve can chatter, especially in liquid service.`]);
+
+    let out='';
+    out += step(1,'Relieving conditions', gas?'API 520 Part I, gas or vapour: absolute pressures and temperature':'API 520 Part I, liquid: gauge pressures', rows1, []);
+    if(gas){
+      out += step(2,'Flow regime','API 520 Part I: flow is critical when P<sub>b</sub>/P<sub>1</sub> ≤ the critical pressure ratio', rows2,
+        !ready?[]:(okCrit?[['ok','Critical flow: the critical-flow sizing equation applies.']]:[['bad','Subcritical flow: the equation below does not apply. Use the API 520 Part I subcritical method (coefficient F<sub>2</sub>).']]));
+    } else {
+      out += step(2,'Viscosity correction','API 520 Part I: Reynolds number based on the selected orifice area', rows2, [],
+        ['K<sub>v</sub> is found with the area of the orifice that will be used: the area is first calculated with K<sub>v</sub> = 1, an orifice is chosen, and the area is then corrected.']);
+    }
+    out += step(3,'Required effective discharge area', gas?'API 520 Part I, gas or vapour in critical flow':'API 520 Part I, non-flashing liquid (valves requiring capacity certification)', rows3, [], notes3);
+    out += step(4,'Orifice selection','API 526 standard effective orifice areas', rows4, res4);
+    out += step(5,'Capacity of the selected orifice', gas?'API 520 Part I critical-flow equation rearranged for W':'API 520 Part I liquid equation rearranged for Q; ASME BPVC Section XIII liquid formula as a check', rows5,
+      ready&&!subcrit&&isFinite(capRatio)?[[capRatio>=1?'ok':'bad', capRatio>=1?`Capacity is ${f(capRatio*100,1)}% of the required rate.`:`Capacity is only ${f(capRatio*100,1)}% of the required rate.`]]:[], notes5);
+    $('report').innerHTML = out;
+
+    // verdict
+    const st=$('vState');
+    const name = idx>=0?`Orifice ${LET[idx]}`:(isFinite(Aman)&&Aman>0?'Manufacturer area':'Selected orifice');
+    if(!ready){ st.textContent='Enter the highlighted inputs'; st.className='state'; }
+    else if(gas && !okCrit){ st.textContent='Subcritical flow: not covered by this calculator'; st.className='state warn'; }
+    else if(smallest<0 && !(isFinite(Aman)&&Aman>0)){ st.textContent='Larger than orifice T: use more than one valve'; st.className='state bad'; }
+    else if(!okArea){ st.textContent=`${name} too small: select a larger orifice`; st.className='state bad'; }
+    else { st.textContent=`${name} adequate: capacity ${f(capRatio*100,0)}% of required`; st.className='state ok'; }
+    $('vSub').innerHTML = `${$('tag').value||'Relief valve'}: ${gas?'gas / vapour':'liquid'}, ${U} units, required area ${f(Areq,si?1:4)} ${AU}${$('rating').value?', '+$('rating').value:''}.`;
+    $('vChips').innerHTML = (gas?chipsExtra:'') +
+      `<span class="chip ${ready?(okArea?'ok':'bad'):'warn'}">Orifice area</span>` +
+      (!gas?chipsExtra:'') +
+      ({conv:'<span class="chip info">Conventional</span>',bal:'<span class="chip info">Balanced bellows</span>',pilot:'<span class="chip info">Pilot-operated</span>'}[$('vtype').value]||'') +
+      ($('rd').checked?'<span class="chip warn">Rupture disk, K<sub>c</sub> 0.9</span>':'') +
+      (oversize?'<span class="chip warn">Oversized</span>':'');
+
+    drawGauge(AT, Areq, idx, Asel, AU, ad);
+    $('printhead').textContent = `${$('tag').value||''}  ${$('prep').value?'Prepared by: '+$('prep').value:''}  ${$('date').value||''}`;
+    try{ localStorage.setItem(STORE, JSON.stringify(getInputs())); }catch(e){}
+  }
+
+  function drawGauge(AT, Areq, idx, Asel, AU, ad){
+    const g=$('gauge'), cs=getComputedStyle(document.documentElement), c=n=>cs.getPropertyValue(n).trim();
+    const lo=Math.log10(AT[0]/1.3), hi=Math.log10(AT[13]*1.3), x0=20, W=600, sx=a=>x0+W*(Math.log10(a)-lo)/(hi-lo);
+    let s=`<line x1="${x0}" y1="56" x2="${x0+W}" y2="56" stroke="${c('--rule')}" stroke-width="2"/>`;
+    AT.forEach((a,i)=>{ const x=sx(a), sel=i===idx, fits=isFinite(Areq)&&a>=Areq;
+      s+=`<rect x="${x-7}" y="44" width="14" height="24" rx="3" fill="${sel?(fits?c('--ok'):c('--bad')):c('--panel')}" stroke="${fits?c('--wall'):c('--tol')}"/>`;
+      s+=`<text x="${x}" y="60" text-anchor="middle" style="fill:${sel?'#fff':(fits?c('--ink'):c('--steel'))};font-weight:${sel?600:400}">${LET[i]}</text>`;
+      if(i===0||i===13||sel) s+=`<text x="${x}" y="86" text-anchor="${i===0?'start':(i===13?'end':'middle')}" ${sel?'class="lab"':''}>${sel&&i!==0&&i!==13?LET[i]+' ':''}${ad?a:f(a,0)}</text>`; });
+    s+=`<text x="${x0+W}" y="104" text-anchor="end">${AU}</text>`;
+    if(isFinite(Areq)&&Areq>0){ const x=Math.min(x0+W,Math.max(x0,sx(Areq))), col=(isFinite(Asel)&&Asel>=Areq)?c('--ok'):c('--bad');
+      s+=`<line x1="${x}" y1="22" x2="${x}" y2="72" stroke="${col}" stroke-width="2"/><text class="lab" x="${Math.min(x0+W-40,Math.max(x0+40,x))}" y="16" text-anchor="middle" style="fill:${col}">required ${f(Areq,AU==='mm²'?0:3)}</text>`; }
+    g.innerHTML=s;
+  }
+
+  function loadExample(){ const key=svc()+'-'+units(); setInputs(Object.assign({prep:'',date:''},EX[key])); compute(); }
+  let saved=null; try{ saved=JSON.parse(localStorage.getItem(STORE)); }catch(e){}
+  if(saved){ (saved.svc==='liq'?$('svcL'):$('svcG')).checked=true; (saved.units==='SI'?$('uSI'):$('uUSC')).checked=true; setInputs(saved); }
+  else { $('svcG').checked=true; $('uUSC').checked=true; setInputs(Object.assign({prep:'',date:''},EX['gas-USC'])); }
+  document.querySelectorAll('aside input, aside select').forEach(el=>el.addEventListener('input',compute));
+  document.querySelectorAll('aside input[type=checkbox], aside input[type=radio], aside select').forEach(el=>el.addEventListener('change',compute));
+  ['svcG','svcL'].forEach(id=>$(id).addEventListener('change',()=>{ const d=getInputs(); if(!isFinite(parseFloat(d.Kd))||[0.975,0.65].includes(parseFloat(d.Kd))){ $('Kd').value = svc()==='gas'?0.975:0.65; } compute(); }));
+  $('rd').addEventListener('change',compute);
+  $('btnExample').addEventListener('click',loadExample);
+  $('btnClear').addEventListener('click',()=>{const d={}; IDS.forEach(k=>d[k]=''); d.rd=false; d.orif='auto'; d.vtype='conv'; d.Kd = svc()==='gas'?0.975:0.65; d.Kb=1; d.Kw=1; d.OP=10; d.Patm = units()==='SI'?101.325:14.7; setInputs(d); compute();});
+  $('btnHow').addEventListener('click',()=>$('howto').scrollIntoView({behavior:'smooth'}));
+  $('btnPrint').addEventListener('click',()=>window.print());
+  if(window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',compute);
+  compute();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Risk of Transient Conditions That Can Be Missed During Design and RBI | Baher Elsheikh</title>
+<meta name="description" content="Start-up, shutdown, steam-out, dry-out and other transient conditions that design and RBI can miss, with case histories of CUI in drain lines, stress corrosion cracking at reformer tube flanges and hydrogen embrittlement.">
+<meta name="keywords" content="transient conditions, RBI, risk based inspection, start-up, shutdown, steam out vacuum, minimum pressurization temperature, 885F embrittlement, polythionic acid SCC, CUI, dew point corrosion, reformer tube, hydrogen embrittlement, damage mechanisms">
+<meta name="author" content="Baher Elsheikh">
+<link rel="canonical" href="https://baher-elsheikh.github.io/articles/transient-conditions-design-rbi/">
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://baher-elsheikh.github.io/articles/transient-conditions-design-rbi/">
+<meta property="og:title" content="Risk of Transient Conditions That Can Be Missed During Design and RBI">
+<meta property="og:description" content="Start-up, shutdown, steam-out, dry-out and other transient conditions that design and RBI can miss, with case histories of CUI in drain lines, stress corrosion cracking at reformer tube flanges and hydrogen embrittlement.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Risk of Transient Conditions That Can Be Missed During Design and RBI", "description": "Start-up, shutdown, steam-out, dry-out and other transient conditions that design and RBI can miss, with case histories of CUI in drain lines, stress corrosion cracking at reformer tube flanges and hydrogen embrittlement.", "url": "https://baher-elsheikh.github.io/articles/transient-conditions-design-rbi/", "inLanguage": "en", "datePublished": "2024-04-18", "author": {"@type": "Person", "name": "Baher Elsheikh", "url": "https://baher-elsheikh.github.io/about/", "sameAs": ["https://www.linkedin.com/in/baher-elsheikh/", "https://www.youtube.com/@baherelsheikh4942"]}, "about": "transient conditions, design, risk based inspection, damage mechanisms, case histories"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F7F9; --panel:#FFFFFF; --ink:#16203A; --steel:#566074; --rule:#DCE0E7;
+  --accent:#14245E; --accent-soft:#E7EAF3; --brass:#8A6320; --brass-soft:#F4ECDD; --fig:#EEF1F7;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --serif:"STIX Two Text",Cambria,Georgia,"Times New Roman",serif;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 var(--sans);overflow-x:clip}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.lg-dark{display:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:block}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:block}
+header.site{background:var(--panel);border-bottom:1px solid var(--rule)}
+header.site .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;min-height:62px}
+.brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px}
+.brand img{height:34px;width:auto}
+nav.tabs{display:flex;flex-wrap:wrap;gap:2px}
+nav.tabs a{font-size:15px;font-weight:500;color:var(--steel);text-decoration:none;padding:6px 10px;border-radius:5px}
+nav.tabs a:hover{color:var(--ink);background:var(--accent-soft)}
+nav.tabs a.cur{color:var(--accent);background:var(--accent-soft)}
+article{max-width:760px;margin:0 auto;padding:40px 0 56px}
+.crumb{font-size:14px;color:var(--steel);margin:0 0 18px}
+.crumb a{color:var(--steel)}
+.lab{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none}
+.lab svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.22;letter-spacing:-.005em}
+h1{font-size:clamp(29px,3.6vw,40px);margin:10px 0 0}
+.lead{font-size:19px;line-height:1.6;color:var(--steel);margin:16px 0 0}
+.byline{font-size:14.5px;color:var(--steel);margin:18px 0 0;padding-bottom:22px;border-bottom:1px solid var(--rule)}
+h2{font-size:24px;margin:38px 0 6px}
+h3{font-size:19px;margin:28px 0 4px}
+p{margin:14px 0}
+ul,ol{padding-left:1.3em} li{margin:6px 0}
+figure{margin:28px 0}
+figure .frame{background:var(--fig);border:1px solid var(--rule);border-radius:6px;overflow:hidden;color:var(--accent)}
+figure .frame svg{display:block;width:100%;height:auto}
+figure img{display:block;width:100%;height:auto}
+figcaption{font-size:14.5px;color:var(--steel);margin-top:8px}
+.tbl{overflow-x:auto;margin:24px 0}
+table{border-collapse:collapse;width:100%;font-size:15.5px;background:var(--panel)}
+caption{caption-side:bottom;text-align:left;font-size:14.5px;color:var(--steel);padding-top:8px}
+th,td{border:1px solid var(--rule);padding:8px 12px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+td.n{text-align:center;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{width:34%}
+.eq{font-family:var(--serif);font-size:19px;text-align:center;margin:20px 0;padding:12px;background:var(--panel);border:1px solid var(--rule);border-radius:6px}
+.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 16px;margin:22px 0;font-size:16px}
+.refs{font-size:14.5px;color:var(--steel)}
+.refs li{margin:4px 0}
+.related{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule)}
+.related h2{font-size:20px;margin:0 0 8px}
+.related ul{list-style:none;padding:0;margin:0}
+.related li{padding:6px 0}
+.flag{font-size:12.5px;font-weight:500;color:var(--brass);background:var(--brass-soft);border-radius:3px;padding:1px 7px}
+.disc{font-size:14px;color:var(--steel);margin-top:30px}
+footer{border-top:1px solid var(--rule);padding:20px 0 30px;font-size:13.5px;color:var(--steel);background:var(--panel)}
+footer .wrap{display:grid;gap:6px}
+@media (max-width:600px){.wrap{padding:0 16px} article{padding-top:26px} body{font-size:16.5px}}
+@media print{header.site,footer,.related{display:none} body{background:#fff}}
+.case{background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:16px 20px;margin:18px 0}
+.case h3{margin-top:0}
+</style>
+<link rel="stylesheet" href="../../assets/chrome.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="beta-bar" role="note"><div class="wrap"><span class="beta-tag">Beta</span> This site is in its testing period. Spotted a mistake? Please tell me on <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</div></div>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../../"><img class="lg-light" src="../../assets/gear-light.png" alt="" width="41" height="34"><img class="lg-dark" src="../../assets/gear-dark.png" alt="" width="41" height="34"><span>Baher Elsheikh</span></a>
+    <div class="hdr-right">
+      <nav class="tabs" id="mainnav" aria-label="Main"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/" aria-current="page">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a></nav>
+      <a class="nav-search" href="../../search/"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20.5 20.5"/></svg><span>Search</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav">Menu</button>
+    </div>
+  </div>
+</header>
+<main id="main" class="wrap">
+<article>
+  <p class="crumb"><a href="../">Articles</a></p>
+  <a class="lab" href="../../knowledge/#inspection-and-integrity"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.3 15.3L20.5 20.5"/><path d="M8 8.5l2 1.8-1.2 1.6 2.4 1.6"/></svg>Inspection and Asset Integrity</a>
+  <h1>Risk of Transient Conditions That Can Be Missed During Design and RBI</h1>
+  <p class="lead">Equipment is usually designed and inspected for its normal operating conditions. Many failures, however, start during start-up, shutdown, steam-out or other short periods that the design basis or the RBI study did not capture. This article lists common transient conditions and three case histories where they caused damage.</p>
+  <p class="byline">By Baher Elsheikh. First published on LinkedIn, April 2024. 6 min read.</p>
+
+  <figure><img src="cover.jpg" width="1039" height="622" alt="Process plant at dusk with the article title" loading="lazy"></figure>
+
+  <h2>Background</h2>
+  <p>The design of equipment shall account for all operating modes: normal operation, start-up, shutdown, upset and transient conditions.</p>
+  <p>Transient conditions take many forms: different operating modes, start-up, shutdown, start of run (SOR), end of run (EOR), dry run, thermal gradients, impingement areas and steam-out. Others come from the configuration of the equipment itself.</p>
+  <p>If the transient conditions of the equipment or part under analysis are not identified, and therefore not considered in the design or in the inspection plan, they can lead to premature failure.</p>
+
+  <h2>Operating transient conditions</h2>
+  <p>Some common examples:</p>
+  <ul>
+    <li><strong>Minimum safe pressurization temperature for heavy wall Cr-Mo hydroprocessing reactors.</strong> These reactors are susceptible to temper embrittlement and hydrogen embrittlement, so the minimum safe pressurization temperature must be determined carefully.</li>
+    <li><strong>Start-up and shutdown of ferritic and duplex stainless steels.</strong> Operating within the 475 °C (885 °F) embrittlement range (370 °C to 538 °C) needs special attention during start-up and shutdown.</li>
+    <li><strong>Steam block in boiler coils.</strong> Improper warm-up, or inadequate drainage after shutdown, can lead to steam blockage in boiler coils.</li>
+    <li><strong>Dry-out in the convection sections of fired heaters and reformers.</strong> Coils in these sections can run dry, affecting their performance and integrity.</li>
+    <li><strong>Polythionic acid stress corrosion cracking (PASCC) of austenitic stainless steel.</strong> During start-up or shutdown, air and moisture on sensitized austenitic stainless steel heater tubes can form sulfur acids from the sulfide scale and cause PASCC.</li>
+    <li><strong>Accelerated corrosion during prolonged shutdown.</strong> Poor layup and preservation can cause accelerated corrosion when equipment is shut down for a long time.</li>
+    <li><strong>Different damage mechanisms on hot and cold sides.</strong> The hot side of a piece of equipment may see different damage mechanisms from its colder parts.</li>
+    <li><strong>Partial condensation in hot services.</strong> Partial condensation can cause thermal stresses or thermal shock.</li>
+    <li><strong>Vacuum from steam-out.</strong> When steam cools it condenses and the pressure falls. Equipment and piping are then subjected to vacuum, especially if venting is not sufficient to let air in and balance the pressure.</li>
+  </ul>
+  <figure><img style="max-width:520px;margin:0 auto" src="saturated-steam-chart.jpg" width="333" height="210" alt="Saturated steam chart: temperature against gauge pressure" loading="lazy"><figcaption>Figure 1. Saturated steam, temperature against gauge pressure. As steam cools after steam-out, its pressure falls along this curve and drops below atmospheric if the equipment is not vented.</figcaption></figure>
+
+  <h2>Case histories</h2>
+  <div class="case">
+    <h3>Case 1: Corrosion under insulation in drain lines</h3>
+    <p>Branch connections and dead legs with little or no flow cool along the small-bore branch, until part of it falls within the critical temperature range for corrosion under insulation (CUI).</p>
+    <figure><img style="max-width:431px;margin:0 auto" src="case1-cui-drain-line.jpg" width="431" height="424" alt="Small bore branch from a hot insulated steam pipe, with a temperature gradient along the branch and a leak due to CUI" loading="lazy"><figcaption>Figure 2. Temperature gradient along a small-bore branch from a hot insulated line: the cooler part of the branch falls in the CUI range and leaks.</figcaption></figure>
+    <p>The insulation material and the CUI inspection frequency were selected for the normal operating temperature, which is well above the CUI range, so they did not address the high CUI potential of these branches.</p>
+    <p>CUI in carbon steel is most severe from 77 °C to 110 °C, and in austenitic stainless steel from 60 °C to 175 °C. Within these ranges the corrosion rate increases with temperature, in a similar way to an open system (Figure 3).</p>
+    <figure><img style="max-width:520px;margin:0 auto" src="cui-corrosion-rate-temperature.jpg" width="399" height="281" alt="Corrosion rate against temperature for closed and open systems, with chemical plant measurements of corrosion under insulation" loading="lazy"><figcaption>Figure 3. Corrosion rate against temperature in closed and open systems, with chemical plant measurements of CUI.</figcaption></figure>
+  </div>
+  <div class="case">
+    <h3>Case 2: Thermal stresses and stress corrosion cracking in reformer tubes</h3>
+    <p>In a top-fired reformer, the insulation around the top flange and part of a catalyst tube at the top of the reformer loosened and separated from the tube. The temperature on the reformer deck rose and operators could no longer work in the area. As a temporary measure, large fans were installed on the deck to lower the temperature.</p>
+    <figure><img style="max-width:346px;margin:0 auto" src="case2-reformer-tube-inlet.jpg" width="346" height="262" alt="Top of a reformer catalyst tube with the inlet pigtail and top flange above the reformer roof" loading="lazy"><figcaption>Figure 4. Top of a catalyst tube at the reformer roof, with the inlet pigtail and the top flange.</figcaption></figure>
+    <p>A few months later, gas leaks were found from cracks that started at the weld between the top flange and the catalyst tube. The investigation and metallurgical analysis showed stress corrosion cracking: the process gas temperature had dropped below the dew point in this area.</p>
+    <p>Keeping the process gas temperature well above the dew point is essential to avoid this cracking. Similar problems can occur in refractory-lined parts such as transfer lines or the reformer casing, where the temperature at the back of the lining falls below the dew point.</p>
+  </div>
+  <div class="case">
+    <h3>Case 3: Hydrogen embrittlement</h3>
+    <p>Hydrogen embrittlement, like other embrittlement mechanisms, takes place at temperatures below the normal operating temperature.</p>
+    <p>Hydrogen embrittlement (HE) is the loss of ductility of high strength steels, and of fracture toughness, caused by atomic hydrogen diffusing into the material. It can lead to brittle cracking.</p>
+    <p>Hydrogen is more soluble in steel and weldments at high temperature. When heavy sections operating at high temperature are cooled rapidly, HE can occur even under low applied stresses.</p>
+    <figure><img style="max-width:637px;margin:0 auto" src="hydrogen-embrittlement-factors.png" width="637" height="287" alt="Main factors contributing to hydrogen embrittlement (susceptible material, hydrogen environment, stress) and the hydrogen embrittlement mechanism" loading="lazy"><figcaption>Figure 5. Main factors contributing to hydrogen embrittlement (left) and the HE mechanism (right).</figcaption></figure>
+    <p>Clad equipment needs special care because of possible disbonding of the cladding: hydrogen pressure builds up between the substrate and the cladding, with its peak at the interface. The minimum depressurization temperature is a critical parameter for avoiding embrittlement.</p>
+    <figure><img style="max-width:514px;margin:0 auto" src="through-wall-hydrogen-concentration.jpg" width="514" height="336" alt="Through-wall hydrogen concentration in a clad wall at steady state and during shutdown, with the peak below the cladding interface" loading="lazy"><figcaption>Figure 6. Through-wall hydrogen concentration in a weld-overlaid wall: steady state (blue) and during a shutdown transient (red). The peak during shutdown is just below the cladding interface, which is where disbonding can occur.</figcaption></figure>
+  </div>
+
+  <h2>Important notes</h2>
+  <ul>
+    <li>Transient conditions can result from the configuration of the equipment as well as from the different operating modes.</li>
+    <li>All operating modes and conditions shall be considered during design and material selection.</li>
+    <li>The identification of damage mechanisms during RBI, or when preparing inspection plans, shall consider the configuration and actual design of the equipment.</li>
+    <li>Damage mechanisms and corrosion loops identified only from P&amp;IDs or material selection diagrams (MSDs) can miss transient conditions that come from the configuration of the equipment.</li>
+  </ul>
+  <figure><img src="sample-msd.jpg" width="667" height="486" alt="Sample material selection diagram showing equipment, lines and materials of construction" loading="lazy"><figcaption>Figure 7. Sample material selection diagram (MSD). Damage mechanisms taken from the MSD alone can miss transient conditions created by the equipment configuration.</figcaption></figure>
+
+  <h2>Conclusion</h2>
+  <p>Identifying transient conditions, and considering them properly, is essential for robust equipment design and effective RBI. Engineers and inspectors must work together to make sure that every relevant operating scenario is accounted for, to minimise the risk of premature failure.</p>
+
+  <p class="disc">This article is for general engineering guidance. Apply it with the governing codes and the damage mechanism references used by your RBI programme, and the judgement of a qualified engineer.</p>
+  <aside class="related"><h2>Related on this site</h2><ul><li>Discussion: <a href="https://www.linkedin.com/pulse/risk-transient-conditions-can-missed-during-design-rbi-baher-elsheikh-jwapf/" target="_blank" rel="noopener noreferrer">this article on LinkedIn</a> (comments)</li><li>Calculator: <a href="../../calculators/remaining-life/">Remaining life and inspection interval</a></li><li>Article: <a href="https://inspectioneering.com/journal/2020-04-30/9162/effective-reliability-and-safety-management-of-steam-reformer-tubes" target="_blank" rel="noopener noreferrer">Effective Reliability and Safety Management of Steam Reformer Tubes</a> (Inspectioneering Journal)</li><li>Knowledge area: <a href="../../knowledge/#inspection-and-integrity">Inspection and Asset Integrity</a></li></ul></aside>
+</article>
+</main>
+<footer>
+  <div class="wrap">
+    <nav class="fnav" aria-label="Footer"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a><a href="../../standards/">Standards Index</a><a href="../../search/">Search</a></nav>
+    <div>Knowledge grows when it is communicated. <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a></div>
+    <div>Articles, documents and calculators are aids for engineering work, not a substitute for a complete engineering assessment. Users remain responsible for verifying the applicable design basis, code requirements and edition, assumptions and engineering decisions; results must be checked by a qualified engineer before use.</div>
+    <div>© 2026 Baher Elsheikh. Content and tools free to use; not to be copied or redistributed without permission.</div>
+  </div>
+</footer>
+<script src="../../assets/chrome.js"></script>
+</body>
+</html>

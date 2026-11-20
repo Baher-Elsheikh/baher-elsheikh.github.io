@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cylindrical Shell Thickness Calculator | ASME VIII-1 UG-27, UG-28, UG-99, UCS-66</title>
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="description" content="Free online calculator for cylindrical shell thickness to ASME VIII-1: internal pressure (UG-27), MAWP and MAP new and cold, external pressure (UG-28), forming strain (UG-79/UCS-79), hydrotest pressure (UG-99) and MDMT (UCS-66). Step-by-step equations, PASS/FAIL and PDF output.">
+<meta name="keywords" content="cylindrical shell thickness calculator, pressure vessel shell thickness, ASME Section VIII Division 1, UG-27, UG-28, MAWP, MAP new and cold, UG-99 hydrotest, UCS-66 MDMT, UCS-79 forming strain">
+<meta name="author" content="Baher Elsheikh">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://baher-elsheikh.github.io/calculators/cylindrical-shell/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baher-elsheikh.github.io/calculators/cylindrical-shell/">
+<meta property="og:title" content="Cylindrical Shell Thickness Calculator">
+<meta property="og:description" content="Free check of pressure vessel shell thickness to ASME VIII-1 (UG-27, UG-28, UG-99, UCS-66), with step-by-step equations. Prepared by Baher Elsheikh.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Cylindrical Shell Thickness Calculator","url":"https://baher-elsheikh.github.io/calculators/cylindrical-shell/","applicationCategory":"EngineeringApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Checks cylindrical shell thickness for internal pressure (ASME VIII-1 UG-27), external pressure (UG-28), MAWP, forming strain, hydrotest pressure and MDMT.","author":{"@type":"Person","name":"Baher Elsheikh","sameAs":["https://www.linkedin.com/in/baher-elsheikh/","https://www.youtube.com/@baherelsheikh4942"]}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF0F5; --panel:#FFFFFF; --ink:#121A30; --steel:#545E74; --rule:#CDD2DE;
+  --accent:#14245E; --accent-soft:#E1E5F2; --ok:#1E7A4C; --ok-soft:#DDF0E5;
+  --bad:#AE2A1F; --bad-soft:#F7DEDA; --warn:#8A5A00; --warn-soft:#F6EAD0;
+  --field:#F7F8FB; --wall:#7E8E98; --tol:#B9C4CA;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --math:"STIX Two Text","Cambria Math",Cambria,"Times New Roman",serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+    --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+    --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+  --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+  --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans);font-variant-numeric:tabular-nums}
+.wrap{max-width:1320px;margin:0 auto;padding:28px 24px 48px}
+header.top{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+h1{font-family:var(--math);font-weight:600;font-size:clamp(26px,3.4vw,38px);line-height:1.1;margin:0;letter-spacing:-.01em}
+.home{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14.5px;margin-bottom:14px}
+.home img{height:40px;width:auto}
+.home:hover span{color:var(--accent)}
+.lg-dark{display:none}
+.f input:disabled,.f select:disabled{opacity:.45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:inline}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:inline}
+.basis{color:var(--steel);font-size:13.5px;margin-top:8px;max-width:70ch}
+.byline{font-size:14px;margin-top:10px;color:var(--ink);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.byline .links{display:inline-flex;gap:12px}
+.byline a,footer a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;font-weight:500}
+.byline a:hover,footer a:hover{text-decoration-thickness:2px}
+@media print{.byline a::after{content:" (" attr(href) ")";font-weight:400;color:var(--steel)}}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{font:500 14px var(--sans);border-radius:6px;padding:8px 14px;cursor:pointer;border:1px solid var(--rule);background:var(--panel);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--panel)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* verdict + wall gauge */
+.verdict{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:22px 24px;display:grid;grid-template-columns:minmax(260px,1fr) minmax(320px,1.6fr);gap:20px 32px;align-items:center;margin-bottom:22px}
+.verdict .state{font-family:var(--math);font-size:clamp(22px,2.6vw,30px);line-height:1.2}
+.verdict .state.ok{color:var(--ok)} .verdict .state.bad{color:var(--bad)}
+.verdict .sub{color:var(--steel);margin-top:6px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-size:12.5px;padding:3px 9px;border-radius:999px;border:1px solid transparent}
+.chip.ok{background:var(--ok-soft);color:var(--ok)} .chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)} .chip.info{background:var(--accent-soft);color:var(--accent)}
+.gauge svg{width:100%;height:auto;display:block}
+.gauge text{font-family:var(--sans);font-size:11px;fill:var(--steel)}
+.gauge .lab{fill:var(--ink);font-weight:500}
+.gcap{font-size:12px;color:var(--steel);margin-top:4px}
+
+/* layout */
+.cols{display:grid;grid-template-columns:380px minmax(0,1fr);gap:22px;align-items:start}
+aside.inputs{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:6px 18px 18px;position:sticky;top:calc(12px + env(safe-area-inset-top,0px));max-height:calc(100vh - 24px - env(safe-area-inset-top,0px));overflow:auto}
+fieldset{border:0;border-top:1px solid var(--rule);margin:14px 0 0;padding:12px 0 0}
+fieldset:first-of-type{border-top:0}
+legend{font-weight:600;font-size:14px;padding:0}
+.f{display:grid;grid-template-columns:1fr 112px 46px;gap:6px;align-items:center;margin-top:7px}
+.f.wide{grid-template-columns:1fr 1.4fr}
+.f label{font-size:13px;color:var(--ink)}
+.f label i{font-family:var(--math);font-size:15px}
+.f .u{font-size:12px;color:var(--steel)}
+input,select{font:14px var(--sans);color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:5px;padding:5px 7px;width:100%;font-variant-numeric:tabular-nums}
+input[type=number]{text-align:right}
+input:disabled{opacity:.6}
+input.need{background:#FFF7D6;border-color:#D9B84A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) input.need{background:#33290F;border-color:#7A6420}}
+:root[data-theme="dark"] input.need{background:#33290F;border-color:#7A6420}
+.hint{font-size:12px;color:var(--steel);margin:4px 0 0;line-height:1.4}
+.check{display:flex;gap:8px;align-items:center;font-size:13px;margin-top:8px}
+.check input{width:auto}
+
+/* calculation report */
+main.report{display:flex;flex-direction:column;gap:18px;min-width:0}
+section.step{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 20px 12px}
+.step h2{font-size:17px;font-weight:600;margin:0;display:flex;gap:10px;align-items:baseline}
+.step h2 .n{font-family:var(--math);color:var(--accent);font-size:20px;min-width:1.2em}
+.step .ref{color:var(--steel);font-size:12.5px;margin:2px 0 8px 32px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td{padding:7px 8px;border-top:1px solid var(--rule);vertical-align:baseline}
+td.lb{width:30%;color:var(--ink)}
+td.eq{font-family:var(--math);font-size:15.5px;white-space:nowrap}
+td.sb{font-family:var(--math);font-size:15px;color:var(--steel);white-space:nowrap}
+td.v{text-align:right;font-weight:600;white-space:nowrap}
+td.v small{display:block;font-weight:400;color:var(--steel);font-size:12px}
+td.un{color:var(--steel);font-size:12.5px;white-space:nowrap;width:44px}
+.result{margin:10px 0 4px;padding:9px 12px;border-radius:6px;font-weight:500;font-size:14px}
+.result.ok{background:var(--ok-soft);color:var(--ok)} .result.bad{background:var(--bad-soft);color:var(--bad)}
+.result.warn{background:var(--warn-soft);color:var(--warn)} .result.info{background:var(--accent-soft);color:var(--accent)}
+.note{font-size:12.5px;color:var(--steel);margin:6px 0 0}
+/* how to use */
+section.howto{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:18px 22px 14px;margin-top:22px}
+.howto h2{font-family:var(--math);font-weight:600;font-size:24px;margin:0 0 4px}
+.howto h3{font-size:15px;font-weight:600;margin:18px 0 6px}
+.howto p,.howto li{font-size:14px;max-width:85ch}
+.howto ol,.howto ul{padding-left:22px;margin:6px 0}
+.howto li{margin:5px 0}
+.howto .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4px 32px}
+@media (max-width:560px){.howto{padding:16px 14px 12px}}
+footer{margin-top:28px;font-size:12.5px;color:var(--steel);border-top:1px solid var(--rule);padding-top:14px;display:grid;gap:6px}
+.printhead{display:none}
+
+@media (max-width:980px){
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none}
+  .verdict{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .wrap{padding:18px 14px 36px}
+  td.eq,td.sb{white-space:normal}
+  td.lb{width:auto}
+}
+@media (prefers-reduced-motion:no-preference){
+  .verdict .state{transition:color .25s}
+}
+@media print{
+  :root{--bg:#fff;--panel:#fff}
+  body{font-size:11px}
+  .actions,.noprint{display:none!important}
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none;border:0;padding:0}
+  section.step,.verdict{break-inside:avoid;border-color:#999}
+  .printhead{display:block;font-size:11px;margin-bottom:8px}
+  input,select{border:0;background:none;padding:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <a class="home" href="../"><img class="lg-light" src="../../assets/gear-light.png" alt=""><img class="lg-dark" src="../../assets/gear-dark.png" alt=""><span>Baher Elsheikh</span><span style="font-weight:400;color:var(--steel)">| All calculators</span></a>
+      <h1>Cylindrical shell thickness</h1>
+      <div class="byline">Prepared by: <strong>Baher Elsheikh</strong>
+        <span class="links"><a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube channel</a></span></div>
+      <div class="basis">ASME BPVC Section VIII Division 1: UG-16 and UG-27 (internal pressure), UG-28(c) (external pressure), UG-79 / UCS-79 (forming strain), UG-99(b) (hydrotest), UCS-66, UCS-68 and UG-20(f) (MDMT). Metric units.</div>
+    </div>
+    <div class="actions">
+      <button type="button" id="btnHow">How to use</button>
+      <button type="button" id="btnExample">Load example</button>
+      <button type="button" id="btnClear">Clear inputs</button>
+      <button type="button" class="primary" id="btnPrint">Print / save PDF</button>
+    </div>
+  </header>
+
+  <div class="printhead" id="printhead"></div>
+
+  <div class="verdict" aria-live="polite">
+    <div>
+      <div class="state" id="vState">—</div>
+      <div class="sub" id="vSub"></div>
+      <div class="chips" id="vChips"></div>
+    </div>
+    <div class="gauge">
+      <svg id="gauge" viewBox="0 0 640 112" role="img" aria-label="Shell wall thickness gauge"></svg>
+      <div class="gcap">Shell wall to scale: available thickness against the governing required thickness.</div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <aside class="inputs" aria-label="Inputs">
+      <fieldset>
+        <legend>Equipment</legend>
+        <div class="f wide"><label for="tag">Tag / description</label><input id="tag" type="text" placeholder="e.g. V-101 knock-out drum"></div>
+        <div class="f wide"><label for="prep">Prepared by</label><input id="prep" type="text"></div>
+        <div class="f wide"><label for="date">Date</label><input id="date" type="date"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Dimensions</legend>
+        <div class="f"><label for="Di">Inside diameter <i>D</i><sub>i</sub></label><input id="Di" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="Ls">Tangent length <i>L</i><sub>s</sub></label><input id="Ls" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="tn">Nominal thickness <i>t</i><sub>n</sub></label><input id="tn" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="UT">Under-tolerance <i>UT</i></label><input id="UT" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">UG-16(c): plate under-tolerance up to the lesser of 0.25 mm or 6% may be ignored. Pipe: typically 12.5% of t<sub>n</sub>.</p>
+        <div class="f"><label for="CA">Corrosion allowance</label><input id="CA" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="L">Design length <i>L</i> (Fig. UG-28.1)</label><input id="L" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">Usually L<sub>s</sub> plus one third of each formed head depth, or the distance between stiffening rings.</p>
+        <div class="f wide"><label for="orient">Vessel orientation</label>
+          <select id="orient"><option value="V">Vertical</option><option value="H">Horizontal</option></select></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Material and design conditions</legend>
+        <div class="f wide"><label for="mat">Material</label><input id="mat" type="text"></div>
+        <div class="f"><label for="El">Long. joint eff. <i>E</i></label><input id="El" type="number" step="any"><span class="u"></span></div>
+        <div class="f"><label for="Ec">Circ. joint eff. <i>E</i><sub>c</sub></label><input id="Ec" type="number" step="any"><span class="u"></span></div>
+        <p class="hint">UW-12: 1.0 full radiography, 0.85 spot, 0.70 none (Type 1 joints).</p>
+        <div class="f"><label for="sg">Fluid sp. gr.</label><input id="sg" type="number" step="any"><span class="u"></span></div>
+        <div class="f"><label for="T">Design temperature</label><input id="T" type="number" step="any"><span class="u">°C</span></div>
+        <div class="f"><label for="Th">Hydrotest temperature</label><input id="Th" type="number" step="any"><span class="u">°C</span></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Material strengths (from ASME II-D)</legend>
+        <p class="hint">Enter from Section II Part D, Metric: Table 1A or 1B for allowable stress, Table Y-1 for yield, Table TM for modulus.</p>
+        <div class="f"><label for="S">Allowable at design temp. <i>S</i></label><input id="S" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="St">Allowable at test temp. <i>S</i><sub>t</sub></label><input id="St" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="Sy">Yield at design temp. <i>S</i><sub>y</sub></label><input id="Sy" type="number" step="any"><span class="u">MPa</span></div>
+        <p class="hint">Needed only when D<sub>o</sub>/t &lt; 10 (UG-28(c)(2)).</p>
+        <div class="f"><label for="Em">Modulus at design temp. <i>E</i><sub>m</sub></label><input id="Em" type="number" step="any"><span class="u">MPa</span></div>
+        <p class="hint">Needed only when factor A falls to the left of the material curve.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Design pressures</legend>
+        <div class="f wide"><label for="punit">Pressure unit</label>
+          <select id="punit"><option value="MPa">MPa (g)</option><option value="kgcm2">kg/cm² (g)</option><option value="bar">bar (g)</option><option value="psi">psi (g)</option></select></div>
+        <div class="f"><label for="Pi">Internal, at top <i>P</i><sub>i</sub></label><input id="Pi" type="number" step="any"><span class="u pu">MPa</span></div>
+        <div class="f wide"><label for="ext">External pressure</label>
+          <select id="ext"><option value="none">None</option><option value="fv">Full vacuum (0.101 MPa)</option><option value="other">Other value</option></select></div>
+        <div class="f"><label for="Pex">External, if other <i>P</i><sub>e</sub></label><input id="Pex" type="number" step="any"><span class="u pu">MPa</span></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>External pressure chart factors</legend>
+        <p class="hint">Read from Section II Part D, Subpart 3, at the <i>L</i>/<i>D</i><sub>o</sub> and <i>D</i><sub>o</sub>/<i>t</i> shown in step 4.</p>
+        <div class="f"><label for="A">Factor <i>A</i> (Fig. G)</label><input id="A" type="number" step="any"><span class="u"></span></div>
+        <label class="check"><input id="left" type="checkbox"> A falls to the left of the material curve</label>
+        <div class="f"><label for="B">Factor <i>B</i> (material chart)</label><input id="B" type="number" step="any"><span class="u">MPa</span></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>MDMT and impact testing (Part UCS)</legend>
+        <label class="check"><input id="ucs" type="checkbox"> Carbon or low-alloy steel (Part UCS)</label>
+        <div class="f wide"><label for="curve">UCS-66 material curve</label>
+          <select id="curve"><option>A</option><option>B</option><option>C</option><option>D</option></select></div>
+        <div class="f"><label for="Ma">MDMT from Fig. UCS-66</label><input id="Ma" type="number" step="any"><span class="u">°C</span></div>
+        <div class="f"><label for="r1">Reduction, Fig. UCS-66.1</label><input id="r1" type="number" step="any"><span class="u">°C</span></div>
+        <label class="check"><input id="q68" type="checkbox"> Take UCS-68(c) reduction (PWHT performed when not required)</label>
+        <div class="f"><label for="r2">UCS-68(c) reduction</label><input id="r2" type="number" step="any"><span class="u">°C</span></div>
+        <p class="hint">UCS-68(c) permits up to 17 °C (30 °F).</p>
+        <label class="check"><input id="q20" type="checkbox"> UG-20(f) applies (all conditions met): −29 °C</label>
+        <div class="f"><label for="Ms">Required MDMT (service)</label><input id="Ms" type="number" step="any"><span class="u">°C</span></div>
+        <label class="check"><input id="qi1" type="checkbox"> Impact test required by service (e.g. UW-2)</label>
+        <label class="check"><input id="qi2" type="checkbox"> Impact test requested by client</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Post-weld heat treatment</legend>
+        <label class="check"><input id="p1" type="checkbox"> Required by service, UW-2(a)</label>
+        <label class="check"><input id="p2" type="checkbox"> Required by UCS-56 (material and thickness)</label>
+        <label class="check"><input id="p3" type="checkbox"> Required by UCS-68(b) (low MDMT, P-No. 1)</label>
+        <label class="check"><input id="p4" type="checkbox"> Requested by client</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Forming and hydrotest</legend>
+        <div class="f"><label for="emax">Max. fibre elongation</label><input id="emax" type="number" step="any"><span class="u">%</span></div>
+        <p class="hint">UCS-79(d): 5% for P-No. 1 (other conditions apply); see UNF-79 and UHA-44 for other materials.</p>
+        <div class="f"><label for="R0">Original radius <i>R</i><sub>0</sub></label><input id="R0" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">Leave blank for flat plate (R<sub>0</sub> = ∞).</p>
+        <div class="f"><label for="Pcl">Client test pressure (optional)</label><input id="Pcl" type="number" step="any"><span class="u pu">MPa</span></div>
+      </fieldset>
+    </aside>
+
+    <main class="report" id="report"></main>
+  </div>
+
+  <section class="howto noprint" id="howto" aria-labelledby="h-how">
+    <h2 id="h-how">How to use this calculator</h2>
+    <p>The calculator checks a cylindrical shell against ASME VIII-1: required thickness for internal pressure, MAWP and MAP new and cold, external pressure, MDMT and impact testing, PWHT, forming strain and hydrotest pressure. Every equation is shown with your values in it, so the result can be checked line by line.</p>
+    <div class="grid">
+      <div>
+        <h3>Steps</h3>
+        <ol>
+          <li><strong>Enter the dimensions.</strong> Inside diameter, tangent length, nominal thickness, under-tolerance and corrosion allowance. The design length <i>L</i> is used only for external pressure. Choose vertical or horizontal: it sets the liquid head used for the static pressure.</li>
+          <li><strong>Enter the material and design conditions.</strong> Joint efficiencies to UW-12, the fluid specific gravity for the static head, and the design and hydrotest temperatures.</li>
+          <li><strong>Enter the material strengths from ASME Section II Part D.</strong> Allowable stress at design and test temperature. Yield and modulus are needed only for some external-pressure cases; the page highlights them when they are.</li>
+          <li><strong>Enter the design pressures.</strong> Pick the pressure unit first. Internal pressure is at the top of the vessel; the static head is added for the bottom. Choose none, full vacuum or another external pressure.</li>
+          <li><strong>For external pressure, read the chart factors.</strong> Step 4 of the report shows <i>L</i>/<i>D</i><sub>o</sub> and <i>D</i><sub>o</sub>/<i>t</i>. Use them to read factor A from Fig. G and factor B from the material chart in Section II Part D, Subpart 3, then enter A and B. If A falls to the left of the material curve, tick the box and enter the modulus instead of B.</li>
+          <li><strong>For carbon and low-alloy steel, complete the MDMT section.</strong> MDMT from Fig. UCS-66 for the material curve, the UCS-66.1 reduction, the optional UCS-68(c) reduction, UG-20(f) if all its conditions are met, and the required service MDMT.</li>
+          <li><strong>Tick the PWHT reasons that apply</strong> and enter the forming limits (allowable fibre elongation and, for re-rolled plate, the original radius).</li>
+          <li><strong>Read the result.</strong> The banner turns green when the shell is accepted, with the thickness margin. Each step in the report has its own PASS / FAIL or note. If the shell fails, increase the nominal thickness (and, for external pressure, read A and B again).</li>
+          <li><strong>Print or save as PDF</strong> to keep the calculation with your inputs.</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Good practice</h3>
+        <ul>
+          <li>Use the allowable stresses from the Section II Part D edition that applies to the vessel, at the design temperature of the shell.</li>
+          <li>Under-tolerance: UG-16(c) lets plate under-tolerance up to the lesser of 0.25 mm or 6% be ignored. For pipe, take 12.5% of the nominal thickness.</li>
+          <li>The external-pressure check is iterative: after changing the thickness, read A and B again for the new <i>D</i><sub>o</sub>/<i>t</i>.</li>
+          <li>For hydrotest, use the lowest stress ratio of all the pressure parts, not only the shell.</li>
+          <li>Inputs are kept in your browser, so the page reopens with your last case. Use Clear inputs to start a new one.</li>
+        </ul>
+        <h3>Not covered</h3>
+        <ul>
+          <li>Thick shells beyond the UG-27 limits (Mandatory Appendix 1-2): the page flags this but does not calculate it.</li>
+          <li>Stiffening ring design, nozzle reinforcement (t<sub>r</sub> is given for use in UG-37), heads, cones, wind, seismic and other loads.</li>
+          <li>Impact test rules for non-UCS materials (UHA-51, UNF-65 and others).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>Prepared by: Baher Elsheikh (<a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a>). Version 1.0, November 2026 (from the spreadsheet of 30 Nov 2019, revision 1).</div>
+    <div>© 2026 Baher Elsheikh. Free to use; not to be copied, modified or redistributed without permission.</div>
+    <div>This tool is an aid for engineering screening. Allowable stresses, yield strength, modulus, the external-pressure factors <i>A</i> and <i>B</i> and the UCS-66 chart values are entered by the user from ASME Section II Part D and Section VIII Division 1 and are not supplied here. Results must be verified by a qualified engineer against the applicable code edition before use. No warranty is given.</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const PCONV = {kgcm2:0.0980665, MPa:1, bar:0.1, psi:0.00689476};
+  const PLAB = {kgcm2:'kg/cm²', MPa:'MPa', bar:'bar', psi:'psi'};
+  const EXAMPLE = {tag:'Example: vertical knock-out drum', prep:'', date:'', Di:1500, Ls:4500, tn:16, UT:0.3, CA:3, L:4750, orient:'V',
+    mat:'SA-516 Gr. 70', El:1, Ec:1, sg:1, T:200, Th:25, S:138, St:138, Sy:'', Em:'', punit:'MPa', Pi:1.6, ext:'none', Pex:'',
+    A:'', left:false, B:'', ucs:true, curve:'B', Ma:-15, r1:5, q68:true, r2:5, q20:true, Ms:-20, qi1:false, qi2:false,
+    p1:false, p2:false, p3:false, p4:false, emax:5, R0:'', Pcl:''};
+  const IDS = Object.keys(EXAMPLE);
+  const STORE = 'shell-thk-inputs-v1';
+  const $ = id => document.getElementById(id);
+  function setInputs(d){ IDS.forEach(k=>{const el=$(k); if(!el) return; if(el.type==='checkbox') el.checked=!!d[k]; else el.value=(d[k]===undefined||d[k]===null)?'':d[k];}); }
+  function getInputs(){ const d={}; IDS.forEach(k=>{const el=$(k); d[k]= el.type==='checkbox'?el.checked:el.value;}); return d; }
+  function num(k){ const v=parseFloat($(k).value); return isFinite(v)?v:NaN; }
+  function f(x,d){ if(!isFinite(x)) return '—'; return x.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+  const mmin = x => isFinite(x)? f(x/25.4,4)+' in' : '';
+  const v = s => `<i>${s}</i>`;
+  function row(label, eq, sub, val, unit, d, small){
+    return `<tr><td class="lb">${label}</td><td class="eq">${eq||''}</td><td class="sb">${sub||''}</td>`+
+      `<td class="v">${typeof val==='string'?val:f(val,d)}${small?`<small>${small}</small>`:''}</td><td class="un">${unit||''}</td></tr>`;
+  }
+  function step(n,title,ref,rows,results,notes){
+    return `<section class="step"><h2><span class="n">${n}</span>${title}</h2><div class="ref">${ref}</div>`+
+      (rows.length?`<div class="tbl"><table>${rows.join('')}</table></div>`:'')+
+      (results||[]).map(r=>`<div class="result ${r[0]}">${r[1]}</div>`).join('')+
+      (notes||[]).map(t=>`<p class="note">${t}</p>`).join('')+`</section>`;
+  }
+
+  function compute(){
+    const pu=$('punit').value, pc=PCONV[pu], pl=PLAB[pu];
+    document.querySelectorAll('.pu').forEach(e=>e.textContent=pl);
+    const back = p => isFinite(p)? f(p/pc,3)+' '+pl : '';
+    const extMode=$('ext').value; $('Pex').disabled = extMode!=='other';
+    const ucs=$('ucs').checked; ['curve','Ma','r1','q68','r2','q20','Ms'].forEach(k=>$(k).disabled=!ucs); $('r2').disabled=!ucs||!$('q68').checked;
+
+    const Di=num('Di'), Ls=num('Ls'), tn=num('tn'), UT=num('UT')||0, CA=num('CA')||0, L=num('L'), H=$('orient').value==='H';
+    const El=num('El'), Ec=num('Ec'), sg=num('sg'), T=num('T'), Th=num('Th');
+    const S=num('S'), St=num('St'), Sy=num('Sy'), Em=num('Em');
+    const Pi=num('Pi')*pc, Pe = extMode==='fv'?0.101325:(extMode==='other'?num('Pex')*pc:0);
+    const A=num('A'), left=$('left').checked, B=num('B');
+
+    // step 1
+    const h = H?Di:Ls, Ps = 0.0098*sg*h/1000, P = Pi+Ps;
+    const Do = Di+2*tn, R = Di/2+CA, Rn = Di/2, tnew = tn-UT, tc = tn-UT-CA;
+    // step 2
+    const t1 = P*R/(S*El-0.6*P)+CA, t2 = P*R/(2*S*Ec+0.4*P)+CA, t = Math.max(t1,t2), tmin = 1.5+CA, treq = Math.max(t,tmin);
+    const lim27 = (t1-CA)<=R/2 && P<=0.385*S*El;
+    const okInt = tnew>=treq;
+    const tr = P*R/(S-0.6*P);
+    // step 3
+    const Mc = S*El*tc/(R+0.6*tc), Ml = 2*S*Ec*tc/(R-0.4*tc), MAWP = Math.min(Mc,Ml)-Ps;
+    const okM = MAWP>=Pi;
+    const Mn1 = St*El*tnew/(Rn+0.6*tnew), Mn2 = 2*St*Ec*tnew/(Rn-0.4*tnew), MAPNC = Math.min(Mn1,Mn2)-Ps;
+    // step 4
+    const hasExt = Pe>0;
+    const LDraw = L/Do, LD = Math.min(50,Math.max(0.05,LDraw)), Dt = Do/tc, thin = Dt>=10;
+    const Bu = left? A*Em/2 : B;
+    const Pa_1 = 4*Bu/(3*Dt), Pa1 = (2.167/Dt-0.0833)*Bu, S0 = Math.min(2*S,0.9*Sy), Pa2 = 2*S0/Dt*(1-1/Dt);
+    const Pa = thin? Pa_1 : Math.min(Pa1,Pa2);
+    const extReady = !hasExt || (isFinite(A) && isFinite(Bu) && (thin || isFinite(Sy)));
+    const okExt = !hasExt || (extReady && Pa>=Pe);
+    // step 5 MDMT
+    const Ma=num('Ma'), r1=num('r1')||0, r2=num('r2')||0, Ms=num('Ms');
+    const Mb = Ma-r1, Mc2 = Mb-($('q68').checked?r2:0), Me = $('q20').checked? Math.min(Mc2,-29) : Mc2;
+    const exempt = ucs ? (isFinite(Ms)&&isFinite(Me)? Ms>=Me : null) : null;
+    const impact = $('qi1').checked || $('qi2').checked || (ucs && exempt===false);
+    // step 6 PWHT
+    const pw = ['p1','p2','p3','p4'].some(k=>$(k).checked);
+    const pwText = pw ? 'PWHT required.' : (ucs && $('q68').checked ? 'PWHT to be performed: the UCS-68(c) MDMT reduction has been taken.' : 'PWHT not required by the criteria selected.');
+    // step 7 forming
+    const emax=num('emax'), R0=num('R0'), Rf=(Di+tn)/2, el = 50*tn/Rf*(1-(isFinite(R0)&&R0>0?Rf/R0:0));
+    const okF = el<=emax;
+    // step 8 hydrotest
+    const LSR = St/S, PTa = 1.3*MAWP*LSR, PTb = 1.3*Pi*LSR, Pcl = num('Pcl')*pc;
+
+    ['A','B'].forEach(k=>$(k).classList.toggle('need', hasExt && !isFinite(num(k)) && !(k==='B'&&left)));
+    $('Em').classList.toggle('need', hasExt && left && !isFinite(Em));
+    $('Sy').classList.toggle('need', hasExt && !thin && !isFinite(Sy));
+
+    let out='';
+    out += step(1,'Design pressures and thicknesses','Static head added at the bottom of the shell; UG-16(c) under-tolerance',[
+      row('Static head', `${v('P')}<sub>s</sub> = 0.0098·sg·${v('h')}`, `0.0098 × ${f(sg,2)} × ${f(h/1000,3)}`, Ps,'MPa',4, H?'h = inside diameter':'h = tangent length'),
+      row('Internal pressure at top', `${v('P')}<sub>i</sub>`, `${f(num('Pi'),3)} ${pl}`, Pi,'MPa',4),
+      row('Internal pressure at bottom', `${v('P')} = ${v('P')}<sub>i</sub> + ${v('P')}<sub>s</sub>`, `${f(Pi,4)} + ${f(Ps,4)}`, P,'MPa',4, back(P)),
+      row('External pressure', `${v('P')}<sub>e</sub>`, extMode==='fv'?'full vacuum':(extMode==='other'?'entered':'none'), Pe,'MPa',4),
+      row('Outside diameter', `${v('D')}<sub>o</sub> = ${v('D')}<sub>i</sub> + 2${v('t')}<sub>n</sub>`, `${f(Di,1)} + 2 × ${f(tn,2)}`, Do,'mm',2, mmin(Do)),
+      row('Inside radius, corroded', `${v('R')} = ${v('D')}<sub>i</sub>/2 + CA`, `${f(Di,1)}/2 + ${f(CA,2)}`, R,'mm',2, mmin(R)),
+      row('Available thickness, new', `${v('t')}<sub>n</sub> − UT`, `${f(tn,3)} − ${f(UT,3)}`, tnew,'mm',3, mmin(tnew)),
+      row('Available thickness, corroded', `${v('t')}<sub>c</sub> = ${v('t')}<sub>n</sub> − UT − CA`, `${f(tn,3)} − ${f(UT,3)} − ${f(CA,3)}`, tc,'mm',3, mmin(tc))
+    ], tc<=0?[['bad','Corroded thickness is zero or negative: check t<sub>n</sub>, under-tolerance and CA.']]:[]);
+
+    out += step(2,'Internal pressure','UG-27(c)(1) and (2), inside-radius formulas; UG-16(b) minimum thickness',[
+      row('Circumferential stress', `${v('t')}<sub>1</sub> = ${v('P')}${v('R')} / (${v('S')}${v('E')} − 0.6${v('P')}) + CA`,
+          `${f(P,4)} × ${f(R,2)} / (${f(S,1)} × ${f(El,2)} − 0.6 × ${f(P,4)}) + ${f(CA,2)}`, t1,'mm',3, mmin(t1)),
+      row('Longitudinal stress', `${v('t')}<sub>2</sub> = ${v('P')}${v('R')} / (2${v('S')}${v('E')}<sub>c</sub> + 0.4${v('P')}) + CA`,
+          `${f(P,4)} × ${f(R,2)} / (2 × ${f(S,1)} × ${f(Ec,2)} + 0.4 × ${f(P,4)}) + ${f(CA,2)}`, t2,'mm',3, mmin(t2)),
+      row('Required thickness', `${v('t')} = max(${v('t')}<sub>1</sub>, ${v('t')}<sub>2</sub>)`, `max(${f(t1,3)}, ${f(t2,3)})`, t,'mm',3, mmin(t)),
+      row('Minimum thickness', `${v('t')}<sub>min</sub> = 1.5 + CA`, `UG-16(b)`, tmin,'mm',3),
+      row('Governing required thickness', `${v('t')}<sub>req</sub> = max(${v('t')}, ${v('t')}<sub>min</sub>)`, `max(${f(t,3)}, ${f(tmin,3)})`, treq,'mm',3, mmin(treq)),
+      row('Validity limits', `${v('t')} ≤ ${v('R')}/2 ; ${v('P')} ≤ 0.385${v('S')}${v('E')}`, `${f(t1-CA,2)} ≤ ${f(R/2,1)} ; ${f(P,3)} ≤ ${f(0.385*S*El,2)}`, lim27?'Valid':'Not valid','',0),
+      row('t<sub>r</sub> for nozzle reinforcement', `${v('t')}<sub>r</sub> = ${v('P')}${v('R')} / (${v('S')} − 0.6${v('P')})`, `E = 1, without CA (UG-37)`, tr,'mm',3, mmin(tr))
+    ],[
+      lim27?['info','UG-27(c) formulas are applicable.']:['warn','UG-27(c) limits exceeded: use Mandatory Appendix 1-2 (thick shells).'],
+      okInt?['ok',`t<sub>n</sub> − UT = ${f(tnew,3)} ≥ t<sub>req</sub> ${f(treq,3)} mm: acceptable for internal pressure.`]
+           :['bad',`t<sub>n</sub> − UT = ${f(tnew,3)} < t<sub>req</sub> ${f(treq,3)} mm: increase the nominal thickness t<sub>n</sub>.`]
+    ]);
+
+    out += step(3,'Maximum allowable pressures','UG-27(c) rearranged; MAWP hot and corroded, MAP new and cold at ambient',[
+      row('Circumferential', `${v('S')}${v('E')}${v('t')}<sub>c</sub> / (${v('R')} + 0.6${v('t')}<sub>c</sub>)`, `${f(S,1)} × ${f(El,2)} × ${f(tc,3)} / (${f(R,2)} + 0.6 × ${f(tc,3)})`, Mc,'MPa',3),
+      row('Longitudinal', `2${v('S')}${v('E')}<sub>c</sub>${v('t')}<sub>c</sub> / (${v('R')} − 0.4${v('t')}<sub>c</sub>)`, `2 × ${f(S,1)} × ${f(Ec,2)} × ${f(tc,3)} / (${f(R,2)} − 0.4 × ${f(tc,3)})`, Ml,'MPa',3),
+      row('MAWP at top of vessel', `MAWP = min(above) − ${v('P')}<sub>s</sub>`, `min(${f(Mc,3)}, ${f(Ml,3)}) − ${f(Ps,4)}`, MAWP,'MPa',3, back(MAWP)),
+      row('MAP new and cold at top', `min(${v('S')}<sub>t</sub>${v('E')}${v('t')} / (${v('R')}<sub>n</sub> + 0.6${v('t')}), 2${v('S')}<sub>t</sub>${v('E')}<sub>c</sub>${v('t')} / (${v('R')}<sub>n</sub> − 0.4${v('t')})) − ${v('P')}<sub>s</sub>`,
+          `t = t<sub>n</sub> − UT = ${f(tnew,3)}, R<sub>n</sub> = ${f(Rn,2)}`, MAPNC,'MPa',3, back(MAPNC))
+    ],[ okM?['ok',`MAWP ${f(MAWP,3)} ≥ P<sub>i</sub> ${f(Pi,3)} MPa.`]:['bad',`MAWP ${f(MAWP,3)} < P<sub>i</sub> ${f(Pi,3)} MPa.`] ]);
+
+    if(!hasExt){
+      out += step(4,'External pressure','UG-28(c)',[],[['info','No external pressure specified.']]);
+    } else {
+      const r4=[
+        row('Length ratio', `${v('L')}/${v('D')}<sub>o</sub>`, `${f(L,0)} / ${f(Do,1)} = ${f(LDraw,3)}`, LD,'',3, LDraw!==LD?'limited to 0.05–50':''),
+        row('Diameter ratio', `${v('D')}<sub>o</sub>/${v('t')}`, `${f(Do,1)} / ${f(tc,3)}`, Dt,'',2, thin?'≥ 10: UG-28(c)(1)':'< 10: UG-28(c)(2)'),
+        row('Factor A (entered)', v('A'), Dt<4?`1.1/(${v('D')}<sub>o</sub>/${v('t')})² = ${f(1.1/Dt/Dt,5)}`:'Fig. G', A,'',6),
+        row(left?'Factor B (A left of curve)':'Factor B (entered)', left?`${v('B')} = ${v('A')}${v('E')}<sub>m</sub>/2`:v('B'), left?`${f(A,6)} × ${f(Em,0)} / 2`:'material chart at design temperature', Bu,'MPa',3)
+      ];
+      if(thin) r4.push(row('Allowable external pressure', `${v('P')}<sub>a</sub> = 4${v('B')} / [3(${v('D')}<sub>o</sub>/${v('t')})]`, `4 × ${f(Bu,3)} / (3 × ${f(Dt,2)})`, Pa,'MPa',4, back(Pa)));
+      else {
+        r4.push(row('Buckling limit', `${v('P')}<sub>a1</sub> = [2.167/(${v('D')}<sub>o</sub>/${v('t')}) − 0.0833]${v('B')}`, `(2.167 / ${f(Dt,2)} − 0.0833) × ${f(Bu,3)}`, Pa1,'MPa',4));
+        r4.push(row('Stress for plastic limit', `${v('S')}<sub>0</sub> = min(2${v('S')}, 0.9${v('S')}<sub>y</sub>)`, `min(2 × ${f(S,1)}, 0.9 × ${f(Sy,1)})`, S0,'MPa',1));
+        r4.push(row('Plastic limit', `${v('P')}<sub>a2</sub> = (2${v('S')}<sub>0</sub>/(${v('D')}<sub>o</sub>/${v('t')}))[1 − 1/(${v('D')}<sub>o</sub>/${v('t')})]`, `(2 × ${f(S0,1)} / ${f(Dt,2)}) × (1 − 1/${f(Dt,2)})`, Pa2,'MPa',4));
+        r4.push(row('Allowable external pressure', `${v('P')}<sub>a</sub> = min(${v('P')}<sub>a1</sub>, ${v('P')}<sub>a2</sub>)`, `min(${f(Pa1,4)}, ${f(Pa2,4)})`, Pa,'MPa',4, back(Pa)));
+      }
+      const res4 = !extReady ? [['warn','Enter factor A and B (or the modulus, if A is left of the curve) to complete the external pressure check.']]
+        : okExt ? [['ok',`P<sub>a</sub> ${f(Pa,4)} ≥ P<sub>e</sub> ${f(Pe,4)} MPa: acceptable for external pressure.`]]
+                : [['bad',`P<sub>a</sub> ${f(Pa,4)} < P<sub>e</sub> ${f(Pe,4)} MPa: increase t<sub>n</sub> or add stiffening rings.`]];
+      out += step(4,'External pressure','UG-28(c), corroded thickness',r4,res4,['The required thickness under external pressure is found by iteration: adjust t<sub>n</sub> (and read A and B again) until P<sub>a</sub> ≥ P<sub>e</sub>.']);
+    }
+
+    if(!ucs){
+      out += step(5,'MDMT and impact testing','UCS-66, UCS-66.1, UCS-68(c), UG-20(f)',[],[['info','Not a Part UCS material: apply the impact test rules of the applicable part (e.g. UHA-51, UNF-65).']].concat(($('qi1').checked||$('qi2').checked)?[['warn','Impact test required by service or client.']]:[]));
+    } else {
+      out += step(5,'MDMT and impact testing','UCS-66, UCS-66.1, UCS-68(c), UG-20(f)',[
+        row('MDMT from Fig. UCS-66', `MDMT<sub>a</sub>`, `curve ${$('curve').value}`, Ma,'°C',0),
+        row('After UCS-66.1 reduction', `MDMT<sub>b</sub> = MDMT<sub>a</sub> − Δ<sub>1</sub>`, `${f(Ma,0)} − ${f(r1,0)}`, Mb,'°C',0),
+        row('After UCS-68(c) reduction', `MDMT<sub>c</sub> = MDMT<sub>b</sub> − Δ<sub>2</sub>`, $('q68').checked?`${f(Mb,0)} − ${f(r2,0)}`:'not taken', Mc2,'°C',0),
+        row('Lowest MDMT without impact test', `MDMT<sub>e</sub>`, $('q20').checked?`min(${f(Mc2,0)}, −29) with UG-20(f)`:'UG-20(f) not applied', Me,'°C',0, isFinite(Me)?f(Me*1.8+32,0)+' °F':''),
+        row('Required MDMT (service)', `MDMT<sub>s</sub>`, '', Ms,'°C',0, isFinite(Ms)?f(Ms*1.8+32,0)+' °F':'')
+      ],[
+        exempt===null?['warn','Enter the MDMT values.']:(exempt?['ok',`MDMT<sub>s</sub> ${f(Ms,0)} °C is not colder than MDMT<sub>e</sub> ${f(Me,0)} °C: exempt from impact testing by UCS-66.`]
+                                                         :['bad',`MDMT<sub>s</sub> ${f(Ms,0)} °C is colder than MDMT<sub>e</sub> ${f(Me,0)} °C: impact test required.`]),
+        impact?['warn','Conclusion: impact test required.']:['info','Conclusion: impact test not required.']
+      ], Me<-48?['MDMT colder than −48 °C (−55 °F) needs impact testing unless UCS-66(b)(3) applies.']:[]);
+    }
+
+    out += step(6,'Post-weld heat treatment','UW-2(a), UCS-56, UCS-68(b), UCS-68(c), client requirements',[],[[pw?'warn':'info',pwText]]);
+
+    out += step(7,'Forming strain','Table UG-79-1 (cylinders), UCS-79, UNF-79, UHA-44',[
+      row('Final centreline radius', `${v('R')}<sub>f</sub> = (${v('D')}<sub>i</sub> + ${v('t')}<sub>n</sub>)/2`, `(${f(Di,1)} + ${f(tn,2)}) / 2`, Rf,'mm',2),
+      row('Original centreline radius', `${v('R')}<sub>0</sub>`, isFinite(R0)&&R0>0?'entered':'flat plate', isFinite(R0)&&R0>0?R0:'∞','mm',1),
+      row('Extreme fibre elongation', `ε = (50${v('t')}<sub>n</sub>/${v('R')}<sub>f</sub>)(1 − ${v('R')}<sub>f</sub>/${v('R')}<sub>0</sub>)`, `(50 × ${f(tn,2)} / ${f(Rf,2)}) × (1 − ${isFinite(R0)&&R0>0?f(Rf/R0,4):'0'})`, el,'%',2),
+      row('Allowable elongation', 'ε<sub>max</sub>', '', emax,'%',1)
+    ],[ okF?['ok',`ε ${f(el,2)}% ≤ ${f(emax,1)}%: heat treatment after forming not required.`]:['warn',`ε ${f(el,2)}% > ${f(emax,1)}%: heat treatment after forming required (check UCS-79, UNF-79 or UHA-44).`] ]);
+
+    out += step(8,'Hydrostatic test pressure','UG-99(b); pressures at the top of the vessel',[
+      row('Stress ratio', `${v('S')}<sub>t</sub>/${v('S')}`, `${f(St,1)} / ${f(S,1)}`, LSR,'',3),
+      row('Based on MAWP', `${v('P')}<sub>T</sub> = 1.3 × MAWP × ${v('S')}<sub>t</sub>/${v('S')}`, `1.3 × ${f(MAWP,3)} × ${f(LSR,3)}`, PTa,'MPa',3, back(PTa)),
+      row('Based on design pressure', `${v('P')}<sub>T</sub> = 1.3 × ${v('P')}<sub>i</sub> × ${v('S')}<sub>t</sub>/${v('S')}`, `1.3 × ${f(Pi,3)} × ${f(LSR,3)}`, PTb,'MPa',3, back(PTb)),
+      isFinite(Pcl)?row('Defined by client', `${v('P')}<sub>T</sub>`, 'entered', Pcl,'MPa',3, back(Pcl)):''
+    ],[],['Use the lowest stress ratio of all pressure parts. The MAWP-based value applies when MAWP is calculated; the design-pressure value is permitted by the UG-99(b) footnote.']);
+
+    const margin = (tnew-treq)/tnew;
+    const mClass = margin<0?'bad':(margin<0.1?'warn':'ok');
+    out += step(9,'Result','Governing required thickness against available thickness',[
+      row('Governing required thickness', `${v('t')}<sub>req</sub>`, '', treq,'mm',3, mmin(treq)),
+      row('Available thickness', `${v('t')}<sub>n</sub> − UT`, '', tnew,'mm',3, mmin(tnew)),
+      row('Thickness margin', `(${v('t')}<sub>n</sub> − UT − ${v('t')}<sub>req</sub>)/(${v('t')}<sub>n</sub> − UT)`, `(${f(tnew,3)} − ${f(treq,3)}) / ${f(tnew,3)}`, isFinite(margin)?f(margin*100,1)+'%':'—','',0),
+      row('MAWP at top', 'MAWP', '', MAWP,'MPa',3, back(MAWP))
+    ],[[mClass, margin<0?'No margin: required thickness exceeds available thickness.':(margin<0.1?'Tight margin: below 10%.':'Margin above 10%.')]]);
+
+    $('report').innerHTML = out;
+
+    const anyFail = !okInt || !okM || (hasExt && extReady && !okExt);
+    const st=$('vState');
+    if(anyFail){ st.textContent='Not accepted: increase the nominal thickness'; st.className='state bad'; }
+    else if(!extReady){ st.textContent='Pending external pressure factors'; st.className='state'; }
+    else if(!isFinite(margin)){ st.textContent='—'; st.className='state'; }
+    else { st.textContent=`Accepted with ${f(margin*100,1)}% thickness margin`; st.className='state ok'; }
+    $('vSub').innerHTML = `${$('tag').value||'Shell'}: ${f(Di,0)} mm ID × ${f(tn,2)} mm nominal, ${$('mat').value||'material not stated'}.`;
+    const chip=(ok,lab)=>`<span class="chip ${ok===null?'warn':(ok?'ok':'bad')}">${lab}</span>`;
+    $('vChips').innerHTML = chip(okInt,'Internal pressure')+chip(okM,'MAWP')+
+      (hasExt?chip(extReady?okExt:null,'External pressure'):`<span class="chip info">No external pressure</span>`)+
+      (lim27?'':`<span class="chip warn">UG-27 limits exceeded</span>`)+
+      (okF?`<span class="chip ok">Forming strain</span>`:`<span class="chip warn">Heat treat after forming</span>`)+
+      (impact?`<span class="chip warn">Impact test required</span>`:`<span class="chip info">No impact test</span>`)+
+      (pw?`<span class="chip warn">PWHT required</span>`:'');
+
+    drawGauge(tn,tnew,CA,treq);
+    $('printhead').textContent = `${$('tag').value||''}  ${$('prep').value?'Prepared by: '+$('prep').value:''}  ${$('date').value||''}`;
+    try{ localStorage.setItem(STORE, JSON.stringify(getInputs())); }catch(e){}
+  }
+
+  function drawGauge(tn,tnew,CA,treq){
+    const g=$('gauge'); if(!isFinite(tn)||tn<=0){ g.innerHTML=''; return; }
+    const maxT=Math.max(tn,treq||0)*1.08, x0=20, W=600, sx=t=>x0+W*t/maxT;
+    const cs=getComputedStyle(document.documentElement), c=n=>cs.getPropertyValue(n).trim();
+    let s='';
+    s+=`<rect x="${x0}" y="40" width="${Math.max(0,sx(tnew)-x0)}" height="24" fill="${c('--wall')}" rx="2"/>`;
+    if(tn>tnew) s+=`<rect x="${sx(tnew)}" y="40" width="${sx(tn)-sx(tnew)}" height="24" fill="${c('--tol')}"/>`;
+    if(CA>0) s+=`<rect x="${sx(tnew-CA)}" y="40" width="${sx(tnew)-sx(tnew-CA)}" height="24" fill="${c('--warn')}" opacity=".45"/>`;
+    s+=`<line x1="${x0}" y1="72" x2="${x0+W}" y2="72" stroke="${c('--rule')}"/>`;
+    for(let i=0;i<=4;i++){const t=maxT*i/4,x=sx(t); s+=`<line x1="${x}" y1="72" x2="${x}" y2="76" stroke="${c('--steel')}"/><text x="${x}" y="88" text-anchor="middle">${f(t,1)}</text>`;}
+    s+=`<text x="${x0+W}" y="104" text-anchor="end">mm</text>`;
+    if(isFinite(treq)){ const x=sx(treq), col=treq<=tnew?c('--ok'):c('--bad');
+      s+=`<line x1="${x}" y1="22" x2="${x}" y2="68" stroke="${col}" stroke-width="2"/><text class="lab" x="${x}" y="16" text-anchor="middle" style="fill:${col}">treq ${f(treq,2)}</text>`; }
+    s+=`<text x="${x0+4}" y="56" style="fill:#fff;font-weight:500">tn − UT ${f(tnew,2)}</text>`;
+    if(CA>0) s+=`<text x="${sx(tnew-CA/2)}" y="36" text-anchor="middle">CA</text>`;
+    g.innerHTML=s;
+  }
+
+  let saved=null; try{ saved=JSON.parse(localStorage.getItem(STORE)); }catch(e){}
+  setInputs(saved||EXAMPLE);
+  document.querySelectorAll('aside input, aside select').forEach(el=>el.addEventListener('input',compute));
+  document.querySelectorAll('aside input[type=checkbox], aside select').forEach(el=>el.addEventListener('change',compute));
+  $('btnExample').addEventListener('click',()=>{setInputs(EXAMPLE);compute();});
+  $('btnClear').addEventListener('click',()=>{const d={}; IDS.forEach(k=>d[k]=''); ['left','ucs','q68','q20','qi1','qi2','p1','p2','p3','p4'].forEach(k=>d[k]=false); d.punit='MPa'; d.orient='V'; d.ext='none'; d.curve='B'; setInputs(d); compute();});
+  $('btnPrint').addEventListener('click',()=>window.print());
+  $('btnHow').addEventListener('click',()=>$('howto').scrollIntoView({behavior:'smooth'}));
+  if(window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',compute);
+  compute();
+})();
+</script>
+</body>
+</html>

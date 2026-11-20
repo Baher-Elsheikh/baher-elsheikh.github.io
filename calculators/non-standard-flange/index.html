@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Non-Standard Flange Calculator | ASME VIII-1 Appendix 2 and WRC 538</title>
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="description" content="Free online calculator for non-standard bolted flanges to ASME VIII-1 Mandatory Appendix 2: integral, loose with hub and ring flanges, gasket loads, bolt area, flange moments, Table 2-7.1 flange factors by equation, longitudinal, radial and tangential stresses, rigidity index, plus a WRC 538 check at the assembly bolt stress. Step-by-step equations and PDF output.">
+<meta name="keywords" content="non-standard flange calculator, ASME VIII-1 Appendix 2, flange design, integral flange, loose flange, ring flange, flange stresses, flange rigidity, WRC 538, Table 2-7.1 flange factors">
+<meta name="author" content="Baher Elsheikh">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://baher-elsheikh.github.io/calculators/non-standard-flange/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baher-elsheikh.github.io/calculators/non-standard-flange/">
+<meta property="og:title" content="Non-Standard Flange Calculator, ASME VIII-1 Appendix 2">
+<meta property="og:description" content="Free Appendix 2 flange design check with WRC 538 assembly check, step by step. Prepared by Baher Elsheikh.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Non-Standard Flange Calculator, ASME VIII-1 Appendix 2","url":"https://baher-elsheikh.github.io/calculators/non-standard-flange/","applicationCategory":"EngineeringApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Bolted flange design to ASME VIII-1 Mandatory Appendix 2 for integral, loose and ring flanges, with a WRC 538 check at the assembly bolt stress.","author":{"@type":"Person","name":"Baher Elsheikh","sameAs":["https://www.linkedin.com/in/baher-elsheikh/","https://www.youtube.com/@baherelsheikh4942"]}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF0F5; --panel:#FFFFFF; --ink:#121A30; --steel:#545E74; --rule:#CDD2DE;
+  --accent:#14245E; --accent-soft:#E1E5F2; --ok:#1E7A4C; --ok-soft:#DDF0E5;
+  --bad:#AE2A1F; --bad-soft:#F7DEDA; --warn:#8A5A00; --warn-soft:#F6EAD0;
+  --field:#F7F8FB; --wall:#7E8E98; --tol:#B9C4CA;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --math:"STIX Two Text","Cambria Math",Cambria,"Times New Roman",serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+    --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+    --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+  --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+  --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans);font-variant-numeric:tabular-nums}
+.wrap{max-width:1320px;margin:0 auto;padding:28px 24px 48px}
+header.top{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+h1{font-family:var(--math);font-weight:600;font-size:clamp(26px,3.4vw,38px);line-height:1.1;margin:0;letter-spacing:-.01em}
+.home{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14.5px;margin-bottom:14px}
+.home img{height:40px;width:auto}
+.home:hover span{color:var(--accent)}
+.lg-dark{display:none}
+.f input:disabled,.f select:disabled{opacity:.45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:inline}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:inline}
+.basis{color:var(--steel);font-size:13.5px;margin-top:8px;max-width:70ch}
+.byline{font-size:14px;margin-top:10px;color:var(--ink);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.byline .links{display:inline-flex;gap:12px}
+.byline a,footer a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;font-weight:500}
+.byline a:hover,footer a:hover{text-decoration-thickness:2px}
+@media print{.byline a::after{content:" (" attr(href) ")";font-weight:400;color:var(--steel)}}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{font:500 14px var(--sans);border-radius:6px;padding:8px 14px;cursor:pointer;border:1px solid var(--rule);background:var(--panel);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--panel)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* verdict + wall gauge */
+.verdict{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:22px 24px;display:grid;grid-template-columns:minmax(260px,1fr) minmax(320px,1.6fr);gap:20px 32px;align-items:center;margin-bottom:22px}
+.verdict .state{font-family:var(--math);font-size:clamp(22px,2.6vw,30px);line-height:1.2}
+.verdict .state.ok{color:var(--ok)} .verdict .state.bad{color:var(--bad)}
+.verdict .sub{color:var(--steel);margin-top:6px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-size:12.5px;padding:3px 9px;border-radius:999px;border:1px solid transparent}
+.chip.ok{background:var(--ok-soft);color:var(--ok)} .chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)} .chip.info{background:var(--accent-soft);color:var(--accent)}
+.gauge svg{width:100%;height:auto;display:block}
+.gauge text{font-family:var(--sans);font-size:11px;fill:var(--steel);paint-order:stroke;stroke:var(--panel);stroke-width:3px;stroke-linejoin:round}
+.gauge .lab{fill:var(--ink);font-weight:500}
+.gcap{font-size:12px;color:var(--steel);margin-top:4px}
+
+/* layout */
+.cols{display:grid;grid-template-columns:380px minmax(0,1fr);gap:22px;align-items:start}
+aside.inputs{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:6px 18px 18px;position:sticky;top:calc(12px + env(safe-area-inset-top,0px));max-height:calc(100vh - 24px - env(safe-area-inset-top,0px));overflow:auto}
+fieldset{border:0;border-top:1px solid var(--rule);margin:14px 0 0;padding:12px 0 0}
+fieldset:first-of-type{border-top:0}
+legend{font-weight:600;font-size:14px;padding:0}
+.f{display:grid;grid-template-columns:1fr 112px 46px;gap:6px;align-items:center;margin-top:7px}
+.f.wide{grid-template-columns:1fr 1.4fr}
+.f label{font-size:13px;color:var(--ink)}
+.f label i{font-family:var(--math);font-size:15px}
+.f .u{font-size:12px;color:var(--steel)}
+input,select{font:14px var(--sans);color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:5px;padding:5px 7px;width:100%;font-variant-numeric:tabular-nums}
+input[type=number]{text-align:right}
+input:disabled{opacity:.6}
+input.need{background:#FFF7D6;border-color:#D9B84A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) input.need{background:#33290F;border-color:#7A6420}}
+:root[data-theme="dark"] input.need{background:#33290F;border-color:#7A6420}
+.hint{font-size:12px;color:var(--steel);margin:4px 0 0;line-height:1.4}
+
+/* calculation report */
+main.report{display:flex;flex-direction:column;gap:18px;min-width:0}
+section.step{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 20px 12px}
+.step h2{font-size:17px;font-weight:600;margin:0;display:flex;gap:10px;align-items:baseline}
+.step h2 .n{font-family:var(--math);color:var(--accent);font-size:20px;min-width:1.2em}
+.step .ref{color:var(--steel);font-size:12.5px;margin:2px 0 8px 32px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td{padding:7px 8px;border-top:1px solid var(--rule);vertical-align:baseline}
+td.lb{width:30%;color:var(--ink)}
+td.eq{font-family:var(--math);font-size:15.5px;white-space:nowrap}
+td.sb{font-family:var(--math);font-size:15px;color:var(--steel);white-space:nowrap}
+td.v{text-align:right;font-weight:600;white-space:nowrap}
+td.v small{display:block;font-weight:400;color:var(--steel);font-size:12px}
+td.un{color:var(--steel);font-size:12.5px;white-space:nowrap;width:44px}
+.result{margin:10px 0 4px;padding:9px 12px;border-radius:6px;font-weight:500;font-size:14px}
+.result.ok{background:var(--ok-soft);color:var(--ok)} .result.bad{background:var(--bad-soft);color:var(--bad)}
+.result.warn{background:var(--warn-soft);color:var(--warn)} .result.info{background:var(--accent-soft);color:var(--accent)}
+.note{font-size:12.5px;color:var(--steel);margin:6px 0 0}
+.schtbl td{text-align:center;font-size:12.5px;padding:5px 4px}
+.schtbl td.sel{outline:2px solid var(--accent);font-weight:600}
+.schtbl td.okc{background:var(--ok-soft);color:var(--ok)} .schtbl td.badc{color:var(--steel)}
+.schtbl th{font-size:12px;font-weight:600;padding:5px 4px;border-bottom:1px solid var(--rule)}
+
+/* how to use */
+section.howto{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:18px 22px 14px;margin-top:22px}
+.howto h2{font-family:var(--math);font-weight:600;font-size:24px;margin:0 0 4px}
+.howto h3{font-size:15px;font-weight:600;margin:18px 0 6px}
+.howto p,.howto li{font-size:14px;max-width:85ch}
+.howto ol,.howto ul{padding-left:22px;margin:6px 0}
+.howto li{margin:5px 0}
+.howto .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4px 32px}
+
+footer{margin-top:28px;font-size:12.5px;color:var(--steel);border-top:1px solid var(--rule);padding-top:14px;display:grid;gap:6px}
+.printhead{display:none}
+
+@media (max-width:980px){
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none}
+  .verdict{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .wrap{padding:18px 14px 36px}
+  td.eq,td.sb{white-space:normal}
+  td.lb{width:auto}
+  .howto{padding:16px 14px 12px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .verdict .state{transition:color .25s}
+}
+@media print{
+  :root{--bg:#fff;--panel:#fff}
+  body{font-size:11px}
+  .actions,.noprint{display:none!important}
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none;border:0;padding:0}
+  section.step,.verdict{break-inside:avoid;border-color:#999}
+  .printhead{display:block;font-size:11px;margin-bottom:8px}
+  input,select{border:0;background:none;padding:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <a class="home" href="../"><img class="lg-light" src="../../assets/gear-light.png" alt=""><img class="lg-dark" src="../../assets/gear-dark.png" alt=""><span>Baher Elsheikh</span><span style="font-weight:400;color:var(--steel)">| All calculators</span></a>
+      <h1>Non-standard flange</h1>
+      <div class="byline">Prepared by: <strong>Baher Elsheikh</strong>
+        <span class="links"><a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube channel</a></span></div>
+      <div class="basis">ASME BPVC Section VIII Division 1, Mandatory Appendix 2: bolt loads, flange moments, flange factors of Table 2-7.1 (by equation, no charts), stresses and rigidity for integral, loose-with-hub and ring flanges. WRC Bulletin 538 check of an integral flange at the assembly bolt stress. Metric units.</div>
+    </div>
+    <div class="actions">
+      <button type="button" id="btnHow">How to use</button>
+      <button type="button" id="btnExample">Load example</button>
+      <button type="button" id="btnClear">Clear inputs</button>
+      <button type="button" class="primary" id="btnPrint">Print / save PDF</button>
+    </div>
+  </header>
+
+  <div class="printhead" id="printhead"></div>
+
+  <div class="verdict" aria-live="polite">
+    <div>
+      <div class="state" id="vState">—</div>
+      <div class="sub" id="vSub"></div>
+      <div class="chips" id="vChips"></div>
+    </div>
+    <div class="gauge">
+      <svg id="sketch" viewBox="0 0 640 240" role="img" aria-label="Flange half section"></svg>
+      <div class="gcap">Half section through the flange, drawn to scale from your dimensions: bore B, hub g<sub>0</sub>, g<sub>1</sub>, h, ring thickness t, gasket diameter G, bolt circle C and outside diameter A.</div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <aside class="inputs" aria-label="Inputs">
+      <fieldset>
+        <legend>Flange</legend>
+        <div class="f wide"><label for="tag">Tag / description</label><input id="tag" type="text" placeholder="e.g. E-101 girth flange"></div>
+        <div class="f wide"><label for="prep">Prepared by</label><input id="prep" type="text"></div>
+        <div class="f wide"><label for="date">Date</label><input id="date" type="date"></div>
+        <div class="f wide"><label for="ftype">Flange type (Fig. 2-4)</label>
+          <select id="ftype"><option value="int">Integral (welding neck)</option><option value="lh">Loose, with hub</option><option value="ring">Loose, ring (no hub)</option></select></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Design conditions</legend>
+        <div class="f wide"><label for="punit">Pressure unit</label>
+          <select id="punit"><option value="MPa">MPa (g)</option><option value="kgcm2">kg/cm² (g)</option><option value="bar">bar (g)</option><option value="psi">psi (g)</option></select></div>
+        <div class="f"><label for="P">Design pressure <i>P</i></label><input id="P" type="number" step="any"><span class="u pu">MPa</span></div>
+        <div class="f"><label for="Td">Design temperature</label><input id="Td" type="number" step="any"><span class="u">°C</span></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Dimensions (corroded)</legend>
+        <div class="f"><label for="A">Outside diameter <i>A</i></label><input id="A" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="B">Inside diameter <i>B</i></label><input id="B" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="C">Bolt circle <i>C</i></label><input id="C" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="t">Flange thickness <i>t</i></label><input id="t" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="g0">Hub at small end <i>g</i><sub>0</sub></label><input id="g0" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="g1">Hub at back of flange <i>g</i><sub>1</sub></label><input id="g1" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="h">Hub length <i>h</i></label><input id="h" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">Enter dimensions in the corroded condition. Hub dimensions are not used for a ring flange.</p>
+        <div class="f"><label for="CA">Corrosion allowance</label><input id="CA" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">Used for the minimum hub thickness check only.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Gasket (Tables 2-5.1, 2-5.2)</legend>
+        <div class="f wide"><label for="gas">Gasket type</label><input id="gas" type="text"></div>
+        <div class="f"><label for="GO">Gasket contact OD</label><input id="GO" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="GI">Gasket contact ID</label><input id="GI" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="m">Gasket factor <i>m</i></label><input id="m" type="number" step="any"><span class="u"></span></div>
+        <div class="f"><label for="y">Seating stress <i>y</i></label><input id="y" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="bov">Basic width <i>b</i><sub>o</sub> override</label><input id="bov" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">Blank: b<sub>o</sub> = N/2 (facing sketches 1a, 1b of Table 2-5.2). Enter b<sub>o</sub> for other facings.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Bolting</legend>
+        <div class="f wide"><label for="bolt">Bolt size</label><select id="bolt"></select></div>
+        <div class="f"><label for="n">Number of bolts <i>n</i></label><input id="n" type="number" step="1"><span class="u"></span></div>
+        <div class="f"><label for="Sa">Bolt allowable, ambient <i>S</i><sub>a</sub></label><input id="Sa" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="Sb">Bolt allowable, design <i>S</i><sub>b</sub></label><input id="Sb" type="number" step="any"><span class="u">MPa</span></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Flange and hub material (ASME II-D)</legend>
+        <div class="f"><label for="Sf">Flange allowable, design <i>S</i><sub>fo</sub></label><input id="Sf" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="Sfa">Flange allowable, ambient <i>S</i><sub>fa</sub></label><input id="Sfa" type="number" step="any"><span class="u">MPa</span></div>
+        <p class="hint">S<sub>fa</sub> is used for gasket seating. Entering S<sub>fo</sub> here as well is conservative.</p>
+        <div class="f"><label for="Sn">Nozzle / hub allowable <i>S</i><sub>n</sub></label><input id="Sn" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="Em">Flange modulus <i>E</i></label><input id="Em" type="number" step="any"><span class="u">MPa</span></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>WRC 538 check (integral flange)</legend>
+        <div class="f"><label for="Sby">Bolt yield, ambient</label><input id="Sby" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="pct">Assembly bolt stress</label><input id="pct" type="number" step="any"><span class="u">% <i>S</i><sub>y</sub></span></div>
+        <div class="f"><label for="Sya">Flange yield, ambient <i>S</i><sub>ya</sub></label><input id="Sya" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="Syo">Flange yield, design <i>S</i><sub>yo</sub></label><input id="Syo" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="phig">Gasket relaxation <i>φ</i><sub>g</sub></label><input id="phig" type="number" step="any"><span class="u"></span></div>
+        <p class="hint">Leave the bolt stress blank to skip. For the target torque, use the <a href="../flange-bolt-torque/">flange bolt torque calculator</a>.</p>
+      </fieldset>
+    </aside>
+
+    <main class="report" id="report"></main>
+  </div>
+
+  <section class="howto noprint" id="howto" aria-labelledby="h-how">
+    <h2 id="h-how">How to use this calculator</h2>
+    <p>The calculator designs a bolted flange that is not covered by the standard flange tables, following ASME VIII-1 Mandatory Appendix 2. It finds the bolt loads for gasket seating and operation, the bolt area needed, the flange moments, and the longitudinal hub, radial and tangential ring stresses, and checks them and the rigidity index against the code limits. The flange factors F, V, f, F<sub>L</sub> and V<sub>L</sub> are calculated from the equations of Table 2-7.1, so no chart reading is needed. For integral flanges, an optional WRC 538 check tests the flange at the actual assembly bolt stress.</p>
+    <div class="grid">
+      <div>
+        <h3>Steps</h3>
+        <ol>
+          <li><strong>Choose the flange type</strong> per Fig. 2-4: integral (welding neck or welded hub), loose with hub, or loose ring without hub. The half section at the top shows your geometry to scale.</li>
+          <li><strong>Enter the design pressure</strong> (pick the unit first) and the dimensions A, B, C, t and, for hubbed flanges, g<sub>0</sub>, g<sub>1</sub> and h, all in the corroded condition.</li>
+          <li><strong>Enter the gasket</strong> contact OD and ID, and m and y from Table 2-5.1 or the manufacturer. b<sub>o</sub> = N/2 is used unless you enter b<sub>o</sub> for another facing sketch.</li>
+          <li><strong>Choose the bolts</strong> and enter the bolt allowables at ambient and design temperature.</li>
+          <li><strong>Enter the flange allowables</strong> S<sub>fo</sub> (design) and S<sub>fa</sub> (ambient), the hub / nozzle allowable S<sub>n</sub> and the flange modulus.</li>
+          <li><strong>Read the result.</strong> The banner turns green when the bolt area, all stress checks for both gasket seating and operation, and the rigidity index pass. Increase t (and g<sub>1</sub>, h for hubbed flanges) or the bolting if a check fails.</li>
+          <li><strong>Optional WRC 538:</strong> enter the bolt yield, the assembly bolt stress as % of yield, and the flange yield at ambient and design temperature to see whether the flange is overstressed at bolt-up.</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Good practice</h3>
+        <ul>
+          <li>Use corroded dimensions for B, g<sub>0</sub>, g<sub>1</sub> and t; the calculator does not subtract the corrosion allowance.</li>
+          <li>Stress margins of a few percent are common in flange design; the rigidity check is often the one that governs leak tightness.</li>
+          <li>Flanges that pass Appendix 2 can still be overstressed at bolt-up if the bolts are tightened to a high stress; the WRC 538 check shows this. Use the <a href="../flange-bolt-torque/">PCC-1 calculator</a> to choose the assembly bolt stress.</li>
+          <li>Check the bolt spacing and the radial clearance to the hub and the edge against TEMA or the bolting supplier when space is tight.</li>
+        </ul>
+        <h3>Not covered</h3>
+        <ul>
+          <li>Reverse flanges, split loose flanges, flat-face flanges with full-face gaskets (Appendix Y), external loads on the joint and flange stresses at elevated temperature beyond the WRC 538 operating check.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>Prepared by: Baher Elsheikh (<a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a>). Version 1.0, November 2026 (from the spreadsheet Non Standard Flange Calculator, revision 1, with the Table 2-7.1 and WRC 538 corrections).</div>
+    <div>© 2026 Baher Elsheikh. Free to use; not to be copied, modified or redistributed without permission.</div>
+    <div>This tool is an aid for engineering screening. Allowable stresses, yield strengths, modulus and gasket factors are entered by the user and are not supplied here. Results must be verified by a qualified engineer against the applicable code edition before use. No warranty is given.</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const PCONV = {kgcm2:0.0980665, MPa:1, bar:0.1, psi:0.00689476};
+  const PLAB = {kgcm2:'kg/cm²', MPa:'MPa', bar:'bar', psi:'psi'};
+  const INCH = [['1/2"-13 UNC',0.5,13],['5/8"-11 UNC',0.625,11],['3/4"-10 UNC',0.75,10],['7/8"-9 UNC',0.875,9],['1"-8 UNC',1.0,8],
+    ['1-1/8"-8 UN',1.125,8],['1-1/4"-8 UN',1.25,8],['1-3/8"-8 UN',1.375,8],['1-1/2"-8 UN',1.5,8],['1-5/8"-8 UN',1.625,8],
+    ['1-3/4"-8 UN',1.75,8],['1-7/8"-8 UN',1.875,8],['2"-8 UN',2.0,8],['2-1/4"-8 UN',2.25,8],['2-1/2"-8 UN',2.5,8],['2-3/4"-8 UN',2.75,8],['3"-8 UN',3.0,8]];
+  const METRIC = [['M12',12,72],['M14',14,100],['M16',16,138],['M20',20,217],['M22',22,272],['M24',24,313],['M27',27,414],['M30',30,503],
+    ['M33',33,629],['M36',36,738],['M39',39,890],['M42',42,1018],['M45',45,1195],['M48',48,1343],['M52',52,1615],['M56',56,1863],['M64',64,2467]];
+  const BOLTS = METRIC.map(b=>({s:b[0],d:b[1],A:b[2]})).concat(INCH.map(b=>{ const d=b[1]*25.4, p=25.4/b[2], dr=d-1.29904*p; return {s:b[0],d,A:Math.PI/4*dr*dr}; }));
+  const WRC = { a:[-0.71375912,-0.01447638,-0.06456312], b:[-0.12846279,-0.27814745,-0.08232239], c:[1.08037907,0.01035395,0.13691677],
+    d:[0.99766848,1.37984158,-0.77879888], e:[1.21823466,-0.34346764,0.14909019], f:[0.01024612,0.02536192,0.00660062],
+    g:[0.4262313,-0.0014508,0.0616252], h:[1.4204976,2.25543162,0.74639834], i:[-0.70278181,-0.60889597,-0.079595],
+    j:[-0.02483937,-0.15735462,0.09851673], k:[-1.59460436,1.22516062,-0.1121436] };
+  const EXAMPLE = {tag:'Example: girth flange, integral type', prep:'', date:'', ftype:'int', punit:'MPa', P:4.56, Td:260,
+    A:190.5, B:85, C:149.2, t:28.6, g0:7.5, g1:7.5, h:55, CA:0, gas:'Spiral wound, SS', GO:104.8, GI:92.8, m:2, y:17.2, bov:'',
+    bolt:'M20', n:8, Sa:130, Sb:89, Sf:134, Sfa:134, Sn:116, Em:135000, Sby:720, pct:45, Sya:250, Syo:202, phig:0.7};
+  const IDS = Object.keys(EXAMPLE);
+  const STORE = 'nonstd-flange-inputs-v1';
+  const $ = id => document.getElementById(id);
+  const og1=document.createElement('optgroup'); og1.label='Metric (PCC-1 Table H-1M)'; const og2=document.createElement('optgroup'); og2.label='Inch (UNC / 8UN)';
+  BOLTS.forEach((b,i)=>{ const o=document.createElement('option'); o.value=b.s; o.textContent=b.s; (i<METRIC.length?og1:og2).appendChild(o); });
+  $('bolt').appendChild(og1); $('bolt').appendChild(og2);
+  function setInputs(d){ IDS.forEach(k=>{const el=$(k); if(!el) return; el.value=(d[k]===undefined||d[k]===null)?'':d[k];}); if(!$('bolt').value) $('bolt').value='M20'; if(!$('ftype').value) $('ftype').value='int'; }
+  function getInputs(){ const d={}; IDS.forEach(k=>{d[k]=$(k).value;}); return d; }
+  function num(k){ const v=parseFloat($(k).value); return isFinite(v)?v:NaN; }
+  function f(x,d){ if(!isFinite(x)) return '—'; return x.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+  const v = s => `<i>${s}</i>`;
+  function row(label, eq, sub, val, unit, d, small){
+    return `<tr><td class="lb">${label}</td><td class="eq">${eq||''}</td><td class="sb">${sub||''}</td>`+
+      `<td class="v">${typeof val==='string'?val:f(val,d)}${small?`<small>${small}</small>`:''}</td><td class="un">${unit||''}</td></tr>`;
+  }
+  function step(n,title,ref,rows,results,notes){
+    return `<section class="step"><h2><span class="n">${n}</span>${title}</h2><div class="ref">${ref}</div>`+
+      (rows.length?`<div class="tbl"><table>${rows.filter(Boolean).join('')}</table></div>`:'')+
+      (results||[]).map(r=>`<div class="result ${r[0]}">${r[1]}</div>`).join('')+
+      (notes||[]).map(t=>`<p class="note">${t}</p>`).join('')+`</section>`;
+  }
+  const chk = (val, lim, lab, limLab) => [val<=lim?'ok':'bad', `${lab} ${f(val,1)} ${val<=lim?'≤':'>'} ${limLab} ${f(lim,1)} MPa (${f(val/lim*100,1)}%).`];
+
+  // ASME VIII-1 Table 2-7.1 flange factors (closed form)
+  function factors(g1go, hho){
+    const A=g1go-1, C=43.68*Math.pow(hho,4);
+    const C1=1/3+A/12, C2=5/42+17*A/336, C3=1/210+A/360;
+    const C4=11/360+59*A/5040+(1+3*A)/C, C5=1/90+5*A/1008-Math.pow(1+A,3)/C, C6=1/120+17*A/5040+1/C;
+    const C7=215/2772+51*A/1232+(60/7+225*A/14+75*A*A/7+5*A**3/2)/C;
+    const C8=31/6930+128*A/45045+(6/7+15*A/7+12*A*A/7+5*A**3/11)/C;
+    const C9=533/30240+653*A/73920+(1/2+33*A/14+39*A*A/28+25*A**3/84)/C;
+    const C10=29/3780+3*A/704-(1/2+33*A/14+81*A*A/28+13*A**3/12)/C;
+    const C11=31/6048+1763*A/665280+(1/2+6*A/7+15*A*A/28+5*A**3/42)/C;
+    const C12=1/2925+71*A/300300+(8/35+18*A/35+156*A*A/385+6*A**3/55)/C;
+    const C13=761/831600+937*A/1663200+(1/35+6*A/35+11*A*A/70+3*A**3/70)/C;
+    const C14=197/415800+103*A/332640-(1/35+6*A/35+17*A*A/70+A**3/10)/C;
+    const C15=233/831600+97*A/554400+(1/35+3*A/35+A*A/14+2*A**3/105)/C;
+    const C16=C1*C7*C12+C2*C8*C3+C3*C8*C2-(C3*C3*C7+C8*C8*C1+C2*C2*C12);
+    const C17=(C4*C7*C12+C2*C8*C13+C3*C8*C9-(C13*C7*C3+C8*C8*C4+C12*C2*C9))/C16;
+    const C18=(C5*C7*C12+C2*C8*C14+C3*C8*C10-(C14*C7*C3+C8*C8*C5+C12*C2*C10))/C16;
+    const C19=(C6*C7*C12+C2*C8*C15+C3*C8*C11-(C15*C7*C3+C8*C8*C6+C12*C2*C11))/C16;
+    const C20=(C1*C9*C12+C4*C8*C3+C3*C13*C2-(C3*C3*C9+C13*C8*C1+C12*C4*C2))/C16;
+    const C21=(C1*C10*C12+C5*C8*C3+C3*C14*C2-(C3*C3*C10+C14*C8*C1+C12*C5*C2))/C16;
+    const C22=(C1*C11*C12+C6*C8*C3+C3*C15*C2-(C3*C3*C11+C15*C8*C1+C12*C6*C2))/C16;
+    const C23=(C1*C7*C13+C2*C9*C3+C4*C8*C2-(C3*C7*C4+C8*C9*C1+C2*C2*C13))/C16;
+    const C24=(C1*C7*C14+C2*C10*C3+C5*C8*C2-(C3*C7*C5+C8*C10*C1+C2*C2*C14))/C16;
+    const C25=(C1*C7*C15+C2*C11*C3+C6*C8*C2-(C3*C7*C6+C8*C11*C1+C2*C2*C15))/C16;
+    const C26=-Math.pow(C/4,0.25), C27=C20-C17-5/12+C17*C26, C28=C22-C19-1/12+C19*C26;
+    const C29=-Math.pow(C/4,0.5), C30=-Math.pow(C/4,0.75), C31=3*A/2-C17*C30, C32=0.5-C19*C30;
+    const C33=0.5*C26*C32+C28*C31*C29-(0.5*C30*C28+C32*C27*C29);
+    const C34=1/12+C18-C21-C18*C26, C35=-C18*Math.pow(C/4,0.75);
+    const C36=(C28*C35*C29-C32*C34*C29)/C33;
+    const C37=(0.5*C26*C35+C34*C31*C29-(0.5*C30*C34+C35*C27*C29))/C33;
+    const E1=C17*C36+C18+C19*C37, E2=C20*C36+C21+C22*C37, E3=C23*C36+C24+C25*C37;
+    const E4=1/4+C37/12+C36/4-E3/5-3*E2/2-E1;
+    const E5=E1*(1/2+A/6)+E2*(1/4+11*A/84)+E3*(1/70+A/105);
+    const E6=E5-C36*(7/120+A/36+3*A/C)-1/40-A/72-C37*(1/60+A/120+1/C);
+    const den=Math.pow(C/2.73,0.25)*Math.pow(1+A,3)/C, den2=Math.pow(2.73/C,0.25)*Math.pow(1+A,3);
+    return { F:-E6/den, V:E4/den2, f:Math.max(1,C36/(1+A)),
+      FL:-(C18*(1/2+A/6)+C21*(1/4+11*A/84)+C24*(1/70+A/105)-(1/40+A/72))/den,
+      VL:(1/4-C24/5-3*C21/2-C18)/den2 };
+  }
+  function wrcf(i, X, Y){ const c=k=>WRC[k][i];
+    return (c('a')+c('c')*X+c('e')*Y+c('g')*X*X+c('i')*Y*Y+c('k')*X*Y)/(1+c('b')*X+c('d')*Y+c('f')*X*X+c('h')*Y*Y+c('j')*X*Y); }
+
+  function compute(){
+    const pu=$('punit').value, pc=PCONV[pu], pl=PLAB[pu];
+    document.querySelectorAll('.pu').forEach(e=>e.textContent=pl);
+    const type=$('ftype').value, integ=type==='int', ring=type==='ring';
+    ['g0','g1','h'].forEach(k=>$(k).disabled=ring);
+    ['Sby','pct','Sya','Syo','phig'].forEach(k=>$(k).disabled=!integ);
+    const P=num('P')*pc, A=num('A'), B=num('B'), C=num('C'), t=num('t'), g0=num('g0'), g1=num('g1'), h=num('h'), CA=num('CA')||0;
+    const GO=num('GO'), GI=num('GI'), m=num('m'), y=num('y'), bov=num('bov');
+    const bolt=BOLTS.find(b=>b.s===$('bolt').value)||BOLTS[3], n=num('n'), Sa=num('Sa'), Sb=num('Sb');
+    const Sf=num('Sf'), Sfa=num('Sfa'), Sn=num('Sn'), Em=num('Em');
+    const need=['P','A','B','C','t','GO','GI','m','y','n','Sa','Sb','Sf','Sfa','Em'].concat(ring?[]:['g0','g1','h']).concat(integ?['Sn']:[]);
+    IDS.forEach(k=>$(k).classList&&$(k).classList.remove('need'));
+    need.forEach(k=>$(k).classList.toggle('need', !isFinite(num(k))));
+    const ready = need.every(k=>isFinite(num(k)));
+
+    // 1 gasket
+    const N=(GO-GI)/2, bo = isFinite(bov)&&bov>0 ? bov : N/2, b = bo>6 ? 2.5*Math.sqrt(bo) : bo;
+    const G = bo>6 ? GO-2*b : (GO+GI)/2;
+    // 2 loads
+    const H=0.785*G*G*P, HD=0.785*B*B*P, HP=2*b*3.14*G*m*P, HT=H-HD;
+    const Wm1=H+HP, Wm2=3.14*b*G*y, Am1=Wm1/Sb, Am2=Wm2/Sa, Am=Math.max(Am1,Am2), Ab=n*bolt.A, okA=Ab>=Am;
+    const W=0.5*(Am+Ab)*Sa, HG=Wm1-H;
+    // 3 moment arms
+    const R=(C-B)/2-g1, hG=(C-G)/2;
+    const hD = integ ? R+0.5*g1 : (C-B)/2;
+    const hT = integ ? (R+g1+hG)/2 : (hD+hG)/2;
+    const Bs = C*Math.sin(3.14159/n), Bmax = 2*bolt.d+6*t/(m+0.5), Bsc = Bs>(2*bolt.d+t) ? Math.sqrt(Bs/(2*bolt.d+t)) : 1;
+    const MD=HD*hD, MG=HG*hG, MT=HT*hT, Mo=(MD+MG+MT)*Bsc, Mg=W*(C-G)/2;
+    // 4 factors
+    const K=A/B, lg=Math.log10(K);
+    const Y=(1/(K-1))*(0.66845+5.7169*K*K*lg/(K*K-1));
+    const T=(K*K*(1+8.55246*lg)-1)/((1.0472+1.9448*K*K)*(K-1));
+    const U=(K*K*(1+8.55246*lg)-1)/(1.36136*(K*K-1)*(K-1));
+    const Z=(K*K+1)/(K*K-1);
+    const ho=Math.sqrt(B*g0), hho=h/ho, g1g0=g1/g0;
+    const fac = ring? null : factors(g1g0, hho);
+    const Fv = ring? NaN : (integ? fac.F : fac.FL), Vv = ring? NaN : (integ? fac.V : fac.VL), fv = integ? fac.f : 1;
+    const e = Fv/ho, d = (U/Vv)*ho*g0*g0, L = (t*e+1)/T + t**3/d;
+    // 5 stresses
+    const st = M => ring ? {SH:0,SR:0,ST:Y*M/(t*t*B)} : (()=>{ const SH=fv*M/(L*g1*g1*B), SR=(1.333*t*e+1)*M/(L*t*t*B); return {SH,SR,ST:Y*M/(t*t*B)-Z*SR}; })();
+    const so=st(Mo), sg=st(Mg);
+    const SHlimO = integ? Math.min(1.5*Sf, 2.5*Sn) : 1.5*Sf, SHlimG = integ? Math.min(1.5*Sfa, 2.5*Sn) : 1.5*Sfa;
+    const okSet = (s, Sl, SHl) => ring ? [s.ST<=Sl] : [s.SH<=SHl, s.SR<=Sl, s.ST<=Sl, (s.SH+s.SR)/2<=Sl, (s.SH+s.ST)/2<=Sl];
+    const okO = okSet(so,Sf,SHlimO).every(Boolean), okG = okSet(sg,Sfa,SHlimG).every(Boolean);
+    // 6 rigidity
+    const KI = integ? 0.3 : 0.2;
+    const J = M => ring ? 109.4*M/(Em*t**3*KI*Math.log(K)) : 52.14*Vv*M/(L*Em*g0*g0*KI*ho);
+    const JO=J(Mo), JG=J(Mg), okJ = JO<=1 && JG<=1;
+    // hub thickness
+    const goreq = P*(B/2+CA)/(Sn*1-0.6*P)+CA, okHub = ring || !integ || g0>=goreq;
+    const all = okA && okO && okG && okJ && okHub;
+
+    let out='';
+    out += step(1,'Gasket','Table 2-5.2: basic and effective seating width, load reaction diameter G',[
+      row('Contact width', `${v('N')} = (GO − GI)/2`, `(${f(GO,1)} − ${f(GI,1)}) / 2`, N,'mm',2),
+      row('Basic seating width', `${v('b')}<sub>o</sub>`, isFinite(bov)&&bov>0?'entered':'N/2 (sketches 1a, 1b)', bo,'mm',2),
+      row('Effective seating width', `${v('b')} = ${bo>6?'2.5√'+v('b')+'<sub>o</sub>':v('b')+'<sub>o</sub>'}`, bo>6?`b<sub>o</sub> > 6 mm: 2.5 × √${f(bo,2)}`:'b<sub>o</sub> ≤ 6 mm', b,'mm',3),
+      row('Load reaction diameter', v('G'), bo>6?`GO − 2b = ${f(GO,1)} − 2 × ${f(b,3)}`:`mean of contact face (${f(GO,1)} + ${f(GI,1)}) / 2`, G,'mm',2)
+    ],[]);
+
+    out += step(2,'Bolt loads and bolt area','2-5: operating and gasket seating bolt loads',[
+      row('Hydrostatic end force', `${v('H')} = 0.785${v('G')}²${v('P')}`, `0.785 × ${f(G,2)}² × ${f(P,3)}`, H,'N',0),
+      row('Joint compression load', `${v('H')}<sub>p</sub> = 2${v('b')} × 3.14${v('G')}${v('m')}${v('P')}`, `2 × ${f(b,3)} × 3.14 × ${f(G,2)} × ${f(m,2)} × ${f(P,3)}`, HP,'N',0),
+      row('Operating bolt load', `${v('W')}<sub>m1</sub> = ${v('H')} + ${v('H')}<sub>p</sub>`, `${f(H,0)} + ${f(HP,0)}`, Wm1,'N',0),
+      row('Seating bolt load', `${v('W')}<sub>m2</sub> = 3.14${v('b')}${v('G')}${v('y')}`, `3.14 × ${f(b,3)} × ${f(G,2)} × ${f(y,2)}`, Wm2,'N',0),
+      row('Required bolt area', `${v('A')}<sub>m</sub> = max(${v('W')}<sub>m1</sub>/${v('S')}<sub>b</sub>, ${v('W')}<sub>m2</sub>/${v('S')}<sub>a</sub>)`, `max(${f(Am1,1)}, ${f(Am2,1)})`, Am,'mm²',1),
+      row('Actual bolt area', `${v('A')}<sub>b</sub>`, `${f(n,0)} × ${bolt.s} root ${f(bolt.A,1)}`, Ab,'mm²',1),
+      row('Flange design bolt load, seating', `${v('W')} = 0.5(${v('A')}<sub>m</sub> + ${v('A')}<sub>b</sub>)${v('S')}<sub>a</sub>`, `0.5 × (${f(Am,1)} + ${f(Ab,1)}) × ${f(Sa,1)}`, W,'N',0)
+    ],[ okA?['ok',`A<sub>b</sub> ${f(Ab,1)} ≥ A<sub>m</sub> ${f(Am,1)} mm²: bolt area adequate.`]:['bad',`A<sub>b</sub> ${f(Ab,1)} < A<sub>m</sub> ${f(Am,1)} mm²: more bolt area required.`] ]);
+
+    out += step(3,'Flange moments','Table 2-6 moment arms; bolt spacing factor applied to the operating moment',[
+      row('Hydrostatic force on bore', `${v('H')}<sub>D</sub> = 0.785${v('B')}²${v('P')}`, `0.785 × ${f(B,1)}² × ${f(P,3)}`, HD,'N',0),
+      row('Gasket load, operating', `${v('H')}<sub>G</sub> = ${v('W')}<sub>m1</sub> − ${v('H')}`, `${f(Wm1,0)} − ${f(H,0)}`, HG,'N',0),
+      row('Difference', `${v('H')}<sub>T</sub> = ${v('H')} − ${v('H')}<sub>D</sub>`, `${f(H,0)} − ${f(HD,0)}`, HT,'N',0),
+      row('Moment arms', `${v('h')}<sub>D</sub>, ${v('h')}<sub>T</sub>, ${v('h')}<sub>G</sub>`, integ?`R = (C − B)/2 − g<sub>1</sub> = ${f(R,2)}; h<sub>D</sub> = R + g<sub>1</sub>/2`:'h<sub>D</sub> = (C − B)/2; h<sub>T</sub> = (h<sub>D</sub> + h<sub>G</sub>)/2', `${f(hD,2)}, ${f(hT,2)}, ${f(hG,2)}`,'mm',0),
+      row('Bolt spacing factor', `${v('B')}<sub>sc</sub>`, `spacing ${f(Bs,1)} mm; ${Bs>(2*bolt.d+t)?'√(B<sub>s</sub>/(2a + t))':'B<sub>s</sub> ≤ 2a + t'}`, Bsc,'',3, `B<sub>max</sub> = 2a + 6t/(m + 0.5) = ${f(Bmax,1)} mm`),
+      row('Operating moment', `${v('M')}<sub>o</sub> = (${v('H')}<sub>D</sub>${v('h')}<sub>D</sub> + ${v('H')}<sub>G</sub>${v('h')}<sub>G</sub> + ${v('H')}<sub>T</sub>${v('h')}<sub>T</sub>)${v('B')}<sub>sc</sub>`, `(${f(MD,0)} + ${f(MG,0)} + ${f(MT,0)}) × ${f(Bsc,3)}`, Mo,'N·mm',0),
+      row('Gasket seating moment', `${v('M')}<sub>o</sub>′ = ${v('W')}(${v('C')} − ${v('G')})/2`, `${f(W,0)} × (${f(C,1)} − ${f(G,2)}) / 2`, Mg,'N·mm',0)
+    ], Bs>Bmax?[['warn',`Bolt spacing ${f(Bs,1)} mm exceeds the recommended maximum ${f(Bmax,1)} mm.`]]:[]);
+
+    const facRows = ring ? [
+      row('Shape factor', `${v('K')} = ${v('A')}/${v('B')}`, `${f(A,1)} / ${f(B,1)}`, K,'',4),
+      row('Factor Y', `${v('Y')}`, 'Fig. 2-7.1 equation', Y,'',4)
+    ] : [
+      row('Shape factor', `${v('K')} = ${v('A')}/${v('B')}`, `${f(A,1)} / ${f(B,1)}`, K,'',4),
+      row('Factors T, U, Y, Z', 'Fig. 2-7.1 equations', '', `${f(T,4)}, ${f(U,4)}, ${f(Y,4)}, ${f(Z,4)}`,'',0),
+      row('Hub factor', `${v('h')}<sub>o</sub> = √(${v('B')}${v('g')}<sub>0</sub>)`, `√(${f(B,1)} × ${f(g0,2)})`, ho,'mm',3, `h/h<sub>o</sub> = ${f(hho,4)}, g<sub>1</sub>/g<sub>0</sub> = ${f(g1g0,4)}`),
+      row(integ?'Factors F, V, f':'Factors F<sub>L</sub>, V<sub>L</sub>', 'Table 2-7.1 equations', integ?'integral (Figs. 2-7.2, 2-7.3, 2-7.6)':'loose (Figs. 2-7.4, 2-7.5)', integ?`${f(Fv,4)}, ${f(Vv,4)}, ${f(fv,3)}`:`${f(Fv,4)}, ${f(Vv,4)}`,'',0),
+      row('Factor e', `${v('e')} = ${integ?v('F'):v('F')+'<sub>L</sub>'}/${v('h')}<sub>o</sub>`, `${f(Fv,4)} / ${f(ho,3)}`, e,'1/mm',5),
+      row('Factor d', `${v('d')} = (${v('U')}/${integ?v('V'):v('V')+'<sub>L</sub>'})${v('h')}<sub>o</sub>${v('g')}<sub>0</sub>²`, `(${f(U,4)} / ${f(Vv,4)}) × ${f(ho,3)} × ${f(g0,2)}²`, d,'mm³',1),
+      row('Factor L', `${v('L')} = (${v('t')}${v('e')} + 1)/${v('T')} + ${v('t')}³/${v('d')}`, `(${f(t,2)} × ${f(e,5)} + 1) / ${f(T,4)} + ${f(t,2)}³ / ${f(d,1)}`, L,'',4)
+    ];
+    out += step(4,'Flange factors','Fig. 2-7.1 and Table 2-7.1, calculated by equation', facRows, []);
+
+    const sRows = (s, lab, Sl, SHl) => ring ? [ row(`Tangential, ${lab}`, `${v('S')}<sub>T</sub> = ${v('Y')}${v('M')} / (${v('t')}²${v('B')})`, '', s.ST,'MPa',2, `≤ ${f(Sl,1)}`) ] : [
+      row(`Longitudinal hub, ${lab}`, `${v('S')}<sub>H</sub> = ${v('f')}${v('M')} / (${v('L')}${v('g')}<sub>1</sub>²${v('B')})`, '', s.SH,'MPa',2, `≤ ${f(SHl,1)}`),
+      row(`Radial, ${lab}`, `${v('S')}<sub>R</sub> = (1.33${v('t')}${v('e')} + 1)${v('M')} / (${v('L')}${v('t')}²${v('B')})`, '', s.SR,'MPa',2, `≤ ${f(Sl,1)}`),
+      row(`Tangential, ${lab}`, `${v('S')}<sub>T</sub> = ${v('Y')}${v('M')}/(${v('t')}²${v('B')}) − ${v('Z')}${v('S')}<sub>R</sub>`, '', s.ST,'MPa',2, `≤ ${f(Sl,1)}`),
+      row('Combined', `(${v('S')}<sub>H</sub> + ${v('S')}<sub>R</sub>)/2 ; (${v('S')}<sub>H</sub> + ${v('S')}<sub>T</sub>)/2`, '', `${f((s.SH+s.SR)/2,2)} ; ${f((s.SH+s.ST)/2,2)}`,'MPa',0, `≤ ${f(Sl,1)}`)
+    ];
+    const sRes = (s, Sl, SHl, lab) => ring ? [chk(s.ST,Sl,'S<sub>T</sub>','S')] : [
+      chk(s.SH,SHl,'S<sub>H</sub>', integ?'min(1.5S, 2.5S<sub>n</sub>)':'1.5S'), chk(s.SR,Sl,'S<sub>R</sub>','S'), chk(s.ST,Sl,'S<sub>T</sub>','S'),
+      chk((s.SH+s.SR)/2,Sl,'(S<sub>H</sub> + S<sub>R</sub>)/2','S'), chk((s.SH+s.ST)/2,Sl,'(S<sub>H</sub> + S<sub>T</sub>)/2','S') ];
+    out += step(5,'Flange stresses, gasket seating',`2-7 and 2-8 with M<sub>o</sub>′ and S<sub>fa</sub> = ${f(Sfa,1)} MPa`, sRows(sg,'seating',Sfa,SHlimG), sRes(sg,Sfa,SHlimG));
+    out += step(6,'Flange stresses, operating',`2-7 and 2-8 with M<sub>o</sub> and S<sub>fo</sub> = ${f(Sf,1)} MPa`, sRows(so,'operating',Sf,SHlimO), sRes(so,Sf,SHlimO));
+
+    out += step(7,'Rigidity and hub thickness', ring?'2-14: J = 109.4 M / (E t³ K<sub>L</sub> ln K) ≤ 1, K<sub>L</sub> = 0.2':`2-14: J = 52.14 ${integ?'V':'V<sub>L</sub>'} M / (L E g<sub>0</sub>² K h<sub>o</sub>) ≤ 1, K = ${KI}`,[
+      row('Rigidity index, operating', v('J'), `M<sub>o</sub>`, JO,'',4),
+      row('Rigidity index, seating', v('J'), `M<sub>o</sub>′`, JG,'',4),
+      integ? row('Minimum hub thickness', `${v('g')}<sub>0</sub> ≥ ${v('P')}(${v('B')}/2 + CA)/(${v('S')}<sub>n</sub> − 0.6${v('P')}) + CA`, `${f(P,3)} × (${f(B/2,2)} + ${f(CA,2)}) / (${f(Sn,1)} − 0.6 × ${f(P,3)}) + ${f(CA,2)}`, goreq,'mm',3, `g<sub>0</sub> = ${f(g0,2)}`):''
+    ],[ okJ?['ok',`J = ${f(JO,3)} and ${f(JG,3)} ≤ 1: rigidity adequate.`]:['bad',`J = ${f(Math.max(JO,JG),3)} > 1: increase the flange thickness or hub.`],
+        integ? (okHub?['ok',`g<sub>0</sub> ${f(g0,2)} ≥ ${f(goreq,3)} mm: hub thickness adequate.`]:['bad',`g<sub>0</sub> ${f(g0,2)} < ${f(goreq,3)} mm: increase the hub thickness.`]) : null ].filter(Boolean));
+
+    // WRC 538
+    const Sby=num('Sby'), pct=num('pct'), Sya=num('Sya'), Syo=num('Syo'), phig=num('phig');
+    let wrcOk=null;
+    if(integ && isFinite(Sby) && isFinite(pct) && isFinite(Sya)){
+      const Sbsel=Sby*pct/100, Moa=Sbsel*Ab*hG, a=st(Moa);
+      const f1=wrcf(0,g1g0,hho), f2p=wrcf(1,g1g0,hho), f3p=wrcf(2,g1g0,hho);
+      const fW=Math.max(1,f1), f2=hho<0.35?Math.max(0.25,f2p):Math.max(0.25,f3p), STO=(f2/fW)*a.SH;
+      const Sy = isFinite(Syo)&&isFinite(phig) ? Math.min(Sya, Math.max(Syo/(1.25*phig), Syo)) : NaN;
+      const lim = S => [[a.SH,2*S,'S<sub>H</sub> ≤ 2.0'],[a.ST,1.5*S,'S<sub>T</sub> ≤ 1.5'],[STO,S,'S<sub>TO</sub> ≤ 1.0'],[a.SH/fW+a.ST,3*S,'S<sub>H</sub>/f + S<sub>T</sub> ≤ 3.0'],[a.SR+a.ST,3*S,'S<sub>R</sub> + S<sub>T</sub> ≤ 3.0'],[a.SH+STO,3*S,'S<sub>H</sub> + S<sub>TO</sub> ≤ 3.0'],[a.SR,2*S,'S<sub>R</sub> ≤ 2.0']];
+      const la=lim(Sya), lo=isFinite(Sy)?lim(Sy):[];
+      const Ja = J(Moa);
+      wrcOk = la.every(x=>x[0]<=x[1]) && (!lo.length || lo.every(x=>x[0]<=x[1]));
+      out += step(8,'WRC 538 check at assembly bolt stress','WRC Bulletin 538: flange stresses at the selected bolt stress against limits on flange yield',[
+        row('Assembly bolt stress', `${v('S')}<sub>bsel</sub> = ${f(pct,0)}% × ${f(Sby,0)}`, '', Sbsel,'MPa',1),
+        row('Assembly moment', `${v('M')}<sub>o</sub> = ${v('S')}<sub>bsel</sub>${v('A')}<sub>b</sub>${v('h')}<sub>G</sub>`, `${f(Sbsel,1)} × ${f(Ab,1)} × ${f(hG,2)}`, Moa,'N·mm',0),
+        row('Stresses S<sub>H</sub>, S<sub>R</sub>, S<sub>T</sub>', 'Appendix 2 equations', '', `${f(a.SH,1)}, ${f(a.SR,1)}, ${f(a.ST,1)}`,'MPa',0),
+        row('Hub factors f, f<sub>2</sub>', 'WRC 538 Eq. (3)', `f<sub>1</sub> = ${f(f1,3)}`, `${f(fW,3)}, ${f(f2,3)}`,'',0),
+        row('Hub / shell tangential', `${v('S')}<sub>TO</sub> = (${v('f')}<sub>2</sub>/${v('f')})${v('S')}<sub>H</sub>`, `(${f(f2,3)} / ${f(fW,3)}) × ${f(a.SH,1)}`, STO,'MPa',1),
+        row('Operating yield limit', `${v('S')}<sub>y</sub> = min(${v('S')}<sub>ya</sub>, max(${v('S')}<sub>yo</sub>/1.25φ<sub>g</sub>, ${v('S')}<sub>yo</sub>))`, isFinite(Sy)?`min(${f(Sya,0)}, max(${f(Syo/(1.25*phig),1)}, ${f(Syo,0)}))`:'not entered', isFinite(Sy)?Sy:'—','MPa',1),
+        row('Rigidity at assembly', v('J'), `M<sub>o</sub> at S<sub>bsel</sub>`, Ja,'',3)
+      ], la.map(x=>[x[0]<=x[1]?'ok':'bad', `Assembly: ${x[2]} S<sub>ya</sub>: ${f(x[0],1)} ${x[0]<=x[1]?'≤':'>'} ${f(x[1],1)} MPa`]).concat(lo.map(x=>[x[0]<=x[1]?'ok':'bad', `Operating: ${x[2]} S<sub>y</sub>: ${f(x[0],1)} ${x[0]<=x[1]?'≤':'>'} ${f(x[1],1)} MPa`])),
+      ['If a limit is exceeded, reduce the assembly bolt stress (see the PCC-1 calculator) or strengthen the flange. WRC 538 limits are not part of the Appendix 2 design check.']);
+    } else if(integ){
+      out += step(8,'WRC 538 check at assembly bolt stress','WRC Bulletin 538',[],[['info','Enter the bolt yield, assembly bolt stress and flange yield to run this check.']]);
+    }
+
+    $('report').innerHTML = out;
+    const st0=$('vState');
+    if(!ready){ st0.textContent='Enter the highlighted inputs'; st0.className='state'; }
+    else if(all){ st0.textContent=`Flange accepted: J = ${f(Math.max(JO,JG),2)}`; st0.className='state ok'; }
+    else { st0.textContent='Flange not accepted: see the failing step'; st0.className='state bad'; }
+    $('vSub').innerHTML = `${$('tag').value||'Flange'}: ${{int:'integral',lh:'loose with hub',ring:'ring'}[type]}, ${f(A,0)} × ${f(B,0)} × ${f(t,1)} mm, ${f(n,0)} × ${bolt.s}, P ${f(P,2)} MPa.`;
+    const chip=(ok,lab)=>`<span class="chip ${ok?'ok':'bad'}">${lab}</span>`;
+    $('vChips').innerHTML = ready ? chip(okA,'Bolt area')+chip(okG,'Seating stresses')+chip(okO,'Operating stresses')+chip(okJ,'Rigidity')+(integ?chip(okHub,'Hub g₀'):'')+(wrcOk===null?'':`<span class="chip ${wrcOk?'ok':'warn'}">WRC 538 ${wrcOk?'OK':'exceeded'}</span>`) : '';
+    drawSketch({type,A,B,C,t,g0,g1,h,G});
+    $('printhead').textContent = `${$('tag').value||''}  ${$('prep').value?'Prepared by: '+$('prep').value:''}  ${$('date').value||''}`;
+    try{ localStorage.setItem(STORE, JSON.stringify(getInputs())); }catch(e){}
+  }
+
+  function drawSketch(d){
+    const g=$('sketch'), cs=getComputedStyle(document.documentElement), c=n=>cs.getPropertyValue(n).trim();
+    if(![d.A,d.B,d.C,d.t].every(isFinite)){ g.innerHTML=''; return; }
+    const ring=d.type==='ring', hub=!ring && [d.g0,d.g1,d.h].every(isFinite);
+    const rB=d.B/2, rA=d.A/2, H = d.t + (hub? d.h : 0);
+    // fit width (left margin for the B/2 label, right margin for A/2) and height (labels below the ring)
+    const sc = Math.min(430/(rA - rB), 140/H), x0=100, yF=40+(hub?d.h*sc:0); // y of flange back face (top of ring)
+    const X = r => x0 + (r-rB)*sc, Yy = z => yF + z*sc;
+    const acc=c('--accent'), soft=c('--accent-soft'), steel=c('--steel'), wall=c('--wall'), warn=c('--warn');
+    let s='';
+    // ring
+    s+=`<rect x="${X(rB)}" y="${Yy(0)}" width="${(rA-rB)*sc}" height="${d.t*sc}" fill="${soft}" stroke="${acc}" stroke-width="1.5"/>`;
+    if(hub){ s+=`<path d="M${X(rB)},${Yy(0)} L${X(rB)},${Yy(-d.h)} L${X(rB+d.g0)},${Yy(-d.h)} L${X(rB+d.g1)},${Yy(0)} Z" fill="${soft}" stroke="${acc}" stroke-width="1.5"/>`;
+      s+=`<line x1="${X(rB)}" y1="${Yy(-d.h)}" x2="${X(rB)}" y2="${Yy(-d.h)-16}" stroke="${wall}" stroke-width="2"/><line x1="${X(rB+d.g0)}" y1="${Yy(-d.h)}" x2="${X(rB+d.g0)}" y2="${Yy(-d.h)-16}" stroke="${wall}" stroke-width="2"/>`; }
+    if(d.type==='lh') s+=`<line x1="${X(rB)}" y1="${Yy(-(hub?d.h:0))}" x2="${X(rB)}" y2="${Yy(d.t)}" stroke="${warn}" stroke-width="3"/>`;
+    // bolt hole and gasket
+    s+=`<line x1="${X(d.C/2)}" y1="${Yy(0)-6}" x2="${X(d.C/2)}" y2="${Yy(d.t)+6}" stroke="${steel}" stroke-dasharray="5 3"/>`;
+    if(isFinite(d.G)) s+=`<rect x="${X(d.G/2)-3}" y="${Yy(d.t)}" width="6" height="6" fill="${warn}"/>`;
+    // centreline reference and labels
+    const lab=(x,y,txt,anchor)=>`<text x="${x}" y="${y}" text-anchor="${anchor||'middle'}">${txt}</text>`;
+    s+=lab(X(rB)-4, Yy(d.t/2)+4, `B/2 ${f(rB,1)}`, 'end');
+    s+=lab(X(rA)+4, Yy(d.t/2)+4, `A/2 ${f(rA,1)}`, 'start');
+    s+=lab(X(d.C/2), Yy(d.t)+22, `C/2 ${f(d.C/2,1)}`);
+    if(isFinite(d.G) && d.G/2>rB) s+=lab(X(d.G/2), Yy(d.t)+42, `G/2 ${f(d.G/2,1)}`);
+    s+=lab(X(rA), Yy(0)-5, `t ${f(d.t,1)}`, 'end');
+    if(hub){ s+=lab(X(rB+d.g0)+6, Yy(-d.h)+12, `g₀ ${f(d.g0,1)}, h ${f(d.h,0)}`, 'start'); s+=lab(X(rB)-4, Yy(0)-4, `g₁ ${f(d.g1,1)}`, 'end'); }
+    s+=`<text class="lab" x="8" y="16">${{int:'Integral flange',lh:'Loose flange with hub',ring:'Ring flange (no hub)'}[d.type]}</text>`;
+    g.innerHTML=s;
+  }
+
+  let saved=null; try{ saved=JSON.parse(localStorage.getItem(STORE)); }catch(e){}
+  setInputs(saved||EXAMPLE);
+  document.querySelectorAll('aside input, aside select').forEach(el=>el.addEventListener('input',compute));
+  document.querySelectorAll('aside select').forEach(el=>el.addEventListener('change',compute));
+  $('btnExample').addEventListener('click',()=>{setInputs(EXAMPLE);compute();});
+  $('btnClear').addEventListener('click',()=>{const d={}; IDS.forEach(k=>d[k]=''); d.ftype='int'; d.punit='MPa'; d.bolt='M20'; d.CA=0; d.phig=0.7; setInputs(d); compute();});
+  $('btnHow').addEventListener('click',()=>$('howto').scrollIntoView({behavior:'smooth'}));
+  $('btnPrint').addEventListener('click',()=>window.print());
+  if(window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',compute);
+  compute();
+})();
+</script>
+</body>
+</html>

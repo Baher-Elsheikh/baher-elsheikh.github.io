@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stress Relaxation Cracking in Austenitic Alloys: Mechanism, Mitigation and ASME Code Considerations | Baher Elsheikh</title>
+<meta name="description" content="How stress relaxation cracking develops in 347H, 321, 316H and Alloy 800H/HT, what ASME Sections I, II-D and VIII-1, API RP 571 and API TR 942-A/B require, and two case histories.">
+<meta name="keywords" content="stress relaxation cracking, SRC, reheat cracking, 347H, Alloy 800H, 800HT, UNF-56, UHA-44, PW-39, API TR 942-B, API RP 571, PWHT austenitic stainless steel">
+<meta name="author" content="Baher Elsheikh">
+<link rel="canonical" href="https://baher-elsheikh.github.io/articles/stress-relaxation-cracking-austenitic-alloys/">
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://baher-elsheikh.github.io/articles/stress-relaxation-cracking-austenitic-alloys/">
+<meta property="og:title" content="Stress Relaxation Cracking in Austenitic Alloys: Mechanism, Mitigation and ASME Code Considerations">
+<meta property="og:description" content="How stress relaxation cracking develops in 347H, 321, 316H and Alloy 800H/HT, what ASME Sections I, II-D and VIII-1, API RP 571 and API TR 942-A/B require, and two case histories.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Stress Relaxation Cracking in Austenitic Alloys: Mechanism, Mitigation and ASME Code Considerations", "description": "How stress relaxation cracking develops in 347H, 321, 316H and Alloy 800H/HT, what ASME Sections I, II-D and VIII-1, API RP 571 and API TR 942-A/B require, and two case histories.", "url": "https://baher-elsheikh.github.io/articles/stress-relaxation-cracking-austenitic-alloys/", "inLanguage": "en", "author": {"@type": "Person", "name": "Baher Elsheikh", "url": "https://baher-elsheikh.github.io/#about", "sameAs": ["https://www.linkedin.com/in/baher-elsheikh/", "https://www.youtube.com/@baherelsheikh4942"]}, "about": "stress relaxation cracking, SRC, reheat cracking, 347H, Alloy 800H, 800HT, UNF-56, UHA-44, PW-39, API TR 942-B, API RP 571, PWHT austenitic stainless steel"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F7F9; --panel:#FFFFFF; --ink:#16203A; --steel:#566074; --rule:#DCE0E7;
+  --accent:#14245E; --accent-soft:#E7EAF3; --brass:#8A6320; --brass-soft:#F4ECDD; --fig:#EEF1F7;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --serif:"STIX Two Text",Cambria,Georgia,"Times New Roman",serif;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 var(--sans);overflow-x:clip}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.lg-dark{display:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:block}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:block}
+header.site{background:var(--panel);border-bottom:1px solid var(--rule)}
+header.site .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;min-height:62px}
+.brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px}
+.brand img{height:34px;width:auto}
+nav.tabs{display:flex;flex-wrap:wrap;gap:2px}
+nav.tabs a{font-size:15px;font-weight:500;color:var(--steel);text-decoration:none;padding:6px 10px;border-radius:5px}
+nav.tabs a:hover{color:var(--ink);background:var(--accent-soft)}
+nav.tabs a.cur{color:var(--accent);background:var(--accent-soft)}
+article{max-width:760px;margin:0 auto;padding:40px 0 56px}
+.crumb{font-size:14px;color:var(--steel);margin:0 0 18px}
+.crumb a{color:var(--steel)}
+.lab{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none}
+.lab svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.22;letter-spacing:-.005em}
+h1{font-size:clamp(29px,3.6vw,40px);margin:10px 0 0}
+.lead{font-size:19px;line-height:1.6;color:var(--steel);margin:16px 0 0}
+.byline{font-size:14.5px;color:var(--steel);margin:18px 0 0;padding-bottom:22px;border-bottom:1px solid var(--rule)}
+h2{font-size:24px;margin:38px 0 6px}
+h3{font-size:19px;margin:28px 0 4px}
+p{margin:14px 0}
+ul,ol{padding-left:1.3em} li{margin:6px 0}
+figure{margin:28px 0}
+figure .frame{background:var(--fig);border:1px solid var(--rule);border-radius:6px;overflow:hidden;color:var(--accent)}
+figure .frame svg{display:block;width:100%;height:auto}
+figure img{display:block;width:100%;height:auto}
+figcaption{font-size:14.5px;color:var(--steel);margin-top:8px}
+.tbl{overflow-x:auto;margin:24px 0}
+table{border-collapse:collapse;width:100%;font-size:15.5px;background:var(--panel)}
+caption{caption-side:bottom;text-align:left;font-size:14.5px;color:var(--steel);padding-top:8px}
+th,td{border:1px solid var(--rule);padding:8px 12px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+td.n{text-align:center;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{width:34%}
+.eq{font-family:var(--serif);font-size:19px;text-align:center;margin:20px 0;padding:12px;background:var(--panel);border:1px solid var(--rule);border-radius:6px}
+.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 16px;margin:22px 0;font-size:16px}
+.refs{font-size:14.5px;color:var(--steel)}
+.refs li{margin:4px 0}
+.related{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule)}
+.related h2{font-size:20px;margin:0 0 8px}
+.related ul{list-style:none;padding:0;margin:0}
+.related li{padding:6px 0}
+.flag{font-size:12.5px;font-weight:500;color:var(--brass);background:var(--brass-soft);border-radius:3px;padding:1px 7px}
+.disc{font-size:14px;color:var(--steel);margin-top:30px}
+footer{border-top:1px solid var(--rule);padding:20px 0 30px;font-size:13.5px;color:var(--steel);background:var(--panel)}
+footer .wrap{display:grid;gap:6px}
+@media (max-width:600px){.wrap{padding:0 16px} article{padding-top:26px} body{font-size:16.5px}}
+@media print{header.site,footer,.related{display:none} body{background:#fff}}
+</style>
+<link rel="stylesheet" href="../../assets/chrome.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="beta-bar" role="note"><div class="wrap"><span class="beta-tag">Beta</span> This site is in its testing period. Spotted a mistake? Please tell me on <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</div></div>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../../"><img class="lg-light" src="../../assets/gear-light.png" alt="" width="41" height="34"><img class="lg-dark" src="../../assets/gear-dark.png" alt="" width="41" height="34"><span>Baher Elsheikh</span></a>
+    <div class="hdr-right">
+      <nav class="tabs" id="mainnav" aria-label="Main"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/" aria-current="page">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a></nav>
+      <a class="nav-search" href="../../search/"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20.5 20.5"/></svg><span>Search</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav">Menu</button>
+    </div>
+  </div>
+</header>
+<main id="main" class="wrap">
+<article>
+  <p class="crumb"><a href="../">Articles</a></p>
+  <a class="lab" href="../../#materials-and-metallurgy"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 5.5l5-2 4 2.5-1 5-5 1.5-3-3z"/><path d="M12.5 6l5-1.5 3 4-2 3.5-4.5-.5-2.5-.5"/><path d="M6.5 12.5l1 5 5 2.5 3-4-1.5-4.5"/><path d="M15.5 16l4.5 1 .5-5.5"/></svg>Materials &amp; Metallurgy</a>
+  <h1>Stress Relaxation Cracking in Austenitic Alloys: Mechanism, Mitigation and ASME Code Considerations</h1>
+  <p class="lead">Stress relaxation cracking can rupture a code-compliant component within a year or two of start-up. How it works, where the codes leave gaps, and what prevents it.</p>
+  <p class="byline">By Baher Elsheikh. 12 min read. An earlier version was published in <a href="https://stainless-steel-world.net/understanding-stress-relaxation-cracking-in-austenitics-prevention-industry-standards/" target="_blank" rel="noopener noreferrer">Stainless Steel World</a> and <a href="https://ndtcorner.com/en/influencer/11" target="_blank" rel="noopener noreferrer">NDT Corner</a>.</p>
+
+  <p><strong>Stress relaxation cracking (SRC)</strong> is a critical failure mode of austenitic materials in high-temperature service. It can occur where tensile residual stresses are high, especially in weld heat-affected zones (HAZ) and cold-formed areas. It is most common in austenitic stainless steels and nickel-based alloys used for critical components such as superheaters and reheaters in the petrochemical and power industries. Unlike hot cracking or creep rupture, SRC develops while residual or applied stresses relax at elevated temperature.</p>
+  <p>This article explains the mechanism of SRC, compares the susceptibility of Alloy 800H with stainless steel grades such as 347H, and examines mitigation under the ASME Boiler and Pressure Vessel Code (BPVC), the main design code for pressure vessels and boilers in the oil and gas industry and in nuclear applications.</p>
+  <p>SRC is also known by other names [3]:</p>
+  <div class="tbl"><table>
+    <caption>Table 1. Other names for stress relaxation cracking.</caption>
+    <thead><tr><th>During fabrication</th><th>During service</th></tr></thead>
+    <tbody>
+      <tr><td>Reheat cracking</td><td>Creep embrittlement cracking</td></tr>
+      <tr><td>Stress relief cracking</td><td>Stress-induced cracking</td></tr>
+      <tr><td></td><td>Stress-assisted grain boundary oxidation cracking</td></tr>
+    </tbody></table></div>
+  <h2>Why SRC needs special attention</h2>
+  <p>SRC in equipment and weld joints needs special attention for three reasons. First, it is hard to detect in its early stages, yet once it starts it often progresses rapidly to brittle failure, typically rupture, early in the equipment's life. Second, it occurs mainly in thick-walled components operating at elevated temperature, which are usually critical, high-risk applications. Third, current design codes such as the ASME BPVC do not fully account for all the factors needed to prevent SRC. A recent U.S. Nuclear Regulatory Commission (NRC) report [1] identified this as a significant gap in the ASME BPVC.</p>
+  <p>In one published failure, the outlet header of a superheated steam coil, made of 48 mm thick 316H, ruptured from SRC at its longitudinal seam weld. The rupture caused extensive damage in the convection section of a steam reformer at a methanol plant, and large fragments were thrown up to 100 m across the site [2].</p>
+  <h2>Morphology and critical factors</h2>
+  <p>SRC is intergranular and can be surface-breaking or embedded, depending on the stress state and geometry. It is most often found in the coarse-grained region of a weld HAZ, but can also occur in weld metal. Cracks often start at a stress concentration, and once started they can grow further by fatigue.</p>
+  <p>Three factors contribute to SRC: residual stress, a susceptible microstructure, and elevated temperature in the creep-dominated regime [9]. Cracking happens without gross plastic deformation; most of the deformation is concentrated at the grain boundaries. Susceptible alloys contain elements that form fine intragranular precipitates, which make the grains stronger than the grain boundaries. Creep deformation from stress relaxation therefore concentrates at the boundaries and eventually causes intergranular cracking [1]. This is why stabilized grades such as 347 and 321 are more susceptible than 304 [3].</p>
+  <figure><div class="frame"><svg viewBox="0 0 680 330" role="img" aria-label="Stress relaxation cracking needs three factors together: high residual stress, a susceptible microstructure and a temperature in the creep range of about 500 to 750 degrees C"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><circle cx="245" cy="125" r="100" fill="currentColor" fill-opacity=".07"/><circle cx="435" cy="125" r="100" fill="currentColor" fill-opacity=".07"/><circle cx="340" cy="225" r="100" style="fill:var(--brass);stroke:var(--brass)" fill-opacity=".10"/><text x="210" y="95" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">High residual</text><text x="210" y="113" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">stress</text><text x="210" y="131" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.85">welds, cold work</text><text x="472" y="95" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">Susceptible</text><text x="472" y="113" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">microstructure</text><text x="472" y="131" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.85">coarse grains, fine</text><text x="472" y="145" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.85">intragranular</text><text x="472" y="159" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.85">precipitates</text><text x="340" y="272" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600" style="fill:var(--brass)">Temperature about</text><text x="340" y="290" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600" style="fill:var(--brass)">500 to 750 °C</text><text x="340" y="200" font-family="IBM Plex Sans, Arial, sans-serif" font-size="16" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">SRC</text></g></svg></div><figcaption>Figure 1. The three factors that together cause stress relaxation cracking.</figcaption></figure>
+  <p>Smaller grain sizes resist SRC better. Grain growth can be controlled by using lower solution annealing temperatures, achieving ASTM 4 or finer grains. Traditional heat treatment of austenitic alloys results in coarse grains (ASTM 5 and coarser), which improve creep resistance but also increase SRC risk after cold forming [3].</p>
+  <p>The cracks always lie on grain boundaries, with small isolated cavities ahead of them. A metallic filament is usually present along the cracked boundary, enclosed in a chromium-rich oxide layer that is low in nickel and iron. The composition of the filament depends on the material, but it is always low in chromium and high in nickel (for Alloy 800) or iron (for stainless steels) (Figure 2).</p>
+  <figure><img src="src-morphology-1.jpg" width="896" height="335" alt="Micrograph of intergranular SRC cracks showing metallic filaments and cavities" style="background:#fff;border:1px solid var(--rule);border-radius:6px;margin-bottom:12px" loading="lazy"><img src="src-morphology-2.jpg" width="428" height="330" alt="Cross-section micrograph of SRC at the outer surface" style="max-width:428px;background:#fff;border:1px solid var(--rule);border-radius:6px" loading="lazy"><figcaption>Figure 2. Typical SRC morphology, showing metallic filaments enclosed by an oxide layer, and cavities.</figcaption></figure>
+  <h2>What the codes and guidelines say</h2>
+  <p>Although SRC is a well-known damage mechanism, the applicable codes still do not cover it fully, so equipment can comply with its design code and still be prone to SRC and premature brittle failure. The most common standards and guidelines are reviewed below.</p>
+  <h3>ASME BPVC Section II, Part D [4]</h3>
+  <p>Nonmandatory Appendix A, Issues Associated With Materials Used in ASME Code Construction, addresses SRC in paragraph A-206. It can occur in cold- or warm-worked austenitic materials when temper-resistant particles precipitate at defect sites introduced by mechanical working. When the material is exposed to intermediate temperatures (510 °C to 760 °C) during heat treatment or service, strain localizes at the grain boundaries and causes rapid intergranular creep cracking.</p>
+  <p>The appendix notes that this has caused through-wall failures in pressure parts made from susceptible heats of materials such as 347H and 310HCbN, even during heat-up for solution annealing. To reduce the risk, ASME introduced rules in PG-19 (Section I) and UHA-44 (Section VIII, Division 1) aimed at SRC in design and fabrication. SRC is therefore recognized and partly addressed by the Code, although additional design-specific measures may still be needed.</p>
+  <h3>ASME BPVC Section VIII, Division 1 [5]</h3>
+  <p>Paragraph UHA-A-4 of Nonmandatory Appendix UHA-A recognizes that SRC can develop in P-No. 8 materials, not only in cold-formed areas but also in weld zones with high residual tensile stress. To minimize the risk, it advises PWHT in accordance with Table UHA-44 unless specific criteria are met, for example a design temperature below 540 °C (1000 °F), or welding limited to low-risk configurations such as circumferential welds or fillet welds 13 mm thick or less, or specific fin welding under tightly defined limits.</p>
+  <p>Table UHA-44 specifies solution annealing as the heat treatment for cold-formed parts that exceed the allowable fibre elongation. For 347H, for example, the minimum heat treatment temperature is 1095 °C.</p>
+  <p>In the mandatory part of the Code, the PWHT table for P-No. 8 materials states that PWHT is neither required nor prohibited, leaving the decision to the user, guided by the nonmandatory Appendix UHA-A. This leaves a grey area, possibly because PWHT can itself cause SRC under some conditions, and increases the risk of sensitization in austenitic materials.</p>
+  <div class="note">The rules for Alloy 800 series materials (UNS N08800, N08810, N08811) are more explicit. Paragraph UNF-56(d) requires PWHT at 885 °C when the design temperature exceeds 540 °C, a clear measure against SRC in service. Design software usually applies such conditional requirements, but manual calculations can miss them, risking non-compliance.</div>
+  <h3>ASME BPVC Section I [6]</h3>
+  <p>Section I gives guidance similar to Section VIII, Division 1 for PWHT of P-No. 8 materials. According to Table PW-39-8, PWHT is neither required nor prohibited. Note (b) to the table, however, suggests PWHT may be advisable to reduce the risk of SRC, particularly for thick sections operating at elevated temperature, in line with ASME Section II, Part D, Nonmandatory Appendix A. As in Section VIII, the decision is left to the user, based on the service conditions and fabrication details.</p>
+  <h3>API RP 571 [7]</h3>
+  <p>API RP 571 covers SRC as a damage mechanism in paragraph 3.54. It lists susceptible materials, including austenitic stainless steels (304H, 316H, 321 and 347) and nickel-based alloys (Alloy 800H, 800HT and 617). SRC typically occurs between 500 °C and 750 °C and is influenced by grain size, composition, weld strength, residual stress, section thickness and fabrication conditions. Large grains and high residual stress, especially in thick sections, increase the risk. The RP also notes that stress relief or stabilization heat treatments can sometimes make SRC worse.</p>
+  <h3>API TR 942-A [8]</h3>
+  <p>This technical report covers material selection, fabrication and repair of outlet pigtails and manifolds in hydrogen and syngas reformer furnaces. It identifies SRC as a major failure mode of these components when exposed to fabrication or operating temperatures between 500 °C and 750 °C, and includes a case history of SRC in an Alloy 800HT pigtail.</p>
+  <h3>API TR 942-B [3]</h3>
+  <p>This report examines SRC in austenitic alloys in high-temperature refinery service: its causes, susceptibility and prevention.</p>
+  <ul>
+    <li><strong>Susceptibility ranking:</strong> 800HT &gt; 347 &gt; 800H &gt; 321 &gt; 304 &gt; 316. Susceptibility is higher in alloys with fine intragranular precipitates.</li>
+    <li><strong>Grain size and cold work:</strong> finer grains (ASTM 3.5 and finer) resist SRC; 2% or more cold deformation increases the risk, which can be mitigated by stabilization heat treatment at 980 °C.</li>
+    <li><strong>Welding:</strong> minimize restraint, avoid stress concentrations and use low heat input.</li>
+    <li><strong>Heat treatment:</strong> PWHT at 843 °C to 899 °C, or a multistep treatment (stress relief, then solution annealing, then stabilization at 593 °C).</li>
+    <li><strong>Materials:</strong> limit bismuth to 0.002% or less in Type 308 FCAW weld metal for service above 538 °C.</li>
+  </ul>
+  <figure><div class="frame"><svg viewBox="0 0 680 170" role="img" aria-label="Relative susceptibility to stress relaxation cracking according to API TR 942-B: 800HT, then 347, 800H, 321, 304 and 316"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M600.0 60.0L90.0 60.0" stroke-width="1.6" style="stroke:var(--brass)"/><path d="M90.0 60.0L99.2 56.1L99.2 63.9Z" style="stroke:var(--brass);fill:var(--brass)" stroke-width="1"/><text x="345" y="40" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="currentColor" stroke="none" style="fill:var(--brass)">higher susceptibility</text><rect x="80" y="80" width="80" height="44" rx="5" fill="currentColor" fill-opacity="0.300"/><text x="120" y="107" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">800HT</text><rect x="172" y="80" width="80" height="44" rx="5" fill="currentColor" fill-opacity="0.255"/><text x="212" y="107" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">347</text><rect x="264" y="80" width="80" height="44" rx="5" fill="currentColor" fill-opacity="0.210"/><text x="304" y="107" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">800H</text><rect x="356" y="80" width="80" height="44" rx="5" fill="currentColor" fill-opacity="0.165"/><text x="396" y="107" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">321</text><rect x="448" y="80" width="80" height="44" rx="5" fill="currentColor" fill-opacity="0.120"/><text x="488" y="107" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">304</text><rect x="540" y="80" width="80" height="44" rx="5" fill="currentColor" fill-opacity="0.075"/><text x="580" y="107" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">316</text><text x="345" y="150" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.8">Ranking only, not a quantitative scale</text></g></svg></div><figcaption>Figure 3. Relative susceptibility to SRC according to API TR 942-B.</figcaption></figure>
+  <p>API TR 942-B recommends PWHT for some austenitic stainless steel grades, at temperatures quite different from those suggested by the ASME BPVC. For 347, for example, it recommends 900 °C for 1 hour per 25 mm of thickness (3 hours minimum), followed by cooling in still air.</p>
+  <h2>Case histories</h2>
+  <p>The following two case histories involve two of the materials most vulnerable to SRC: Alloy 800H and 347H.</p>
+  <h3>Case history 1: cracking of an Alloy 800H reformer riser [11]</h3>
+  <p>A steam reformer riser, a cast HP microalloy tube welded to an Alloy 800H transition piece, failed. The first incident, in 2010, was caused by thermal shock from a water leak, but further inspection found multiple cracks in the HAZ of the 800H welds that were not related to the water damage, which prompted a detailed investigation.</p>
+  <p>The cracking showed the classic signs of SRC:</p>
+  <ul>
+    <li>Intergranular cracks in the HAZ.</li>
+    <li>Voids and grain boundary oxidation.</li>
+    <li>Nickel-rich metallic filaments with chromium-depleted zones.</li>
+    <li>Cracking in areas with hardness near 200 HV.</li>
+    <li>Occurrence within 1 to 2 years of service at about 600 °C.</li>
+  </ul>
+  <p>The design had been modified in 2006, moving the weld closer to a cooler area near a water jacket. That location probably created ideal conditions for SRC: high residual stress, coarse grains and an operating temperature within the critical 500 °C to 750 °C range.</p>
+  <p>The solution was PWHT at 885 °C, which relieved the stress and reduced the hardness. No further cracking was found after this treatment, confirming SRC as the root cause. This is the heat treatment that paragraph UNF-56 of ASME BPVC Section VIII, Division 1 requires, as explained above, and shows how such requirements can be missed.</p>
+  <figure><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;align-items:start"><img src="riser-design.png" width="540" height="718" alt="Top section of the modified riser design showing the water jacket, insulation can, furnace roof and cracked weld" style="background:#fff;border:1px solid var(--rule);border-radius:6px" loading="lazy"><img src="riser-cracking.jpg" width="307" height="229" alt="Micrograph of cracking in the Alloy 800H transition cone" style="background:#fff;border:1px solid var(--rule);border-radius:6px" loading="lazy"></div><figcaption>Figure 4. (a) Top section of the modified riser design, showing the location of the later failures; (b) cracking of the Alloy 800H transition cone with typical SRC morphology.</figcaption></figure>
+  <p>The case shows how SRC can silently damage high-temperature components, and how important heat treatment is in preventing it, even in alloys such as 800H that were once thought immune.</p>
+  <h3>Case history 2: cracking of 347H inlet piping of a steam reformer [12]</h3>
+  <p>The 347H inlet piping of a steam reformer cracked at welded support pads in less than 16 months. Failures were found at welded reinforcing pads and branch connections of the inlet pipes. No PWHT had been applied.</p>
+  <p>The SRC features observed included:</p>
+  <ul>
+    <li>Intergranular cracks originating at grain boundaries.</li>
+    <li>Nickel-rich metallic filaments surrounded by chromium-rich oxide.</li>
+    <li>Cavities and signs of localized embrittlement.</li>
+    <li>Hardness above 200 HV at the crack locations, with no visible plastic deformation.</li>
+  </ul>
+  <p>Corrective actions included:</p>
+  <ul>
+    <li>Replacing welded supports with clamp-type supports to reduce restraint.</li>
+    <li>PWHT at 875 °C to 930 °C to relieve residual stress and reduce hardness.</li>
+    <li>Improving insulation to prevent sensitization and external corrosion.</li>
+  </ul>
+  <figure><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;align-items:start"><img src="cracked-pads.jpg" width="421" height="316" alt="Cracked welded pads of horizontal pipe guides" style="background:#fff;border:1px solid var(--rule);border-radius:6px" loading="lazy"><img src="pad-cracking.jpg" width="392" height="293" alt="Micrograph of cracking in a 347H pad with typical SRC morphology" style="background:#fff;border:1px solid var(--rule);border-radius:6px" loading="lazy"></div><figcaption>Figure 5. (a) Cracked pads of horizontal guides; (b) cracking of a 347H pad with typical SRC morphology.</figcaption></figure>
+  <p>This case reinforces the need to consider SRC in 347H even when the codes do not require PWHT, especially for thick sections, critical welds and highly stressed configurations at high temperature.</p>
+  <h2>Conclusion</h2>
+  <p>Stress relaxation cracking is a critical but often overlooked failure mechanism of austenitic stainless steels and nickel-based alloys at high temperature. The ASME BPVC and API documents address it, but it remains a complex problem driven by residual stress, microstructure and operating conditions. The case histories of 347H and Alloy 800H show that SRC can occur even when materials are used within code limits, revealing a gap between compliance and real reliability.</p>
+  <p>To reduce the risk of SRC, engineers should minimize cold work and residual stress, apply appropriate PWHT, manage grain size, and identify high-risk configurations such as thick sections and welded supports. The ASME Code acknowledges SRC, but its guidance, especially on PWHT, is often nonmandatory or loosely defined, leaving engineers and designers responsible for informed decisions.</p>
+  <p>Preventing SRC ultimately takes deeper technical understanding, proactive design and wider industry awareness. These improve the long-term integrity of high-temperature pressure equipment and reduce the likelihood of premature failure.</p>
+  <h2>References</h2>
+  <ol class="refs">
+    <li>U.S. NRC, Assessment of Stress Relaxation Cracking of Austenitic Components in Regard to the ASME Section III, Division 5 Rules, TLR-RES/DE/REB-2024-19.</li>
+    <li>P. Tait, <a href="https://inspectioneering.com/journal/2021-02-25/9543/lessons-learned-from-the-rupture-of-a-steam-superheater-header" target="_blank" rel="noopener noreferrer">Lessons Learned from the Rupture of a Steam Superheater Header</a>, Inspectioneering Journal, January/February 2021.</li>
+    <li>API TR 942-B, Material, Fabrication, and Repair Considerations for Austenitic Alloys Subject to Embrittlement and Cracking in High Temperature 565 °C to 760 °C (1050 °F to 1400 °F) Refinery Services, 1st edition, 2017.</li>
+    <li>ASME BPVC Section II, Part D, 2023 edition.</li>
+    <li>ASME BPVC Section VIII, Division 1, 2023 edition.</li>
+    <li>ASME BPVC Section I, 2023 edition.</li>
+    <li>API RP 571, Damage Mechanisms Affecting Fixed Equipment in the Refining Industry, 3rd edition, 2020.</li>
+    <li>API TR 942-A, Materials, Fabrication, and Repair Considerations for Hydrogen Reformer Furnace Outlet Pigtails and Manifolds, 1st edition, 2014.</li>
+    <li>NREL, Stress Relaxation Cracking of Alloys at Temperatures Higher Than 540 °C, Technical Report NREL/TP-5700-80404, January 2024.</li>
+    <li>H. van Wortel, Control of Relaxation Cracking in Austenitic High Temperature Components, TNO Science and Industry, VeMet Conference, 2009.</li>
+    <li>C. Thomas, Cracking of Alloy 800H Reformer Riser, Quest Integrity, Nitrogen+Syngas Conference, 2014.</li>
+    <li>J.Q. Taghiyev, Relaxation Cracking: Investigation of Several Failures in Petrochemical Plants, NACE Paper MECCOCT18-12676.</li>
+  </ol>
+  <p class="disc">This article is for general engineering guidance. Apply it with the current edition of the referenced codes and standards and the judgement of a qualified engineer.</p>
+  <aside class="related"><h2>Related on this site</h2><ul><li>Article: <a href="../local-pwht-pressure-vessels/">Local PWHT for Pressure Vessels and Piping</a></li><li>Article: <a href="../cladding-shell-and-tube-heat-exchangers/">Cladding Applications in Shell and Tube Heat Exchangers</a></li></ul></aside>
+</article>
+</main>
+<footer>
+  <div class="wrap">
+    <nav class="fnav" aria-label="Footer"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a><a href="../../standards/">Standards Index</a><a href="../../search/">Search</a></nav>
+    <div>Knowledge grows when it is communicated. <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a></div>
+    <div>Articles, documents and calculators are aids for engineering work, not a substitute for a complete engineering assessment. Users remain responsible for verifying the applicable design basis, code requirements and edition, assumptions and engineering decisions; results must be checked by a qualified engineer before use.</div>
+    <div>© 2026 Baher Elsheikh. Content and tools free to use; not to be copied or redistributed without permission.</div>
+  </div>
+</footer>
+<script src="../../assets/chrome.js"></script>
+</body>
+</html>

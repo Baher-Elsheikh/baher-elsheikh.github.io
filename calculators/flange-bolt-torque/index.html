@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Flange Bolt Torque Calculator | ASME PCC-1 Target Bolt Stress</title>
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="description" content="Free online flange bolt torque calculator to ASME PCC-1 Appendix O: target assembly bolt stress from the gasket stress, checks against bolt yield, gasket seating, operating and crushing limits and an optional flange limit, then the tightening torque and legacy passes. Inch and metric bolts. Step-by-step equations and PDF output.">
+<meta name="keywords" content="flange bolt torque calculator, ASME PCC-1 torque, target bolt stress, Appendix O, gasket seating stress, nut factor, bolt root area, bolted flange joint assembly">
+<meta name="author" content="Baher Elsheikh">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://baher-elsheikh.github.io/calculators/flange-bolt-torque/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baher-elsheikh.github.io/calculators/flange-bolt-torque/">
+<meta property="og:title" content="Flange Bolt Torque Calculator, ASME PCC-1">
+<meta property="og:description" content="Free target bolt stress and tightening torque for bolted flange joints to ASME PCC-1 Appendix O, step by step. Prepared by Baher Elsheikh.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Flange Bolt Torque Calculator, ASME PCC-1","url":"https://baher-elsheikh.github.io/calculators/flange-bolt-torque/","applicationCategory":"EngineeringApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Target assembly bolt stress and tightening torque for bolted flange joints to ASME PCC-1 Appendix O, with bolt, gasket and flange limit checks.","author":{"@type":"Person","name":"Baher Elsheikh","sameAs":["https://www.linkedin.com/in/baher-elsheikh/","https://www.youtube.com/@baherelsheikh4942"]}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF0F5; --panel:#FFFFFF; --ink:#121A30; --steel:#545E74; --rule:#CDD2DE;
+  --accent:#14245E; --accent-soft:#E1E5F2; --ok:#1E7A4C; --ok-soft:#DDF0E5;
+  --bad:#AE2A1F; --bad-soft:#F7DEDA; --warn:#8A5A00; --warn-soft:#F6EAD0;
+  --field:#F7F8FB; --wall:#7E8E98; --tol:#B9C4CA;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --math:"STIX Two Text","Cambria Math",Cambria,"Times New Roman",serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+    --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+    --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+  --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+  --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans);font-variant-numeric:tabular-nums}
+.wrap{max-width:1320px;margin:0 auto;padding:28px 24px 48px}
+header.top{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+h1{font-family:var(--math);font-weight:600;font-size:clamp(26px,3.4vw,38px);line-height:1.1;margin:0;letter-spacing:-.01em}
+.home{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14.5px;margin-bottom:14px}
+.home img{height:40px;width:auto}
+.home:hover span{color:var(--accent)}
+.lg-dark{display:none}
+.f input:disabled,.f select:disabled{opacity:.45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:inline}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:inline}
+.basis{color:var(--steel);font-size:13.5px;margin-top:8px;max-width:70ch}
+.byline{font-size:14px;margin-top:10px;color:var(--ink);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.byline .links{display:inline-flex;gap:12px}
+.byline a,footer a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;font-weight:500}
+.byline a:hover,footer a:hover{text-decoration-thickness:2px}
+@media print{.byline a::after{content:" (" attr(href) ")";font-weight:400;color:var(--steel)}}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{font:500 14px var(--sans);border-radius:6px;padding:8px 14px;cursor:pointer;border:1px solid var(--rule);background:var(--panel);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--panel)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* verdict + wall gauge */
+.verdict{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:22px 24px;display:grid;grid-template-columns:minmax(260px,1fr) minmax(320px,1.6fr);gap:20px 32px;align-items:center;margin-bottom:22px}
+.verdict .state{font-family:var(--math);font-size:clamp(22px,2.6vw,30px);line-height:1.2}
+.verdict .state.ok{color:var(--ok)} .verdict .state.bad{color:var(--bad)}
+.verdict .sub{color:var(--steel);margin-top:6px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-size:12.5px;padding:3px 9px;border-radius:999px;border:1px solid transparent}
+.chip.ok{background:var(--ok-soft);color:var(--ok)} .chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)} .chip.info{background:var(--accent-soft);color:var(--accent)}
+.gauge svg{width:100%;height:auto;display:block}
+.gauge text{font-family:var(--sans);font-size:11px;fill:var(--steel);paint-order:stroke;stroke:var(--panel);stroke-width:3px;stroke-linejoin:round}
+.gauge .lab{fill:var(--ink);font-weight:500}
+.gcap{font-size:12px;color:var(--steel);margin-top:4px}
+
+/* layout */
+.cols{display:grid;grid-template-columns:380px minmax(0,1fr);gap:22px;align-items:start}
+aside.inputs{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:6px 18px 18px;position:sticky;top:calc(12px + env(safe-area-inset-top,0px));max-height:calc(100vh - 24px - env(safe-area-inset-top,0px));overflow:auto}
+fieldset{border:0;border-top:1px solid var(--rule);margin:14px 0 0;padding:12px 0 0}
+fieldset:first-of-type{border-top:0}
+legend{font-weight:600;font-size:14px;padding:0}
+.f{display:grid;grid-template-columns:1fr 112px 46px;gap:6px;align-items:center;margin-top:7px}
+.f.wide{grid-template-columns:1fr 1.4fr}
+.f label{font-size:13px;color:var(--ink)}
+.f label i{font-family:var(--math);font-size:15px}
+.f .u{font-size:12px;color:var(--steel)}
+input,select{font:14px var(--sans);color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:5px;padding:5px 7px;width:100%;font-variant-numeric:tabular-nums}
+input[type=number]{text-align:right}
+input:disabled{opacity:.6}
+input.need{background:#FFF7D6;border-color:#D9B84A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) input.need{background:#33290F;border-color:#7A6420}}
+:root[data-theme="dark"] input.need{background:#33290F;border-color:#7A6420}
+.hint{font-size:12px;color:var(--steel);margin:4px 0 0;line-height:1.4}
+
+/* calculation report */
+main.report{display:flex;flex-direction:column;gap:18px;min-width:0}
+section.step{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 20px 12px}
+.step h2{font-size:17px;font-weight:600;margin:0;display:flex;gap:10px;align-items:baseline}
+.step h2 .n{font-family:var(--math);color:var(--accent);font-size:20px;min-width:1.2em}
+.step .ref{color:var(--steel);font-size:12.5px;margin:2px 0 8px 32px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td{padding:7px 8px;border-top:1px solid var(--rule);vertical-align:baseline}
+td.lb{width:30%;color:var(--ink)}
+td.eq{font-family:var(--math);font-size:15.5px;white-space:nowrap}
+td.sb{font-family:var(--math);font-size:15px;color:var(--steel);white-space:nowrap}
+td.v{text-align:right;font-weight:600;white-space:nowrap}
+td.v small{display:block;font-weight:400;color:var(--steel);font-size:12px}
+td.un{color:var(--steel);font-size:12.5px;white-space:nowrap;width:44px}
+.result{margin:10px 0 4px;padding:9px 12px;border-radius:6px;font-weight:500;font-size:14px}
+.result.ok{background:var(--ok-soft);color:var(--ok)} .result.bad{background:var(--bad-soft);color:var(--bad)}
+.result.warn{background:var(--warn-soft);color:var(--warn)} .result.info{background:var(--accent-soft);color:var(--accent)}
+.note{font-size:12.5px;color:var(--steel);margin:6px 0 0}
+.schtbl td{text-align:center;font-size:12.5px;padding:5px 4px}
+.schtbl td.sel{outline:2px solid var(--accent);font-weight:600}
+.schtbl td.okc{background:var(--ok-soft);color:var(--ok)} .schtbl td.badc{color:var(--steel)}
+.schtbl th{font-size:12px;font-weight:600;padding:5px 4px;border-bottom:1px solid var(--rule)}
+
+/* how to use */
+section.howto{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:18px 22px 14px;margin-top:22px}
+.howto h2{font-family:var(--math);font-weight:600;font-size:24px;margin:0 0 4px}
+.howto h3{font-size:15px;font-weight:600;margin:18px 0 6px}
+.howto p,.howto li{font-size:14px;max-width:85ch}
+.howto ol,.howto ul{padding-left:22px;margin:6px 0}
+.howto li{margin:5px 0}
+.howto .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4px 32px}
+
+footer{margin-top:28px;font-size:12.5px;color:var(--steel);border-top:1px solid var(--rule);padding-top:14px;display:grid;gap:6px}
+.printhead{display:none}
+
+@media (max-width:980px){
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none}
+  .verdict{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .wrap{padding:18px 14px 36px}
+  td.eq,td.sb{white-space:normal}
+  td.lb{width:auto}
+  .howto{padding:16px 14px 12px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .verdict .state{transition:color .25s}
+}
+@media print{
+  :root{--bg:#fff;--panel:#fff}
+  body{font-size:11px}
+  .actions,.noprint{display:none!important}
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none;border:0;padding:0}
+  section.step,.verdict{break-inside:avoid;border-color:#999}
+  .printhead{display:block;font-size:11px;margin-bottom:8px}
+  input,select{border:0;background:none;padding:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <a class="home" href="../"><img class="lg-light" src="../../assets/gear-light.png" alt=""><img class="lg-dark" src="../../assets/gear-dark.png" alt=""><span>Baher Elsheikh</span><span style="font-weight:400;color:var(--steel)">| All calculators</span></a>
+      <h1>Flange bolt torque, ASME PCC-1</h1>
+      <div class="byline">Prepared by: <strong>Baher Elsheikh</strong>
+        <span class="links"><a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube channel</a></span></div>
+      <div class="basis">ASME PCC-1 (bolted flange joint assembly): Appendix O target assembly bolt stress, checked against bolt, gasket and flange limits; Appendix H bolt root areas; nut factor torque and the legacy tightening pattern. Inch and metric bolts, metric units.</div>
+    </div>
+    <div class="actions">
+      <button type="button" id="btnHow">How to use</button>
+      <button type="button" id="btnExample">Load example</button>
+      <button type="button" id="btnClear">Clear inputs</button>
+      <button type="button" class="primary" id="btnPrint">Print / save PDF</button>
+    </div>
+  </header>
+
+  <div class="printhead" id="printhead"></div>
+
+  <div class="verdict" aria-live="polite">
+    <div>
+      <div class="state" id="vState">—</div>
+      <div class="sub" id="vSub"></div>
+      <div class="chips" id="vChips"></div>
+    </div>
+    <div class="gauge">
+      <svg id="gauge" viewBox="0 0 640 160" role="img" aria-label="Acceptable bolt stress window"></svg>
+      <div class="gcap">Assembly bolt stress window: lower limits (below the bar) and upper limits (above the bar). The selected stress S<sub>bsel</sub> must sit inside the green band.</div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <aside class="inputs" aria-label="Inputs">
+      <fieldset>
+        <legend>Joint</legend>
+        <div class="f wide"><label for="tag">Flange joint</label><input id="tag" type="text" placeholder="e.g. NPS 3 Cl. 300 RFWN"></div>
+        <div class="f wide"><label for="prep">Prepared by</label><input id="prep" type="text"></div>
+        <div class="f wide"><label for="date">Date</label><input id="date" type="date"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Bolting</legend>
+        <div class="f wide"><label for="bolt">Bolt size</label><select id="bolt"></select></div>
+        <div class="f"><label for="n">Number of bolts <i>n</i><sub>b</sub></label><input id="n" type="number" step="1"><span class="u"></span></div>
+        <div class="f wide"><label for="matB">Bolt material</label><input id="matB" type="text"></div>
+        <div class="f"><label for="Sy">Bolt yield at ambient <i>S</i><sub>y</sub></label><input id="Sy" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="Sbmax">Max. bolt stress <i>S</i><sub>bmax</sub></label><input id="Sbmax" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="Sbmin">Min. bolt stress <i>S</i><sub>bmin</sub></label><input id="Sbmin" type="number" step="any"><span class="u">MPa</span></div>
+        <p class="hint">Selected by the user. PCC-1 O-4.1: S<sub>bmax</sub> typically 40% to 70% of ambient bolt yield; S<sub>bmin</sub> typically 140 to 245 MPa (20 to 35 ksi). Example: 75 and 35 ksi (517 and 241 MPa) for B7.</p>
+        <div class="f"><label for="K">Nut factor <i>K</i></label><input id="K" type="number" step="any"><span class="u"></span></div>
+        <p class="hint">From the lubricant supplier; 0.2 is used in the PCC-1 example.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Gasket (manufacturer data)</legend>
+        <div class="f wide"><label for="gas">Gasket type</label><input id="gas" type="text"></div>
+        <div class="f"><label for="GOD">Contact OD</label><input id="GOD" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="GID">Contact ID <i>G</i><sub>ID</sub></label><input id="GID" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">Of the sealing element in contact with the flange faces (for a spiral wound gasket: the winding, not the rings).</p>
+        <div class="f"><label for="SgT">Target gasket stress <i>S</i><sub>gT</sub></label><input id="SgT" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="SgS">Min. seating stress <i>S</i><sub>gmin-S</sub></label><input id="SgS" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="SgO">Min. operating stress <i>S</i><sub>gmin-O</sub></label><input id="SgO" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="Sgmax">Max. gasket stress <i>S</i><sub>gmax</sub></label><input id="Sgmax" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="phi">Relaxation factor <i>φ</i><sub>g</sub></label><input id="phi" type="number" step="any"><span class="u"></span></div>
+        <p class="hint">Fraction of the assembly gasket stress that remains in service; 0.7 in the PCC-1 example.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Operation and flange</legend>
+        <div class="f wide"><label for="punit">Pressure unit</label>
+          <select id="punit"><option value="MPa">MPa (g)</option><option value="kgcm2">kg/cm² (g)</option><option value="bar">bar (g)</option><option value="psi">psi (g)</option></select></div>
+        <div class="f"><label for="P">Maximum pressure <i>P</i><sub>max</sub></label><input id="P" type="number" step="any"><span class="u pu">MPa</span></div>
+        <div class="f"><label for="Sfmax">Flange limit <i>S</i><sub>fmax</sub> (optional)</label><input id="Sfmax" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="thg">Max. gasket rotation <i>θ</i><sub>gmax</sub></label><input id="thg" type="number" step="any"><span class="u">deg</span></div>
+        <div class="f"><label for="thf">Flange rotation at <i>S</i><sub>fmax</sub>, <i>θ</i><sub>fmax</sub></label><input id="thf" type="number" step="any"><span class="u">deg</span></div>
+        <p class="hint">Flange values from the PCC-1 Appendix O tables, a WRC 538 check or FEA. Leave blank to skip steps 4 and 8.</p>
+        <div class="f"><label for="Sov">Bolt stress override (optional)</label><input id="Sov" type="number" step="any"><span class="u">MPa</span></div>
+        <p class="hint">Leave blank to use steps 1 to 4 of Appendix O.</p>
+      </fieldset>
+    </aside>
+
+    <main class="report" id="report"></main>
+  </div>
+
+  <section class="howto noprint" id="howto" aria-labelledby="h-how">
+    <h2 id="h-how">How to use this calculator</h2>
+    <p>The calculator follows the joint component approach of ASME PCC-1 Appendix O. Steps 1 to 4 set the assembly bolt stress: start from the gasket stress you want, then cap it at the bolt maximum, raise it to the bolt minimum and cap it at the flange limit. Steps 5 to 8 then check the result against the gasket seating, operating and maximum stresses and the flange rotation limit. The selected bolt stress gives the tightening torque. Every equation is shown with your values in it; the example is the NPS 3 Class 300 joint worked in Appendix O, converted to metric.</p>
+    <div class="grid">
+      <div>
+        <h3>Steps</h3>
+        <ol>
+          <li><strong>Choose the bolt size and number.</strong> Metric root areas are taken from PCC-1 Table H-1M; inch root areas from the minor diameter (UNC up to 1 in., 8-thread series above).</li>
+          <li><strong>Select the bolt limits.</strong> PCC-1 O-4.1 gives typical ranges: S<sub>bmax</sub> 40% to 70% of ambient bolt yield, to avoid damage to the bolts or assembly equipment; S<sub>bmin</sub> 140 to 245 MPa (20 to 35 ksi), so that bolting inaccuracies stay a small part of the bolt stress and the load is high enough to prevent self-loosening. The calculator notes values outside these ranges.</li>
+          <li><strong>Enter the gasket contact dimensions and stresses</strong> from the gasket manufacturer: target, minimum seating, minimum operating and maximum, and the relaxation factor φ<sub>g</sub>.</li>
+          <li><strong>Enter the maximum pressure and, if known, the flange limits</strong> S<sub>fmax</sub> and the rotations θ<sub>gmax</sub> and θ<sub>fmax</sub>.</li>
+          <li><strong>Read steps 1 to 4</strong> for the selected bolt stress, and steps 5 to 8 for the checks. The window at the top shows all limits and where S<sub>bsel</sub> sits.</li>
+          <li><strong>Enter the nut factor</strong> for the lubricant actually used, and read the target torque and tightening passes.</li>
+          <li><strong>Print or save as PDF</strong> and attach it to the joint assembly procedure.</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Good practice</h3>
+        <ul>
+          <li>The Appendix O values are not hard limits. If a step 5 to 8 check is not met (as for some NPS 8 Class 150 flanges), use judgement on which limit is more critical to joint integrity and adjust S<sub>bsel</sub> with the override.</li>
+          <li>If no bolt stress works, the joint needs a change: a different gasket, stronger bolting, or more or larger bolts.</li>
+          <li>For high-temperature flanges whose yield drops in service, consider the flange operating limit too (see the WRC 538 work on this site).</li>
+          <li>The nut factor method has a scatter of about ±30% in bolt load. For a different nut factor K', torque scales by K / K' (Eq. O-3).</li>
+          <li>Follow the tightening pattern and passes in the qualified procedure; the 30% / 70% / 100% passes shown are the PCC-1 legacy pattern.</li>
+        </ul>
+        <h3>Not covered</h3>
+        <ul>
+          <li>Hydraulic tensioning (load transfer factor), elevated-temperature bolt relaxation beyond the factor φ<sub>g</sub>, and derivation of the flange limits themselves.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>Prepared by: Baher Elsheikh (<a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a>). Version 1.1, November 2026 (from the spreadsheet Flange Bolt Torque PCC-1 Calculator, revision 2, checked against the ASME PCC-1 Appendix O worked example).</div>
+    <div>© 2026 Baher Elsheikh. Free to use; not to be copied, modified or redistributed without permission.</div>
+    <div>This tool is an aid for engineering screening. Bolt and flange limits, gasket stresses, relaxation factor and nut factor are entered by the user and are not supplied here. Results must be verified by a qualified engineer and the joint assembled to a qualified procedure. No warranty is given.</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const PCONV = {kgcm2:0.0980665, MPa:1, bar:0.1, psi:0.00689476};
+  const PLAB = {kgcm2:'kg/cm²', MPa:'MPa', bar:'bar', psi:'psi'};
+  const INCH = [['1/2"-13 UNC',0.5,13],['5/8"-11 UNC',0.625,11],['3/4"-10 UNC',0.75,10],['7/8"-9 UNC',0.875,9],['1"-8 UNC',1.0,8],
+    ['1-1/8"-8 UN',1.125,8],['1-1/4"-8 UN',1.25,8],['1-3/8"-8 UN',1.375,8],['1-1/2"-8 UN',1.5,8],['1-5/8"-8 UN',1.625,8],
+    ['1-3/4"-8 UN',1.75,8],['1-7/8"-8 UN',1.875,8],['2"-8 UN',2.0,8],['2-1/4"-8 UN',2.25,8],['2-1/2"-8 UN',2.5,8],['2-3/4"-8 UN',2.75,8],['3"-8 UN',3.0,8]];
+  // ASME PCC-1 Table H-1M root areas, mm²
+  const METRIC = [['M12 x 1.75',12,72],['M14 x 2',14,100],['M16 x 2',16,138],['M20 x 2.5',20,217],['M22 x 2.5',22,272],['M24 x 3',24,313],
+    ['M27 x 3',27,414],['M30 x 3.5',30,503],['M33 x 3.5',33,629],['M36 x 4',36,738],['M39 x 4',39,890],['M42 x 4.5',42,1018],
+    ['M45 x 4.5',45,1195],['M48 x 5',48,1343],['M52 x 5',52,1615],['M56 x 5.5',56,1863],['M64 x 6',64,2467],['M72 x 6',72,3222],
+    ['M80 x 6',80,4077],['M90 x 6',90,5287],['M100 x 6',100,6652]];
+  const BOLTS = INCH.map(b=>{ const d=b[1]*25.4, p=25.4/b[2], dr=d-1.29904*p; return {s:b[0],d,src:`π/4 × (${d.toFixed(2)} − 1.29904 × ${p.toFixed(4)})²`,A:Math.PI/4*dr*dr}; })
+    .concat(METRIC.map(b=>({s:b[0],d:b[1],src:'ASME PCC-1 Table H-1M',A:b[2]})));
+  const EXAMPLE = {tag:'Example: NPS 3 Cl. 300 RFWN (PCC-1 Appendix O)', prep:'', date:'', bolt:'3/4"-10 UNC', n:8, matB:'SA-193 B7', Sy:724, Sbmax:517.1, Sbmin:241.3, K:0.2,
+    gas:'Spiral wound, ASME B16.20', GOD:120.70, GID:101.6, SgT:206.8, SgS:86.2, SgO:41.4, Sgmax:275.8, phi:0.7, punit:'MPa', P:5.171, Sfmax:434.4, thg:1.0, thf:0.32, Sov:''};
+  const IDS = Object.keys(EXAMPLE);
+  const STORE = 'pcc1-torque-inputs-v2';
+  const $ = id => document.getElementById(id);
+  const og1=document.createElement('optgroup'); og1.label='Inch (UNC / 8UN)'; const og2=document.createElement('optgroup'); og2.label='Metric (Table H-1M)';
+  BOLTS.forEach((b,i)=>{ const o=document.createElement('option'); o.value=b.s; o.textContent=b.s; (i<INCH.length?og1:og2).appendChild(o); });
+  $('bolt').appendChild(og1); $('bolt').appendChild(og2);
+  function setInputs(d){ IDS.forEach(k=>{const el=$(k); if(!el) return; el.value=(d[k]===undefined||d[k]===null)?'':d[k];}); if(!$('bolt').value) $('bolt').value='3/4"-10 UNC'; }
+  function getInputs(){ const d={}; IDS.forEach(k=>{d[k]=$(k).value;}); return d; }
+  function num(k){ const v=parseFloat($(k).value); return isFinite(v)?v:NaN; }
+  function f(x,d){ if(!isFinite(x)) return '—'; return x.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+  const v = s => `<i>${s}</i>`;
+  const ksi = x => isFinite(x)? f(x/6.894757,2)+' ksi' : '';
+  function row(label, eq, sub, val, unit, d, small){
+    return `<tr><td class="lb">${label}</td><td class="eq">${eq||''}</td><td class="sb">${sub||''}</td>`+
+      `<td class="v">${typeof val==='string'?val:f(val,d)}${small?`<small>${small}</small>`:''}</td><td class="un">${unit||''}</td></tr>`;
+  }
+  function step(n,title,ref,rows,results,notes){
+    return `<section class="step"><h2><span class="n">${n}</span>${title}</h2><div class="ref">${ref}</div>`+
+      (rows.length?`<div class="tbl"><table>${rows.filter(Boolean).join('')}</table></div>`:'')+
+      (results||[]).map(r=>`<div class="result ${r[0]}">${r[1]}</div>`).join('')+
+      (notes||[]).map(t=>`<p class="note">${t}</p>`).join('')+`</section>`;
+  }
+  const res = (ok, good, bad) => ok ? ['ok', good] : ['bad', bad];
+
+  function compute(){
+    const pu=$('punit').value, pc=PCONV[pu], pl=PLAB[pu];
+    document.querySelectorAll('.pu').forEach(e=>e.textContent=pl);
+    const b = BOLTS.find(x=>x.s===$('bolt').value) || BOLTS[2];
+    const n=num('n'), Sy=num('Sy'), Sbmax=num('Sbmax'), Sbmin=num('Sbmin'), K=num('K');
+    const GOD=num('GOD'), GID=num('GID'), SgT=num('SgT'), SgS=num('SgS'), SgO=num('SgO'), Sgmax=num('Sgmax'), phi=num('phi');
+    const P=num('P')*pc, Sfmax=num('Sfmax'), thg=num('thg'), thf=num('thf'), Sov=num('Sov');
+    const need=['n','Sbmax','Sbmin','K','GOD','GID','SgT','SgS','SgO','Sgmax','phi','P'];
+    need.forEach(k=>$(k).classList.toggle('need', !isFinite(num(k))));
+    const ready = need.every(k=>isFinite(num(k)));
+
+    const Ab1=b.A, Abt=n*Ab1, Ag=Math.PI/4*(GOD*GOD-GID*GID);
+    const hasF = isFinite(Sfmax)&&Sfmax>0, hasR = hasF && isFinite(thg)&&thg>0 && isFinite(thf)&&thf>0;
+    const S1 = SgT*Ag/Abt, S2 = Math.min(S1,Sbmax), S3 = Math.max(S2,Sbmin), S4 = hasF? Math.min(S3,Sfmax) : S3;
+    const useOv = isFinite(Sov)&&Sov>0, Sb = useOv? Sov : S4;
+    const okL = Sb>=Sbmin-0.05 && Sb<=Sbmax+0.05;
+    const pmx = Sbmax/Sy*100, okG = (!isFinite(Sy) || (pmx>=40 && pmx<=70)) && Sbmin>=140 && Sbmin<=245;
+    const S5 = SgS*Ag/Abt, S6 = (SgO*Ag + Math.PI/4*P*GID*GID)/(phi*Abt), S7 = Sgmax*Ag/Abt, S8 = hasR? Sfmax*thg/thf : NaN;
+    const ok5=Sb>=S5, ok6=Sb>=S6, ok7=Sb<=S7, ok8=!hasR||Sb<=S8;
+    const all = okL&&ok5&&ok6&&ok7&&ok8;
+    const Sga = Sb*Abt/Ag, Fb = Sb*Ab1, T = Sb*K*Ab1*b.d/1000;
+
+    let out='';
+    out += step(1,'Bolt and gasket areas','Appendix H root area; gasket contact area',[
+      row('Nominal bolt diameter', `${v('φ')}<sub>b</sub>`, b.s, b.d,'mm',2),
+      row('Root area per bolt', `${v('A')}<sub>b</sub>`, b.src, Ab1,'mm²',1, f(Ab1/645.16,4)+' in²'),
+      row('Total root area', `${v('n')}<sub>b</sub>${v('A')}<sub>b</sub>`, `${f(n,0)} × ${f(Ab1,1)}`, Abt,'mm²',1, f(Abt/645.16,3)+' in²'),
+      row('Gasket contact area', `${v('A')}<sub>g</sub> = π/4 (GOD² − GID²)`, `π/4 × (${f(GOD,2)}² − ${f(GID,2)}²)`, Ag,'mm²',1, f(Ag/645.16,3)+' in²')
+    ],[]);
+
+    out += step(2,'Selected bolt stress, steps 1 to 4','Appendix O-4.2: target from the gasket, then bolt maximum, bolt minimum and flange limit',[
+      row('Step 1', `${v('S')}<sub>bsel</sub> = ${v('S')}<sub>gT</sub>${v('A')}<sub>g</sub> / (${v('n')}<sub>b</sub>${v('A')}<sub>b</sub>)`, `${f(SgT,1)} × ${f(Ag,1)} / ${f(Abt,1)}`, S1,'MPa',1, ksi(S1)+' (Eq. O-1)'),
+      row('Step 2', `min(${v('S')}<sub>bsel</sub>, ${v('S')}<sub>bmax</sub>)`, `min(${f(S1,1)}, ${f(Sbmax,1)})`, S2,'MPa',1, 'Eq. O-4'),
+      row('Step 3', `max(${v('S')}<sub>bsel</sub>, ${v('S')}<sub>bmin</sub>)`, `max(${f(S2,1)}, ${f(Sbmin,1)})`, S3,'MPa',1, 'Eq. O-5'),
+      row('Step 4', `min(${v('S')}<sub>bsel</sub>, ${v('S')}<sub>fmax</sub>)`, hasF?`min(${f(S3,1)}, ${f(Sfmax,1)})`:'flange limit not entered', S4,'MPa',1, 'Eq. O-6'),
+      row('Selected bolt stress', `${v('S')}<sub>bsel</sub>`, useOv?'override entered':'from steps 1 to 4', Sb,'MPa',1, ksi(Sb)+(isFinite(Sy)?`, ${f(Sb/Sy*100,1)}% of yield`:''))
+    ],[ okL? ['ok', `S<sub>bsel</sub> ${f(Sb,1)} MPa is within the bolt limits ${f(Sbmin,0)} to ${f(Sbmax,0)} MPa.`]
+            : ['warn', `S<sub>bsel</sub> ${f(Sb,1)} MPa is outside the bolt limits ${f(Sbmin,0)} to ${f(Sbmax,0)} MPa${useOv?' (override)':' because the flange limit controls'}: judge which limit is more critical.`],
+        okG ? ['info', `Bolt limits within the PCC-1 O-4.1 typical ranges${isFinite(Sy)?` (S<sub>bmax</sub> ${f(pmx,1)}% of yield`:' ('}, S<sub>bmin</sub> ${f(Sbmin,0)} MPa).`]
+            : ['info', `Note: outside the O-4.1 typical ranges (S<sub>bmax</sub> ${isFinite(Sy)?f(pmx,1)+'% of yield, typically 40–70%':'—'}; S<sub>bmin</sub> ${f(Sbmin,0)} MPa, typically 140–245 MPa). Guidance only: confirm the selection.`] ]);
+
+    out += step(3,'Additional checks, steps 5 to 8','Gasket seating (O-7), operating gasket stress (O-8), gasket maximum (O-9), flange rotation (O-10)',[
+      row('Step 5, seating', `${v('S')}<sub>gmin-S</sub>${v('A')}<sub>g</sub> / (${v('n')}<sub>b</sub>${v('A')}<sub>b</sub>)`, `${f(SgS,1)} × ${f(Ag,1)} / ${f(Abt,1)}`, S5,'MPa',1, 'S<sub>bsel</sub> ≥, '+ksi(S5)),
+      row('Step 6, operation', `[${v('S')}<sub>gmin-O</sub>${v('A')}<sub>g</sub> + (π/4)${v('P')}<sub>max</sub>${v('G')}<sub>ID</sub>²] / (φ<sub>g</sub>${v('n')}<sub>b</sub>${v('A')}<sub>b</sub>)`, `[${f(SgO,1)} × ${f(Ag,1)} + (π/4) × ${f(P,3)} × ${f(GID,1)}²] / (${f(phi,2)} × ${f(Abt,1)})`, S6,'MPa',1, 'S<sub>bsel</sub> ≥, '+ksi(S6)),
+      row('Step 7, gasket maximum', `${v('S')}<sub>gmax</sub>${v('A')}<sub>g</sub> / (${v('n')}<sub>b</sub>${v('A')}<sub>b</sub>)`, `${f(Sgmax,1)} × ${f(Ag,1)} / ${f(Abt,1)}`, S7,'MPa',1, 'S<sub>bsel</sub> ≤, '+ksi(S7)),
+      row('Step 8, flange rotation', `${v('S')}<sub>fmax</sub>(θ<sub>gmax</sub> / θ<sub>fmax</sub>)`, hasR?`${f(Sfmax,1)} × (${f(thg,2)} / ${f(thf,2)})`:'not entered', hasR?S8:'—','MPa',1, hasR?'S<sub>bsel</sub> ≤, '+ksi(S8):''),
+      row('Gasket stress achieved', `${v('S')}<sub>bsel</sub>${v('n')}<sub>b</sub>${v('A')}<sub>b</sub> / ${v('A')}<sub>g</sub>`, `${f(Sb,1)} × ${f(Abt,1)} / ${f(Ag,1)}`, Sga,'MPa',1)
+    ],[ res(ok5, 'Step 5: gasket seating achieved.', `Step 5: S<sub>bsel</sub> below ${f(S5,1)} MPa: gasket seating not achieved.`),
+        res(ok6, 'Step 6: operating gasket stress maintained.', `Step 6: S<sub>bsel</sub> below ${f(S6,1)} MPa: operating gasket stress not maintained.`),
+        res(ok7, 'Step 7: gasket maximum stress not exceeded.', `Step 7: S<sub>bsel</sub> above ${f(S7,1)} MPa: gasket maximum stress exceeded.`),
+        hasR? res(ok8, 'Step 8: flange rotation limit not exceeded.', `Step 8: S<sub>bsel</sub> above ${f(S8,1)} MPa: flange rotation limit exceeded.`) : ['info','Step 8: flange rotation not checked (S<sub>fmax</sub>, θ<sub>gmax</sub> or θ<sub>fmax</sub> not entered).'] ],
+      ['These values are not hard limits (PCC-1 O-4.3): if a check is not met, judge which limit is more critical to joint integrity.']);
+
+    out += step(4,'Torque','Eq. (O-2M) T<sub>b</sub> = S<sub>bsel</sub> K A<sub>b</sub> φ<sub>b</sub> / 1000; PCC-1 legacy tightening passes',[
+      row('Bolt load per bolt', `${v('S')}<sub>bsel</sub>${v('A')}<sub>b</sub>`, `${f(Sb,1)} × ${f(Ab1,1)}`, Fb,'N',0, f(Fb/4448.22,2)+' kip'),
+      row('Target torque', `${v('T')}<sub>b</sub> = ${v('S')}<sub>bsel</sub>${v('K')}${v('A')}<sub>b</sub>${v('φ')}<sub>b</sub> / 1000`, `${f(Sb,1)} × ${f(K,3)} × ${f(Ab1,1)} × ${f(b.d,2)} / 1000`, T,'N·m',0, f(T*0.737562,0)+' ft·lb'),
+      row('Pass 1', '30% of target', 'star pattern', 0.3*T,'N·m',0, f(0.3*T*0.737562,0)+' ft·lb'),
+      row('Pass 2', '70% of target', 'star pattern', 0.7*T,'N·m',0, f(0.7*T*0.737562,0)+' ft·lb'),
+      row('Pass 3', '100% of target', 'star pattern, then circular passes until no rotation', T,'N·m',0, f(T*0.737562,0)+' ft·lb')
+    ],[],['For a different nut factor K\', T<sub>b</sub> scales by K/K\' (Eq. O-3). The nut factor method has a scatter of about ±30% in bolt load.']);
+
+    out += step(5,'Result','ASME PCC-1 Appendix O-4.2',[],[ !ready?['warn','Enter the highlighted inputs to complete the check.']:(all?['ok',`Assembly bolt stress ${f(Sb,0)} MPa and torque ${f(T,0)} N·m (${f(T*0.737562,0)} ft·lb) satisfy all Appendix O checks.`]:['bad','One or more Appendix O checks are not met: judge which limit controls and adjust S<sub>bsel</sub> (override), the gasket or the bolting.']) ]);
+
+    $('report').innerHTML = out;
+    const st=$('vState');
+    if(!ready){ st.textContent='Enter the highlighted inputs'; st.className='state'; }
+    else if(all){ st.textContent=`Target torque ${f(T,0)} N·m (${f(T*0.737562,0)} ft·lb)`; st.className='state ok'; }
+    else { st.textContent='Appendix O check not met: review the limits'; st.className='state bad'; }
+    $('vSub').innerHTML = `${$('tag').value||'Joint'}: ${f(n,0)} × ${b.s} ${$('matB').value||''}, S<sub>bsel</sub> ${f(Sb,0)} MPa (${ksi(Sb)}), gasket ${f(Sga,0)} MPa.`;
+    const chip=(ok,lab)=>`<span class="chip ${ok?'ok':'bad'}">${lab}</span>`;
+    $('vChips').innerHTML = ready ? chip(okL,'Bolt limits')+chip(ok5,'Seating')+chip(ok6,'Operation')+chip(ok7,'Gasket max')+(hasR?chip(ok8,'Flange rotation'):'<span class="chip warn">Rotation not checked</span>')+(hasF&&S3>Sfmax&&!useOv?'<span class="chip info">Flange limit controls</span>':'') : '';
+    drawWindow({Sb,lows:[[Sbmin,'Sbmin'],[S5,'seat'],[S6,'oper']],ups:[[Sbmax,'Sbmax'],[S7,'gasket max'],[hasF?Sfmax:NaN,'Sfmax'],[S8,'rotation']]});
+    $('printhead').textContent = `${$('tag').value||''}  ${$('prep').value?'Prepared by: '+$('prep').value:''}  ${$('date').value||''}`;
+    try{ localStorage.setItem(STORE, JSON.stringify(getInputs())); }catch(e){}
+  }
+
+  function drawWindow(d){
+    const g=$('gauge'); if(!isFinite(d.Sb)){ g.innerHTML=''; return; }
+    const cs=getComputedStyle(document.documentElement), c=n=>cs.getPropertyValue(n).trim();
+    const lows=d.lows.filter(l=>isFinite(l[0])).sort((a,b)=>a[0]-b[0]), ups=d.ups.filter(u=>isFinite(u[0])).sort((a,b)=>a[0]-b[0]);
+    const lo=Math.max(...lows.map(l=>l[0])), hi=Math.min(...ups.map(u=>u[0]));
+    const scaleMax=Math.max(d.Sb, lo, ups.length?ups[0][0]:0)*1.25, x0=20, W=600, sx=x=>x0+W*Math.min(x,scaleMax)/scaleMax, y=66;
+    let s=`<rect x="${x0}" y="${y}" width="${W}" height="16" fill="${c('--bad-soft')}" rx="3"/>`;
+    if(hi>lo) s+=`<rect x="${sx(lo)}" y="${y}" width="${Math.max(0,sx(hi)-sx(lo))}" height="16" fill="${c('--ok-soft')}" stroke="${c('--ok')}"/>`;
+    const tick=(x,lab,ty,above)=>{ const X=sx(x), off=x>scaleMax, col=c('--steel');
+      const anchor = X>x0+W-70 ? 'end' : (X<x0+70 ? 'start' : 'middle');
+      return `<line x1="${X}" y1="${above?ty+4:y+16}" x2="${X}" y2="${above?y:ty-11}" stroke="${col}" stroke-width="1" stroke-dasharray="2 2"/>`+
+        `<text x="${anchor==='end'?Math.min(X,x0+W):X}" y="${ty}" text-anchor="${anchor}" style="fill:${col}">${lab}${off?' (off scale)':''}</text>`; };
+    lows.forEach((l,i)=>{ s+=tick(l[0],`${l[1]} ${f(l[0],0)}`,y+32+i*15,false); });
+    ups.forEach((u,i)=>{ s+=tick(u[0],`${u[1]} ${f(u[0],0)}`,y-8-(ups.length-1-i)*15,true); });
+    const X=sx(d.Sb), inside=d.Sb>=lo-0.05&&d.Sb<=hi+0.05, col=inside?c('--ok'):c('--bad');
+    s+=`<path d="M${X-7},${y-1} L${X+7},${y-1} L${X},${y+9} Z" fill="${col}"/><line x1="${X}" y1="${y}" x2="${X}" y2="${y+16}" stroke="${col}" stroke-width="3"/>`;
+    s+=`<text class="lab" x="${Math.min(x0+W-60,Math.max(x0+60,X))}" y="${y+82}" text-anchor="middle" style="fill:${col}">Sbsel ${f(d.Sb,0)} MPa</text>`;
+    g.innerHTML=s;
+  }
+
+  let saved=null; try{ saved=JSON.parse(localStorage.getItem(STORE)); }catch(e){}
+  setInputs(saved||EXAMPLE);
+  document.querySelectorAll('aside input, aside select').forEach(el=>el.addEventListener('input',compute));
+  document.querySelectorAll('aside select').forEach(el=>el.addEventListener('change',compute));
+  $('btnExample').addEventListener('click',()=>{setInputs(EXAMPLE);compute();});
+  $('btnClear').addEventListener('click',()=>{const d={}; IDS.forEach(k=>d[k]=''); d.bolt='3/4"-10 UNC'; d.punit='MPa'; d.K=0.2; d.phi=0.7; setInputs(d); compute();});
+  $('btnHow').addEventListener('click',()=>$('howto').scrollIntoView({behavior:'smooth'}));
+  $('btnPrint').addEventListener('click',()=>window.print());
+  if(window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',compute);
+  compute();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Common Mistakes That Can Be Avoided When Using Standards for Static Equipment | Baher Elsheikh</title>
+<meta name="description" content="Six common mistakes in applying piping and flange standards: B36.10M versus B36.19M schedules, inside diameter, weld neck bore, B16.5 size limits, bolting strength and B16.47 Series A and B.">
+<meta name="keywords" content="ASME B36.10M, ASME B36.19M, pipe schedule, ASME B16.5, weld neck flange, ASME B16.47 Series A Series B, bolting materials, low strength bolts">
+<meta name="author" content="Baher Elsheikh">
+<link rel="canonical" href="https://baher-elsheikh.github.io/articles/common-mistakes-using-standards-static-equipment/">
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://baher-elsheikh.github.io/articles/common-mistakes-using-standards-static-equipment/">
+<meta property="og:title" content="Common Mistakes That Can Be Avoided When Using Standards for Static Equipment">
+<meta property="og:description" content="Six common mistakes in applying piping and flange standards: B36.10M versus B36.19M schedules, inside diameter, weld neck bore, B16.5 size limits, bolting strength and B16.47 Series A and B.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Common Mistakes That Can Be Avoided When Using Standards for Static Equipment", "description": "Six common mistakes in applying piping and flange standards: B36.10M versus B36.19M schedules, inside diameter, weld neck bore, B16.5 size limits, bolting strength and B16.47 Series A and B.", "url": "https://baher-elsheikh.github.io/articles/common-mistakes-using-standards-static-equipment/", "inLanguage": "en", "author": {"@type": "Person", "name": "Baher Elsheikh", "url": "https://baher-elsheikh.github.io/#about", "sameAs": ["https://www.linkedin.com/in/baher-elsheikh/", "https://www.youtube.com/@baherelsheikh4942"]}, "about": "ASME B36.10M, ASME B36.19M, pipe schedule, ASME B16.5, weld neck flange, ASME B16.47 Series A Series B, bolting materials, low strength bolts"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F7F9; --panel:#FFFFFF; --ink:#16203A; --steel:#566074; --rule:#DCE0E7;
+  --accent:#14245E; --accent-soft:#E7EAF3; --brass:#8A6320; --brass-soft:#F4ECDD; --fig:#EEF1F7;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --serif:"STIX Two Text",Cambria,Georgia,"Times New Roman",serif;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 var(--sans);overflow-x:clip}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.lg-dark{display:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:block}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:block}
+header.site{background:var(--panel);border-bottom:1px solid var(--rule)}
+header.site .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;min-height:62px}
+.brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px}
+.brand img{height:34px;width:auto}
+nav.tabs{display:flex;flex-wrap:wrap;gap:2px}
+nav.tabs a{font-size:15px;font-weight:500;color:var(--steel);text-decoration:none;padding:6px 10px;border-radius:5px}
+nav.tabs a:hover{color:var(--ink);background:var(--accent-soft)}
+nav.tabs a.cur{color:var(--accent);background:var(--accent-soft)}
+article{max-width:760px;margin:0 auto;padding:40px 0 56px}
+.crumb{font-size:14px;color:var(--steel);margin:0 0 18px}
+.crumb a{color:var(--steel)}
+.lab{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none}
+.lab svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.22;letter-spacing:-.005em}
+h1{font-size:clamp(29px,3.6vw,40px);margin:10px 0 0}
+.lead{font-size:19px;line-height:1.6;color:var(--steel);margin:16px 0 0}
+.byline{font-size:14.5px;color:var(--steel);margin:18px 0 0;padding-bottom:22px;border-bottom:1px solid var(--rule)}
+h2{font-size:24px;margin:38px 0 6px}
+h3{font-size:19px;margin:28px 0 4px}
+p{margin:14px 0}
+ul,ol{padding-left:1.3em} li{margin:6px 0}
+figure{margin:28px 0}
+figure .frame{background:var(--fig);border:1px solid var(--rule);border-radius:6px;overflow:hidden;color:var(--accent)}
+figure .frame svg{display:block;width:100%;height:auto}
+figure img{display:block;width:100%;height:auto}
+figcaption{font-size:14.5px;color:var(--steel);margin-top:8px}
+.tbl{overflow-x:auto;margin:24px 0}
+table{border-collapse:collapse;width:100%;font-size:15.5px;background:var(--panel)}
+caption{caption-side:bottom;text-align:left;font-size:14.5px;color:var(--steel);padding-top:8px}
+th,td{border:1px solid var(--rule);padding:8px 12px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+td.n{text-align:center;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{width:34%}
+.eq{font-family:var(--serif);font-size:19px;text-align:center;margin:20px 0;padding:12px;background:var(--panel);border:1px solid var(--rule);border-radius:6px}
+.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 16px;margin:22px 0;font-size:16px}
+.refs{font-size:14.5px;color:var(--steel)}
+.refs li{margin:4px 0}
+.related{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule)}
+.related h2{font-size:20px;margin:0 0 8px}
+.related ul{list-style:none;padding:0;margin:0}
+.related li{padding:6px 0}
+.flag{font-size:12.5px;font-weight:500;color:var(--brass);background:var(--brass-soft);border-radius:3px;padding:1px 7px}
+.disc{font-size:14px;color:var(--steel);margin-top:30px}
+footer{border-top:1px solid var(--rule);padding:20px 0 30px;font-size:13.5px;color:var(--steel);background:var(--panel)}
+footer .wrap{display:grid;gap:6px}
+@media (max-width:600px){.wrap{padding:0 16px} article{padding-top:26px} body{font-size:16.5px}}
+@media print{header.site,footer,.related{display:none} body{background:#fff}}
+</style>
+<link rel="stylesheet" href="../../assets/chrome.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="beta-bar" role="note"><div class="wrap"><span class="beta-tag">Beta</span> This site is in its testing period. Spotted a mistake? Please tell me on <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</div></div>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../../"><img class="lg-light" src="../../assets/gear-light.png" alt="" width="41" height="34"><img class="lg-dark" src="../../assets/gear-dark.png" alt="" width="41" height="34"><span>Baher Elsheikh</span></a>
+    <div class="hdr-right">
+      <nav class="tabs" id="mainnav" aria-label="Main"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/" aria-current="page">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a></nav>
+      <a class="nav-search" href="../../search/"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20.5 20.5"/></svg><span>Search</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav">Menu</button>
+    </div>
+  </div>
+</header>
+<main id="main" class="wrap">
+<article>
+  <p class="crumb"><a href="../">Articles</a></p>
+  <a class="lab" href="../../#codes-and-standards"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h11.5A2.5 2.5 0 0 1 19 7v13H7.5A2.5 2.5 0 0 1 5 17.5z"/><path d="M5 17.5A2.5 2.5 0 0 1 7.5 15H19"/><path d="M9 8.5h6M9 11.5h4"/></svg>Codes &amp; Standards</a>
+  <h1>Common Mistakes That Can Be Avoided When Using Standards for Static Equipment</h1>
+  <p class="lead">Standards make many decisions simple, which is exactly why the same mistakes keep repeating. Six examples from piping and flange standards, and how to avoid them.</p>
+  <p class="byline">By Baher Elsheikh. 5 min read.</p>
+
+  <p>Standards are widely used for static equipment and are referenced for design, fabrication, inspection, repair, maintenance and integrity management. They are documents that establish engineering or technical requirements for products, practices, methods or operations, and in many cases they allow specific requirements to be selected directly, without intensive engineering work or calculation.</p>
+  <p>Even so, some mistakes in applying standards are seen again and again, and they can be avoided. The usual causes are:</p>
+  <ol>
+    <li><strong>Unfamiliarity with the standard's content or structure.</strong> Users sometimes know only the tabulated values they need and do not check the other requirements or precautions in the same standard.</li>
+    <li><strong>Relying on copied publications.</strong> Much of the content of standards is reproduced in vendors' publications and on internet forums, but these do not necessarily include all the requirements of the standard. That can lead to errors.</li>
+    <li><strong>Overconfidence.</strong> Frequent use of similar standards can lead users to assume that a less familiar standard has no different requirements.</li>
+    <li><strong>The standard is not available</strong> to the person using it.</li>
+    <li><strong>Limited time</strong> and work done in a hurry.</li>
+  </ol>
+  <p>Careful use of standards easily eliminates these mistakes and avoids their safety and economic consequences. The following examples show common mistakes that can be avoided.</p>
+  <h2>1. Pipe schedules in ASME B36.10M and ASME B36.19M</h2>
+  <p>ASME B36.10M (welded and seamless wrought steel pipe) specifies pipe thickness by schedule number, such as Sch. 40, Sch. 80 and Sch. 120. ASME B36.19M (stainless steel pipe) specifies it by a number followed by the letter S, such as Sch. 10S, Sch. 40S and Sch. 80S.</p>
+  <p>For relatively small pipe sizes, the schedules in the two standards correspond to the same thickness: for NPS 4, Sch. 40 and Sch. 40S are both 6.02 mm. For larger sizes this is no longer true. For NPS 16, Sch. 80S is 12.7 mm while Sch. 80 is 21.44 mm, about 1.7 times thicker. Specifying the wrong one by mistake makes a significant difference to the flow area and the weight of the pipe.</p>
+  <figure><div class="frame"><svg viewBox="0 0 680 400" role="img" aria-label="Wall thickness comparison: NPS 16 Sch. 80S is 12.7 mm while Sch. 80 is 21.44 mm; at NPS 4, Sch. 40S and Sch. 40 are both 6.02 mm">
+<text x="160" y="30" text-anchor="middle" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="currentColor">ASME B36.19M, stainless</text>
+<text x="470" y="30" text-anchor="middle" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="currentColor">ASME B36.10M, carbon steel</text>
+<circle cx="160" cy="130" r="70.3125" fill="none" stroke="currentColor" stroke-width="9.375" stroke-opacity=".75"/>
+<text x="160" y="126" text-anchor="middle" font-weight="600" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" fill="currentColor">NPS 16</text>
+<text x="160" y="144" text-anchor="middle" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" fill="currentColor">Sch. 80S</text>
+<text x="245" y="71" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="currentColor">t = 12.7 mm</text>
+<circle cx="470" cy="130" r="67.08661417322834" fill="none" stroke="currentColor" stroke-width="15.82677165354331" stroke-opacity=".75"/>
+<text x="470" y="126" text-anchor="middle" font-weight="600" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" fill="currentColor">NPS 16</text>
+<text x="470" y="144" text-anchor="middle" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" fill="currentColor">Sch. 80</text>
+<text x="555" y="71" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="currentColor">t = 21.44 mm</text>
+<circle cx="160" cy="310" r="42.99650043744532" fill="none" stroke="currentColor" stroke-width="10.00699912510936" stroke-opacity=".75"/>
+<text x="160" y="306" text-anchor="middle" font-weight="600" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" fill="currentColor">NPS 4</text>
+<text x="160" y="324" text-anchor="middle" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" fill="currentColor">Sch. 40S</text>
+<text x="218" y="278" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="currentColor">t = 6.02 mm</text>
+<circle cx="470" cy="310" r="42.99650043744532" fill="none" stroke="currentColor" stroke-width="10.00699912510936" stroke-opacity=".75"/>
+<text x="470" y="306" text-anchor="middle" font-weight="600" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" fill="currentColor">NPS 4</text>
+<text x="470" y="324" text-anchor="middle" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" fill="currentColor">Sch. 40</text>
+<text x="528" y="278" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="currentColor">t = 6.02 mm</text>
+<text x="340" y="392" text-anchor="middle" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" fill="currentColor" opacity=".8">Wall thickness drawn at twice scale for visibility</text>
+</svg></div><figcaption>Figure 1. The same schedule number can mean very different wall thicknesses in the two standards.</figcaption></figure>
+  <h2>2. Outside diameter is fixed, inside diameter is not</h2>
+  <p>The outside diameter of a pipe is fixed for each nominal size, while the inside diameter varies with wall thickness. If this is overlooked when sizing pipe, the result can be an undersized bore and a higher pressure drop than intended. Table 1 compares the flow area for the cases above.</p>
+  <div class="tbl"><table>
+    <caption>Table 1. Effect of wall thickness on flow area for the same nominal pipe size.</caption>
+    <thead><tr><th>Pipe</th><th>Standard</th><th>OD, mm</th><th>ID, mm</th><th>Thickness, mm</th><th>Flow area, mm²</th></tr></thead>
+    <tbody>
+      <tr><td>NPS 20 carbon steel, Sch. 40</td><td>ASME B36.10M</td><td class="n">508</td><td class="n">477.82</td><td class="n">15.09</td><td class="n">179,315</td></tr>
+      <tr><td>NPS 20 stainless steel, Sch. 40S</td><td>ASME B36.19M</td><td class="n">508</td><td class="n">488.94</td><td class="n">9.53</td><td class="n">187,759</td></tr>
+      <tr><td>NPS 1 carbon steel, Sch. 40</td><td>ASME B36.10M</td><td class="n">33.4</td><td class="n">26.64</td><td class="n">3.38</td><td class="n">557.4</td></tr>
+      <tr><td>NPS 1 carbon steel, Sch. XXS</td><td>ASME B36.10M</td><td class="n">33.4</td><td class="n">15.22</td><td class="n">9.09</td><td class="n">181.9</td></tr>
+    </tbody></table></div>
+  <h2>3. A weld neck flange needs its bore specified</h2>
+  <p>The information needed to specify an item fully can differ with the type of item. Slip-on, threaded, socket weld, lapped and blind flanges to ASME B16.5 can be specified by class (150, 300, 600 and so on), facing (RF, FF, RJ) and material. A weld neck (WN) flange also needs its hub bore, or the matching pipe schedule. If this is missed, the flange delivered may have a hub that does not match the pipe it is to be welded to.</p>
+  <figure><div class="frame"><svg viewBox="0 0 680 300" role="img" aria-label="Weld neck flange in half section welded to a pipe: the hub bore must match the pipe bore">
+<g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+<path d="M100 40 H170 V150 L340 176 V210 H100 Z" fill="currentColor" fill-opacity=".18"/>
+<rect x="100" y="62" width="70" height="26" style="fill:var(--fig)" stroke-width="1.2"/><path d="M92 75 H178" stroke-dasharray="8 3 2 3" stroke-width=".8" opacity=".7"/>
+<path d="M350 176 H610 V210 H350 Z" fill="currentColor" fill-opacity=".08"/>
+<path d="M340 176 L345 170 L350 176" style="stroke:var(--brass)" stroke-width="2"/>
+<path d="M40 262 H640" stroke-dasharray="18 5 3 5" stroke-width="1" opacity=".7"/>
+<path d="M470 210 V262" stroke-width="1"/><path d="M470 210 l-4 9 h8 z M470 262 l-4 -9 h8 z" fill="currentColor"/>
+<path d="M230 210 V262" stroke-width="1" style="stroke:var(--brass)"/><path d="M230 210 l-4 9 h8 z M230 262 l-4 -9 h8 z" style="fill:var(--brass);stroke:var(--brass)"/>
+</g>
+<g fill="currentColor" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14">
+<text x="104" y="30" font-weight="600">Flange ring</text><text x="184" y="80" font-size="12" opacity=".8">bolt hole</text>
+<text x="230" y="148" font-weight="600">Hub</text><text x="452" y="168" font-weight="600">Pipe</text><text x="328" y="160" style="fill:var(--brass)">weld</text>
+<text x="240" y="244" style="fill:var(--brass)" font-weight="600">hub bore</text>
+<text x="480" y="244" font-weight="600">pipe bore</text>
+<text x="350" y="290" text-anchor="middle">The two must match: specify the schedule or bore of the weld neck</text>
+</g></svg></div><figcaption>Figure 2. Weld neck flange: the hub bore must match the bore of the connecting pipe.</figcaption></figure>
+  <h2>4. Not every size exists in every class</h2>
+  <p>Standards do not always follow a uniform pattern. ASME B16.5 gives flange dimensions for all pressure classes, but some sizes are not available in some classes:</p>
+  <div class="tbl"><table>
+    <caption>Table 2. Size limits of ASME B16.5 flanges in three classes.</caption>
+    <thead><tr><th>Class</th><th>Limit</th><th>Practical consequence</th></tr></thead>
+    <tbody>
+      <tr><td>Class 400</td><td>Smallest size is NPS 4</td><td>NPS 3½ and smaller: use Class 600 flanges</td></tr>
+      <tr><td>Class 900</td><td>Smallest size is NPS 3</td><td>NPS 2½ and smaller: use Class 1500 flanges</td></tr>
+      <tr><td>Class 2500</td><td>Largest size is NPS 12</td><td>No Class 2500 flange of NPS 14 or larger</td></tr>
+    </tbody></table></div>
+  <p>Someone might specify an NPS 20 Class 2500 flange and be surprised to learn that it is not a standard flange.</p>
+  <h2>5. Bolting strength categories in ASME B16.5</h2>
+  <p>Some important requirements are easy to miss unless the standard is read carefully. One example is the classification of bolting materials in ASME B16.5 as low, intermediate and high strength. Low-strength bolts are limited to lower pressure classes and must not be used in high-rating applications.</p>
+  <p>Bolting materials with a specified minimum yield strength of no more than 206 MPa (30 ksi) are classed as low strength. These, and other materials of comparable strength, are to be used only in Class 150 and Class 300 flanged joints, and only with the gaskets described in ASME B16.5. Flanged assemblies with low-strength carbon steel bolts should not be used above 200 °C (400 °F) or below −29 °C (−20 °F). There are limitations on intermediate-strength bolts too; check ASME B16.5 for the details.</p>
+  <div class="note">Take care when specifying stainless steel bolts: some, such as ASTM A193 B8A Class 1 (SS304), are classed as low-strength bolting.</div>
+  <h2>6. ASME B16.47 Series A and Series B are not interchangeable</h2>
+  <p>Large flanges (above NPS 24) to ASME B16.47 come in two series, A and B, which are not interchangeable. In general, Series A flanges are thicker, heavier and stronger than Series B flanges of the same size and class, so they can withstand more external load. Series B flanges need more, but smaller, bolts and have a smaller bolt circle diameter than Series A.</p>
+  <figure><div class="frame"><svg viewBox="0 0 680 330" role="img" aria-label="Same size flanges to ASME B16.47 Series A and Series B: Series A has fewer, larger bolts on a larger bolt circle; Series B has more, smaller bolts on a smaller bolt circle">
+<g fill="none" stroke="currentColor" stroke-width="1.6">
+<circle cx="180" cy="140" r="115.0" fill="currentColor" fill-opacity=".10"/><circle cx="180" cy="140" r="81.0" style="fill:var(--fig)"/>
+<circle cx="180" cy="140" r="98.0" stroke-dasharray="4 4" stroke-width="1"/><circle cx="278.0" cy="140.0" r="8"/><circle cx="270.5" cy="177.5" r="8"/><circle cx="249.3" cy="209.3" r="8"/><circle cx="217.5" cy="230.5" r="8"/><circle cx="180.0" cy="238.0" r="8"/><circle cx="142.5" cy="230.5" r="8"/><circle cx="110.7" cy="209.3" r="8"/><circle cx="89.5" cy="177.5" r="8"/><circle cx="82.0" cy="140.0" r="8"/><circle cx="89.5" cy="102.5" r="8"/><circle cx="110.7" cy="70.7" r="8"/><circle cx="142.5" cy="49.5" r="8"/><circle cx="180.0" cy="42.0" r="8"/><circle cx="217.5" cy="49.5" r="8"/><circle cx="249.3" cy="70.7" r="8"/><circle cx="270.5" cy="102.5" r="8"/>
+<text x="180" y="283.0" text-anchor="middle" font-weight="600" stroke="none" fill="currentColor" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15">Series A</text>
+<text x="180" y="302.0" text-anchor="middle" stroke="none" fill="currentColor" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13">fewer, larger bolts; thicker, heavier</text>
+<circle cx="500" cy="140" r="107.0" fill="currentColor" fill-opacity=".10"/><circle cx="500" cy="140" r="73.0" style="fill:var(--fig)"/>
+<circle cx="500" cy="140" r="91.0" stroke-dasharray="4 4" stroke-width="1"/><circle cx="591.0" cy="140.0" r="5"/><circle cx="588.7" cy="160.2" r="5"/><circle cx="582.0" cy="179.5" r="5"/><circle cx="571.1" cy="196.7" r="5"/><circle cx="556.7" cy="211.1" r="5"/><circle cx="539.5" cy="222.0" r="5"/><circle cx="520.2" cy="228.7" r="5"/><circle cx="500.0" cy="231.0" r="5"/><circle cx="479.8" cy="228.7" r="5"/><circle cx="460.5" cy="222.0" r="5"/><circle cx="443.3" cy="211.1" r="5"/><circle cx="428.9" cy="196.7" r="5"/><circle cx="418.0" cy="179.5" r="5"/><circle cx="411.3" cy="160.2" r="5"/><circle cx="409.0" cy="140.0" r="5"/><circle cx="411.3" cy="119.8" r="5"/><circle cx="418.0" cy="100.5" r="5"/><circle cx="428.9" cy="83.3" r="5"/><circle cx="443.3" cy="68.9" r="5"/><circle cx="460.5" cy="58.0" r="5"/><circle cx="479.8" cy="51.3" r="5"/><circle cx="500.0" cy="49.0" r="5"/><circle cx="520.2" cy="51.3" r="5"/><circle cx="539.5" cy="58.0" r="5"/><circle cx="556.7" cy="68.9" r="5"/><circle cx="571.1" cy="83.3" r="5"/><circle cx="582.0" cy="100.5" r="5"/><circle cx="588.7" cy="119.8" r="5"/>
+<text x="500" y="275.0" text-anchor="middle" font-weight="600" stroke="none" fill="currentColor" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15">Series B</text>
+<text x="500" y="294.0" text-anchor="middle" stroke="none" fill="currentColor" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13">more, smaller bolts; smaller bolt circle</text>
+</g></svg></div><figcaption>Figure 3. ASME B16.47 Series A and Series B flanges of the same size and class (schematic).</figcaption></figure>
+  <p>Make sure the whole flanged joint is of the same series: both mating flanges, the bolting, the gasket and any item in between, such as a flanged valve.</p>
+  <h2>Standards referred to</h2>
+  <ol class="refs">
+    <li>ASME B36.10M, Welded and Seamless Wrought Steel Pipe.</li>
+    <li>ASME B36.19M, Stainless Steel Pipe.</li>
+    <li>ASME B16.5, Pipe Flanges and Flanged Fittings, NPS ½ through NPS 24.</li>
+    <li>ASME B16.20, Metallic Gaskets for Pipe Flanges.</li>
+    <li>ASME B16.47, Large Diameter Steel Flanges, NPS 26 through NPS 60.</li>
+  </ol>
+  <p class="disc">This article is for general engineering guidance. Apply it with the current edition of the referenced codes and standards and the judgement of a qualified engineer.</p>
+  <aside class="related"><h2>Related on this site</h2><ul><li>Article: <a href="../galling-stainless-steel-bolts/">Galling and Seizing of Stainless Steel Bolts</a></li><li>Calculator: Flange bolt torque <span class="flag">Coming soon</span></li></ul></aside>
+</article>
+</main>
+<footer>
+  <div class="wrap">
+    <nav class="fnav" aria-label="Footer"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a><a href="../../standards/">Standards Index</a><a href="../../search/">Search</a></nav>
+    <div>Knowledge grows when it is communicated. <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a></div>
+    <div>Articles, documents and calculators are aids for engineering work, not a substitute for a complete engineering assessment. Users remain responsible for verifying the applicable design basis, code requirements and edition, assumptions and engineering decisions; results must be checked by a qualified engineer before use.</div>
+    <div>© 2026 Baher Elsheikh. Content and tools free to use; not to be copied or redistributed without permission.</div>
+  </div>
+</footer>
+<script src="../../assets/chrome.js"></script>
+</body>
+</html>

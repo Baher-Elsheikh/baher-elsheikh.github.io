@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Welded Tube Plug Calculator | Heat Exchanger Plugging, ASME VIII-1 UG-34, UW-18</title>
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="description" content="Free online calculator for welded plugs used to plug heat exchanger tubes: plug thickness as a flat head (ASME VIII-1 UG-34) for tube side and shell side pressure, plug height, fillet weld shear (UW-18(d)), weld leg size and hydrotest checks. Step-by-step equations and PDF output.">
+<meta name="keywords" content="welded tube plug calculator, heat exchanger tube plugging, tube plug thickness, plug weld size, ASME Section VIII UG-34 flat head, UW-18 fillet weld, tubesheet plug">
+<meta name="author" content="Baher Elsheikh">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://baher-elsheikh.github.io/calculators/welded-tube-plug/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baher-elsheikh.github.io/calculators/welded-tube-plug/">
+<meta property="og:title" content="Welded Tube Plug Calculator">
+<meta property="og:description" content="Free check of welded heat exchanger tube plugs: plug thickness, height, fillet weld and hydrotest, with step-by-step equations. Prepared by Baher Elsheikh.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Welded Tube Plug Calculator","url":"https://baher-elsheikh.github.io/calculators/welded-tube-plug/","applicationCategory":"EngineeringApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Checks welded plugs for heat exchanger tubes: plug thickness as a flat head (ASME VIII-1 UG-34), plug height, fillet weld shear (UW-18(d)), weld leg size and hydrotest.","author":{"@type":"Person","name":"Baher Elsheikh","sameAs":["https://www.linkedin.com/in/baher-elsheikh/","https://www.youtube.com/@baherelsheikh4942"]}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF0F5; --panel:#FFFFFF; --ink:#121A30; --steel:#545E74; --rule:#CDD2DE;
+  --accent:#14245E; --accent-soft:#E1E5F2; --ok:#1E7A4C; --ok-soft:#DDF0E5;
+  --bad:#AE2A1F; --bad-soft:#F7DEDA; --warn:#8A5A00; --warn-soft:#F6EAD0;
+  --field:#F7F8FB; --wall:#7E8E98; --tol:#B9C4CA;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --math:"STIX Two Text","Cambria Math",Cambria,"Times New Roman",serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+    --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+    --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+  --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+  --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans);font-variant-numeric:tabular-nums}
+.wrap{max-width:1320px;margin:0 auto;padding:28px 24px 48px}
+header.top{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+h1{font-family:var(--math);font-weight:600;font-size:clamp(26px,3.4vw,38px);line-height:1.1;margin:0;letter-spacing:-.01em}
+.home{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14.5px;margin-bottom:14px}
+.home img{height:40px;width:auto}
+.home:hover span{color:var(--accent)}
+.lg-dark{display:none}
+.f input:disabled,.f select:disabled{opacity:.45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:inline}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:inline}
+.basis{color:var(--steel);font-size:13.5px;margin-top:8px;max-width:70ch}
+.byline{font-size:14px;margin-top:10px;color:var(--ink);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.byline .links{display:inline-flex;gap:12px}
+.byline a,footer a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;font-weight:500}
+.byline a:hover,footer a:hover{text-decoration-thickness:2px}
+@media print{.byline a::after{content:" (" attr(href) ")";font-weight:400;color:var(--steel)}}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{font:500 14px var(--sans);border-radius:6px;padding:8px 14px;cursor:pointer;border:1px solid var(--rule);background:var(--panel);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--panel)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* verdict + sketch */
+.verdict{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:22px 24px;display:grid;grid-template-columns:minmax(260px,1fr) minmax(320px,1.4fr);gap:20px 32px;align-items:center;margin-bottom:22px}
+.verdict .state{font-family:var(--math);font-size:clamp(22px,2.6vw,30px);line-height:1.2}
+.verdict .state.ok{color:var(--ok)} .verdict .state.bad{color:var(--bad)}
+.verdict .sub{color:var(--steel);margin-top:6px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-size:12.5px;padding:3px 9px;border-radius:999px;border:1px solid transparent}
+.chip.ok{background:var(--ok-soft);color:var(--ok)} .chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)} .chip.info{background:var(--accent-soft);color:var(--accent)}
+.gauge svg{width:100%;height:auto;display:block;max-height:300px}
+.gauge text{font-family:var(--sans);font-size:12px;fill:var(--steel);paint-order:stroke;stroke:var(--panel);stroke-width:4px;stroke-linejoin:round}
+.gauge .lab{fill:var(--ink);font-weight:500}
+.gcap{font-size:12px;color:var(--steel);margin-top:4px}
+
+/* layout */
+.cols{display:grid;grid-template-columns:380px minmax(0,1fr);gap:22px;align-items:start}
+aside.inputs{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:6px 18px 18px;position:sticky;top:calc(12px + env(safe-area-inset-top,0px));max-height:calc(100vh - 24px - env(safe-area-inset-top,0px));overflow:auto}
+fieldset{border:0;border-top:1px solid var(--rule);margin:14px 0 0;padding:12px 0 0}
+fieldset:first-of-type{border-top:0}
+legend{font-weight:600;font-size:14px;padding:0}
+.f{display:grid;grid-template-columns:1fr 112px 46px;gap:6px;align-items:center;margin-top:7px}
+.f.wide{grid-template-columns:1fr 1.4fr}
+.f label{font-size:13px;color:var(--ink)}
+.f label i{font-family:var(--math);font-size:15px}
+.f .u{font-size:12px;color:var(--steel)}
+input,select{font:14px var(--sans);color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:5px;padding:5px 7px;width:100%;font-variant-numeric:tabular-nums}
+input[type=number]{text-align:right}
+input:disabled{opacity:.6}
+input.need{background:#FFF7D6;border-color:#D9B84A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) input.need{background:#33290F;border-color:#7A6420}}
+:root[data-theme="dark"] input.need{background:#33290F;border-color:#7A6420}
+.hint{font-size:12px;color:var(--steel);margin:4px 0 0;line-height:1.4}
+.check{display:flex;gap:8px;align-items:center;font-size:13px;margin-top:8px}
+.check input{width:auto}
+
+/* calculation report */
+main.report{display:flex;flex-direction:column;gap:18px;min-width:0}
+section.step{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 20px 12px}
+.step h2{font-size:17px;font-weight:600;margin:0;display:flex;gap:10px;align-items:baseline}
+.step h2 .n{font-family:var(--math);color:var(--accent);font-size:20px;min-width:1.2em}
+.step .ref{color:var(--steel);font-size:12.5px;margin:2px 0 8px 32px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td{padding:7px 8px;border-top:1px solid var(--rule);vertical-align:baseline}
+td.lb{width:30%;color:var(--ink)}
+td.eq{font-family:var(--math);font-size:15.5px;white-space:nowrap}
+td.sb{font-family:var(--math);font-size:15px;color:var(--steel);white-space:nowrap}
+td.v{text-align:right;font-weight:600;white-space:nowrap}
+td.v small{display:block;font-weight:400;color:var(--steel);font-size:12px}
+td.un{color:var(--steel);font-size:12.5px;white-space:nowrap;width:44px}
+.result{margin:10px 0 4px;padding:9px 12px;border-radius:6px;font-weight:500;font-size:14px}
+.result.ok{background:var(--ok-soft);color:var(--ok)} .result.bad{background:var(--bad-soft);color:var(--bad)}
+.result.warn{background:var(--warn-soft);color:var(--warn)} .result.info{background:var(--accent-soft);color:var(--accent)}
+.note{font-size:12.5px;color:var(--steel);margin:6px 0 0}
+
+/* how to use */
+section.howto{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:18px 22px 14px;margin-top:22px}
+.howto h2{font-family:var(--math);font-weight:600;font-size:24px;margin:0 0 4px}
+.howto h3{font-size:15px;font-weight:600;margin:18px 0 6px}
+.howto p,.howto li{font-size:14px;max-width:85ch}
+.howto ol,.howto ul{padding-left:22px;margin:6px 0}
+.howto li{margin:5px 0}
+.howto .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4px 32px}
+
+footer{margin-top:28px;font-size:12.5px;color:var(--steel);border-top:1px solid var(--rule);padding-top:14px;display:grid;gap:6px}
+.printhead{display:none}
+
+@media (max-width:980px){
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none}
+  .verdict{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .wrap{padding:18px 14px 36px}
+  td.eq,td.sb{white-space:normal}
+  td.lb{width:auto}
+  .howto{padding:16px 14px 12px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .verdict .state{transition:color .25s}
+}
+@media print{
+  :root{--bg:#fff;--panel:#fff}
+  body{font-size:11px}
+  .actions,.noprint{display:none!important}
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none;border:0;padding:0}
+  section.step,.verdict{break-inside:avoid;border-color:#999}
+  .printhead{display:block;font-size:11px;margin-bottom:8px}
+  input,select{border:0;background:none;padding:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <a class="home" href="../"><img class="lg-light" src="../../assets/gear-light.png" alt=""><img class="lg-dark" src="../../assets/gear-dark.png" alt=""><span>Baher Elsheikh</span><span style="font-weight:400;color:var(--steel)">| All calculators</span></a>
+      <h1>Welded tube plug</h1>
+      <div class="byline">Prepared by: <strong>Baher Elsheikh</strong>
+        <span class="links"><a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube channel</a></span></div>
+      <div class="basis">Plugs for heat exchanger tubes, welded to the tube end or into the tubesheet hole. ASME BPVC Section VIII Division 1: UG-34 (plug as an unstayed flat head), UW-18(d) (fillet weld allowable), UG-99(b) (hydrotest pressure). Weld design factor and hydrotest checks are recommended practice. Metric units.</div>
+    </div>
+    <div class="actions">
+      <button type="button" id="btnHow">How to use</button>
+      <button type="button" id="btnExample">Load example</button>
+      <button type="button" id="btnClear">Clear inputs</button>
+      <button type="button" class="primary" id="btnPrint">Print / save PDF</button>
+    </div>
+  </header>
+
+  <div class="printhead" id="printhead"></div>
+
+  <div class="verdict" aria-live="polite">
+    <div>
+      <div class="state" id="vState">—</div>
+      <div class="sub" id="vSub"></div>
+      <div class="chips" id="vChips"></div>
+    </div>
+    <div class="gauge">
+      <svg id="sketch" viewBox="0 0 640 270" role="img" aria-label="Plug arrangement sketch"></svg>
+      <div class="gcap" id="sketchCap">Arrangement sketch, not to scale.</div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <aside class="inputs" aria-label="Inputs">
+      <fieldset>
+        <legend>Report</legend>
+        <div class="f wide"><label for="prep">Prepared by</label><input id="prep" type="text"></div>
+        <div class="f wide"><label for="date">Date</label><input id="date" type="date"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Plug arrangement</legend>
+        <div class="f wide"><label for="fig">Plug fitted</label>
+          <select id="fig"><option value="2">In the tubesheet hole (Fig. 2)</option><option value="1">Inside the tube (Fig. 1)</option></select></div>
+        <p class="hint">Fig. 1: plug inside the tube end, welded to the tube and the original tube-to-tubesheet weld. Fig. 2: tube end removed, plug in the tubesheet hole and welded to the tubesheet.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Design conditions</legend>
+        <div class="f wide"><label for="punit">Pressure unit</label>
+          <select id="punit"><option value="MPa">MPa (g)</option><option value="kgcm2">kg/cm² (g)</option><option value="bar">bar (g)</option><option value="psi">psi (g)</option></select></div>
+        <div class="f"><label for="Pt">Tube side pressure <i>P</i><sub>t</sub></label><input id="Pt" type="number" step="any"><span class="u pu">MPa</span></div>
+        <div class="f"><label for="Ps">Shell side pressure <i>P</i><sub>s</sub></label><input id="Ps" type="number" step="any"><span class="u pu">MPa</span></div>
+        <div class="f"><label for="Tt">Tube side temperature</label><input id="Tt" type="number" step="any"><span class="u">°C</span></div>
+        <div class="f"><label for="Ts">Shell side temperature</label><input id="Ts" type="number" step="any"><span class="u">°C</span></div>
+        <p class="hint">The plug is designed at the higher of the two temperatures.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Tube and tubesheet</legend>
+        <div class="f"><label for="OD">Tube outside diameter</label><input id="OD" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="t">Tube thickness <i>t</i></label><input id="t" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="Ds">Tubesheet hole diameter <i>D</i><sub>s</sub></label><input id="Ds" type="number" step="any"><span class="u">mm</span></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Materials (from ASME II-D)</legend>
+        <div class="f wide"><label for="matP">Plug material</label><input id="matP" type="text"></div>
+        <div class="f wide"><label for="matTS">Tubesheet material</label><input id="matTS" type="text"></div>
+        <div class="f wide"><label for="matT">Tube material</label><input id="matT" type="text"></div>
+        <p class="hint">Allowable stresses at the plug design temperature from Section II Part D, Metric, Table 1A or 1B; yield from Table Y-1.</p>
+        <div class="f"><label for="Sp">Plug allowable <i>S</i><sub>p</sub></label><input id="Sp" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="Sts">Tubesheet allowable <i>S</i><sub>ts</sub></label><input id="Sts" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="St">Tube allowable <i>S</i><sub>t</sub></label><input id="St" type="number" step="any"><span class="u">MPa</span></div>
+        <p class="hint">Tube allowable is used only for Fig. 1 (weld to the tube).</p>
+        <div class="f"><label for="Syt">Plug yield at test temp. <i>S</i><sub>yt</sub></label><input id="Syt" type="number" step="any"><span class="u">MPa</span></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Proposed plug</legend>
+        <div class="f"><label for="H">Plug height <i>H</i></label><input id="H" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="tps">Solid thickness <i>t</i><sub>ps</sub></label><input id="tps" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">Thinnest solid section: equal to H for a solid plug; the bottom thickness for a hollow plug.</p>
+        <div class="f"><label for="T">Wall at weld <i>T</i></label><input id="T" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">Hollow plug wall thickness at the weld. Enter 0 for a solid plug.</p>
+        <div class="f"><label for="a">Fillet weld leg <i>a</i></label><input id="a" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">Start with 1.4 × tube thickness.</p>
+        <div class="f"><label for="CA">Corrosion allowance</label><input id="CA" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">Total on the plug, tube side plus shell side. Added to the plug thickness; not deducted from the weld leg.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Flat head factors (UG-34)</legend>
+        <div class="f"><label for="C">Attachment factor <i>C</i></label><input id="C" type="number" step="any"><span class="u"></span></div>
+        <p class="hint">0.33 is conservative for a plug welded in place (m = 1).</p>
+        <div class="f"><label for="E">Joint efficiency <i>E</i></label><input id="E" type="number" step="any"><span class="u"></span></div>
+        <p class="hint">1.0 for a forged or seamless plug.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Hydrotest and PWHT</legend>
+        <div class="f"><label for="PT">Test pressure <i>P</i><sub>T</sub></label><input id="PT" type="number" step="any"><span class="u pu">MPa</span></div>
+        <p class="hint">The higher of the two sides. UG-99(b): 1.3 × MAWP × stress ratio.</p>
+        <label class="check"><input id="pwht" type="checkbox"> PWHT required for the equipment (service or code)</label>
+      </fieldset>
+    </aside>
+
+    <main class="report" id="report"></main>
+  </div>
+
+  <section class="howto noprint" id="howto" aria-labelledby="h-how">
+    <h2 id="h-how">How to use this calculator</h2>
+    <p>The calculator checks a welded plug used to take a leaking heat exchanger tube out of service. The plug is treated as a small welded flat head under the higher of the tube side and shell side pressures. The fillet weld is checked for the pressure force with a design margin, and both are checked again at hydrotest pressure. Every equation is shown with your values in it.</p>
+    <div class="grid">
+      <div>
+        <h3>Steps</h3>
+        <ol>
+          <li><strong>Choose the arrangement.</strong> Fig. 1 when the plug goes inside the tube and is welded to the tube end. Fig. 2 when the tube end is removed and the plug sits in the tubesheet hole. The sketch at the top changes to match.</li>
+          <li><strong>Enter the design conditions</strong> of both sides. Pick the pressure unit first; all pressures, including the test pressure, use it.</li>
+          <li><strong>Enter the tube and tubesheet dimensions.</strong> The pressure diameter <i>D</i><sub>p</sub> is the tube ID less 0.5 mm for Fig. 1, and the hole diameter for Fig. 2.</li>
+          <li><strong>Enter the materials and their allowable stresses</strong> from Section II Part D at the plug design temperature (the higher of the two), and the plug yield at test temperature.</li>
+          <li><strong>Enter the proposed plug:</strong> height, solid thickness at its thinnest point, wall thickness at the weld (0 for a solid plug), fillet weld leg and corrosion allowance.</li>
+          <li><strong>Keep C = 0.33 and E = 1.0</strong> unless you have a reason to change them.</li>
+          <li><strong>Enter the hydrotest pressure</strong> and tick PWHT if the equipment needed it.</li>
+          <li><strong>Read the result.</strong> The banner turns green only when every check passes: thickness, height, weld shear, weld leg and both hydrotest checks. If one fails, the step that fails tells you which dimension to increase.</li>
+          <li><strong>Print or save as PDF</strong> and attach it to the repair procedure.</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Good practice</h3>
+        <ul>
+          <li>Check both sides: a plug in a high-pressure tube side is usually governed by the tube side pressure, but the shell side acts on the other face.</li>
+          <li>Match the plug material to the tubesheet (Fig. 2) or tube (Fig. 1) for weldability and to avoid galvanic or thermal-expansion problems.</li>
+          <li>If the equipment was post-weld heat treated, the plug weld needs the same treatment, or an alternative accepted by the owner and the inspector.</li>
+          <li>Use a qualified welding procedure and welder, and examine the weld (PT or MT) before the test.</li>
+          <li>Record the plugged tube positions; plugging changes the heat transfer area and, with many plugs, the tube-side velocity.</li>
+        </ul>
+        <h3>Basis of the checks</h3>
+        <ul>
+          <li>The 1.5 factor on the weld force and the hydrotest checks are the author's practice, not code requirements.</li>
+          <li>The throat-stress rows (EN 1993-1-8) are for information only and have no pass / fail.</li>
+          <li>Not covered: explosive or mechanical (non-welded) plugs, tubesheet ligament checks and plugging limits for the bundle.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>Prepared by: Baher Elsheikh (<a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a>). Version 1.0, November 2026 (from the spreadsheet Welded Plug Calculator, revision 2).</div>
+    <div>© 2026 Baher Elsheikh. Free to use; not to be copied, modified or redistributed without permission.</div>
+    <div>This tool is an aid for engineering screening. Allowable stresses, yield strength and test pressure are entered by the user from ASME Section II Part D and Section VIII Division 1 and are not supplied here. Results must be verified by a qualified engineer against the applicable code edition and the owner's repair procedure before use. No warranty is given.</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const PCONV = {kgcm2:0.0980665, MPa:1, bar:0.1, psi:0.00689476};
+  const PLAB = {kgcm2:'kg/cm²', MPa:'MPa', bar:'bar', psi:'psi'};
+  const EXAMPLE = {prep:'', date:'', fig:'2', punit:'MPa', Pt:16.18, Ps:0.93, Tt:210, Ts:190, OD:19.05, t:2.11, Ds:19.25,
+    matP:'SA-105', matTS:'SA-266 Cl. 2', matT:'SA-210 A1', Sp:138, Sts:138, St:138, Syt:250,
+    H:30, tps:30, T:0, a:3, CA:0, C:0.33, E:1, PT:21.03, pwht:false};
+  const IDS = Object.keys(EXAMPLE);
+  const STORE = 'tube-plug-inputs-v1';
+  const $ = id => document.getElementById(id);
+  function setInputs(d){ IDS.forEach(k=>{const el=$(k); if(!el) return; if(el.type==='checkbox') el.checked=!!d[k]; else el.value=(d[k]===undefined||d[k]===null)?'':d[k];}); }
+  function getInputs(){ const d={}; IDS.forEach(k=>{const el=$(k); d[k]= el.type==='checkbox'?el.checked:el.value;}); return d; }
+  function num(k){ const v=parseFloat($(k).value); return isFinite(v)?v:NaN; }
+  function f(x,d){ if(!isFinite(x)) return '—'; return x.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+  const v = s => `<i>${s}</i>`;
+  function row(label, eq, sub, val, unit, d, small){
+    return `<tr><td class="lb">${label}</td><td class="eq">${eq||''}</td><td class="sb">${sub||''}</td>`+
+      `<td class="v">${typeof val==='string'?val:f(val,d)}${small?`<small>${small}</small>`:''}</td><td class="un">${unit||''}</td></tr>`;
+  }
+  function step(n,title,ref,rows,results,notes){
+    return `<section class="step"><h2><span class="n">${n}</span>${title}</h2><div class="ref">${ref}</div>`+
+      (rows.length?`<div class="tbl"><table>${rows.filter(Boolean).join('')}</table></div>`:'')+
+      (results||[]).map(r=>`<div class="result ${r[0]}">${r[1]}</div>`).join('')+
+      (notes||[]).map(t=>`<p class="note">${t}</p>`).join('')+`</section>`;
+  }
+
+  function compute(){
+    const pu=$('punit').value, pc=PCONV[pu], pl=PLAB[pu];
+    document.querySelectorAll('.pu').forEach(e=>e.textContent=pl);
+    const back = p => isFinite(p)? f(p/pc,3)+' '+pl : '';
+    const fig1 = $('fig').value==='1';
+    $('St').disabled = !fig1;
+
+    const Pt=num('Pt')*pc, Ps=num('Ps')*pc, PT=num('PT')*pc, Tt=num('Tt'), Ts=num('Ts');
+    const OD=num('OD'), t=num('t'), Ds=num('Ds');
+    const Sp=num('Sp'), Sts=num('Sts'), St=num('St'), Syt=num('Syt');
+    const H=num('H'), tps=num('tps'), T=num('T')||0, a=num('a'), CA=num('CA')||0, C=num('C'), E=num('E');
+    const need = ['Pt','Ps','Tt','Ts','OD','t','Ds','Sp','Sts','Syt','H','tps','a','C','E','PT'].concat(fig1?['St']:[]);
+    need.forEach(k=>$(k).classList.toggle('need', !isFinite(num(k))));
+    $('St').classList.toggle('need', fig1 && !isFinite(St));
+    const ready = need.every(k=>isFinite(num(k)));
+
+    // 1 basis
+    const Td = Math.max(Tt,Ts), ID = OD-2*t;
+    const Dp = fig1 ? ID-0.5 : Ds;
+    // 2 thickness
+    const t1 = Dp*Math.sqrt(C*Pt/(Sp*E)), t2 = Dp*Math.sqrt(C*Ps/(Sp*E)), Tp = Math.max(t1,t2)+CA;
+    const okT = tps>=Tp;
+    // 3 height
+    const Hmin = tps+4*T, okH = H>=Hmin;
+    // 4 weld
+    const Smin = fig1 ? Math.min(Sp,Sts,St) : Math.min(Sp,Sts);
+    const Sw = 0.55*Smin, Aw = Math.PI*Dp*a, Pmax = Math.max(Pt,Ps), F0 = Math.PI/4*Dp*Dp*Pmax, F = 1.5*F0, tau = F/Aw;
+    const okW = tau<=Sw, aMin = 1.4*t, okLeg = a>=aMin;
+    // 5 info
+    const At = Math.PI*Dp*0.707*a, sp = F0/(Math.SQRT2*At), seq = Math.sqrt(sp*sp+3*sp*sp);
+    // 6 hydrotest
+    const tTest = Dp*Math.sqrt(C*PT/(0.9*Syt*E)), okTT = tps>=tTest;
+    const tauT = 1.5*PT*Math.PI/4*Dp*Dp/Aw, SwT = 0.55*0.9*Syt, okWT = tauT<=SwT;
+    const all = okT && okH && okW && okLeg && okTT && okWT;
+
+    let out='';
+    out += step(1,'Design basis','Plug design temperature and pressure diameter',[
+      row('Plug design temperature', `${v('T')} = max(${v('T')}<sub>t</sub>, ${v('T')}<sub>s</sub>)`, `max(${f(Tt,0)}, ${f(Ts,0)})`, Td,'°C',0),
+      row('Tube inside diameter', `${v('d')}<sub>i</sub> = OD − 2${v('t')}`, `${f(OD,2)} − 2 × ${f(t,2)}`, ID,'mm',2),
+      row('Pressure diameter', fig1?`${v('D')}<sub>p</sub> = ${v('d')}<sub>i</sub> − 0.5`:`${v('D')}<sub>p</sub> = ${v('D')}<sub>s</sub>`, fig1?`${f(ID,2)} − 0.5 (Fig. 1)`:`tubesheet hole (Fig. 2)`, Dp,'mm',2),
+      row('Tube side pressure', `${v('P')}<sub>t</sub>`, `${f(num('Pt'),3)} ${pl}`, Pt,'MPa',3),
+      row('Shell side pressure', `${v('P')}<sub>s</sub>`, `${f(num('Ps'),3)} ${pl}`, Ps,'MPa',3)
+    ], Dp<=0?[['bad','Pressure diameter is zero or negative: check the tube OD, thickness and hole diameter.']]:[]);
+
+    out += step(2,'Plug thickness','UG-34: plug as an unstayed flat head, t = d√(CP/SE), checked for each side',[
+      row('Tube side pressure', `${v('t')}<sub>1</sub> = ${v('D')}<sub>p</sub>√(${v('C')}${v('P')}<sub>t</sub> / ${v('S')}<sub>p</sub>${v('E')})`, `${f(Dp,2)} × √(${f(C,2)} × ${f(Pt,3)} / (${f(Sp,1)} × ${f(E,2)}))`, t1,'mm',3),
+      row('Shell side pressure', `${v('t')}<sub>2</sub> = ${v('D')}<sub>p</sub>√(${v('C')}${v('P')}<sub>s</sub> / ${v('S')}<sub>p</sub>${v('E')})`, `${f(Dp,2)} × √(${f(C,2)} × ${f(Ps,3)} / (${f(Sp,1)} × ${f(E,2)}))`, t2,'mm',3),
+      row('Required thickness', `${v('T')}<sub>p</sub> = max(${v('t')}<sub>1</sub>, ${v('t')}<sub>2</sub>) + CA`, `max(${f(t1,3)}, ${f(t2,3)}) + ${f(CA,2)}`, Tp,'mm',3),
+      row('Proposed solid thickness', `${v('t')}<sub>ps</sub>`, 'thinnest solid section', tps,'mm',2)
+    ],[ okT?['ok',`t<sub>ps</sub> ${f(tps,2)} ≥ T<sub>p</sub> ${f(Tp,3)} mm: plug thickness adequate.`]:['bad',`t<sub>ps</sub> ${f(tps,2)} < T<sub>p</sub> ${f(Tp,3)} mm: increase the plug solid thickness.`] ]);
+
+    out += step(3,'Plug height','Good practice: hollow plug depth at least 4T above the solid section (see sketch)',[
+      row('Minimum height', `${v('H')}<sub>min</sub> = ${v('t')}<sub>ps</sub> + 4${v('T')}`, `${f(tps,2)} + 4 × ${f(T,2)}`, Hmin,'mm',2, T===0?'solid plug':''),
+      row('Proposed height', v('H'), '', H,'mm',2)
+    ],[ okH?['ok',`H ${f(H,2)} ≥ ${f(Hmin,2)} mm: plug height adequate.`]:['bad',`H ${f(H,2)} < ${f(Hmin,2)} mm: increase the plug height.`] ]);
+
+    out += step(4,'Fillet weld','UW-18(d): fillet weld in shear at 55% of the lowest allowable; weld force with a 1.5 design factor',[
+      row('Weld allowable stress', `${v('S')}<sub>w</sub> = 0.55 × min(${v('S')}<sub>p</sub>, ${v('S')}<sub>ts</sub>${fig1?`, ${v('S')}<sub>t</sub>`:''})`, fig1?`0.55 × min(${f(Sp,1)}, ${f(Sts,1)}, ${f(St,1)})`:`0.55 × min(${f(Sp,1)}, ${f(Sts,1)})`, Sw,'MPa',1),
+      row('Weld area (leg)', `${v('A')}<sub>w</sub> = π${v('D')}<sub>p</sub>${v('a')}`, `π × ${f(Dp,2)} × ${f(a,2)}`, Aw,'mm²',2),
+      row('Pressure force', `${v('F')}<sub>0</sub> = (π/4)${v('D')}<sub>p</sub>² × max(${v('P')}<sub>t</sub>, ${v('P')}<sub>s</sub>)`, `(π/4) × ${f(Dp,2)}² × ${f(Pmax,3)}`, F0,'N',0),
+      row('Weld design force', `${v('F')} = 1.5${v('F')}<sub>0</sub>`, `1.5 × ${f(F0,0)}`, F,'N',0),
+      row('Weld shear stress', `τ = ${v('F')} / ${v('A')}<sub>w</sub>`, `${f(F,0)} / ${f(Aw,2)}`, tau,'MPa',2),
+      row('Minimum leg (practice)', `1.4${v('t')}`, `1.4 × ${f(t,2)}`, aMin,'mm',2),
+      row('Proposed leg', v('a'), '', a,'mm',2)
+    ],[
+      okW?['ok',`τ ${f(tau,2)} ≤ S<sub>w</sub> ${f(Sw,1)} MPa: weld size adequate.`]:['bad',`τ ${f(tau,2)} > S<sub>w</sub> ${f(Sw,1)} MPa: increase the weld leg a.`],
+      okLeg?['ok',`a ${f(a,2)} ≥ 1.4t = ${f(aMin,2)} mm.`]:['bad',`a ${f(a,2)} < 1.4t = ${f(aMin,2)} mm: increase the weld leg a.`]
+    ],['The 1.5 factor is the author\'s practice, not a code requirement. Corrosion allowance is not deducted from the weld leg.']);
+
+    out += step(5,'Weld throat stresses (information)','EN 1993-1-8 directional method, for information only: no pass / fail',[
+      row('Throat area', `${v('A')}<sub>t</sub> = π${v('D')}<sub>p</sub> × 0.707${v('a')}`, `π × ${f(Dp,2)} × 0.707 × ${f(a,2)}`, At,'mm²',2),
+      row('Throat stresses', `σ<sub>⊥</sub> = τ<sub>⊥</sub> = ${v('F')}<sub>0</sub> / (√2 ${v('A')}<sub>t</sub>)`, `${f(F0,0)} / (√2 × ${f(At,2)})`, sp,'MPa',2),
+      row('Equivalent stress', `√(σ<sub>⊥</sub>² + 3τ<sub>⊥</sub>²)`, `√(${f(sp,2)}² + 3 × ${f(sp,2)}²)`, seq,'MPa',2)
+    ],[]);
+
+    out += step(6,'Hydrotest check','Recommended practice: plug and weld at 90% of plug yield at test pressure',[
+      row('Test pressure', `${v('P')}<sub>T</sub>`, `${f(num('PT'),3)} ${pl}`, PT,'MPa',3),
+      row('Plug thickness at test', `${v('D')}<sub>p</sub>√(${v('C')}${v('P')}<sub>T</sub> / (0.9${v('S')}<sub>yt</sub>${v('E')}))`, `${f(Dp,2)} × √(${f(C,2)} × ${f(PT,3)} / (0.9 × ${f(Syt,1)} × ${f(E,2)}))`, tTest,'mm',3),
+      row('Weld shear at test', `1.5${v('P')}<sub>T</sub>(π/4)${v('D')}<sub>p</sub>² / ${v('A')}<sub>w</sub>`, `1.5 × ${f(PT,3)} × (π/4) × ${f(Dp,2)}² / ${f(Aw,2)}`, tauT,'MPa',2),
+      row('Weld allowable at test', `0.55 × 0.9${v('S')}<sub>yt</sub>`, `0.55 × 0.9 × ${f(Syt,1)}`, SwT,'MPa',2)
+    ],[
+      okTT?['ok',`t<sub>ps</sub> ${f(tps,2)} ≥ ${f(tTest,3)} mm: plug thickness adequate at test.`]:['bad',`t<sub>ps</sub> ${f(tps,2)} < ${f(tTest,3)} mm: increase the plug solid thickness.`],
+      okWT?['ok',`${f(tauT,2)} ≤ ${f(SwT,2)} MPa: weld size adequate at test.`]:['bad',`${f(tauT,2)} > ${f(SwT,2)} MPa: increase the weld leg a.`]
+    ]);
+
+    out += step(7,'Post-weld heat treatment','Follows the original equipment design',[],[
+      $('pwht').checked?['warn','PWHT required: heat treat the plug weld as for the original unit, or use an alternative accepted by the owner and inspector.']:['info','No PWHT required by the equipment design.']
+    ]);
+
+    out += step(8,'Result','All thickness, height, weld and hydrotest checks',[
+      row('Plug thickness', `${v('t')}<sub>ps</sub> / ${v('T')}<sub>p</sub>`, '', isFinite(tps/Tp)?f(tps/Tp,2):'—','',0, okT?'pass':'fail'),
+      row('Weld shear utilisation', `τ / ${v('S')}<sub>w</sub>`, '', isFinite(tau/Sw)?f(tau/Sw*100,1)+'%':'—','',0, okW?'pass':'fail'),
+      row('Hydrotest weld utilisation', `τ<sub>T</sub> / (0.495${v('S')}<sub>yt</sub>)`, '', isFinite(tauT/SwT)?f(tauT/SwT*100,1)+'%':'—','',0, okWT?'pass':'fail')
+    ],[ !ready?['warn','Enter the highlighted inputs to complete the check.']:(all?['ok','Plug design is adequate: all checks pass.']:['bad','Plug design not adequate: revise the failing dimension shown above.']) ]);
+
+    $('report').innerHTML = out;
+
+    const st=$('vState');
+    if(!ready){ st.textContent='Enter the highlighted inputs'; st.className='state'; }
+    else if(all){ st.textContent=`Plug design adequate: weld at ${f(tau/Sw*100,0)}% of allowable`; st.className='state ok'; }
+    else { st.textContent='Plug design not adequate: revise the plug'; st.className='state bad'; }
+    $('vSub').innerHTML = `${fig1?'Fig. 1, plug inside the tube':'Fig. 2, plug in the tubesheet hole'}: D<sub>p</sub> ${f(Dp,2)} mm, ${$('matP').value||'plug material not stated'}.`;
+    const chip=(ok,lab)=>`<span class="chip ${ok?'ok':'bad'}">${lab}</span>`;
+    $('vChips').innerHTML = ready ? chip(okT,'Thickness')+chip(okH,'Height')+chip(okW,'Weld shear')+chip(okLeg,'Weld leg')+chip(okTT,'Test thickness')+chip(okWT,'Test weld')+
+      ($('pwht').checked?'<span class="chip warn">PWHT required</span>':'<span class="chip info">No PWHT</span>') : '';
+
+    drawSketch(fig1, {Dp,tps,H,T,a,t});
+    $('sketchCap').textContent = `${fig1?'Fig. 1: plug inside the tube':'Fig. 2: plug in the tubesheet hole'}. Arrangement sketch, not to scale.`;
+    $('printhead').textContent = `${$('prep').value?'Prepared by: '+$('prep').value:''}  ${$('date').value||''}`;
+    try{ localStorage.setItem(STORE, JSON.stringify(getInputs())); }catch(e){}
+  }
+
+  function drawSketch(fig1, d){
+    const g=$('sketch'), cs=getComputedStyle(document.documentElement), c=n=>cs.getPropertyValue(n).trim();
+    const ink=c('--ink'), steel=c('--steel'), wall=c('--wall'), tol=c('--tol'), acc=c('--accent'), panel=c('--panel'), warn=c('--warn');
+    const cx=320, tsTop=120, tsBot=200, hw=46, tw=10, plugTop=96, plugBot=158, hollow=isFinite(d.T)&&d.T>0, Tw=12;
+    let s=`<defs><pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="${tol}" stroke-width="2"/></pattern></defs>`;
+    // tubesheet with hole
+    s+=`<rect x="40" y="${tsTop}" width="${cx-hw-40}" height="${tsBot-tsTop}" fill="url(#hatch)" stroke="${wall}"/>`;
+    s+=`<rect x="${cx+hw}" y="${tsTop}" width="${600-cx-hw}" height="${tsBot-tsTop}" fill="url(#hatch)" stroke="${wall}"/>`;
+    // tube
+    const tubeTop = fig1 ? tsTop-12 : 168;
+    s+=`<rect x="${cx-hw}" y="${tubeTop}" width="${tw}" height="${262-tubeTop}" fill="${wall}"/>`;
+    s+=`<rect x="${cx+hw-tw}" y="${tubeTop}" width="${tw}" height="${262-tubeTop}" fill="${wall}"/>`;
+    // plug
+    const px0 = fig1 ? cx-hw+tw : cx-hw, px1 = fig1 ? cx+hw-tw : cx+hw;
+    s+=`<rect x="${px0}" y="${plugTop}" width="${px1-px0}" height="${plugBot-plugTop}" fill="${c('--accent-soft')}" stroke="${acc}" stroke-width="1.5"/>`;
+    if(hollow) s+=`<rect x="${px0+Tw}" y="${plugTop}" width="${px1-px0-2*Tw}" height="34" fill="${panel}" stroke="${acc}" stroke-width="1.5"/>`;
+    // welds
+    const wl = fig1 ? cx-hw : cx-hw, wr = fig1 ? cx+hw : cx+hw;
+    if(fig1){ // original tube-to-tubesheet weld
+      s+=`<path d="M${cx-hw-14},${tsTop} Q${cx-hw-2},${tsTop-2} ${cx-hw},${tsTop-12} L${cx-hw},${tsTop} Z" fill="${steel}"/>`;
+      s+=`<path d="M${cx+hw+14},${tsTop} Q${cx+hw+2},${tsTop-2} ${cx+hw},${tsTop-12} L${cx+hw},${tsTop} Z" fill="${steel}"/>`;
+    }
+    const wy = fig1 ? tsTop-12 : tsTop;
+    s+=`<path d="M${wl-12},${wy} L${wl+ (fig1?tw:0)},${wy} L${wl+(fig1?tw:0)},${plugTop+4} Z" fill="${ink}"/>`;
+    s+=`<path d="M${wr+12},${wy} L${wr-(fig1?tw:0)},${wy} L${wr-(fig1?tw:0)},${plugTop+4} Z" fill="${ink}"/>`;
+    // dimensions
+    const arrow=(x1,y1,x2,y2)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${steel}" stroke-width="1" marker-start="url(#ar)" marker-end="url(#ar)"/>`;
+    s = s.replace('</defs>',`<marker id="ar" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,2 L10,5 L0,8 z" fill="${steel}"/></marker></defs>`);
+    s+=arrow(px0,70,px1,70)+`<text class="lab" x="${cx}" y="62" text-anchor="middle">D<tspan baseline-shift="sub" font-size="9">p</tspan> ${f(d.Dp,2)} mm</text>`;
+    s+=`<line x1="${px0}" y1="74" x2="${px0}" y2="${plugTop-2}" stroke="${steel}" stroke-dasharray="2 2"/><line x1="${px1}" y1="74" x2="${px1}" y2="${plugTop-2}" stroke="${steel}" stroke-dasharray="2 2"/>`;
+    s+=arrow(cx+hw+40,plugTop,cx+hw+40,plugBot)+`<text x="${cx+hw+48}" y="${(plugTop+plugBot)/2+4}">H ${f(d.H,1)}</text>`;
+    const solidTop = hollow ? plugTop+34 : plugTop;
+    s+=arrow(cx-hw-40,solidTop,cx-hw-40,plugBot)+`<text x="${cx-hw-48}" y="${(solidTop+plugBot)/2+4}" text-anchor="end">t<tspan baseline-shift="sub" font-size="9">ps</tspan> ${f(d.tps,1)}</text>`;
+    if(hollow) s+=`<text x="${cx}" y="${plugTop+22}" text-anchor="middle">wall T ${f(d.T,1)}</text>`;
+    // labels
+    s+=`<text x="44" y="${tsBot+16}">Tubesheet</text>`;
+    s+=`<text x="${cx+hw+8}" y="252">Tube, t ${f(d.t,2)}</text>`;
+    s+=`<text x="${cx-hw-20}" y="${plugTop-(fig1?12:6)}" text-anchor="end">Plug weld, a ${f(d.a,1)}</text>`;
+    if(fig1) s+=`<text x="${cx-hw-20}" y="${tsTop-6}" text-anchor="end">Original weld</text>`;
+    s+=`<text x="${cx}" y="${plugBot-8}" text-anchor="middle" style="fill:${acc};font-weight:600">PLUG</text>`;
+    g.innerHTML=s;
+  }
+
+  let saved=null; try{ saved=JSON.parse(localStorage.getItem(STORE)); }catch(e){}
+  setInputs(saved||EXAMPLE);
+  document.querySelectorAll('aside input, aside select').forEach(el=>el.addEventListener('input',compute));
+  document.querySelectorAll('aside input[type=checkbox], aside select').forEach(el=>el.addEventListener('change',compute));
+  $('btnExample').addEventListener('click',()=>{setInputs(EXAMPLE);compute();});
+  $('btnClear').addEventListener('click',()=>{const d={}; IDS.forEach(k=>d[k]=''); d.pwht=false; d.punit='MPa'; d.fig='2'; d.C=0.33; d.E=1; d.CA=0; d.T=0; setInputs(d); compute();});
+  $('btnHow').addEventListener('click',()=>$('howto').scrollIntoView({behavior:'smooth'}));
+  $('btnPrint').addEventListener('click',()=>window.print());
+  if(window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',compute);
+  compute();
+})();
+</script>
+</body>
+</html>

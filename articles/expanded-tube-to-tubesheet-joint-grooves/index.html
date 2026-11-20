@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Expanded Tube-to-Tubesheet Joints: Why the Groove Dimensions Aren't One-Size-Fits-All | Baher Elsheikh</title>
+<meta name="description" content="Groove requirements for expanded tube-to-tubesheet joints to TEMA RCB-7.2.4: fixed 1/8 in. grooves for roller expansion, a calculated width w = 1.56 √(R t) for hydraulic and explosive expansion, a table for common tube sizes, and grooves in the base metal of clad tubesheets.">
+<meta name="keywords" content="tube-to-tubesheet joint, expanded joint, tube expansion, roller expansion, hydraulic expansion, explosive expansion, tubesheet grooves, groove width, TEMA RCB-7.2.4, clad tubesheet, shell and tube heat exchanger">
+<meta name="author" content="Baher Elsheikh">
+<link rel="canonical" href="https://baher-elsheikh.github.io/articles/expanded-tube-to-tubesheet-joint-grooves/">
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://baher-elsheikh.github.io/articles/expanded-tube-to-tubesheet-joint-grooves/">
+<meta property="og:title" content="Expanded Tube-to-Tubesheet Joints: Why the Groove Dimensions Aren&#39;t One-Size-Fits-All">
+<meta property="og:description" content="Groove requirements for expanded tube-to-tubesheet joints to TEMA RCB-7.2.4: fixed 1/8 in. grooves for roller expansion, a calculated width w = 1.56 √(R t) for hydraulic and explosive expansion, a table for common tube sizes, and grooves in the base metal of clad tubesheets.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Expanded Tube-to-Tubesheet Joints: Why the Groove Dimensions Aren't One-Size-Fits-All", "description": "Groove requirements for expanded tube-to-tubesheet joints to TEMA RCB-7.2.4: fixed 1/8 in. grooves for roller expansion, a calculated width w = 1.56 √(R t) for hydraulic and explosive expansion, a table for common tube sizes, and grooves in the base metal of clad tubesheets.", "url": "https://baher-elsheikh.github.io/articles/expanded-tube-to-tubesheet-joint-grooves/", "inLanguage": "en", "datePublished": "2026-11", "author": {"@type": "Person", "name": "Baher Elsheikh", "url": "https://baher-elsheikh.github.io/about/", "sameAs": ["https://www.linkedin.com/in/baher-elsheikh/", "https://www.youtube.com/@baherelsheikh4942"]}, "about": "tube-to-tubesheet joints, tube expansion, tubesheet grooves, TEMA"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F7F9; --panel:#FFFFFF; --ink:#16203A; --steel:#566074; --rule:#DCE0E7;
+  --accent:#14245E; --accent-soft:#E7EAF3; --brass:#8A6320; --brass-soft:#F4ECDD; --fig:#EEF1F7;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --serif:"STIX Two Text",Cambria,Georgia,"Times New Roman",serif;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 var(--sans);overflow-x:clip}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.lg-dark{display:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:block}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:block}
+header.site{background:var(--panel);border-bottom:1px solid var(--rule)}
+header.site .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;min-height:62px}
+.brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px}
+.brand img{height:34px;width:auto}
+nav.tabs{display:flex;flex-wrap:wrap;gap:2px}
+nav.tabs a{font-size:15px;font-weight:500;color:var(--steel);text-decoration:none;padding:6px 10px;border-radius:5px}
+nav.tabs a:hover{color:var(--ink);background:var(--accent-soft)}
+nav.tabs a.cur{color:var(--accent);background:var(--accent-soft)}
+article{max-width:760px;margin:0 auto;padding:40px 0 56px}
+.crumb{font-size:14px;color:var(--steel);margin:0 0 18px}
+.crumb a{color:var(--steel)}
+.lab{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none}
+.lab svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.22;letter-spacing:-.005em}
+h1{font-size:clamp(29px,3.6vw,40px);margin:10px 0 0}
+.lead{font-size:19px;line-height:1.6;color:var(--steel);margin:16px 0 0}
+.byline{font-size:14.5px;color:var(--steel);margin:18px 0 0;padding-bottom:22px;border-bottom:1px solid var(--rule)}
+h2{font-size:24px;margin:38px 0 6px}
+h3{font-size:19px;margin:28px 0 4px}
+p{margin:14px 0}
+ul,ol{padding-left:1.3em} li{margin:6px 0}
+figure{margin:28px 0}
+figure .frame{background:var(--fig);border:1px solid var(--rule);border-radius:6px;overflow:hidden;color:var(--accent)}
+figure .frame svg{display:block;width:100%;height:auto}
+figure img{display:block;width:100%;height:auto}
+figcaption{font-size:14.5px;color:var(--steel);margin-top:8px}
+.tbl{overflow-x:auto;margin:24px 0}
+table{border-collapse:collapse;width:100%;font-size:15.5px;background:var(--panel)}
+caption{caption-side:bottom;text-align:left;font-size:14.5px;color:var(--steel);padding-top:8px}
+th,td{border:1px solid var(--rule);padding:8px 12px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+td.n{text-align:center;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{width:34%}
+.eq{font-family:var(--serif);font-size:19px;text-align:center;margin:20px 0;padding:12px;background:var(--panel);border:1px solid var(--rule);border-radius:6px}
+.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 16px;margin:22px 0;font-size:16px}
+.refs{font-size:14.5px;color:var(--steel)}
+.refs li{margin:4px 0}
+.related{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule)}
+.related h2{font-size:20px;margin:0 0 8px}
+.related ul{list-style:none;padding:0;margin:0}
+.related li{padding:6px 0}
+.flag{font-size:12.5px;font-weight:500;color:var(--brass);background:var(--brass-soft);border-radius:3px;padding:1px 7px}
+.disc{font-size:14px;color:var(--steel);margin-top:30px}
+footer{border-top:1px solid var(--rule);padding:20px 0 30px;font-size:13.5px;color:var(--steel);background:var(--panel)}
+footer .wrap{display:grid;gap:6px}
+@media (max-width:600px){.wrap{padding:0 16px} article{padding-top:26px} body{font-size:16.5px}}
+@media print{header.site,footer,.related{display:none} body{background:#fff}}
+.points{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:18px 0;padding:0;list-style:none}
+.points li{background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:12px 14px;font-size:15.5px}
+figure .frame text{font-family:var(--sans)}
+.tbl.grooves th:first-child,.tbl.grooves td:first-child{width:auto}
+</style>
+<link rel="stylesheet" href="../../assets/chrome.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="beta-bar" role="note"><div class="wrap"><span class="beta-tag">Beta</span> This site is in its testing period. Spotted a mistake? Please tell me on <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</div></div>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../../"><img class="lg-light" src="../../assets/gear-light.png" alt="" width="41" height="34"><img class="lg-dark" src="../../assets/gear-dark.png" alt="" width="41" height="34"><span>Baher Elsheikh</span></a>
+    <div class="hdr-right">
+      <nav class="tabs" id="mainnav" aria-label="Main"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/" aria-current="page">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a></nav>
+      <a class="nav-search" href="../../search/"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20.5 20.5"/></svg><span>Search</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav">Menu</button>
+    </div>
+  </div>
+</header>
+<main id="main" class="wrap">
+<article>
+  <p class="crumb"><a href="../">Articles</a></p>
+  <a class="lab" href="../../knowledge/#welding-and-repairs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 17.5h19"/><path d="M2.5 13.5h6.5l3-5.5 3 5.5h6.5"/><path d="M9.5 13.5c.8-1 1.7-1 2.5 0 .8-1 1.7-1 2.5 0"/><path d="M12 4.5v-1.5M8.5 5.5l-1-1M15.5 5.5l1-1"/></svg>Welding and Fabrication</a>
+  <h1>Expanded Tube-to-Tubesheet Joints: Why the Groove Dimensions Aren't One-Size-Fits-All</h1>
+  <p class="lead">When tubes are expanded into tubesheet holes, the expansion method, mechanical rolling or hydraulic and explosive expansion, changes the groove design that should be specified. Rolling uses a fixed groove size; hydraulic and explosive expansion need a groove width calculated from the tube size.</p>
+  <p class="byline">By Baher Elsheikh. November 2026. 3 min read.</p>
+
+  <h2>Why grooves</h2>
+  <p>Tubes are expanded into the tubesheet holes by roller, hydraulic or explosive methods. The holes of expanded joints are machined with annular grooves, one or two depending on the tubesheet thickness, so that the tube wall is pushed into the grooves during expansion. This gives the joint additional resistance to longitudinal load.</p>
+  <figure><a href="expanded-tts-joint-grooves-infographic.webp" target="_blank" rel="noopener noreferrer"><img src="expanded-tts-joint-grooves-infographic.webp" alt="Infographic: expanded tube-to-tubesheet joints, groove requirements for roller and hydraulic expanders to TEMA RCB-7.2.4, example groove widths, and grooves in the base metal of clad tubesheets" width="1280" height="853" loading="lazy" decoding="async"></a><figcaption>Figure 1. Expanded tube-to-tubesheet joints: groove requirements for roller and hydraulic or explosive expansion (TEMA RCB-7.2.4). The example widths in the infographic were calculated with R taken as the tube outside radius (OD/2), which gives slightly larger, conservative values; Table 1 below uses the mean tube radius as defined in the formula. Click to enlarge.</figcaption></figure>
+
+  <h2>1. Mechanical roller expansion</h2>
+  <p>When the tubesheet is thicker than 1 in. (25.4 mm), at least two grooves are required, each approximately:</p>
+  <ul>
+    <li>Width: 1/8 in. (3.2 mm)</li>
+    <li>Depth: 1/64 in. (0.4 mm)</li>
+  </ul>
+  <p>For tubesheets 1 in. (25.4 mm) thick or less, a single groove may be provided.</p>
+
+  <h2>2. Hydraulic or explosive expansion</h2>
+  <p>Here the approach changes from a fixed width to a calculated one. At least one groove is required, with a minimum width of:</p>
+  <div class="eq">w = 1.56 √(R · t)</div>
+  <p>where R is the mean tube radius and t is the tube wall thickness.</p>
+  <ul>
+    <li>The groove width need not exceed 1/2 in. (12.7 mm).</li>
+    <li>The groove depth is at least 1/64 in. (0.4 mm).</li>
+  </ul>
+
+  <h2>Groove width for common tube sizes</h2>
+  <p>The table shows how this works for common tube sizes, 15.88 to 25.4 mm OD and BWG 12 to 18. The required hydraulic groove width ranges from about 4.7 mm to 8.7 mm and grows with tube diameter and wall thickness, while the roller expansion groove stays at 3.2 mm whatever the tube size. None of the values reaches the 12.7 mm limit.</p>
+  <div class="tbl grooves"><table>
+    <thead><tr><th>Tube OD (mm)</th><th>BWG</th><th>t (mm)</th><th>Mean radius R (mm)</th><th>w, roller expansion (mm)</th><th>w, hydraulic expansion (mm)</th></tr></thead>
+    <tbody>
+<tr><td class="n">15.88</td><td class="n">12</td><td class="n">2.769</td><td class="n">6.56</td><td class="n">3.2</td><td class="n">6.65</td></tr>
+<tr><td class="n">15.88</td><td class="n">14</td><td class="n">2.108</td><td class="n">6.89</td><td class="n">3.2</td><td class="n">5.94</td></tr>
+<tr><td class="n">15.88</td><td class="n">16</td><td class="n">1.650</td><td class="n">7.12</td><td class="n">3.2</td><td class="n">5.35</td></tr>
+<tr><td class="n">15.88</td><td class="n">18</td><td class="n">1.245</td><td class="n">7.32</td><td class="n">3.2</td><td class="n">4.71</td></tr>
+<tr><td class="n">19.05</td><td class="n">12</td><td class="n">2.769</td><td class="n">8.14</td><td class="n">3.2</td><td class="n">7.41</td></tr>
+<tr><td class="n">19.05</td><td class="n">14</td><td class="n">2.108</td><td class="n">8.47</td><td class="n">3.2</td><td class="n">6.59</td></tr>
+<tr><td class="n">19.05</td><td class="n">16</td><td class="n">1.650</td><td class="n">8.70</td><td class="n">3.2</td><td class="n">5.91</td></tr>
+<tr><td class="n">19.05</td><td class="n">18</td><td class="n">1.245</td><td class="n">8.90</td><td class="n">3.2</td><td class="n">5.19</td></tr>
+<tr><td class="n">25.40</td><td class="n">12</td><td class="n">2.769</td><td class="n">11.32</td><td class="n">3.2</td><td class="n">8.73</td></tr>
+<tr><td class="n">25.40</td><td class="n">14</td><td class="n">2.108</td><td class="n">11.65</td><td class="n">3.2</td><td class="n">7.73</td></tr>
+<tr><td class="n">25.40</td><td class="n">16</td><td class="n">1.650</td><td class="n">11.88</td><td class="n">3.2</td><td class="n">6.91</td></tr>
+<tr><td class="n">25.40</td><td class="n">18</td><td class="n">1.245</td><td class="n">12.08</td><td class="n">3.2</td><td class="n">6.05</td></tr>
+    </tbody>
+    <caption>Table 1. Groove width for roller and hydraulic or explosive expansion. R = (OD - t) / 2; w = 1.56 √(R t). Wall thicknesses are the nominal BWG values. Check the minimum groove width for the actual tube dimensions and the TEMA edition used.</caption>
+  </table></div>
+
+  <h2>Clad tubesheets</h2>
+  <p>For clad tubesheets, the grooves must be machined in the base metal, not in the cladding layer.</p>
+
+  <h2>Summary</h2>
+  <ul class="points">
+    <li>Roller expansion: one groove for tubesheets up to 1 in. thick, at least two above that, each about 1/8 in. wide and 1/64 in. deep.</li>
+    <li>Hydraulic or explosive expansion: at least one groove, w = 1.56 √(R t), up to 1/2 in., depth at least 1/64 in.</li>
+    <li>R is the mean tube radius, so the width follows the tube size.</li>
+    <li>In clad tubesheets, grooves go in the base metal.</li>
+  </ul>
+  <p>A good groove design gives the joint strength, reduces the risk of leaks and improves the reliability of the heat exchanger.</p>
+
+  <h2>References</h2>
+  <ol class="refs">
+    <li>TEMA, Standards of the Tubular Exchanger Manufacturers Association, paragraph RCB-7.2.4.</li>
+  </ol>
+  <p class="disc">This article is for general engineering guidance. Apply the edition of TEMA and the project specifications used for the exchanger, with the judgement of a qualified engineer.</p>
+  <aside class="related"><h2>Related on this site</h2><ul><li>Presentation: <a href="../../documents/files/tube-to-tubesheet-joints.pdf" target="_blank" rel="noopener noreferrer">Tube-to-Tubesheet Joints</a> (PDF, 52 slides)</li><li>Article: <a href="../cladding-shell-and-tube-heat-exchangers/">Cladding Applications in Shell and Tube Heat Exchangers</a></li><li>Article: <a href="https://heat-exchanger-world.com/?p=66479" target="_blank" rel="noopener noreferrer">Mock-up of Tube-to-Tubesheet Joints</a> (Heat Exchanger World)</li><li>Calculator: <a href="https://baher-elsheikh.github.io/Tube-Thickness-Calculator/" target="_blank" rel="noopener noreferrer">Heat exchanger tube minimum thickness</a></li><li>Knowledge area: <a href="../../knowledge/#welding-and-repairs">Welding and Fabrication</a></li></ul></aside>
+</article>
+</main>
+<footer>
+  <div class="wrap">
+    <nav class="fnav" aria-label="Footer"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a><a href="../../standards/">Standards Index</a><a href="../../search/">Search</a></nav>
+    <div>Knowledge grows when it is communicated. <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a></div>
+    <div>Articles, documents and calculators are aids for engineering work, not a substitute for a complete engineering assessment. Users remain responsible for verifying the applicable design basis, code requirements and edition, assumptions and engineering decisions; results must be checked by a qualified engineer before use.</div>
+    <div>© 2026 Baher Elsheikh. Content and tools free to use; not to be copied or redistributed without permission.</div>
+  </div>
+</footer>
+<script src="../../assets/chrome.js"></script>
+</body>
+</html>

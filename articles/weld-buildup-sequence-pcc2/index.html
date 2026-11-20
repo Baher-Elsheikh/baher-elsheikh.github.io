@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Weld Buildup on Thinned Pressure Components: Weld the Perimeter First | Baher Elsheikh</title>
+<meta name="description" content="Why ASME PCC-2 has the first weld passes of an external weld buildup follow the outer perimeter of the area: a gauge for the welder and a better heat-affected zone in carbon and low-alloy steels.">
+<meta name="keywords" content="weld buildup, weld overlay, ASME PCC-2, internal thinning, external weld buildup, weld sequence, perimeter pass, temper bead, heat affected zone, carbon steel, low alloy steel, repair">
+<meta name="author" content="Baher Elsheikh">
+<link rel="canonical" href="https://baher-elsheikh.github.io/articles/weld-buildup-sequence-pcc2/">
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://baher-elsheikh.github.io/articles/weld-buildup-sequence-pcc2/">
+<meta property="og:title" content="Weld Buildup on Thinned Pressure Components: Weld the Perimeter First">
+<meta property="og:description" content="Why ASME PCC-2 has the first weld passes of an external weld buildup follow the outer perimeter of the area: a gauge for the welder and a better heat-affected zone in carbon and low-alloy steels.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Weld Buildup on Thinned Pressure Components: Weld the Perimeter First", "description": "Why ASME PCC-2 has the first weld passes of an external weld buildup follow the outer perimeter of the area: a gauge for the welder and a better heat-affected zone in carbon and low-alloy steels.", "url": "https://baher-elsheikh.github.io/articles/weld-buildup-sequence-pcc2/", "inLanguage": "en", "datePublished": "2026-11", "author": {"@type": "Person", "name": "Baher Elsheikh", "url": "https://baher-elsheikh.github.io/about/", "sameAs": ["https://www.linkedin.com/in/baher-elsheikh/", "https://www.youtube.com/@baherelsheikh4942"]}, "about": "weld buildup, ASME PCC-2, weld sequence, heat affected zone"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F7F9; --panel:#FFFFFF; --ink:#16203A; --steel:#566074; --rule:#DCE0E7;
+  --accent:#14245E; --accent-soft:#E7EAF3; --brass:#8A6320; --brass-soft:#F4ECDD; --fig:#EEF1F7;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --serif:"STIX Two Text",Cambria,Georgia,"Times New Roman",serif;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 var(--sans);overflow-x:clip}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.lg-dark{display:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:block}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:block}
+header.site{background:var(--panel);border-bottom:1px solid var(--rule)}
+header.site .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;min-height:62px}
+.brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px}
+.brand img{height:34px;width:auto}
+nav.tabs{display:flex;flex-wrap:wrap;gap:2px}
+nav.tabs a{font-size:15px;font-weight:500;color:var(--steel);text-decoration:none;padding:6px 10px;border-radius:5px}
+nav.tabs a:hover{color:var(--ink);background:var(--accent-soft)}
+nav.tabs a.cur{color:var(--accent);background:var(--accent-soft)}
+article{max-width:760px;margin:0 auto;padding:40px 0 56px}
+.crumb{font-size:14px;color:var(--steel);margin:0 0 18px}
+.crumb a{color:var(--steel)}
+.lab{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none}
+.lab svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.22;letter-spacing:-.005em}
+h1{font-size:clamp(29px,3.6vw,40px);margin:10px 0 0}
+.lead{font-size:19px;line-height:1.6;color:var(--steel);margin:16px 0 0}
+.byline{font-size:14.5px;color:var(--steel);margin:18px 0 0;padding-bottom:22px;border-bottom:1px solid var(--rule)}
+h2{font-size:24px;margin:38px 0 6px}
+h3{font-size:19px;margin:28px 0 4px}
+p{margin:14px 0}
+ul,ol{padding-left:1.3em} li{margin:6px 0}
+figure{margin:28px 0}
+figure .frame{background:var(--fig);border:1px solid var(--rule);border-radius:6px;overflow:hidden;color:var(--accent)}
+figure .frame svg{display:block;width:100%;height:auto}
+figure img{display:block;width:100%;height:auto}
+figcaption{font-size:14.5px;color:var(--steel);margin-top:8px}
+.tbl{overflow-x:auto;margin:24px 0}
+table{border-collapse:collapse;width:100%;font-size:15.5px;background:var(--panel)}
+caption{caption-side:bottom;text-align:left;font-size:14.5px;color:var(--steel);padding-top:8px}
+th,td{border:1px solid var(--rule);padding:8px 12px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+td.n{text-align:center;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{width:34%}
+.eq{font-family:var(--serif);font-size:19px;text-align:center;margin:20px 0;padding:12px;background:var(--panel);border:1px solid var(--rule);border-radius:6px}
+.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 16px;margin:22px 0;font-size:16px}
+.refs{font-size:14.5px;color:var(--steel)}
+.refs li{margin:4px 0}
+.related{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule)}
+.related h2{font-size:20px;margin:0 0 8px}
+.related ul{list-style:none;padding:0;margin:0}
+.related li{padding:6px 0}
+.flag{font-size:12.5px;font-weight:500;color:var(--brass);background:var(--brass-soft);border-radius:3px;padding:1px 7px}
+.disc{font-size:14px;color:var(--steel);margin-top:30px}
+footer{border-top:1px solid var(--rule);padding:20px 0 30px;font-size:13.5px;color:var(--steel);background:var(--panel)}
+footer .wrap{display:grid;gap:6px}
+@media (max-width:600px){.wrap{padding:0 16px} article{padding-top:26px} body{font-size:16.5px}}
+@media print{header.site,footer,.related{display:none} body{background:#fff}}
+.points{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:18px 0;padding:0;list-style:none}
+.points li{background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:12px 14px;font-size:15.5px}
+figure .frame text{font-family:var(--sans)}
+</style>
+<link rel="stylesheet" href="../../assets/chrome.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="beta-bar" role="note"><div class="wrap"><span class="beta-tag">Beta</span> This site is in its testing period. Spotted a mistake? Please tell me on <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</div></div>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../../"><img class="lg-light" src="../../assets/gear-light.png" alt="" width="41" height="34"><img class="lg-dark" src="../../assets/gear-dark.png" alt="" width="41" height="34"><span>Baher Elsheikh</span></a>
+    <div class="hdr-right">
+      <nav class="tabs" id="mainnav" aria-label="Main"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/" aria-current="page">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a></nav>
+      <a class="nav-search" href="../../search/"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20.5 20.5"/></svg><span>Search</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav">Menu</button>
+    </div>
+  </div>
+</header>
+<main id="main" class="wrap">
+<article>
+  <p class="crumb"><a href="../">Articles</a></p>
+  <a class="lab" href="../../knowledge/#welding-and-repairs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 17.5h19"/><path d="M2.5 13.5h6.5l3-5.5 3 5.5h6.5"/><path d="M9.5 13.5c.8-1 1.7-1 2.5 0 .8-1 1.7-1 2.5 0"/><path d="M12 4.5v-1.5M8.5 5.5l-1-1M15.5 5.5l1-1"/></svg>Welding and Fabrication</a>
+  <h1>Weld Buildup on Thinned Pressure Components: Weld the Perimeter First</h1>
+  <p class="lead">When a pressure component has thinned from the inside, an external weld buildup can restore the wall. ASME PCC-2 gives a simple rule for the order of the passes: weld the outer perimeter of the buildup area first, then fill the inside. The reasons are practical and metallurgical.</p>
+  <p class="byline">By Baher Elsheikh. November 2026. 3 min read.</p>
+
+  <h2>The rule</h2>
+  <p>When weld buildup is applied to the external surface of an internally thinned pressure component, ASME PCC-2 Article 202 recommends that the first weld pass or passes follow the outer perimeter of the buildup area, before the internal region is filled. After the perimeter is complete, the remaining layers are deposited in accordance with the qualified welding procedure specification (WPS).</p>
+  <figure><div class="frame"><svg viewBox="0 0 680 392" role="img" aria-label="Sketch of an external weld buildup: perimeter passes welded first, then the fill passes inside, and a section showing the heat-affected zone at the edge tempered by the later passes">
+<g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
+  <text x="40" y="34" font-size="15" font-weight="600" fill="currentColor" stroke="none">Plan view of the buildup area</text>
+  <rect x="60" y="60" width="240" height="124" rx="28" stroke-dasharray="5 4" stroke-width="1"/>
+  <rect x="72" y="72" width="216" height="100" rx="22" style="stroke:var(--brass)" stroke-width="11"/>
+  <g style="stroke:currentColor"><path d="M92 92 H268" stroke-width="9" stroke-linecap="round" opacity=".55"/><path d="M90 104 H270" stroke-width="9" stroke-linecap="round" opacity=".55"/><path d="M90 116 H270" stroke-width="9" stroke-linecap="round" opacity=".55"/><path d="M90 128 H270" stroke-width="9" stroke-linecap="round" opacity=".55"/><path d="M90 140 H270" stroke-width="9" stroke-linecap="round" opacity=".55"/><path d="M92 152 H268" stroke-width="9" stroke-linecap="round" opacity=".55"/></g>
+  <text x="180" y="210" font-size="13" text-anchor="middle" fill="currentColor" stroke="none">dashed: extent of the buildup</text>
+  <path d="M300 78 L338 58" stroke-width="1"/><text x="342" y="54" font-size="13.5" font-weight="600" style="fill:var(--brass)" stroke="none">Step 1: perimeter pass(es)</text>
+  <text x="342" y="72" font-size="13" fill="currentColor" stroke="none">outline the area, gauge for the welder</text>
+  <path d="M270 128 L338 128" stroke-width="1"/><text x="342" y="124" font-size="13.5" font-weight="600" fill="currentColor" stroke="none">Step 2: fill passes inside</text>
+  <text x="342" y="142" font-size="13" fill="currentColor" stroke="none">remaining layers to the qualified WPS</text>
+
+  <text x="40" y="250" font-size="15" font-weight="600" fill="currentColor" stroke="none">Section at the edge of the buildup</text>
+  <rect x="60" y="318" width="580" height="44" fill="currentColor" opacity=".08" stroke="none"/>
+  <path d="M60 318 H640"/><path d="M60 362 H640"/>
+  <text x="620" y="346" font-size="13" text-anchor="end" fill="currentColor" stroke="none">base metal (thinned from the inside)</text>
+  <path d="M120 318 q22 -30 44 0 z" style="fill:var(--brass);stroke:var(--brass)" fill-opacity=".85"/>
+  <text x="142" y="314" font-size="11.5" font-weight="700" text-anchor="middle" fill="#fff" stroke="none">1</text>
+  <path d="M160 318 q22 -30 44 0 z M200 318 q22 -30 44 0 z M240 318 q22 -30 44 0 z M280 318 q22 -30 44 0 z" fill="currentColor" fill-opacity=".35"/>
+  <text x="182" y="315" font-size="11" font-weight="600" text-anchor="middle" fill="currentColor" stroke="none">2</text><text x="222" y="315" font-size="11" font-weight="600" text-anchor="middle" fill="currentColor" stroke="none">3</text>
+  <text x="262" y="315" font-size="11" font-weight="600" text-anchor="middle" fill="currentColor" stroke="none">4</text><text x="302" y="315" font-size="11" font-weight="600" text-anchor="middle" fill="currentColor" stroke="none">5</text>
+  <path d="M140 304 q22 -28 44 0 z M180 304 q22 -28 44 0 z M220 304 q22 -28 44 0 z M260 304 q22 -28 44 0 z" fill="currentColor" fill-opacity=".18"/>
+  <path d="M114 318 q28 26 56 0" style="stroke:var(--brass)" stroke-width="1.6" stroke-dasharray="4 3"/>
+  <text x="120" y="378" font-size="12.5" style="fill:var(--brass)" stroke="none">HAZ of pass 1</text>
+  <path d="M340 268 L312 300" stroke-width="1"/>
+  <text x="346" y="268" font-size="13" fill="currentColor" stroke="none">Passes 2, 3, 4 ... and the next layer</text>
+  <text x="346" y="286" font-size="13" fill="currentColor" stroke="none">reheat and temper the HAZ of pass 1</text>
+</g></svg></div><figcaption>Figure 1. Sequence of an external weld buildup: perimeter passes first, then the fill passes inside the outline. Sketch for illustration only; dimensions and the buildup profile are set by the repair design.</figcaption></figure>
+
+  <h2>Why the perimeter goes first</h2>
+  <h3>1. A gauge for the welder</h3>
+  <p>The perimeter pass outlines the buildup on the component before any fill is laid. It shows the welder exactly where the buildup starts and ends, which helps control the final profile and the dimensions of the repair. Filling inside a defined outline is easier and more consistent than building outwards and trying to finish the edge at the end.</p>
+  <h3>2. A better heat-affected zone</h3>
+  <p>In carbon and low-alloy steels, each weld pass creates a heat-affected zone (HAZ) in the base metal next to it. A pass that is never reheated leaves an untempered HAZ, which can be hard and less tough. If the perimeter were welded last, the final pass would sit directly on the base metal at the edge of the buildup, and its HAZ would stay untempered.</p>
+  <p>Welding the perimeter first changes that. The fill passes laid next to it, and the layers above it, reheat its HAZ and temper it. The last passes of the repair then land on weld metal rather than on the base metal surface.</p>
+
+  <h2>Then follow the qualified WPS</h2>
+  <p>Once the perimeter is in place, the rest of the buildup is deposited in accordance with the qualified WPS: layer sequence, preheat, interpass temperature and heat input as qualified. The perimeter rule does not replace the WPS; it sets the order in which the WPS is applied.</p>
+  <p>The buildup itself must also meet the other requirements of Article 202, including the design of its thickness and extent and the required examination. These are outside the scope of this note.</p>
+
+  <h2>Summary</h2>
+  <ul class="points">
+    <li>Weld the outer perimeter of the buildup area first.</li>
+    <li>The perimeter acts as a gauge for the profile and dimensions.</li>
+    <li>Later passes temper the HAZ of the perimeter pass in carbon and low-alloy steels.</li>
+    <li>Fill the remaining layers to the qualified WPS.</li>
+  </ul>
+
+  <h2>References</h2>
+  <ol class="refs">
+    <li>ASME PCC-2, Repair of Pressure Equipment and Piping, Article 202: External Weld Buildup to Repair Internal Thinning.</li>
+  </ol>
+  <p class="disc">This article is for general engineering guidance. Apply the edition of ASME PCC-2 and the qualified welding procedure used for the repair, with the judgement of a qualified engineer.</p>
+  <aside class="related"><h2>Related on this site</h2><ul><li>Article: <a href="../impractical-term-nbic-repairs/">“Impractical” in the NBIC: A Technical Decision, Not a Shortcut</a></li><li>Calculator: <a href="../../calculators/bolted-clamp/">Bolted clamp</a> (another PCC-2 repair method)</li><li>Knowledge area: <a href="../../knowledge/#welding-and-repairs">Welding and Fabrication</a></li></ul></aside>
+</article>
+</main>
+<footer>
+  <div class="wrap">
+    <nav class="fnav" aria-label="Footer"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a><a href="../../standards/">Standards Index</a><a href="../../search/">Search</a></nav>
+    <div>Knowledge grows when it is communicated. <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a></div>
+    <div>Articles, documents and calculators are aids for engineering work, not a substitute for a complete engineering assessment. Users remain responsible for verifying the applicable design basis, code requirements and edition, assumptions and engineering decisions; results must be checked by a qualified engineer before use.</div>
+    <div>© 2026 Baher Elsheikh. Content and tools free to use; not to be copied or redistributed without permission.</div>
+  </div>
+</footer>
+<script src="../../assets/chrome.js"></script>
+</body>
+</html>

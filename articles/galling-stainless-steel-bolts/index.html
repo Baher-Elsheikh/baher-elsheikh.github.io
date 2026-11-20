@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Galling and Seizing of Stainless Steel Bolts | Baher Elsheikh</title>
+<meta name="description" content="Why stainless steel bolts gall and seize, how friction raises the required tightening torque compared with B7 bolts, and practical ways to prevent galling.">
+<meta name="keywords" content="galling, seizing, stainless steel bolts, B8 Class 2, B7, nut factor, ASME PCC-1, VDI 2230, ASTM F1789, bolt torque">
+<meta name="author" content="Baher Elsheikh">
+<link rel="canonical" href="https://baher-elsheikh.github.io/articles/galling-stainless-steel-bolts/">
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://baher-elsheikh.github.io/articles/galling-stainless-steel-bolts/">
+<meta property="og:title" content="Galling and Seizing of Stainless Steel Bolts">
+<meta property="og:description" content="Why stainless steel bolts gall and seize, how friction raises the required tightening torque compared with B7 bolts, and practical ways to prevent galling.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Galling and Seizing of Stainless Steel Bolts", "description": "Why stainless steel bolts gall and seize, how friction raises the required tightening torque compared with B7 bolts, and practical ways to prevent galling.", "url": "https://baher-elsheikh.github.io/articles/galling-stainless-steel-bolts/", "inLanguage": "en", "author": {"@type": "Person", "name": "Baher Elsheikh", "url": "https://baher-elsheikh.github.io/#about", "sameAs": ["https://www.linkedin.com/in/baher-elsheikh/", "https://www.youtube.com/@baherelsheikh4942"]}, "about": "galling, seizing, stainless steel bolts, B8 Class 2, B7, nut factor, ASME PCC-1, VDI 2230, ASTM F1789, bolt torque"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F7F9; --panel:#FFFFFF; --ink:#16203A; --steel:#566074; --rule:#DCE0E7;
+  --accent:#14245E; --accent-soft:#E7EAF3; --brass:#8A6320; --brass-soft:#F4ECDD; --fig:#EEF1F7;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --serif:"STIX Two Text",Cambria,Georgia,"Times New Roman",serif;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 var(--sans);overflow-x:clip}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.lg-dark{display:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:block}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:block}
+header.site{background:var(--panel);border-bottom:1px solid var(--rule)}
+header.site .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;min-height:62px}
+.brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px}
+.brand img{height:34px;width:auto}
+nav.tabs{display:flex;flex-wrap:wrap;gap:2px}
+nav.tabs a{font-size:15px;font-weight:500;color:var(--steel);text-decoration:none;padding:6px 10px;border-radius:5px}
+nav.tabs a:hover{color:var(--ink);background:var(--accent-soft)}
+nav.tabs a.cur{color:var(--accent);background:var(--accent-soft)}
+article{max-width:760px;margin:0 auto;padding:40px 0 56px}
+.crumb{font-size:14px;color:var(--steel);margin:0 0 18px}
+.crumb a{color:var(--steel)}
+.lab{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none}
+.lab svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.22;letter-spacing:-.005em}
+h1{font-size:clamp(29px,3.6vw,40px);margin:10px 0 0}
+.lead{font-size:19px;line-height:1.6;color:var(--steel);margin:16px 0 0}
+.byline{font-size:14.5px;color:var(--steel);margin:18px 0 0;padding-bottom:22px;border-bottom:1px solid var(--rule)}
+h2{font-size:24px;margin:38px 0 6px}
+h3{font-size:19px;margin:28px 0 4px}
+p{margin:14px 0}
+ul,ol{padding-left:1.3em} li{margin:6px 0}
+figure{margin:28px 0}
+figure .frame{background:var(--fig);border:1px solid var(--rule);border-radius:6px;overflow:hidden;color:var(--accent)}
+figure .frame svg{display:block;width:100%;height:auto}
+figure img{display:block;width:100%;height:auto}
+figcaption{font-size:14.5px;color:var(--steel);margin-top:8px}
+.tbl{overflow-x:auto;margin:24px 0}
+table{border-collapse:collapse;width:100%;font-size:15.5px;background:var(--panel)}
+caption{caption-side:bottom;text-align:left;font-size:14.5px;color:var(--steel);padding-top:8px}
+th,td{border:1px solid var(--rule);padding:8px 12px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+td.n{text-align:center;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{width:34%}
+.eq{font-family:var(--serif);font-size:19px;text-align:center;margin:20px 0;padding:12px;background:var(--panel);border:1px solid var(--rule);border-radius:6px}
+.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 16px;margin:22px 0;font-size:16px}
+.refs{font-size:14.5px;color:var(--steel)}
+.refs li{margin:4px 0}
+.related{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule)}
+.related h2{font-size:20px;margin:0 0 8px}
+.related ul{list-style:none;padding:0;margin:0}
+.related li{padding:6px 0}
+.flag{font-size:12.5px;font-weight:500;color:var(--brass);background:var(--brass-soft);border-radius:3px;padding:1px 7px}
+.disc{font-size:14px;color:var(--steel);margin-top:30px}
+footer{border-top:1px solid var(--rule);padding:20px 0 30px;font-size:13.5px;color:var(--steel);background:var(--panel)}
+footer .wrap{display:grid;gap:6px}
+@media (max-width:600px){.wrap{padding:0 16px} article{padding-top:26px} body{font-size:16.5px}}
+@media print{header.site,footer,.related{display:none} body{background:#fff}}
+</style>
+<link rel="stylesheet" href="../../assets/chrome.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="beta-bar" role="note"><div class="wrap"><span class="beta-tag">Beta</span> This site is in its testing period. Spotted a mistake? Please tell me on <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</div></div>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../../"><img class="lg-light" src="../../assets/gear-light.png" alt="" width="41" height="34"><img class="lg-dark" src="../../assets/gear-dark.png" alt="" width="41" height="34"><span>Baher Elsheikh</span></a>
+    <div class="hdr-right">
+      <nav class="tabs" id="mainnav" aria-label="Main"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/" aria-current="page">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a></nav>
+      <a class="nav-search" href="../../search/"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20.5 20.5"/></svg><span>Search</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav">Menu</button>
+    </div>
+  </div>
+</header>
+<main id="main" class="wrap">
+<article>
+  <p class="crumb"><a href="../">Articles</a></p>
+  <a class="lab" href="../../#materials-and-metallurgy"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 5.5l5-2 4 2.5-1 5-5 1.5-3-3z"/><path d="M12.5 6l5-1.5 3 4-2 3.5-4.5-.5-2.5-.5"/><path d="M6.5 12.5l1 5 5 2.5 3-4-1.5-4.5"/><path d="M15.5 16l4.5 1 .5-5.5"/></svg>Materials &amp; Metallurgy</a>
+  <h1>Galling and Seizing of Stainless Steel Bolts</h1>
+  <p class="lead">Stainless steel bolts gall and seize far more readily than low-alloy steel bolts, even when the threads look perfect. Why this happens, how it changes the tightening torque, and how to prevent it.</p>
+  <p class="byline">By Baher Elsheikh. 3 min read.</p>
+
+  <p>Thread galling, as defined in ASTM F1789 [1], is the displacement of material between mating threads during tightening, which causes the interface contact points to shear. The result is high friction, increased resistance to tightening and, in the worst case, seizing of the threads. Thread galling is most prevalent with fasteners made of materials that self-generate an oxide surface film.</p>
+  <p>Are stainless steel bolts subject to galling? Should grease or lubricant be applied to stainless steel bolts to reduce friction and avoid seizing during tightening? And if the bolt and nut look smooth and free from burrs or imperfections, can the bolt be tightened with no fear of galling?</p>
+  <figure><div class="frame"><svg viewBox="0 0 680 300" role="img" aria-label="Cross-section of mating bolt and nut threads, with galling on the loaded flanks">
+<g stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="none">
+<polygon points="33,182.6 43,182.6 63,132.6 83,132.6 103,182.6 113,182.6 123,182.6 143,132.6 163,132.6 183,182.6 193,182.6 203,182.6 223,132.6 243,132.6 263,182.6 273,182.6 283,182.6 303,132.6 323,132.6 343,182.6 353,182.6 363,182.6 383,132.6 403,132.6 423,182.6 433,182.6 433,38 33,38" fill="currentColor" fill-opacity=".10"/>
+<polygon points="30,190 40,190 60,140 80,140 100,190 110,190 120,190 140,140 160,140 180,190 190,190 200,190 220,140 240,140 260,190 270,190 280,190 300,140 320,140 340,190 350,190 360,190 380,140 400,140 420,190 430,190 430,262 30,262" fill="currentColor" fill-opacity=".22"/>
+<path d="M42 185L58 145" style="stroke:var(--brass)" stroke-width="4" stroke-linecap="round" opacity=".55"/><path d="M122 185L138 145" style="stroke:var(--brass)" stroke-width="4" stroke-linecap="round" opacity=".55"/><path d="M202 185L218 145" style="stroke:var(--brass)" stroke-width="4" stroke-linecap="round" opacity=".55"/><path d="M282 185L298 145" style="stroke:var(--brass)" stroke-width="4" stroke-linecap="round" opacity=".55"/><path d="M362 185L378 145" style="stroke:var(--brass)" stroke-width="4" stroke-linecap="round" opacity=".55"/><path d="M124 174l5 -4 -3 -3 6 -3 -3 -4 6 -4" style="stroke:var(--brass)" stroke-width="2.2"/><circle cx="121" cy="163" r="1.8" style="fill:var(--brass)" stroke="none"/><path d="M204 174l5 -4 -3 -3 6 -3 -3 -4 6 -4" style="stroke:var(--brass)" stroke-width="2.2"/><circle cx="201" cy="163" r="1.8" style="fill:var(--brass)" stroke="none"/><path d="M284 174l5 -4 -3 -3 6 -3 -3 -4 6 -4" style="stroke:var(--brass)" stroke-width="2.2"/><circle cx="281" cy="163" r="1.8" style="fill:var(--brass)" stroke="none"/>
+<path d="M292 160 L462 92" stroke-width="1" style="stroke:var(--brass)"/><circle cx="292" cy="160" r="2.5" style="fill:var(--brass);stroke:var(--brass)"/>
+<path d="M330 163 L462 206" stroke-width="1"/><circle cx="330" cy="163" r="2.5" fill="currentColor"/>
+</g>
+<g fill="currentColor" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15">
+<text x="46" y="76" font-weight="600">Nut</text><text x="46" y="245" font-weight="600">Bolt</text>
+<text x="468" y="84" style="fill:var(--brass)" font-weight="600">Loaded flanks in contact</text>
+<text x="468" y="104" font-size="14">oxide film wears away,</text><text x="468" y="122" font-size="14">metal transfers, threads seize</text>
+<text x="468" y="204" font-weight="600">Unloaded flanks</text><text x="468" y="224" font-size="14">clearance, no contact</text>
+</g></svg></div><figcaption>Figure 1. Mating threads under load: galling starts where the loaded flanks slide against each other.</figcaption></figure>
+  <h2>Why stainless steel bolts gall</h2>
+  <p>Note the last sentence of the ASTM F1789 definition [1]: thread galling is most prevalent with fasteners made of materials that self-generate an oxide surface film. The definition itself points to stainless steel, whose self-generated chromium oxide layer makes it more susceptible to galling. For the same reason, aluminium and titanium bolts are highly vulnerable to galling when tightened dry. During assembly, contact between the high points on the threads wears away the protective oxide layer and exposes the base metal.</p>
+  <p>This applies to almost all stainless steel grades, though to different extents. The main factors that contribute to thread galling are friction, thread mismatch, misalignment between bolt and nut, non-uniform threads, thread surface smoothness and cleanliness, and the heat generated during assembly.</p>
+  <h2>Effect on the tightening torque</h2>
+  <p>Comparing a low-alloy steel bolt with an austenitic stainless steel bolt shows how the difference in friction affects the target tightening torque. From ASME PCC-1 [2], the nut factor K is approximately the friction coefficient plus 0.04. For low-alloy steel bolts, K ranges from 0.16 to 0.23; the maximum value, 0.23, is assumed here. From VDI 2230-1 [3], the friction coefficient of dry austenitic stainless steel bolts is 0.30 or higher; taking the minimum, 0.30, gives a nut factor K of 0.34.</p>
+  <p>Consider two M14 bolts, one in B7 (chromium-molybdenum steel) and one in B8 Class 2 (carbide solution treated and strain-hardened SS304), both tightened dry to the same target stress of 300 MPa. This is 41% of the yield strength of B7 and 45% of the yield strength of B8 Class 2 [5]. The B7 bolt needs a target torque of 97 N·m, while the B8 Class 2 bolt needs 143 N·m, around 1.5 times as much (Table 1).</p>
+  <div class="eq">T = K × D × F, &nbsp; with &nbsp; F = target stress × root area</div>
+  <div class="tbl"><table>
+    <caption>Table 1. Target torque for the same target stress, dry threads.</caption>
+    <thead><tr><th>Bolt material</th><th>B7<br><span style="font-weight:400">chromium-molybdenum steel</span></th><th>B8 Class 2<br><span style="font-weight:400">SS304, carbide solution treated and strain-hardened</span></th></tr></thead>
+    <tbody>
+      <tr><td>Yield strength, MPa</td><td class="n">720</td><td class="n">655</td></tr>
+      <tr><td>Bolt size</td><td class="n">M14</td><td class="n">M14</td></tr>
+      <tr><td>Root area, mm²</td><td class="n">100</td><td class="n">100</td></tr>
+      <tr><td>Target stress, MPa</td><td class="n">300</td><td class="n">300</td></tr>
+      <tr><td>Nut factor K</td><td class="n">0.23</td><td class="n">0.34</td></tr>
+      <tr><td>Target torque, N·m</td><td class="n">97</td><td class="n">143</td></tr>
+    </tbody></table></div>
+  <p>The extra torque is needed mainly to overcome friction between the bolt and the nut, but it can itself lead to galling and an unsuccessful tightening operation. Figure 2 shows a stainless steel bolt that failed during dry torquing, before reaching the target torque.</p>
+  <figure><img src="failed-bolt.jpg" width="1046" height="658" alt="Stainless steel bolt and nut seized together after dry torquing" loading="lazy"><figcaption>Figure 2. Stainless steel bolt that failed during dry torquing, before reaching the target torque.</figcaption></figure>
+  <h2>How to avoid galling of stainless steel bolts</h2>
+  <ul>
+    <li>Ensure quality manufacturing, with no burrs or deformation on the bolt or nut threads.</li>
+    <li>Prefer coarse threads to fine threads.</li>
+    <li>Apply a suitable lubricant, properly and in sufficient quantity. Popular lubricants contain substantial amounts of molybdenum disulfide, graphite, mica, talc, copper or zinc fines, or zinc oxide. Zinc-bearing lubricants are not recommended for stainless steel at elevated temperature [4].</li>
+    <li>Make sure the threads of both nut and bolt are clean.</li>
+  </ul>
+  <h2>References</h2>
+  <ol class="refs">
+    <li>ASTM F1789, Standard Terminology for F16 Mechanical Fasteners.</li>
+    <li>ASME PCC-1, Pressure Boundary Bolted Flange Joint Assembly.</li>
+    <li>VDI 2230-1, Systematic Calculation of Highly Stressed Bolted Joints.</li>
+    <li>Nickel Development Institute, Review of the Wear and Galling Characteristics of Stainless Steels.</li>
+    <li>ASME BPVC Section II, Part A.</li>
+  </ol>
+  <p class="disc">This article is for general engineering guidance. Apply it with the current edition of the referenced codes and standards and the judgement of a qualified engineer.</p>
+  <aside class="related"><h2>Related on this site</h2><ul><li>Article: <a href="https://inspectioneering.com/journal/2024-06-27/11081/achieving-leak-free-flanged-joints-through-proper-application-of-design-codes">Achieving Leak-Free Flanged Joints Through Proper Application of Design Codes (Inspectioneering Journal)</a></li><li>Calculator: Flange bolt torque <span class="flag">Coming soon</span></li></ul></aside>
+</article>
+</main>
+<footer>
+  <div class="wrap">
+    <nav class="fnav" aria-label="Footer"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a><a href="../../standards/">Standards Index</a><a href="../../search/">Search</a></nav>
+    <div>Knowledge grows when it is communicated. <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a></div>
+    <div>Articles, documents and calculators are aids for engineering work, not a substitute for a complete engineering assessment. Users remain responsible for verifying the applicable design basis, code requirements and edition, assumptions and engineering decisions; results must be checked by a qualified engineer before use.</div>
+    <div>© 2026 Baher Elsheikh. Content and tools free to use; not to be copied or redistributed without permission.</div>
+  </div>
+</footer>
+<script src="../../assets/chrome.js"></script>
+</body>
+</html>

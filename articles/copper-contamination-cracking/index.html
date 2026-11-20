@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Copper Contamination Cracking of Austenitic Stainless Steels | Baher Elsheikh</title>
+<meta name="description" content="How copper rubbed onto austenitic stainless steel causes liquid metal embrittlement and intergranular cracking in the weld heat-affected zone, and how to prevent and detect it.">
+<meta name="keywords" content="copper contamination cracking, liquid metal embrittlement, austenitic stainless steel, 304L, 316L, HAZ cracking, welding, copper backing bar">
+<meta name="author" content="Baher Elsheikh">
+<link rel="canonical" href="https://baher-elsheikh.github.io/articles/copper-contamination-cracking/">
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://baher-elsheikh.github.io/articles/copper-contamination-cracking/">
+<meta property="og:title" content="Copper Contamination Cracking of Austenitic Stainless Steels">
+<meta property="og:description" content="How copper rubbed onto austenitic stainless steel causes liquid metal embrittlement and intergranular cracking in the weld heat-affected zone, and how to prevent and detect it.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Copper Contamination Cracking of Austenitic Stainless Steels", "description": "How copper rubbed onto austenitic stainless steel causes liquid metal embrittlement and intergranular cracking in the weld heat-affected zone, and how to prevent and detect it.", "url": "https://baher-elsheikh.github.io/articles/copper-contamination-cracking/", "inLanguage": "en", "author": {"@type": "Person", "name": "Baher Elsheikh", "url": "https://baher-elsheikh.github.io/#about", "sameAs": ["https://www.linkedin.com/in/baher-elsheikh/", "https://www.youtube.com/@baherelsheikh4942"]}, "about": "copper contamination cracking, liquid metal embrittlement, austenitic stainless steel, 304L, 316L, HAZ cracking, welding, copper backing bar"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F7F9; --panel:#FFFFFF; --ink:#16203A; --steel:#566074; --rule:#DCE0E7;
+  --accent:#14245E; --accent-soft:#E7EAF3; --brass:#8A6320; --brass-soft:#F4ECDD; --fig:#EEF1F7;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --serif:"STIX Two Text",Cambria,Georgia,"Times New Roman",serif;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 var(--sans);overflow-x:clip}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.lg-dark{display:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:block}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:block}
+header.site{background:var(--panel);border-bottom:1px solid var(--rule)}
+header.site .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;min-height:62px}
+.brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px}
+.brand img{height:34px;width:auto}
+nav.tabs{display:flex;flex-wrap:wrap;gap:2px}
+nav.tabs a{font-size:15px;font-weight:500;color:var(--steel);text-decoration:none;padding:6px 10px;border-radius:5px}
+nav.tabs a:hover{color:var(--ink);background:var(--accent-soft)}
+nav.tabs a.cur{color:var(--accent);background:var(--accent-soft)}
+article{max-width:760px;margin:0 auto;padding:40px 0 56px}
+.crumb{font-size:14px;color:var(--steel);margin:0 0 18px}
+.crumb a{color:var(--steel)}
+.lab{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none}
+.lab svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.22;letter-spacing:-.005em}
+h1{font-size:clamp(29px,3.6vw,40px);margin:10px 0 0}
+.lead{font-size:19px;line-height:1.6;color:var(--steel);margin:16px 0 0}
+.byline{font-size:14.5px;color:var(--steel);margin:18px 0 0;padding-bottom:22px;border-bottom:1px solid var(--rule)}
+h2{font-size:24px;margin:38px 0 6px}
+h3{font-size:19px;margin:28px 0 4px}
+p{margin:14px 0}
+ul,ol{padding-left:1.3em} li{margin:6px 0}
+figure{margin:28px 0}
+figure .frame{background:var(--fig);border:1px solid var(--rule);border-radius:6px;overflow:hidden;color:var(--accent)}
+figure .frame svg{display:block;width:100%;height:auto}
+figure img{display:block;width:100%;height:auto}
+figcaption{font-size:14.5px;color:var(--steel);margin-top:8px}
+.tbl{overflow-x:auto;margin:24px 0}
+table{border-collapse:collapse;width:100%;font-size:15.5px;background:var(--panel)}
+caption{caption-side:bottom;text-align:left;font-size:14.5px;color:var(--steel);padding-top:8px}
+th,td{border:1px solid var(--rule);padding:8px 12px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+td.n{text-align:center;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{width:34%}
+.eq{font-family:var(--serif);font-size:19px;text-align:center;margin:20px 0;padding:12px;background:var(--panel);border:1px solid var(--rule);border-radius:6px}
+.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 16px;margin:22px 0;font-size:16px}
+.refs{font-size:14.5px;color:var(--steel)}
+.refs li{margin:4px 0}
+.related{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule)}
+.related h2{font-size:20px;margin:0 0 8px}
+.related ul{list-style:none;padding:0;margin:0}
+.related li{padding:6px 0}
+.flag{font-size:12.5px;font-weight:500;color:var(--brass);background:var(--brass-soft);border-radius:3px;padding:1px 7px}
+.disc{font-size:14px;color:var(--steel);margin-top:30px}
+footer{border-top:1px solid var(--rule);padding:20px 0 30px;font-size:13.5px;color:var(--steel);background:var(--panel)}
+footer .wrap{display:grid;gap:6px}
+@media (max-width:600px){.wrap{padding:0 16px} article{padding-top:26px} body{font-size:16.5px}}
+@media print{header.site,footer,.related{display:none} body{background:#fff}}
+</style>
+<link rel="stylesheet" href="../../assets/chrome.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="beta-bar" role="note"><div class="wrap"><span class="beta-tag">Beta</span> This site is in its testing period. Spotted a mistake? Please tell me on <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</div></div>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../../"><img class="lg-light" src="../../assets/gear-light.png" alt="" width="41" height="34"><img class="lg-dark" src="../../assets/gear-dark.png" alt="" width="41" height="34"><span>Baher Elsheikh</span></a>
+    <div class="hdr-right">
+      <nav class="tabs" id="mainnav" aria-label="Main"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/" aria-current="page">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a></nav>
+      <a class="nav-search" href="../../search/"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20.5 20.5"/></svg><span>Search</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav">Menu</button>
+    </div>
+  </div>
+</header>
+<main id="main" class="wrap">
+<article>
+  <p class="crumb"><a href="../">Articles</a></p>
+  <a class="lab" href="../../#welding-and-repairs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 17.5h19"/><path d="M2.5 13.5h6.5l3-5.5 3 5.5h6.5"/><path d="M9.5 13.5c.8-1 1.7-1 2.5 0 .8-1 1.7-1 2.5 0"/><path d="M12 4.5v-1.5M8.5 5.5l-1-1M15.5 5.5l1-1"/></svg>Welding &amp; Repairs</a>
+  <h1>Copper Contamination Cracking of Austenitic Stainless Steels</h1>
+  <p class="lead">Copper improves stainless steel when it is in the alloy, and cracks it when it is on the surface. How copper rubbed onto 304L or 316L causes intergranular cracking during welding, and how to prevent it.</p>
+  <p class="byline">By Baher Elsheikh. 3 min read.</p>
+
+  <p>Copper (Cu) contamination can cause copper contamination cracking (CCC) in austenitic stainless steel weldments when the surface at or near the heat-affected zone (HAZ) is contaminated with copper. The cracks result from liquid metal embrittlement (LME) and are intergranular.</p>
+  <h2>Copper as an alloying element</h2>
+  <p>As an alloying element, copper improves the corrosion resistance of stainless steels in reducing acids such as sulfuric and phosphoric acid. In intermediate (25 to 70%) and concentrated (70 to 99+%) sulfuric acid, the super-austenitic grade 904L, which contains about 1.5% Cu, performs much better than copper-free grades. The benefit of copper in sulfuric acid has long been known.</p>
+  <figure><div class="frame"><svg viewBox="0 0 640 350" role="img" aria-label="Schematic iso-corrosion sketch for sulfuric acid comparing 316L with copper-bearing 904L and Alloy 20">
+<g fill="none" stroke="currentColor" stroke-width="1.6"><path d="M70.0 290V40" stroke-width=".5" opacity=".35"/><path d="M170.0 290V40" stroke-width=".5" opacity=".35"/><path d="M270.0 290V40" stroke-width=".5" opacity=".35"/><path d="M370.0 290V40" stroke-width=".5" opacity=".35"/><path d="M470.0 290V40" stroke-width=".5" opacity=".35"/><path d="M570.0 290V40" stroke-width=".5" opacity=".35"/><path d="M70 290.0H570" stroke-width=".5" opacity=".35"/><path d="M70 227.5H570" stroke-width=".5" opacity=".35"/><path d="M70 165.0H570" stroke-width=".5" opacity=".35"/><path d="M70 102.5H570" stroke-width=".5" opacity=".35"/><path d="M70 40.0H570" stroke-width=".5" opacity=".35"/><path d="M70 40V290H570"/>
+<path d="M70 165 L170 160 L270 146 L345 121 L395 84 L430 40" stroke-width="2.2"/>
+<path d="M70 175 L145 196 L220 212 L295 221 L370 230 L420 234 L470 228 L510 212 L545 190 L570 171" stroke-width="2.2" style="stroke:var(--brass)"/>
+<path d="M70 215 L95 234 L120 252 L145 268 L170 280" stroke-dasharray="6 4" stroke-width="2"/><path d="M495 280 L520 262 L545 246 L570 234" stroke-dasharray="6 4" stroke-width="2"/></g>
+<g fill="currentColor" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13"><text x="70.0" y="310" text-anchor="middle">0</text><text x="170.0" y="310" text-anchor="middle">20</text><text x="270.0" y="310" text-anchor="middle">40</text><text x="370.0" y="310" text-anchor="middle">60</text><text x="470.0" y="310" text-anchor="middle">80</text><text x="570.0" y="310" text-anchor="middle">100</text><text x="60" y="294.0" text-anchor="end">0</text><text x="60" y="231.5" text-anchor="end">50</text><text x="60" y="169.0" text-anchor="end">100</text><text x="60" y="106.5" text-anchor="end">150</text><text x="60" y="44.0" text-anchor="end">200</text>
+<text x="320" y="335" text-anchor="middle">Sulfuric acid concentration, wt%</text>
+<text x="22" y="165" transform="rotate(-90 22 165)" text-anchor="middle">Temperature, °C</text>
+<text x="220.0" y="127.5" font-weight="600">Boiling point</text>
+<text x="250.0" y="202.5" style="fill:var(--brass)" font-weight="600">904L, Alloy 20 (Cu-bearing)</text>
+<text x="103.0" y="237.5" font-weight="600">316L</text><text x="490.0" y="245.0" font-weight="600">316L</text>
+<text x="80" y="58" font-size="12">Below each line: acceptable corrosion rate</text>
+</g></svg></div><figcaption>Figure 1. Schematic iso-corrosion comparison in sulfuric acid: copper-bearing alloys such as 904L and Alloy 20 cover a much wider range than 316L. Simplified sketch for illustration; use published iso-corrosion diagrams for material selection.</figcaption></figure>
+  <h2>How copper contamination cracking happens</h2>
+  <p>As a surface contaminant, however, copper is harmful. CCC can occur when copper on the surface is heated above its melting point (about 1083 °C), either in the HAZ during welding or during annealing heat treatment. For comparison, 304L stainless steel melts over a range of about 1400 to 1450 °C. The molten copper spreads very rapidly along the grain boundaries of the HAZ as a liquid film. As the weld cools and shrinks, it imposes a tensile stress that the copper-rich liquid film cannot withstand, and cracks form along these grain boundaries in the HAZ.</p>
+  <figure><div class="frame"><svg viewBox="0 0 640 330" role="img" aria-label="Sketch of copper contamination cracking: molten copper penetrates grain boundaries in the heat-affected zone and cracks open under weld shrinkage stress">
+<g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+<rect x="40" y="120" width="560" height="160" fill="currentColor" fill-opacity=".08"/>
+<g stroke-width="1" opacity=".55"><path d="M59 120 L54 200 L51 280"/><path d="M134 120 L130 200 L122 280"/><path d="M189 120 L182 200 L183 280"/><path d="M274 120 L272 200 L267 280"/><path d="M333 120 L332 200 L344 280"/><path d="M423 120 L413 200 L432 280"/><path d="M497 120 L511 200 L491 280"/><path d="M40 200 C150 190 250 210 600 196" opacity=".7"/></g>
+<path d="M40 120 C60 120 70 70 120 62 H200 C240 70 250 120 270 120" fill="currentColor" fill-opacity=".22"/>
+<rect x="270" y="120" width="130" height="160" style="fill:var(--brass)" fill-opacity=".10" stroke="none"/>
+<path d="M278 120 h112" style="stroke:var(--brass)" stroke-width="6" stroke-linecap="round"/>
+<path d="M305 122 l-6 34 7 26 -4 30" style="stroke:var(--brass)" stroke-width="2.2"/>
+<path d="M357 122 l5 28 -7 30" style="stroke:var(--brass)" stroke-width="2.2"/>
+<path d="M300 300 H230 M520 300 H590" stroke-width="2"/><path d="M230 300 l10 -5v10z M590 300 l-10 -5v10z" fill="currentColor"/>
+<path d="M335 112 V64" stroke-width="1" opacity=".8"/>
+</g>
+<g fill="currentColor" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14">
+<text x="160" y="52" text-anchor="middle" font-weight="600">Weld</text>
+<text x="335" y="56" text-anchor="middle" font-weight="600">HAZ: above about 1083 °C</text>
+<text x="410" y="104" style="fill:var(--brass)" font-weight="600">Copper rubbed onto the surface</text>
+<text x="420" y="170" style="fill:var(--brass)">Liquid copper wets grain</text><text x="420" y="188" style="fill:var(--brass)">boundaries; cracks open</text>
+<text x="56" y="270" opacity=".85">Austenitic stainless steel (304L, 316L)</text>
+<text x="410" y="322" text-anchor="middle">Tensile stress from weld shrinkage on cooling</text>
+</g></svg></div><figcaption>Figure 2. Mechanism of copper contamination cracking in the heat-affected zone.</figcaption></figure>
+  <p>The usual scenario is that copper is rubbed onto the stainless steel surface, for example by sliding the stainless steel against a copper chill bar on a seam welder. Microscopic particles of copper rub off and adhere to the stainless steel surface.</p>
+  <h2>Prevention</h2>
+  <ul>
+    <li>Copper backing bars are often used when welding sheet material. Avoid rubbing the stainless steel against the copper, which transfers copper to the surface.</li>
+    <li>Direct contact, such as with a chill bar, backing bar or alignment clamp, can be acceptable as long as rubbing is avoided.</li>
+    <li>Do not store stainless steel in contact with, or in the same area as, galvanized steel or copper. Surface contamination by copper, zinc or other low-melting metals can embrittle stainless steels.</li>
+  </ul>
+  <p>In short, the surfaces of austenitic stainless steels such as 304L and 316L must be protected against copper being rubbed onto them.</p>
+  <h2>Inspection and identification</h2>
+  <ul>
+    <li>Penetrant testing (PT) can detect surface cracks initiated by CCC in the HAZ.</li>
+    <li>Metallography can detect the intergranular cracks in the HAZ, and the presence of copper at the grain boundaries in the as-polished condition.</li>
+  </ul>
+  <h2>References</h2>
+  <ol class="refs">
+    <li>Welding Journal, 1982. Copper-Contamination Cracking: Cracking Mechanism and Crack Inhibitors.</li>
+    <li>Welding Journal, 1978. Liquid-Metal Embrittlement of the Heat-Affected Zone by Copper Contamination.</li>
+    <li>Nickel Development Institute. Welding of Stainless Steels and Other Joining Methods.</li>
+    <li>Nickel Development Institute. Practical Guidelines for the Fabrication of Austenitic Stainless Steels.</li>
+    <li>AWS. Welding of Stainless Steels: Questions and Answers.</li>
+    <li>MTI Publication MS-1, 2nd ed. Materials Selector for Hazardous Chemicals: Sulfuric Acid. Materials Technology Institute of the Chemical Process Industries, St. Louis, MO, 2005.</li>
+    <li>Nickel Development Institute. Alloy Selection for Service in Sulphuric Acid.</li>
+  </ol>
+  <p class="disc">This article is for general engineering guidance. Apply it with the current edition of the referenced codes and standards and the judgement of a qualified engineer.</p>
+  <aside class="related"><h2>Related on this site</h2><ul><li>Article: <a href="../galling-stainless-steel-bolts/">Galling and Seizing of Stainless Steel Bolts</a></li><li>Article: <a href="https://www.ndtcorner.com/en/tech_details/82">Local PWHT for Pressure Vessels</a></li></ul></aside>
+</article>
+</main>
+<footer>
+  <div class="wrap">
+    <nav class="fnav" aria-label="Footer"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a><a href="../../standards/">Standards Index</a><a href="../../search/">Search</a></nav>
+    <div>Knowledge grows when it is communicated. <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a></div>
+    <div>Articles, documents and calculators are aids for engineering work, not a substitute for a complete engineering assessment. Users remain responsible for verifying the applicable design basis, code requirements and edition, assumptions and engineering decisions; results must be checked by a qualified engineer before use.</div>
+    <div>© 2026 Baher Elsheikh. Content and tools free to use; not to be copied or redistributed without permission.</div>
+  </div>
+</footer>
+<script src="../../assets/chrome.js"></script>
+</body>
+</html>

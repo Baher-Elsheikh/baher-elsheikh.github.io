@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Weld Metal Ferrite Calculator | Schaeffler, DeLong, WRC-1992</title>
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="description" content="Free interactive Schaeffler, DeLong and WRC-1992 diagram calculator: chromium and nickel equivalents of two base metals and the filler metal, dilution by welding process, predicted weld metal structure, Ferrite Number and solidification mode, plotted on all three diagrams.">
+<meta name="keywords" content="Schaeffler diagram calculator, DeLong diagram, WRC-1992 diagram, ferrite number calculator, dissimilar metal weld, dilution, chromium equivalent, nickel equivalent, E309L, stainless steel weld metal">
+<meta name="author" content="Baher Elsheikh">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://baher-elsheikh.github.io/calculators/weld-metal-ferrite/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baher-elsheikh.github.io/calculators/weld-metal-ferrite/">
+<meta property="og:title" content="Weld Metal Ferrite Calculator: Schaeffler, DeLong, WRC-1992">
+<meta property="og:description" content="Plot two base metals, the filler and the dilution on the Schaeffler, DeLong and WRC-1992 diagrams and read the weld metal structure and Ferrite Number. Prepared by Baher Elsheikh.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Weld Metal Ferrite Calculator","url":"https://baher-elsheikh.github.io/calculators/weld-metal-ferrite/","applicationCategory":"EngineeringApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Schaeffler, DeLong and WRC-1992 constitution diagrams for stainless and dissimilar metal welds, with dilution.","author":{"@type":"Person","name":"Baher Elsheikh","sameAs":["https://www.linkedin.com/in/baher-elsheikh/","https://www.youtube.com/@baherelsheikh4942"]}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF0F5; --panel:#FFFFFF; --ink:#121A30; --steel:#545E74; --rule:#CDD2DE;
+  --accent:#14245E; --accent-soft:#E1E5F2; --ok:#1E7A4C; --ok-soft:#DDF0E5;
+  --bad:#AE2A1F; --bad-soft:#F7DEDA; --warn:#8A5A00; --warn-soft:#F6EAD0;
+  --field:#F7F8FB; --wall:#7E8E98; --tol:#B9C4CA;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --math:"STIX Two Text","Cambria Math",Cambria,"Times New Roman",serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+    --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+    --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+  --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+  --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans);font-variant-numeric:tabular-nums}
+.wrap{max-width:1320px;margin:0 auto;padding:28px 24px 48px}
+header.top{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+h1{font-family:var(--math);font-weight:600;font-size:clamp(26px,3.4vw,38px);line-height:1.1;margin:0;letter-spacing:-.01em}
+.home{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14.5px;margin-bottom:14px}
+.home img{height:40px;width:auto}
+.home:hover span{color:var(--accent)}
+.lg-dark{display:none}
+.f input:disabled,.f select:disabled{opacity:.45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:inline}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:inline}
+.basis{color:var(--steel);font-size:13.5px;margin-top:8px;max-width:70ch}
+.byline{font-size:14px;margin-top:10px;color:var(--ink);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.byline .links{display:inline-flex;gap:12px}
+.byline a,footer a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;font-weight:500}
+.byline a:hover,footer a:hover{text-decoration-thickness:2px}
+@media print{.byline a::after{content:" (" attr(href) ")";font-weight:400;color:var(--steel)}}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{font:500 14px var(--sans);border-radius:6px;padding:8px 14px;cursor:pointer;border:1px solid var(--rule);background:var(--panel);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--panel)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* verdict + wall gauge */
+.verdict{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:22px 24px;display:grid;grid-template-columns:minmax(260px,1fr) minmax(320px,1.6fr);gap:20px 32px;align-items:center;margin-bottom:22px}
+.verdict .state{font-family:var(--math);font-size:clamp(22px,2.6vw,30px);line-height:1.2}
+.verdict .state.ok{color:var(--ok)} .verdict .state.bad{color:var(--bad)}
+.verdict .sub{color:var(--steel);margin-top:6px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-size:12.5px;padding:3px 9px;border-radius:999px;border:1px solid transparent}
+.chip.ok{background:var(--ok-soft);color:var(--ok)} .chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)} .chip.info{background:var(--accent-soft);color:var(--accent)}
+.gauge svg{width:100%;height:auto;display:block}
+.gauge text{font-family:var(--sans);font-size:11px;fill:var(--steel);paint-order:stroke;stroke:var(--panel);stroke-width:3px;stroke-linejoin:round}
+.gauge .lab{fill:var(--ink);font-weight:500}
+.gcap{font-size:12px;color:var(--steel);margin-top:4px}
+
+/* layout */
+.cols{display:grid;grid-template-columns:380px minmax(0,1fr);gap:22px;align-items:start}
+aside.inputs{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:6px 18px 18px;position:sticky;top:calc(12px + env(safe-area-inset-top,0px));max-height:calc(100vh - 24px - env(safe-area-inset-top,0px));overflow:auto}
+fieldset{border:0;border-top:1px solid var(--rule);margin:14px 0 0;padding:12px 0 0}
+fieldset:first-of-type{border-top:0}
+legend{font-weight:600;font-size:14px;padding:0}
+.f{display:grid;grid-template-columns:1fr 112px 46px;gap:6px;align-items:center;margin-top:7px}
+.f.wide{grid-template-columns:1fr 1.4fr}
+.f label{font-size:13px;color:var(--ink)}
+.f label i{font-family:var(--math);font-size:15px}
+.f .u{font-size:12px;color:var(--steel)}
+input,select{font:14px var(--sans);color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:5px;padding:5px 7px;width:100%;font-variant-numeric:tabular-nums}
+input[type=number]{text-align:right}
+input:disabled{opacity:.6}
+input.need{background:#FFF7D6;border-color:#D9B84A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) input.need{background:#33290F;border-color:#7A6420}}
+:root[data-theme="dark"] input.need{background:#33290F;border-color:#7A6420}
+.hint{font-size:12px;color:var(--steel);margin:4px 0 0;line-height:1.4}
+
+/* calculation report */
+main.report{display:flex;flex-direction:column;gap:18px;min-width:0}
+section.step{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 20px 12px}
+.step h2{font-size:17px;font-weight:600;margin:0;display:flex;gap:10px;align-items:baseline}
+.step h2 .n{font-family:var(--math);color:var(--accent);font-size:20px;min-width:1.2em}
+.step .ref{color:var(--steel);font-size:12.5px;margin:2px 0 8px 32px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td{padding:7px 8px;border-top:1px solid var(--rule);vertical-align:baseline}
+td.lb{width:30%;color:var(--ink)}
+td.eq{font-family:var(--math);font-size:15.5px;white-space:nowrap}
+td.sb{font-family:var(--math);font-size:15px;color:var(--steel);white-space:nowrap}
+td.v{text-align:right;font-weight:600;white-space:nowrap}
+td.v small{display:block;font-weight:400;color:var(--steel);font-size:12px}
+td.un{color:var(--steel);font-size:12.5px;white-space:nowrap;width:44px}
+.result{margin:10px 0 4px;padding:9px 12px;border-radius:6px;font-weight:500;font-size:14px}
+.result.ok{background:var(--ok-soft);color:var(--ok)} .result.bad{background:var(--bad-soft);color:var(--bad)}
+.result.warn{background:var(--warn-soft);color:var(--warn)} .result.info{background:var(--accent-soft);color:var(--accent)}
+.note{font-size:12.5px;color:var(--steel);margin:6px 0 0}
+.schtbl td{text-align:center;font-size:12.5px;padding:5px 4px}
+.schtbl td.sel{outline:2px solid var(--accent);font-weight:600}
+.schtbl td.okc{background:var(--ok-soft);color:var(--ok)} .schtbl td.badc{color:var(--steel)}
+.schtbl th{font-size:12px;font-weight:600;padding:5px 4px;border-bottom:1px solid var(--rule)}
+
+/* how to use */
+section.howto{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:18px 22px 14px;margin-top:22px}
+.howto h2{font-family:var(--math);font-weight:600;font-size:24px;margin:0 0 4px}
+.howto h3{font-size:15px;font-weight:600;margin:18px 0 6px}
+.howto p,.howto li{font-size:14px;max-width:85ch}
+.howto ol,.howto ul{padding-left:22px;margin:6px 0}
+.howto li{margin:5px 0}
+.howto .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4px 32px}
+
+footer{margin-top:28px;font-size:12.5px;color:var(--steel);border-top:1px solid var(--rule);padding-top:14px;display:grid;gap:6px}
+.printhead{display:none}
+
+@media (max-width:980px){
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none}
+  .verdict{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .wrap{padding:18px 14px 36px}
+  td.eq,td.sb{white-space:normal}
+  td.lb{width:auto}
+  .howto{padding:16px 14px 12px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .verdict .state{transition:color .25s}
+}
+@media print{
+  :root{--bg:#fff;--panel:#fff}
+  body{font-size:11px}
+  .actions,.noprint{display:none!important}
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none;border:0;padding:0}
+  section.step,.verdict{break-inside:avoid;border-color:#999}
+  .printhead{display:block;font-size:11px;margin-bottom:8px}
+  input,select{border:0;background:none;padding:0}
+}
+</style>
+<style>
+.diag{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 20px 12px;margin-bottom:22px}
+.dtop{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tabs button{font-size:13.5px;padding:6px 12px}
+.tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--panel)}
+.dil{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--steel)}
+.dil input[type=range]{width:200px;padding:0;accent-color:var(--accent)}
+.dil output{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:500;min-width:3.5em}
+#dsvg{width:100%;height:auto;display:block;margin-top:10px;touch-action:none}
+#dsvg text{font-family:var(--sans);font-size:11px;fill:var(--steel)}
+#dsvg .fnl{font-size:10px;fill:var(--ok);paint-order:stroke;stroke:var(--panel);stroke-width:3px}
+#dsvg .reg{font-size:13px;font-weight:600;fill:var(--accent);opacity:.75}
+#dsvg .pl{font-size:11.5px;font-weight:600;fill:var(--ink);paint-order:stroke;stroke:var(--panel);stroke-width:3px;stroke-linejoin:round}
+.readout{font-size:13px;color:var(--steel);min-height:1.4em;margin-top:4px;font-variant-numeric:tabular-nums}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--steel);margin-top:6px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend svg{width:14px;height:14px}
+table.comp{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+table.comp th{font-weight:600;text-align:center;padding:3px 2px;color:var(--steel);font-size:12px}
+table.comp td{padding:2px}
+table.comp td:first-child{font-weight:500;width:34px}
+table.comp input{padding:4px 5px;text-align:right}
+table.comp input[type=text]{text-align:left;font-size:12px}
+@media print{.diag{break-inside:avoid}.tabs,.dil{display:none}#dsvg{max-width:640px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <a class="home" href="../"><img class="lg-light" src="../../assets/gear-light.png" alt=""><img class="lg-dark" src="../../assets/gear-dark.png" alt=""><span>Baher Elsheikh</span><span style="font-weight:400;color:var(--steel)">| All calculators</span></a>
+      <h1>Weld metal ferrite</h1>
+      <div class="byline">Prepared by: <strong>Baher Elsheikh</strong>
+        <span class="links"><a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube channel</a></span></div>
+      <div class="basis">Schaeffler (1949), DeLong (1974) and WRC-1992 constitution diagrams for stainless steel and dissimilar metal welds: chromium and nickel equivalents of two base metals and the filler metal, dilution by the lever rule, predicted weld metal structure, Ferrite Number (FN) and solidification mode.</div>
+    </div>
+    <div class="actions">
+      <button type="button" id="btnHow">How to use</button>
+      <button type="button" id="btnExample">Load example</button>
+      <button type="button" id="btnClear">Clear inputs</button>
+      <button type="button" class="primary" id="btnPrint">Print / save PDF</button>
+    </div>
+  </header>
+
+  <div class="printhead" id="printhead"></div>
+
+  <div class="verdict" aria-live="polite">
+    <div>
+      <div class="state" id="vState">—</div>
+      <div class="sub" id="vSub"></div>
+      <div class="chips" id="vChips"></div>
+    </div>
+    <div>
+      <div class="tbl"><table id="sumtab"></table></div>
+    </div>
+  </div>
+
+  <section class="diag" aria-label="Constitution diagram">
+    <div class="dtop">
+      <div class="tabs" role="tablist">
+        <button type="button" role="tab" data-d="wrc" aria-selected="true">WRC-1992</button>
+        <button type="button" role="tab" data-d="delong" aria-selected="false">DeLong</button>
+        <button type="button" role="tab" data-d="schaeffler" aria-selected="false">Schaeffler</button>
+      </div>
+      <label class="dil">Dilution <input type="range" id="Dslide" min="0" max="100" step="1"> <output id="Dout">—</output></label>
+    </div>
+    <svg id="dsvg" viewBox="0 0 720 470" role="img" aria-label="Constitution diagram with the base metals, filler and weld metal"></svg>
+    <div class="readout" id="readout">Move the pointer over the diagram to read Cr<sub>eq</sub>, Ni<sub>eq</sub> and the predicted value at any point.</div>
+    <div class="legend" id="legend"></div>
+  </section>
+
+  <div class="cols">
+    <aside class="inputs" aria-label="Inputs">
+      <fieldset>
+        <legend>Joint</legend>
+        <div class="f wide"><label for="tag">Joint / description</label><input id="tag" type="text" placeholder="e.g. Root pass, 304 to A36 with E309L"></div>
+        <div class="f wide"><label for="prep">Prepared by</label><input id="prep" type="text"></div>
+        <div class="f wide"><label for="proc">Welding process</label>
+          <select id="proc"></select></div>
+        <div class="f"><label for="D">Dilution <i>D</i></label><input id="D" type="number" step="any" min="0" max="100"><span class="u">%</span></div>
+        <p class="hint" id="Dhint"></p>
+        <div class="f"><label for="s1">Share of base metal 1 in the melted base metal</label><input id="s1" type="number" step="any" min="0" max="100"><span class="u">%</span></div>
+        <p class="hint">50% for equal thickness and a symmetrical bevel; more toward the thicker or more melted side.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Chemical composition, weight %</legend>
+        <table class="comp">
+          <thead><tr><th></th><th>Base metal 1</th><th>Base metal 2</th><th>Filler</th></tr></thead>
+          <tbody id="compbody"></tbody>
+        </table>
+        <p class="hint">Blank = 0. Use the mill certificate and the all-weld-metal analysis of the filler (not the wire, for covered electrodes). If nitrogen is not known, DeLong suggests 0.06% for GTAW and SMAW and 0.08% for GMAW weld metal.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Ferrite target</legend>
+        <div class="f"><label for="fmin">Minimum</label><input id="fmin" type="number" step="any"><span class="u">FN</span></div>
+        <div class="f"><label for="fmax">Maximum</label><input id="fmax" type="number" step="any"><span class="u">FN</span></div>
+        <p class="hint">Typically 3 FN or more against hot cracking; lower maximum for high-temperature service (sigma) or cryogenic toughness. The project specification governs.</p>
+      </fieldset>
+    </aside>
+
+    <main class="report" id="report"></main>
+  </div>
+
+  <section class="howto noprint" id="howto" aria-labelledby="h-how">
+    <h2 id="h-how">How to use this calculator</h2>
+    <p>When stainless steel is welded to itself or to carbon steel, the weld metal is a mixture of the filler and the melted base metals. Its structure (austenite, ferrite, martensite) and its ferrite content control hot cracking, toughness and corrosion. The constitution diagrams predict this structure from two numbers: a chromium equivalent (ferrite formers) and a nickel equivalent (austenite formers). Because both equivalents mix linearly, every possible weld lies on the line between the filler and the base metal mix, at a position set by the dilution.</p>
+    <div class="grid">
+      <div>
+        <h3>Steps</h3>
+        <ol>
+          <li><strong>Select the welding process.</strong> The typical dilution is filled in; overwrite it with your own or a measured value.</li>
+          <li><strong>Set the share of base metal 1</strong> in the melted base metal (50% for a symmetrical joint; 100% for a cladding or a similar-metal joint, entering the same metal twice).</li>
+          <li><strong>Enter the chemistry</strong> of the two base metals and the filler metal, including nitrogen and copper for DeLong and WRC-1992.</li>
+          <li><strong>Read the diagrams.</strong> Switch between WRC-1992, DeLong and Schaeffler with the tabs. Drag the dilution slider to see how the weld point moves; the small dots mark 0, 10, 20 ... 50% dilution.</li>
+          <li><strong>Check the results</strong> in the report: Ferrite Number, solidification mode, martensite risk and the target range. Print or save the page with the WPS.</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Good practice</h3>
+        <ul>
+          <li>Use WRC-1992 for the Ferrite Number: it is the most accurate of the three (about ±4 FN up to 18 FN) and is the diagram of ASME Section III and the AWS filler metal specifications.</li>
+          <li>Use Schaeffler to check for martensite, which WRC-1992 and DeLong do not show. This matters for stainless-to-carbon-steel joints at high dilution.</li>
+          <li>For carbon steel to stainless joints, an over-alloyed filler such as E309L keeps the root pass in the ferrite-containing austenite field despite the carbon steel dilution. Check the highest realistic dilution, not only the typical value.</li>
+          <li>Primary ferrite solidification (FA mode) and a few FN of ferrite give good resistance to hot cracking.</li>
+        </ul>
+        <h3>Not covered</h3>
+        <ul>
+          <li>Duplex balance at high nitrogen, titanium-stabilised compositions, nickel-base fillers outside the diagrams, cooling-rate effects and ferrite measurement for acceptance (AWS A4.2, ISO 8249).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>Prepared by: Baher Elsheikh (<a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a>). Version 1.0, November 2026 (from the spreadsheet Weld Metal Ferrite Calculator, revision 1). Diagram lines redrawn from A. L. Schaeffler (Metal Progress, 1949), W. T. DeLong (Welding Journal, July 1974, Fig. 7) and D. J. Kotecki and T. A. Siewert (Welding Journal, May 1992, Fig. 6).</div>
+    <div>© 2026 Baher Elsheikh. Free to use; not to be copied, modified or redistributed without permission.</div>
+    <div>This tool is an aid for welding engineering. Constitution diagrams give estimates with a scatter of several FN; ferrite in production welds should be measured where it is specified. Results must be verified by a qualified welding engineer before use. No warranty is given.</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const DG = {"wrc":{"box":[17,31,9,18],"fn":[{"fn":0,"p":[[17.0,12.203],[21.702,18.0]]},{"fn":2,"p":[[17.0,10.838],[22.11,17.0]]},{"fn":4,"p":[[17.0,9.879],[23.019,17.0]]},{"fn":6,"p":[[17.0,9.492],[23.642,17.0]]},{"fn":8,"p":[[17.047,9.0],[24.304,17.0]]},{"fn":10,"p":[[17.457,9.0],[24.884,17.0]]},{"fn":12,"p":[[18.006,9.0],[25.375,17.0]]},{"fn":14,"p":[[18.274,9.0],[25.877,17.0]]},{"fn":16,"p":[[18.603,9.0],[26.298,17.0]]},{"fn":18,"p":[[19.004,9.0],[26.656,17.0]]},{"fn":20,"p":[[19.353,9.0],[26.79,16.75]]},{"fn":22,"p":[[19.682,9.0],[27.07,16.58]]},{"fn":24,"p":[[20.011,9.0],[27.31,16.36]]},{"fn":26,"p":[[20.26,9.0],[27.49,16.19]]},{"fn":28,"p":[[20.507,9.0],[27.68,15.94]]},{"fn":30,"p":[[20.787,9.0],[27.88,15.86]]},{"fn":35,"p":[[21.105,9.0],[28.21,15.68]]},{"fn":40,"p":[[21.35,9.0],[28.44,15.39]]},{"fn":45,"p":[[21.568,9.0],[28.65,15.16]]},{"fn":50,"p":[[21.772,9.0],[28.95,14.86]]},{"fn":55,"p":[[22.039,9.0],[29.14,14.65]]},{"fn":60,"p":[[22.346,9.0],[29.35,14.41]]},{"fn":65,"p":[[22.632,9.0],[29.54,14.14]]},{"fn":70,"p":[[22.849,9.0],[29.74,13.81]]},{"fn":75,"p":[[23.108,9.0],[29.95,13.48]]},{"fn":80,"p":[[23.372,9.0],[30.15,13.24]]},{"fn":85,"p":[[23.687,9.0],[30.24,12.95]]},{"fn":90,"p":[[24.058,9.0],[30.47,12.62]]},{"fn":95,"p":[[24.346,9.0],[30.61,12.27]]},{"fn":100,"p":[[24.75,9.0],[30.7,11.8]]}],"bnd":{"A_AF":[[17.0,12.203],[21.702,18.0]],"AF_FA":[[17.0,11.742],[24.922,18.0]],"FA_F":[[17.0,9.335],[25.27,15.38]]}},"delong":{"box":[16,27,10,21],"fn":[{"fn":0,"p":[[16.015,10.0],[23.861,21.0]]},{"fn":2,"p":[[16.617,10.0],[24.53,21.0]]},{"fn":4,"p":[[17.164,10.0],[25.153,21.0]]},{"fn":6,"p":[[17.677,10.0],[25.736,21.0]]},{"fn":8,"p":[[18.1,10.0],[26.273,21.0]]},{"fn":10,"p":[[18.519,10.0],[26.771,21.0]]},{"fn":12,"p":[[18.92,10.0],[27.0,20.569]]},{"fn":14,"p":[[19.347,10.0],[27.0,19.865]]},{"fn":16,"p":[[19.797,10.0],[27.0,19.198]]},{"fn":18,"p":[[20.206,10.0],[27.0,18.506]]}]},"schaeffler":{"box":[0,40,0,30],"A_AM":[[0,25.69],[26.41,4.71]],"AM_M":[[0,20.03],[20.49,2.75]],"FM_M":[[0,8.16],[3.09,0]],"ferrite":[{"f":0,"p":[[7.06,0.08],[34.77,30]]},{"f":5,"p":[[15.08,7.34],[37.51,30]]},{"f":10,"p":[[15.82,6.71],[40,28.3]]},{"f":20,"p":[[16.68,5.96],[40,23.41]]},{"f":40,"p":[[17.73,5.09],[40,19.73]]},{"f":80,"p":[[18.63,4.34],[40,14.47]]},{"f":100,"p":[[12.13,0],[40,9.17]]}]}};
+  const EL = ['C','Mn','Si','Cr','Ni','Mo','Nb','N','Cu'];
+  const M = ['b1','b2','fm'];
+  const PROCS = [['SMAW','20–30%',30],['GTAW with filler','20–40%',30],['GMAW','20–40%',30],['FCAW','20–35%',25],['SAW','30–50%',40],['Strip cladding (ESW)','10–20%',15],['GTAW autogenous (no filler)','100%',100]];
+  const EXAMPLE = {tag:'Example: root pass, AISI 304 to ASTM A36 with E309L-16', prep:'', proc:'SMAW', D:30, s1:50, fmin:3, fmax:10,
+    b1name:'AISI 304', b2name:'ASTM A36', fmname:'E309L-16',
+    b1C:0.05,b1Mn:1.60,b1Si:0.40,b1Cr:18.75,b1Ni:9.90,b1Mo:0.08,b1Nb:'',b1N:0.04,b1Cu:'',
+    b2C:0.20,b2Mn:0.80,b2Si:0.20,b2Cr:'',b2Ni:'',b2Mo:'',b2Nb:'',b2N:0.004,b2Cu:'',
+    fmC:0.03,fmMn:1.40,fmSi:0.60,fmCr:24.40,fmNi:12.70,fmMo:0.20,fmNb:'',fmN:0.06,fmCu:''};
+  const IDS = Object.keys(EXAMPLE);
+  const STORE = 'weld-ferrite-inputs-v1';
+  const $ = id => document.getElementById(id);
+  let view = 'wrc';
+
+  // build inputs
+  $('proc').innerHTML = PROCS.map(p=>`<option>${p[0]}</option>`).join('');
+  $('compbody').innerHTML = `<tr><td></td>${M.map(m=>`<td><input id="${m}name" type="text" aria-label="${m} designation"></td>`).join('')}</tr>` +
+    EL.map(e=>`<tr><td>${e}</td>${M.map(m=>`<td><input id="${m}${e}" type="number" step="any" aria-label="${m} ${e}"></td>`).join('')}</tr>`).join('');
+
+  function setInputs(d){ IDS.forEach(k=>{const el=$(k); if(!el) return; el.value=(d[k]===undefined||d[k]===null)?'':d[k];}); }
+  function getInputs(){ const d={}; IDS.forEach(k=>{d[k]=$(k).value;}); return d; }
+  function num(k){ const v=parseFloat($(k).value); return isFinite(v)?v:NaN; }
+  const z = k => { const v=num(k); return isFinite(v)?v:0; };
+  function f(x,d){ if(typeof x==='string') return x; if(!isFinite(x)) return '—'; return x.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+  const v = s => `<i>${s}</i>`;
+  function row(label, eq, sub, val, unit, d){
+    return `<tr><td class="lb">${label}</td><td class="eq">${eq||''}</td><td class="sb">${sub||''}</td><td class="v">${f(val,d)}</td><td class="un">${unit||''}</td></tr>`;
+  }
+  function step(n,title,ref,rows,results,notes){
+    return `<section class="step"><h2><span class="n">${n}</span>${title}</h2><div class="ref">${ref}</div>`+
+      (rows.length?`<div class="tbl"><table>${rows.filter(Boolean).join('')}</table></div>`:'')+
+      (results||[]).map(r=>`<div class="result ${r[0]}">${r[1]}</div>`).join('')+
+      (notes||[]).map(t=>`<p class="note">${t}</p>`).join('')+`</section>`;
+  }
+
+  // ---- equivalents and diagram functions ----
+  function eqs(c){ return {
+    sCr: c.Cr + c.Mo + 1.5*c.Si + 0.5*c.Nb,
+    sNi: c.Ni + 30*c.C + 0.5*c.Mn,
+    dNi: c.Ni + 30*c.C + 30*c.N + 0.5*c.Mn,
+    wCr: c.Cr + c.Mo + 0.7*c.Nb,
+    wNi: c.Ni + 35*c.C + 20*c.N + 0.25*c.Cu }; }
+  const KEYS = ['sCr','sNi','dNi','wCr','wNi'];
+  const crAt = (p, ni) => { const [[c1,n1],[c2,n2]]=p; if(ni<Math.min(n1,n2)-1e-9||ni>Math.max(n1,n2)+1e-9) return NaN; return c1+(ni-n1)*(c2-c1)/(n2-n1); };
+  const niAt = (p, cr) => { const [[c1,n1],[c2,n2]]=p; return n1+(cr-c1)*(n2-n1)/(c2-c1); };
+  function interp(lines, key, cr, ni, box){
+    const [x0,x1,y0,y1]=box;
+    if(!(cr>=x0&&cr<=x1&&ni>=y0&&ni<=y1)) return {val:NaN, txt:'outside diagram', st:'out'};
+    const pts = lines.map(l=>({k:l[key], c:crAt(l.p,ni)})).filter(o=>isFinite(o.c));
+    if(pts.length<2) return {val:NaN, txt:'outside data range', st:'out'};
+    if(cr<pts[0].c) return {val:pts[0].k, txt:String(pts[0].k), st:'below'};
+    for(let i=0;i<pts.length-1;i++){ const a=pts[i], b=pts[i+1];
+      if(cr>=a.c && cr<=b.c){ const val=a.k+(b.k-a.k)*(cr-a.c)/(b.c-a.c); return {val, txt:f(val,1), st:'in'}; } }
+    return {val:NaN, txt:'> '+pts[pts.length-1].k+' (outside data range)', st:'above'};
+  }
+  function wrcFN(cr,ni){ return interp(DG.wrc.fn,'fn',cr,ni,DG.wrc.box); }
+  function dlFN(cr,ni){ return interp(DG.delong.fn,'fn',cr,ni,DG.delong.box); }
+  function wrcMode(cr,ni){
+    const [x0,x1,y0,y1]=DG.wrc.box; if(!(cr>=x0&&cr<=x1&&ni>=y0&&ni<=y1)) return 'outside diagram';
+    const b=DG.wrc.bnd, a=crAt(b.A_AF,ni), m=crAt(b.AF_FA,ni), q=crAt(b.FA_F,ni);
+    if(isFinite(a)&&cr<a) return 'A';
+    if(!isFinite(m)||cr<m) return isFinite(a)||cr<m ? 'AF' : 'FA';
+    if(!isFinite(q)||cr<q) return 'FA';
+    return 'F';
+  }
+  function schPhase(cr,ni){
+    const S=DG.schaeffler, [x0,x1,y0,y1]=S.box;
+    if(!(cr>=x0&&cr<=x1&&ni>=y0&&ni<=y1)) return 'outside diagram';
+    const F0=S.ferrite[0].p, F100=S.ferrite[S.ferrite.length-1].p;
+    if(ni<niAt(F100,cr)) return 'F';
+    const right = cr > F0[0][0]+(ni-F0[0][1])*(F0[1][0]-F0[0][0])/(F0[1][1]-F0[0][1]);
+    const aA = ni>niAt(S.A_AM,cr), aM = ni>niAt(S.AM_M,cr), lFM = ni<niAt(S.FM_M,cr);
+    if(!right) return aA?'A':aM?'A+M':lFM?'F+M':'M';
+    return aA?'A+F':aM?'A+M+F':'M+F';
+  }
+  function schFerrite(cr,ni,ph){
+    if(ph==='A') return {val:0,txt:'0'}; if(ph==='F') return {val:100,txt:'100'};
+    if(ph!=='A+F'&&ph!=='A+M+F') return {val:NaN,txt:'—'};
+    const r=interp(DG.schaeffler.ferrite,'f',cr,ni,DG.schaeffler.box);
+    return {val:r.val, txt:isFinite(r.val)?f(r.val,0):r.txt};
+  }
+  const PH = {'A':'austenite','A+M':'austenite + martensite','M':'martensite','F+M':'ferrite + martensite','A+F':'austenite + ferrite','A+M+F':'austenite + martensite + ferrite','M+F':'martensite + ferrite','F':'ferrite'};
+
+  let P = null;   // computed points for drawing
+  function compute(){
+    const pi = PROCS.find(p=>p[0]===$('proc').value) || PROCS[0];
+    $('Dhint').textContent = `Typical for ${pi[0]}: ${pi[1]}. Enter your own or a measured value.`;
+    let D = num('D'); const Dtyp = pi[2]; if(!isFinite(D)) D = Dtyp; D=Math.min(100,Math.max(0,D));
+    const s1 = isFinite(num('s1')) ? Math.min(100,Math.max(0,num('s1')))/100 : 0.5;
+    $('Dslide').value = D; $('Dout').textContent = f(D,0)+'%';
+    const comp = {}; M.forEach(m=>{ comp[m]={}; EL.forEach(e=>comp[m][e]=z(m+e)); });
+    const E = {}; M.forEach(m=>E[m]=eqs(comp[m]));
+    const mix = {}, wm = {}; KEYS.forEach(k=>{ mix[k]=s1*E.b1[k]+(1-s1)*E.b2[k]; wm[k]=(1-D/100)*E.fm[k]+D/100*mix[k]; });
+    const wc = {}; EL.forEach(e=>wc[e]=(1-D/100)*comp.fm[e]+D/100*(s1*comp.b1[e]+(1-s1)*comp.b2[e]));
+    const ready = M.some(m=>comp[m].Cr>0||comp[m].Ni>0) && (comp.fm.Cr>0||comp.fm.Ni>0||D===100);
+    ['fmCr','fmNi'].forEach(k=>$(k).classList.toggle('need', !ready && !isFinite(num(k))));
+    const fmin=isFinite(num('fmin'))?num('fmin'):3, fmax=isFinite(num('fmax'))?num('fmax'):10;
+
+    const W = wrcFN(wm.wCr,wm.wNi), mode = wrcMode(wm.wCr,wm.wNi), DL = dlFN(wm.sCr,wm.dNi);
+    const ph = schPhase(wm.sCr,wm.sNi), SF = schFerrite(wm.sCr,wm.sNi,ph);
+    const okM = ph!=='outside diagram' && !/M/.test(ph);
+    const okFN = isFinite(W.val) && W.val>=fmin && W.val<=fmax;
+    const okMode = mode!=='A' && mode!=='outside diagram';
+    P = {E, mix, wm, D, s1};
+
+    const nm = m => $(m+'name').value || {b1:'Base metal 1',b2:'Base metal 2',fm:'Filler'}[m];
+    let out='';
+    out += step(1,'Chromium and nickel equivalents','Schaeffler, DeLong and WRC-1992 formulas, weight %',[
+      `<tr><td class="lb"></td><td class="eq">Schaeffler / DeLong Cr<sub>eq</sub></td><td class="sb">Schaeffler Ni<sub>eq</sub></td><td class="v">DeLong Ni<sub>eq</sub></td><td class="un"></td></tr>`,
+      ...M.concat(['mix','wm']).map(m=>{ const e = m==='mix'?mix:m==='wm'?wm:E[m];
+        const lab = m==='mix'?`Base metal mix (${f(s1*100,0)} / ${f(100-s1*100,0)})`:m==='wm'?`<strong>Weld metal (D = ${f(D,0)}%)</strong>`:nm(m);
+        return `<tr><td class="lb">${lab}</td><td class="eq">${f(e.sCr,2)}</td><td class="sb">${f(e.sNi,2)}</td><td class="v">${f(e.dNi,2)}</td><td class="un"></td></tr>`; }),
+      `<tr><td class="lb"></td><td class="eq">WRC-1992 Cr<sub>eq</sub></td><td class="sb">WRC-1992 Ni<sub>eq</sub></td><td class="v"></td><td class="un"></td></tr>`,
+      ...M.concat(['mix','wm']).map(m=>{ const e = m==='mix'?mix:m==='wm'?wm:E[m];
+        const lab = m==='mix'?'Base metal mix':m==='wm'?'<strong>Weld metal</strong>':nm(m);
+        return `<tr><td class="lb">${lab}</td><td class="eq">${f(e.wCr,2)}</td><td class="sb">${f(e.wNi,2)}</td><td class="v"></td><td class="un"></td></tr>`; })
+    ],[],[
+      'Schaeffler: Cr<sub>eq</sub> = Cr + Mo + 1.5Si + 0.5Nb; Ni<sub>eq</sub> = Ni + 30C + 0.5Mn. DeLong: same Cr<sub>eq</sub>; Ni<sub>eq</sub> = Ni + 30C + 30N + 0.5Mn. WRC-1992: Cr<sub>eq</sub> = Cr + Mo + 0.7Nb; Ni<sub>eq</sub> = Ni + 35C + 20N + 0.25Cu.']);
+
+    out += step(2,'Weld metal by dilution','Lever rule: weld = (1 − D) filler + D [s base metal 1 + (1 − s) base metal 2]',[
+      row('Dilution', v('D'), isFinite(num('D'))?'entered':`typical for ${pi[0]}`, D,'%',0),
+      row('Share of base metal 1', v('s'), '', s1*100,'%',0),
+      row('Weld metal Cr / Ni / Mn', 'calculated', `C ${f(wc.C,3)}, N ${f(wc.N,3)}, Mo ${f(wc.Mo,2)}`, `${f(wc.Cr,2)} / ${f(wc.Ni,2)} / ${f(wc.Mn,2)}`,'%')
+    ],[],['Equivalents are linear in composition, so mixing the equivalents or the compositions gives the same weld point.']);
+
+    out += step(3,'WRC-1992 diagram','Kotecki and Siewert (1992); FN 0–100, Cr<sub>eq</sub> 17–31, Ni<sub>eq</sub> 9–18',[
+      row('Ferrite Number', 'FN', W.st==='in'?'interpolated between the iso-FN lines':W.st==='below'?'below the 0 FN line':'', W.txt,'FN'),
+      row('Solidification mode', '', {A:'fully austenitic',AF:'primary austenite, then ferrite',FA:'primary ferrite, then austenite',F:'fully ferritic'}[mode]||'', mode,'')
+    ],[ okFN?['ok',`${W.txt} FN is within the target ${f(fmin,0)}–${f(fmax,0)} FN.`]:['bad',isFinite(W.val)?`${W.txt} FN is outside the target ${f(fmin,0)}–${f(fmax,0)} FN.`:`WRC-1992: ${W.txt}; use Schaeffler for this composition.`],
+        okMode?['ok',`Mode ${mode}: ${mode==='F'?'ferritic solidification.':'some primary or secondary ferrite, good resistance to hot cracking.'}`]:['bad',mode==='A'?'Mode A: fully austenitic solidification, higher risk of hot cracking.':'Mode not available outside the diagram.'] ],
+      ['WRC-1992 is accurate to about ±4 FN up to 18 FN; it does not show martensite.']);
+
+    out += step(4,'DeLong diagram','DeLong (1974); FN 0–18, Cr<sub>eq</sub> 16–27, Ni<sub>eq</sub> 10–21',[
+      row('Ferrite Number', 'FN', DL.st==='in'?'interpolated':DL.st==='below'?'below the 0 FN line':'', DL.txt,'FN')
+    ],[],['DeLong includes nitrogen; it was the ASME Section III diagram before WRC-1992.']);
+
+    out += step(5,'Schaeffler diagram','Schaeffler (1949); Cr<sub>eq</sub> 0–40, Ni<sub>eq</sub> 0–30',[
+      row('Predicted structure', '', PH[ph]||'', ph,''),
+      row('Ferrite', '', ph==='A+F'||ph==='A+M+F'?'interpolated between the iso-ferrite lines':'', SF.txt,'%')
+    ],[ okM?['ok','No martensite predicted in the weld metal.']:['bad',ph==='outside diagram'?'Outside the Schaeffler diagram.':`${PH[ph]}: martensite predicted. Use a more highly alloyed filler (e.g. 309L, 312) or reduce the dilution.`] ],
+      ['Schaeffler gives volume % ferrite, not FN; it is the only one of the three diagrams that shows martensite.']);
+
+    $('report').innerHTML = out;
+    const all = okM && okFN && okMode;
+    const st=$('vState');
+    if(!ready){ st.textContent='Enter the chemistry'; st.className='state'; }
+    else { st.textContent = isFinite(W.val) ? `WRC-1992: ${W.txt} FN, mode ${mode}` : `Schaeffler: ${PH[ph]||ph}`; st.className = all?'state ok':'state bad'; }
+    $('vSub').innerHTML = `${$('tag').value||'Weld'}: ${nm('fm')} on ${nm('b1')} / ${nm('b2')}, ${pi[0]}, dilution ${f(D,0)}%.`;
+    const chip=(ok,lab)=>`<span class="chip ${ok?'ok':'bad'}">${lab}</span>`;
+    $('vChips').innerHTML = ready ? chip(okFN,`FN target ${f(fmin,0)}–${f(fmax,0)}`)+chip(okMode,`Mode ${mode}`)+chip(okM, okM?'No martensite':'Martensite')+`<span class="chip info">DeLong ${isFinite(DL.val)?DL.txt+' FN':DL.txt}</span>` : '';
+    $('sumtab').innerHTML = `<tr><td class="lb"><strong>Weld metal</strong></td><td class="eq">Cr<sub>eq</sub></td><td class="sb">Ni<sub>eq</sub></td><td class="v">Result</td></tr>`+
+      `<tr><td class="lb">WRC-1992</td><td class="eq">${f(wm.wCr,2)}</td><td class="sb">${f(wm.wNi,2)}</td><td class="v">${isFinite(W.val)||W.st==='below'?W.txt+' FN, '+mode:W.txt}</td></tr>`+
+      `<tr><td class="lb">DeLong</td><td class="eq">${f(wm.sCr,2)}</td><td class="sb">${f(wm.dNi,2)}</td><td class="v">${isFinite(DL.val)||DL.st==='below'?DL.txt+' FN':DL.txt}</td></tr>`+
+      `<tr><td class="lb">Schaeffler</td><td class="eq">${f(wm.sCr,2)}</td><td class="sb">${f(wm.sNi,2)}</td><td class="v">${ph}${isFinite(SF.val)?', '+SF.txt+'% ferrite':''}</td></tr>`;
+    draw();
+    $('printhead').textContent = `${$('tag').value||''}  ${$('prep').value?'Prepared by: '+$('prep').value:''}`;
+    try{ localStorage.setItem(STORE, JSON.stringify(getInputs())); }catch(e){}
+  }
+
+  // ---- drawing ----
+  const X0=62, X1=700, Y0=18, Y1=420;
+  let SC=null;
+  function draw(){
+    const g=$('dsvg'), cs=getComputedStyle(document.documentElement), c=n=>cs.getPropertyValue(n).trim();
+    const d = DG[view], [bx0,bx1,by0,by1]=d.box;
+    const sx = x => X0+(X1-X0)*(x-bx0)/(bx1-bx0), sy = y => Y1-(Y1-Y0)*(y-by0)/(by1-by0);
+    SC = {sx, sy, inv:(px,py)=>[bx0+(px-X0)*(bx1-bx0)/(X1-X0), by0+(Y1-py)*(by1-by0)/(Y1-Y0)]};
+    const xk = view==='wrc'?'wCr':'sCr', yk = view==='wrc'?'wNi':view==='delong'?'dNi':'sNi';
+    let s=`<defs><clipPath id="clp"><rect x="${X0}" y="${Y0}" width="${X1-X0}" height="${Y1-Y0}"/></clipPath></defs>`;
+    s+=`<rect x="${X0}" y="${Y0}" width="${X1-X0}" height="${Y1-Y0}" fill="${c('--field')}" stroke="${c('--rule')}"/>`;
+    const stepx = (bx1-bx0)>20?2:1, stepy=(by1-by0)>20?2:1;
+    for(let x=Math.ceil(bx0); x<=bx1; x+=stepx){ s+=`<line x1="${sx(x)}" y1="${Y0}" x2="${sx(x)}" y2="${Y1}" stroke="${c('--rule')}" stroke-width="0.6"/><text x="${sx(x)}" y="${Y1+15}" text-anchor="middle">${x}</text>`; }
+    for(let y=Math.ceil(by0); y<=by1; y+=stepy){ s+=`<line x1="${X0}" y1="${sy(y)}" x2="${X1}" y2="${sy(y)}" stroke="${c('--rule')}" stroke-width="0.6"/><text x="${X0-6}" y="${sy(y)+4}" text-anchor="end">${y}</text>`; }
+    s+=`<text x="${(X0+X1)/2}" y="${Y1+34}" text-anchor="middle">${view==='wrc'?'Cr<tspan baseline-shift="sub" font-size="9">eq</tspan> = Cr + Mo + 0.7Nb':'Cr<tspan baseline-shift="sub" font-size="9">eq</tspan> = Cr + Mo + 1.5Si + 0.5Nb'}</text>`;
+    s+=`<text transform="translate(16 ${(Y0+Y1)/2}) rotate(-90)" text-anchor="middle">${view==='wrc'?'Ni<tspan baseline-shift="sub" font-size="9">eq</tspan> = Ni + 35C + 20N + 0.25Cu':view==='delong'?'Ni<tspan baseline-shift="sub" font-size="9">eq</tspan> = Ni + 30C + 30N + 0.5Mn':'Ni<tspan baseline-shift="sub" font-size="9">eq</tspan> = Ni + 30C + 0.5Mn'}</text>`;
+    s+=`<g clip-path="url(#clp)">`;
+    const L=(p,col,w,dash)=>`<line x1="${sx(p[0][0])}" y1="${sy(p[0][1])}" x2="${sx(p[1][0])}" y2="${sy(p[1][1])}" stroke="${col}" stroke-width="${w}"${dash?` stroke-dasharray="${dash}"`:''}/>`;
+    const labAt=(p,t,frac,cls)=>{ const x=p[0][0]+(p[1][0]-p[0][0])*frac, y=p[0][1]+(p[1][1]-p[0][1])*frac; return `<text x="${sx(x)}" y="${sy(y)+3.5}" text-anchor="middle" class="${cls||'fnl'}">${t}</text>`; };
+    if(view==='wrc'){
+      d.fn.forEach((l,i)=>{ s+=L(l.p, c('--ok'), l.fn%10===0?1.4:0.9, l.fn===0?'6 3 2 3':''); });
+      [['A_AF',''],['AF_FA','AF / FA'],['FA_F','FA / F']].forEach(([k,t])=>{ s+=L(d.bnd[k], c('--accent'), 1.2, '6 3 2 3'); });
+      d.fn.forEach(l=>{ if([0,2,4,6,8,10,12,14,16,18,20,24,28,35,45,55,65,75,85,95,100].includes(l.fn)) s+=labAt(l.p, l.fn, l.fn<=18?0.93:0.9); });
+      s+=`<text x="${sx(18)}" y="${sy(17)}" class="reg">A</text><text x="${sx(17.6)}" y="${sy(13.4)}" class="reg">AF</text><text x="${sx(18.3)}" y="${sy(11.6)}" class="reg">FA</text><text x="${sx(21.4)}" y="${sy(9.6)}" class="reg">F</text>`;
+    } else if(view==='delong'){
+      d.fn.forEach(l=>{ s+=L(l.p, c('--ok'), l.fn%10===0?1.4:1, ''); s+=labAt(l.p, l.fn, 0.88); });
+      s+=`<text x="${sx(17)}" y="${sy(19.5)}" class="reg">Austenite</text><text x="${sx(24)}" y="${sy(12)}" class="reg">Austenite + ferrite</text>`;
+    } else {
+      d.ferrite.forEach(l=>{ s+=L(l.p, c('--ok'), 1.1, ''); });
+      [['A_AM'],['AM_M'],['FM_M']].forEach(([k])=>{ s+=L(d[k], c('--accent'), 1.6, ''); });
+      d.ferrite.forEach(l=>{ s+=labAt(l.p, l.f+'%', l.f===100?0.85:0.9); });
+      s+=`<text x="${sx(8)}" y="${sy(25)}" class="reg">A</text><text x="${sx(5)}" y="${sy(17)}" class="reg">A + M</text><text x="${sx(5)}" y="${sy(10)}" class="reg">M</text>`+
+         `<text x="${sx(0.4)}" y="${sy(2)}" class="reg">F+M</text><text x="${sx(12)}" y="${sy(2.2)}" class="reg">M + F</text><text x="${sx(18.2)}" y="${sy(6.5)}" class="reg">A+M+F</text>`+
+         `<text x="${sx(26)}" y="${sy(16)}" class="reg">A + F</text><text x="${sx(32)}" y="${sy(2.5)}" class="reg">F</text>`;
+    }
+    // points
+    if(P){
+      const pt = e => [e[xk], e[yk]];
+      const b1=pt(P.E.b1), b2=pt(P.E.b2), fm=pt(P.E.fm), mx=pt(P.mix), wm=pt(P.wm);
+      s+=`<line x1="${sx(b1[0])}" y1="${sy(b1[1])}" x2="${sx(b2[0])}" y2="${sy(b2[1])}" stroke="${c('--steel')}" stroke-width="1.2" stroke-dasharray="4 3"/>`;
+      s+=`<line x1="${sx(fm[0])}" y1="${sy(fm[1])}" x2="${sx(mx[0])}" y2="${sy(mx[1])}" stroke="${c('--warn')}" stroke-width="1.4" stroke-dasharray="5 3"/>`;
+      [10,20,30,40,50].forEach(dd=>{ const x=fm[0]+(mx[0]-fm[0])*dd/100, y=fm[1]+(mx[1]-fm[1])*dd/100; s+=`<circle cx="${sx(x)}" cy="${sy(y)}" r="2.6" fill="${c('--warn')}"/>`; });
+      s+=`</g>`;
+      const mark=(p,shape,col,lab,dx,dy)=>{ const x=sx(p[0]), y=sy(p[1]); if(x<X0-2||x>X1+2||y<Y0-2||y>Y1+2) return '';
+        let m = shape==='sq'?`<rect x="${x-5}" y="${y-5}" width="10" height="10" fill="${col}"/>`:shape==='tri'?`<path d="M${x},${y-6} L${x+6},${y+5} L${x-6},${y+5} Z" fill="${col}"/>`:shape==='dia'?`<path d="M${x},${y-7} L${x+6},${y} L${x},${y+7} L${x-6},${y} Z" fill="${col}"/>`:`<circle cx="${x}" cy="${y}" r="7" fill="${col}" stroke="${c('--panel')}" stroke-width="2"/>`;
+        return m+`<text x="${x+(dx||9)}" y="${y+(dy||-8)}" class="pl" text-anchor="${(dx||9)<0?'end':'start'}">${lab}</text>`; };
+      const lx=p=>sx(p[0])>X0+70?-9:9;
+      s+=mark(b1,'sq',c('--accent'),'BM 1',lx(b1),-8)+mark(b2,'tri',c('--accent'),'BM 2',lx(b2),14)+mark(fm,'dia',c('--warn'),'Filler',9,-9)+mark(wm,'dot',c('--bad'),`Weld ${f(P.D,0)}%`,10,16);
+      const offs=[b1,b2,fm,wm].filter(p=>{const x=sx(p[0]),y=sy(p[1]); return x<X0||x>X1||y<Y0||y>Y1;}).length;
+      if(offs) s+=`<text x="${X1-6}" y="${Y0+14}" text-anchor="end">${offs} point${offs>1?'s':''} outside this diagram</text>`;
+    } else s+=`</g>`;
+    s+=`<g id="cross"></g>`;
+    g.innerHTML=s;
+    $('legend').innerHTML = [['sq','--accent','Base metal 1'],['tri','--accent','Base metal 2'],['dia','--warn','Filler metal'],['dot','--bad','Weld metal'],['dots','--warn','Dilution 10, 20 ... 50%']].map(([sh,col,t])=>{
+      const cc=c(col); const shp = sh==='sq'?`<rect x="2" y="2" width="10" height="10" fill="${cc}"/>`:sh==='tri'?`<path d="M7,1 L13,12 L1,12 Z" fill="${cc}"/>`:sh==='dia'?`<path d="M7,0 L13,7 L7,14 L1,7 Z" fill="${cc}"/>`:sh==='dot'?`<circle cx="7" cy="7" r="6" fill="${cc}"/>`:`<circle cx="3" cy="7" r="2" fill="${cc}"/><circle cx="11" cy="7" r="2" fill="${cc}"/>`;
+      return `<span><svg viewBox="0 0 14 14">${shp}</svg>${t}</span>`; }).join('');
+  }
+  function readout(ev){
+    if(!SC) return; const g=$('dsvg'), r=g.getBoundingClientRect();
+    const px=(ev.clientX-r.left)*720/r.width, py=(ev.clientY-r.top)*470/r.height;
+    if(px<X0||px>X1||py<Y0||py>Y1){ $('cross').innerHTML=''; return; }
+    const [cr,ni]=SC.inv(px,py);
+    let res;
+    if(view==='wrc'){ const w=wrcFN(cr,ni); res=`${w.txt} FN, mode ${wrcMode(cr,ni)}`; }
+    else if(view==='delong'){ res=`${dlFN(cr,ni).txt} FN`; }
+    else { const ph=schPhase(cr,ni), sf=schFerrite(cr,ni,ph); res=`${ph}${isFinite(sf.val)?', '+sf.txt+'% ferrite':''}`; }
+    $('readout').innerHTML = `Cr<sub>eq</sub> ${f(cr,2)}, Ni<sub>eq</sub> ${f(ni,2)}: ${res}`;
+    const col=getComputedStyle(document.documentElement).getPropertyValue('--steel').trim();
+    $('cross').innerHTML=`<line x1="${px}" y1="${Y0}" x2="${px}" y2="${Y1}" stroke="${col}" stroke-width="0.6" stroke-dasharray="2 3"/><line x1="${X0}" y1="${py}" x2="${X1}" y2="${py}" stroke="${col}" stroke-width="0.6" stroke-dasharray="2 3"/>`;
+  }
+
+  let saved=null; try{ saved=JSON.parse(localStorage.getItem(STORE)); }catch(e){}
+  setInputs(saved||EXAMPLE);
+  document.querySelectorAll('aside input, aside select').forEach(x=>x.addEventListener('input',compute));
+  $('proc').addEventListener('change',()=>{ const pi=PROCS.find(p=>p[0]===$('proc').value); if(pi) $('D').value=pi[2]; compute(); });
+  $('Dslide').addEventListener('input',()=>{ $('D').value=$('Dslide').value; compute(); });
+  document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{ view=b.dataset.d; document.querySelectorAll('.tabs button').forEach(x=>x.setAttribute('aria-selected', x===b?'true':'false')); draw(); }));
+  $('dsvg').addEventListener('pointermove',readout);
+  $('dsvg').addEventListener('pointerleave',()=>{ const c=$('cross'); if(c) c.innerHTML=''; });
+  $('btnExample').addEventListener('click',()=>{setInputs(EXAMPLE);compute();});
+  $('btnClear').addEventListener('click',()=>{const d={}; IDS.forEach(x=>d[x]=''); d.proc='SMAW'; d.s1=50; d.fmin=3; d.fmax=10; setInputs(d); compute();});
+  $('btnHow').addEventListener('click',()=>$('howto').scrollIntoView({behavior:'smooth'}));
+  $('btnPrint').addEventListener('click',()=>window.print());
+  if(window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',draw);
+  compute();
+})();
+</script>
+</body>
+</html>

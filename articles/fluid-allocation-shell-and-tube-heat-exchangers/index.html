@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fluid Allocation in Shell and Tube Heat Exchangers | Baher Elsheikh</title>
+<meta name="description" content="Which fluid goes on the tube side and which on the shell side: pressure drop, pressure and temperature, the 10/13 rule, viscosity, phase change, fouling, corrosion, cooling water, and the choice of exchanger type.">
+<meta name="keywords" content="fluid allocation, shell and tube heat exchanger, tube side, shell side, 10/13 rule, API 521, tube pitch, triangular pitch, square pitch, cooling water velocity, fixed tubesheet, U-tube, floating head, TEMA">
+<meta name="author" content="Baher Elsheikh">
+<link rel="canonical" href="https://baher-elsheikh.github.io/articles/fluid-allocation-shell-and-tube-heat-exchangers/">
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://baher-elsheikh.github.io/articles/fluid-allocation-shell-and-tube-heat-exchangers/">
+<meta property="og:title" content="Fluid Allocation in Shell and Tube Heat Exchangers">
+<meta property="og:description" content="Which fluid goes on the tube side and which on the shell side: pressure drop, pressure and temperature, the 10/13 rule, viscosity, phase change, fouling, corrosion, cooling water, and the choice of exchanger type.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Fluid Allocation in Shell and Tube Heat Exchangers", "description": "Which fluid goes on the tube side and which on the shell side: pressure drop, pressure and temperature, the 10/13 rule, viscosity, phase change, fouling, corrosion, cooling water, and the choice of exchanger type.", "url": "https://baher-elsheikh.github.io/articles/fluid-allocation-shell-and-tube-heat-exchangers/", "inLanguage": "en", "author": {"@type": "Person", "name": "Baher Elsheikh", "url": "https://baher-elsheikh.github.io/#about", "sameAs": ["https://www.linkedin.com/in/baher-elsheikh/", "https://www.youtube.com/@baherelsheikh4942"]}, "about": "fluid allocation, shell and tube heat exchanger, tube side, shell side, 10/13 rule, API 521, tube pitch, triangular pitch, square pitch, cooling water velocity, fixed tubesheet, U-tube, floating head, TEMA"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F7F9; --panel:#FFFFFF; --ink:#16203A; --steel:#566074; --rule:#DCE0E7;
+  --accent:#14245E; --accent-soft:#E7EAF3; --brass:#8A6320; --brass-soft:#F4ECDD; --fig:#EEF1F7;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --serif:"STIX Two Text",Cambria,Georgia,"Times New Roman",serif;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --brass:#E0B567; --brass-soft:#33291A; --fig:#141B30; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 var(--sans);overflow-x:clip}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.lg-dark{display:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:block}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:block}
+header.site{background:var(--panel);border-bottom:1px solid var(--rule)}
+header.site .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;min-height:62px}
+.brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px}
+.brand img{height:34px;width:auto}
+nav.tabs{display:flex;flex-wrap:wrap;gap:2px}
+nav.tabs a{font-size:15px;font-weight:500;color:var(--steel);text-decoration:none;padding:6px 10px;border-radius:5px}
+nav.tabs a:hover{color:var(--ink);background:var(--accent-soft)}
+nav.tabs a.cur{color:var(--accent);background:var(--accent-soft)}
+article{max-width:760px;margin:0 auto;padding:40px 0 56px}
+.crumb{font-size:14px;color:var(--steel);margin:0 0 18px}
+.crumb a{color:var(--steel)}
+.lab{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none}
+.lab svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.22;letter-spacing:-.005em}
+h1{font-size:clamp(29px,3.6vw,40px);margin:10px 0 0}
+.lead{font-size:19px;line-height:1.6;color:var(--steel);margin:16px 0 0}
+.byline{font-size:14.5px;color:var(--steel);margin:18px 0 0;padding-bottom:22px;border-bottom:1px solid var(--rule)}
+h2{font-size:24px;margin:38px 0 6px}
+h3{font-size:19px;margin:28px 0 4px}
+p{margin:14px 0}
+ul,ol{padding-left:1.3em} li{margin:6px 0}
+figure{margin:28px 0}
+figure .frame{background:var(--fig);border:1px solid var(--rule);border-radius:6px;overflow:hidden;color:var(--accent)}
+figure .frame svg{display:block;width:100%;height:auto}
+figure img{display:block;width:100%;height:auto}
+figcaption{font-size:14.5px;color:var(--steel);margin-top:8px}
+.tbl{overflow-x:auto;margin:24px 0}
+table{border-collapse:collapse;width:100%;font-size:15.5px;background:var(--panel)}
+caption{caption-side:bottom;text-align:left;font-size:14.5px;color:var(--steel);padding-top:8px}
+th,td{border:1px solid var(--rule);padding:8px 12px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+td.n{text-align:center;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{width:34%}
+.eq{font-family:var(--serif);font-size:19px;text-align:center;margin:20px 0;padding:12px;background:var(--panel);border:1px solid var(--rule);border-radius:6px}
+.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 16px;margin:22px 0;font-size:16px}
+.refs{font-size:14.5px;color:var(--steel)}
+.refs li{margin:4px 0}
+.related{margin-top:40px;padding-top:20px;border-top:1px solid var(--rule)}
+.related h2{font-size:20px;margin:0 0 8px}
+.related ul{list-style:none;padding:0;margin:0}
+.related li{padding:6px 0}
+.flag{font-size:12.5px;font-weight:500;color:var(--brass);background:var(--brass-soft);border-radius:3px;padding:1px 7px}
+.disc{font-size:14px;color:var(--steel);margin-top:30px}
+footer{border-top:1px solid var(--rule);padding:20px 0 30px;font-size:13.5px;color:var(--steel);background:var(--panel)}
+footer .wrap{display:grid;gap:6px}
+@media (max-width:600px){.wrap{padding:0 16px} article{padding-top:26px} body{font-size:16.5px}}
+@media print{header.site,footer,.related{display:none} body{background:#fff}}
+</style>
+<link rel="stylesheet" href="../../assets/chrome.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="beta-bar" role="note"><div class="wrap"><span class="beta-tag">Beta</span> This site is in its testing period. Spotted a mistake? Please tell me on <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</div></div>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../../"><img class="lg-light" src="../../assets/gear-light.png" alt="" width="41" height="34"><img class="lg-dark" src="../../assets/gear-dark.png" alt="" width="41" height="34"><span>Baher Elsheikh</span></a>
+    <div class="hdr-right">
+      <nav class="tabs" id="mainnav" aria-label="Main"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/" aria-current="page">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a></nav>
+      <a class="nav-search" href="../../search/"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20.5 20.5"/></svg><span>Search</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav">Menu</button>
+    </div>
+  </div>
+</header>
+<main id="main" class="wrap">
+<article>
+  <p class="crumb"><a href="../">Articles</a></p>
+  <a class="lab" href="../../#static-equipment"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8h9a4 4 0 0 1 0 8h-9a4 4 0 0 1 0-8z"/><path d="M12 8V5M10 5h4M8.5 16l-1.2 3.5M15.5 16l1.2 3.5M6 19.5h3M15 19.5h3"/></svg>Static Equipment Engineering</a>
+  <h1>Fluid Allocation in Shell and Tube Heat Exchangers</h1>
+  <p class="lead">Tube side or shell side? The answer balances thermal performance against cost, cleaning, inspection and corrosion. The factors that decide it, and how the exchanger type changes the choice.</p>
+  <p class="byline">By Baher Elsheikh. 8 min read. An earlier version was published in <a href="https://heat-exchanger-world.com/?p=61743" target="_blank" rel="noopener noreferrer">Heat Exchanger World</a>, February 2022.</p>
+
+  <p>Fluid allocation, deciding which fluid flows through the tubes and which through the shell, is a key decision in the design of a shell and tube heat exchanger. It determines whether the exchanger achieves the required thermal duty at an optimized cost with satisfactory reliability in service. The right choice depends on many interacting factors: some come from the thermal design, others from the mechanical design and from future inspection and integrity monitoring.</p>
+  <p>In many cases the best routing can only be decided after both options have been designed. Often it is a trade-off, because no single choice satisfies every factor and some factors conflict. Understanding the effect of each factor, and the main features of each exchanger type, is therefore essential to selecting an optimized design.</p>
+  <p>Each exchanger type, whether fixed tubesheet, floating head or U-tube, also has its own characteristics that make it preferable for particular services.</p>
+  <h2>Main factors affecting fluid allocation</h2>
+  <h3>Allowable pressure drop</h3>
+  <p>The flow area on the shell side is larger than on the tube side, so flow resistance and pressure drop are lower. A fluid whose pressure drop must be kept low to meet plant operating limits should normally go on the shell side.</p>
+  <h3>Operating pressure and temperature</h3>
+  <p>The higher-pressure fluid is preferably placed on the tube side, because the required thickness of a pressure part is proportional to its diameter. For a cylindrical shell under internal pressure [6]:</p>
+  <div class="eq">t = P R / (S E − 0.6 P)</div>
+  <p>where t is the required thickness, P the design pressure, R the inside radius, S the allowable stress and E the joint efficiency. A thick shell increases cost, affects the foundation design and can make fabrication harder (welding, forming and inspection).</p>
+  <p>In some cases, routing the higher-pressure fluid through the shell gives a cheaper unit, particularly if it reduces the exchanger diameter and the shell is carbon steel [1].</p>
+  <p>Temperature has a similar effect: at high temperature the allowable stress S falls, the required thickness rises, and the hotter fluid is likewise better on the tube side.</p>
+  <p>When the higher-pressure fluid is on the tube side, it is worth applying the <strong>10/13 rule</strong> when setting the shell-side design pressure. Sometimes a small increase in shell-side design pressure is enough to satisfy it.</p>
+  <div class="note"><strong>10/13 rule.</strong> Loss of containment of the low-pressure side to atmosphere is unlikely to result from a tube rupture if the pressure in the low-pressure side during the rupture does not exceed its corrected hydrotest pressure. In that case the exchanger can be considered protected against this overpressure scenario by design, and no pressure relief device (PSV or rupture disk) is needed for it [5].</div>
+  <figure><div class="frame"><svg viewBox="0 0 680 300" role="img" aria-label="The 10/13 rule: when the hydrotest pressure of the low-pressure side is at least the design pressure of the high-pressure side, a tube rupture is unlikely to cause loss of containment of the low-pressure side"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><rect x="150" y="60" width="70" height="200" fill="currentColor" fill-opacity=".22"/><rect x="400" y="106" width="70" height="154" fill="currentColor" fill-opacity=".22"/><rect x="400" y="60" width="70" height="46" style="fill:var(--brass)" fill-opacity=".45" stroke="none"/><path d="M400 60 H470 V260 H400 Z"/><path d="M120 260 H540" stroke-width="1"/><path d="M220 60 H400" stroke-dasharray="5 4" stroke-width="1"/><text x="185" y="48" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">P<tspan baseline-shift='sub' font-size='10'>d1</tspan></text><text x="185" y="284" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="currentColor" stroke="none">High-pressure side</text><text x="185" y="166" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="currentColor" stroke="none">design</text><text x="435" y="284" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="currentColor" stroke="none">Low-pressure side</text><text x="435" y="188" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">P<tspan baseline-shift='sub' font-size='10'>d2</tspan></text><text x="480" y="80" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" text-anchor="start" fill="currentColor" stroke="none" font-weight="600" style="fill:var(--brass)">P<tspan baseline-shift='sub' font-size='10'>T2</tspan> = 1.3 P<tspan baseline-shift='sub' font-size='10'>d2</tspan></text><text x="480" y="98" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="start" fill="currentColor" stroke="none" style="fill:var(--brass)">hydrotest pressure</text><text x="310" y="52" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600">P<tspan baseline-shift='sub' font-size='10'>T2</tspan> ≥ P<tspan baseline-shift='sub' font-size='10'>d1</tspan></text></g></svg></div><figcaption>Figure 1. The 10/13 rule: the hydrotest pressure of the low-pressure side (1.3 × its design pressure) at least equal to the design pressure of the high-pressure side.</figcaption></figure>
+  <h3>Viscosity</h3>
+  <p>For highly viscous fluids, turbulent flow is easier to achieve on the shell side, where the baffles repeatedly change the flow direction. Viscous fluids also tend to have a high pressure drop, which is another reason to route them through the shell.</p>
+  <h3>Heat transfer coefficient</h3>
+  <p>A fluid with a low heat transfer coefficient is usually better on the shell side, where the flow pattern, and therefore the turbulence and heat transfer, can be improved by baffle design. If that fluid has to go on the tube side, more tube passes can be used to increase velocity and turbulence.</p>
+  <h3>Phase change</h3>
+  <p>A fluid that boils or vaporizes is usually placed on the shell side, where a large flow area can carry the vapour without excessive pressure drop. A fluid that condenses during heat transfer is commonly placed on the tube side.</p>
+  <h3>Dirty fluids</h3>
+  <p>Dirty fluids, and fluids carrying suspended solids, are better on the tube side, which is much easier to clean than the shell side.</p>
+  <p>If a dirty fluid must go on the shell side for other reasons, a square tube pitch is preferred to a triangular one, despite its lower heat transfer, because it allows the outside of the bundle to be cleaned mechanically. Table 1 summarizes the main features of each tube layout.</p>
+  <div class="tbl"><table>
+    <caption>Table 1. Features of tube layout patterns (arrow shows the shell-side flow direction).</caption>
+    <thead>
+      <tr><th></th><th colspan="2" style="text-align:center">Triangular</th><th colspan="2" style="text-align:center">Square</th></tr>
+      <tr><th></th><th style="text-align:center">30°<svg viewBox="0 0 74 66" width="74" height="66" aria-hidden="true" style="display:block;margin:4px auto 0;color:var(--accent)"><g fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="30" cy="20" r="11" fill="currentColor" fill-opacity=".12"/><circle cx="30" cy="50" r="11" fill="currentColor" fill-opacity=".12"/><circle cx="56" cy="35" r="11" fill="currentColor" fill-opacity=".12"/><path d="M2 33 H72" style="stroke:var(--brass)" stroke-width="1.6"/><path d="M72 33 l-6 -3 v6 z" style="fill:var(--brass);stroke:var(--brass)"/></g></svg></th><th style="text-align:center">60° rotated<svg viewBox="0 0 74 66" width="74" height="66" aria-hidden="true" style="display:block;margin:4px auto 0;color:var(--accent)"><g fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="23" cy="20" r="11" fill="currentColor" fill-opacity=".12"/><circle cx="53" cy="20" r="11" fill="currentColor" fill-opacity=".12"/><circle cx="38" cy="46" r="11" fill="currentColor" fill-opacity=".12"/><path d="M2 33 H72" style="stroke:var(--brass)" stroke-width="1.6"/><path d="M72 33 l-6 -3 v6 z" style="fill:var(--brass);stroke:var(--brass)"/></g></svg></th><th style="text-align:center">90°<svg viewBox="0 0 74 66" width="74" height="66" aria-hidden="true" style="display:block;margin:4px auto 0;color:var(--accent)"><g fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="22" cy="18" r="11" fill="currentColor" fill-opacity=".12"/><circle cx="52" cy="18" r="11" fill="currentColor" fill-opacity=".12"/><circle cx="22" cy="48" r="11" fill="currentColor" fill-opacity=".12"/><circle cx="52" cy="48" r="11" fill="currentColor" fill-opacity=".12"/><path d="M2 33 H72" style="stroke:var(--brass)" stroke-width="1.6"/><path d="M72 33 l-6 -3 v6 z" style="fill:var(--brass);stroke:var(--brass)"/></g></svg></th><th style="text-align:center">45° rotated<svg viewBox="0 0 74 66" width="74" height="66" aria-hidden="true" style="display:block;margin:4px auto 0;color:var(--accent)"><g fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="37" cy="12" r="11" fill="currentColor" fill-opacity=".12"/><circle cx="16" cy="33" r="11" fill="currentColor" fill-opacity=".12"/><circle cx="58" cy="33" r="11" fill="currentColor" fill-opacity=".12"/><circle cx="37" cy="54" r="11" fill="currentColor" fill-opacity=".12"/><path d="M2 33 H72" style="stroke:var(--brass)" stroke-width="1.6"/><path d="M72 33 l-6 -3 v6 z" style="fill:var(--brass);stroke:var(--brass)"/></g></svg></th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Suitable shell-side fluid</td><td colspan="2" class="n">Low fouling tendency: the outside of the tubes is hard to clean mechanically</td><td colspan="2" class="n">No limitation: lanes allow mechanical cleaning</td></tr>
+      <tr><td>Shell-side pressure drop</td><td colspan="2" class="n">Higher than square</td><td colspan="2" class="n">Lower than triangular</td></tr>
+      <tr><td>Pressure drop within each family</td><td class="n">Higher than 60° rotated</td><td class="n">Lower than 30°</td><td class="n">Lower than 45° rotated</td><td class="n">Higher than 90°</td></tr>
+      <tr><td>Shell-side heat transfer coefficient</td><td colspan="2" class="n">Higher than square</td><td colspan="2" class="n">Lower than triangular</td></tr>
+    </tbody></table></div>
+  <h3>Corrosivity</h3>
+  <p>The effect of corrosion on fluid allocation is hard to generalize. As a general rule, the fluid needing the more expensive material is routed through the tubes. If that fluid is not at high pressure and switching it to the shell side reduces the shell diameter, the switch may still give the cheaper design [1].</p>
+  <p>If the shell-side fluid can cause cracking, avoid fixed tubesheet exchangers and make all internal welds accessible for inspection. A fluid prone to crevice corrosion is better on the tube side, which avoids crevice corrosion between the tubes and the tubesheet on the back face of the tubesheet.</p>
+  <h3>Cooling water</h3>
+  <p>Low velocities increase corrosion. The velocity must be high enough to keep particulate in suspension as the water passes through the exchanger [7]. Velocities below about 1 m/s (3 ft/s) are likely to cause fouling, sedimentation and increased corrosion in fresh and brackish water systems. Dead spots and stagnant areas also accelerate corrosion when cooling water is on the shell side rather than the preferred tube side. Velocity limits depend on the tube material and the water quality.</p>
+  <p>With very few exceptions, cooling water should be on the tube side to minimize stagnant areas [2].</p>
+  <figure><img src="fouled-bundle.jpg" width="484" height="252" style="max-width:484px;border-radius:6px" alt="Tube bundle heavily fouled and corroded on the outside after service with cooling water on the shell side" ><figcaption>Figure 2. Tube bundle that operated with cooling water on the shell side.</figcaption></figure>
+  <p>On the other hand, very high water velocity also increases corrosion, by erosion-corrosion and by carrying more oxygen to cathodic sites, which speeds up the cathodic reaction. Both very high and very low water velocities should therefore be avoided [3].</p>
+  <figure><div class="frame"><svg viewBox="0 0 680 280" role="img" aria-label="Corrosion rate against cooling water velocity: both low and high velocities increase corrosion"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M90 30 V230 H620"/><path d="M110 50 C130 190 160 205 250 205 C380 205 420 200 470 170 C520 140 560 90 600 60" stroke-width="2.4"/><rect x="230" y="40" width="200" height="190" style="fill:var(--brass)" fill-opacity=".08" stroke="none"/><text x="330" y="62" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="currentColor" stroke="none" font-weight="600" style="fill:var(--brass)">preferred range</text><text x="330" y="252" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" text-anchor="middle" fill="currentColor" stroke="none">Water velocity</text><text x="56" y="130" transform="rotate(-90 56 130)" text-anchor="middle" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" fill="currentColor" stroke="none">Corrosion rate</text><text x="118" y="24" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="start" fill="currentColor" stroke="none">fouling, deposits,</text><text x="118" y="40" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="start" fill="currentColor" stroke="none">under-deposit corrosion</text><text x="600" y="40" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="end" fill="currentColor" stroke="none">erosion-corrosion</text></g></svg></div><figcaption>Figure 3. Both low and high water velocities increase corrosion (schematic).</figcaption></figure>
+  <h2>How the exchanger type affects fluid allocation</h2>
+  <h3>Fixed tubesheet exchanger</h3>
+  <p>A fixed tubesheet exchanger has straight tubes secured at both ends to tubesheets welded to the shell. Its main advantage is low cost, from its simple construction, as long as no expansion joint is needed.</p>
+  <p>The outside of the tubes cannot be cleaned mechanically, only chemically, so its use is limited to clean shell-side services. The inside of the shell and the outside of the tube bundle cannot be inspected.</p>
+  <figure><div class="frame"><svg viewBox="0 0 680 200" role="img" aria-label="Fixed tubesheet exchanger: straight tubes, both tubesheets welded to the shell"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M120 70.0 Q60 70.0 60 110 Q60 150.0 120 150.0" fill="currentColor" fill-opacity=".06"/><path d="M560 70.0 Q620 70.0 620 110 Q620 150.0 560 150.0" fill="currentColor" fill-opacity=".06"/><path d="M120 70.0 H560 M120 150.0 H560"/><rect x="115" y="62.0" width="10" height="96" fill="currentColor" fill-opacity=".35"/><rect x="555" y="62.0" width="10" height="96" fill="currentColor" fill-opacity=".35"/><path d="M125 82.0 H555" stroke-width="1" opacity=".75"/><path d="M125 96.0 H555" stroke-width="1" opacity=".75"/><path d="M125 110.0 H555" stroke-width="1" opacity=".75"/><path d="M125 124.0 H555" stroke-width="1" opacity=".75"/><path d="M125 138.0 H555" stroke-width="1" opacity=".75"/><path d="M210 92.0 V150.0" stroke-width="1.3" style="stroke:var(--brass)"/><path d="M300 70.0 V128.0" stroke-width="1.3" style="stroke:var(--brass)"/><path d="M390 92.0 V150.0" stroke-width="1.3" style="stroke:var(--brass)"/><path d="M480 70.0 V128.0" stroke-width="1.3" style="stroke:var(--brass)"/><text x="120" y="184" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="currentColor" stroke="none">tubesheet welded to shell</text><text x="560" y="184" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="currentColor" stroke="none">tubesheet welded to shell</text><text x="340" y="40" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="currentColor" stroke="none" style="fill:var(--brass)">shell side cannot be cleaned mechanically or inspected</text></g></svg></div><figcaption>Figure 4. Fixed tubesheet exchanger (schematic).</figcaption></figure>
+  <h3>U-tube exchanger</h3>
+  <p>In a U-tube exchanger the tubes are bent into a U and there is only one tubesheet. One end is free, so the bundle can expand and contract with temperature differences, and the outside of the tubes can be cleaned because the bundle can be removed.</p>
+  <p>The main disadvantage is that the inside of the tubes cannot be cleaned effectively, since the U-bends would need flexible drill shafts. U-tube exchangers should therefore not be used with a dirty fluid in the tubes.</p>
+  <p>Inspection of the U-bend area is another limitation. Most commercially available tube inspection techniques cannot pass through the bends unless a smaller probe, with a lower fill factor, is used, which reduces the accuracy of the results. A large fill factor, for example 85%, is desirable for good non-destructive examination (NDE) performance [4].</p>
+  <p>The cost is in the same range as a fixed tubesheet exchanger: the second tubesheet is saved, but tube bending, and in many cases stress-relief heat treatment of the U-bends, are added. A somewhat larger shell diameter, set by the minimum U-bend radius, also adds cost.</p>
+  <figure><div class="frame"><svg viewBox="0 0 680 200" role="img" aria-label="U-tube exchanger: one tubesheet, removable bundle, tubes bent into U shapes"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M120 70.0 Q60 70.0 60 110 Q60 150.0 120 150.0" fill="currentColor" fill-opacity=".06"/><path d="M120 70.0 H600 M120 150.0 H600"/><path d="M600 70 Q650 70 650 110 Q650 150 600 150"/><rect x="115" y="62.0" width="10" height="96" fill="currentColor" fill-opacity=".35"/><path d="M125 102 H560 A8 8 0 0 1 560 118 H125" stroke-width="1" opacity=".75"/><path d="M125 92 H560 A18 18 0 0 1 560 128 H125" stroke-width="1" opacity=".75"/><path d="M125 82 H560 A28 28 0 0 1 560 138 H125" stroke-width="1" opacity=".75"/><path d="M220 92.0 V150.0" stroke-width="1.3" style="stroke:var(--brass)"/><path d="M320 70.0 V128.0" stroke-width="1.3" style="stroke:var(--brass)"/><path d="M420 92.0 V150.0" stroke-width="1.3" style="stroke:var(--brass)"/><text x="120" y="184" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="currentColor" stroke="none">single tubesheet</text><text x="668" y="184" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="end" fill="currentColor" stroke="none" style="fill:var(--brass)">U-bends: hard to clean and inspect inside</text><text x="340" y="40" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="currentColor" stroke="none">bundle free to expand; outside of tubes can be cleaned</text></g></svg></div><figcaption>Figure 5. U-tube exchanger (schematic).</figcaption></figure>
+  <h3>Floating head exchanger</h3>
+  <p>The floating head exchanger is the most versatile type of shell and tube exchanger, and the most expensive. One tubesheet is fixed to the shell and the other floats freely inside it. This allows free expansion of the bundle and cleaning of both the inside and the outside of the tubes.</p>
+  <p>Floating head exchangers can be used where both fluids are dirty, which makes them the standard construction for dirty services such as those in petroleum refineries.</p>
+  <figure><div class="frame"><svg viewBox="0 0 680 200" role="img" aria-label="Floating head exchanger: one fixed tubesheet, one floating tubesheet free to move inside the shell"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M120 70.0 Q60 70.0 60 110 Q60 150.0 120 150.0" fill="currentColor" fill-opacity=".06"/><path d="M120 70.0 H600 M120 150.0 H600"/><path d="M600 70 Q650 70 650 110 Q650 150 600 150"/><rect x="115" y="62.0" width="10" height="96" fill="currentColor" fill-opacity=".35"/><rect x="535" y="75.0" width="10" height="70" fill="currentColor" fill-opacity=".35"/><path d="M545 75 Q575 75 575 110 Q575 145 545 145" fill="currentColor" fill-opacity=".15"/><path d="M125 84.0 H535" stroke-width="1" opacity=".75"/><path d="M125 97.0 H535" stroke-width="1" opacity=".75"/><path d="M125 110.0 H535" stroke-width="1" opacity=".75"/><path d="M125 123.0 H535" stroke-width="1" opacity=".75"/><path d="M125 136.0 H535" stroke-width="1" opacity=".75"/><path d="M220 92.0 V150.0" stroke-width="1.3" style="stroke:var(--brass)"/><path d="M320 70.0 V128.0" stroke-width="1.3" style="stroke:var(--brass)"/><path d="M420 92.0 V150.0" stroke-width="1.3" style="stroke:var(--brass)"/><path d="M520.0 170.0L560.0 170.0" stroke-width="1.2"/><path d="M560.0 170.0L552.6 173.1L552.6 166.9Z" fill="currentColor" stroke-width="1"/><path d="M560.0 170.0L520.0 170.0" stroke-width="1.2"/><path d="M520.0 170.0L527.4 166.9L527.4 173.1Z" fill="currentColor" stroke-width="1"/><text x="120" y="184" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="currentColor" stroke="none">fixed tubesheet</text><text x="560" y="192" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="currentColor" stroke="none">floating tubesheet and head</text><text x="340" y="40" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" text-anchor="middle" fill="currentColor" stroke="none">both tube side and shell side can be cleaned</text></g></svg></div><figcaption>Figure 6. Floating head exchanger (schematic).</figcaption></figure>
+  <h2>Selecting the exchanger type for clean and dirty fluids</h2>
+  <div class="tbl"><table>
+    <caption>Table 2. Guidance for selecting the exchanger type according to whether each fluid is clean or fouling.</caption>
+    <thead><tr><th style="width:12%">Case</th><th style="width:16%">Shell side</th><th style="width:16%">Tube side</th><th>Suitable construction</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Clean</td><td>Clean</td><td>Fixed tubesheet (lowest cost), if differential expansion allows</td></tr>
+      <tr><td>2</td><td>Fouling</td><td>Clean</td><td>U-tube (removable bundle; outside of tubes cleanable)</td></tr>
+      <tr><td>3</td><td>Clean</td><td>Fouling</td><td>Fixed tubesheet (straight tubes cleanable from the ends)</td></tr>
+      <tr><td>4</td><td>Fouling</td><td>Fouling</td><td>Floating head (both sides cleanable)</td></tr>
+    </tbody></table></div>
+  <h2>References</h2>
+  <ol class="refs">
+    <li>E.A.D. Saunders, Heat Exchangers: Selection, Design and Construction.</li>
+    <li>API RP 571, Damage Mechanisms Affecting Fixed Equipment in the Refining Industry, 3rd edition.</li>
+    <li>D.J. Flynn, The Nalco Water Handbook, 3rd edition, Nalco Company.</li>
+    <li>API RP 586, Section 1, Heat Exchanger Tubing Inspection, 1st edition.</li>
+    <li>API Standard 521, Pressure-relieving and Depressuring Systems, 7th edition.</li>
+    <li>ASME BPVC Section VIII, Division 1, 2021.</li>
+    <li>TEMA, Standards of the Tubular Exchanger Manufacturers Association, 10th edition.</li>
+    <li>API Standard 660, Shell-and-Tube Heat Exchangers, 2015 edition.</li>
+  </ol>
+  <p class="disc">This article is for general engineering guidance. Apply it with the current edition of the referenced codes and standards and the judgement of a qualified engineer.</p>
+  <aside class="related"><h2>Related on this site</h2><ul><li>Calculator: <a href="https://baher-elsheikh.github.io/Tube-Thickness-Calculator/">Heat exchanger tube minimum thickness</a></li><li>Article: <a href="https://heat-exchanger-world.com/?p=63904">Collar Bolts in Shell and Tube Heat Exchangers (Heat Exchanger World)</a></li></ul></aside>
+</article>
+</main>
+<footer>
+  <div class="wrap">
+    <nav class="fnav" aria-label="Footer"><a href="../../">Home</a><a href="../../knowledge/">Knowledge Areas</a><a href="../../documents/">Technical Documents</a><a href="../../articles/">Articles</a><a href="../../news/">Industry News</a><a href="../../lessons/">Lessons Learned</a><a href="../../calculators/">Calculators</a><a href="../../about/">About</a><a href="../../standards/">Standards Index</a><a href="../../search/">Search</a></nav>
+    <div>Knowledge grows when it is communicated. <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a></div>
+    <div>Articles, documents and calculators are aids for engineering work, not a substitute for a complete engineering assessment. Users remain responsible for verifying the applicable design basis, code requirements and edition, assumptions and engineering decisions; results must be checked by a qualified engineer before use.</div>
+    <div>© 2026 Baher Elsheikh. Content and tools free to use; not to be copied or redistributed without permission.</div>
+  </div>
+</footer>
+<script src="../../assets/chrome.js"></script>
+</body>
+</html>

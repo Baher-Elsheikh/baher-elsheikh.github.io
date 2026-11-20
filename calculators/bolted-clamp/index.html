@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bolted Clamp Calculator | Leak Sealing Clamp Shell, End Plate, Lug and Bolts</title>
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="description" content="Free online calculator for non-structural bolted leak-sealing clamps on pipes: shell thickness (ASME VIII-1 UG-27), end plate thickness (UG-34), lug thickness by beam bending, required and available bolt load, bolt tightening stress and torque. Step-by-step equations and PDF output.">
+<meta name="keywords" content="bolted clamp calculator, leak sealing clamp design, mechanical clamp, pipe repair clamp, box clamp lug thickness, clamp bolt load, ASME PCC-2 clamp, UG-27, UG-34">
+<meta name="author" content="Baher Elsheikh">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://baher-elsheikh.github.io/calculators/bolted-clamp/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baher-elsheikh.github.io/calculators/bolted-clamp/">
+<meta property="og:title" content="Bolted Clamp Calculator">
+<meta property="og:description" content="Free simplified design check of bolted leak-sealing clamps: shell, end plate, lugs and bolts, with step-by-step equations. Prepared by Baher Elsheikh.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Bolted Clamp Calculator","url":"https://baher-elsheikh.github.io/calculators/bolted-clamp/","applicationCategory":"EngineeringApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Simplified design of non-structural bolted leak-sealing clamps: shell thickness (ASME VIII-1 UG-27), end plate (UG-34), lug thickness, bolt load and bolt tightening.","author":{"@type":"Person","name":"Baher Elsheikh","sameAs":["https://www.linkedin.com/in/baher-elsheikh/","https://www.youtube.com/@baherelsheikh4942"]}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF0F5; --panel:#FFFFFF; --ink:#121A30; --steel:#545E74; --rule:#CDD2DE;
+  --accent:#14245E; --accent-soft:#E1E5F2; --ok:#1E7A4C; --ok-soft:#DDF0E5;
+  --bad:#AE2A1F; --bad-soft:#F7DEDA; --warn:#8A5A00; --warn-soft:#F6EAD0;
+  --field:#F7F8FB; --wall:#7E8E98; --tol:#B9C4CA;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --math:"STIX Two Text","Cambria Math",Cambria,"Times New Roman",serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+    --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+    --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+    --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1424; --panel:#171E33; --ink:#E6EAF5; --steel:#9AA4BE; --rule:#2A3352;
+  --accent:#A9B8EE; --accent-soft:#1D2648; --ok:#5CC48E; --ok-soft:#163427;
+  --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+  --field:#11172A; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans);font-variant-numeric:tabular-nums}
+.wrap{max-width:1320px;margin:0 auto;padding:28px 24px 48px}
+header.top{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+h1{font-family:var(--math);font-weight:600;font-size:clamp(26px,3.4vw,38px);line-height:1.1;margin:0;letter-spacing:-.01em}
+.home{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14.5px;margin-bottom:14px}
+.home img{height:40px;width:auto}
+.home:hover span{color:var(--accent)}
+.lg-dark{display:none}
+.f input:disabled,.f select:disabled{opacity:.45}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:inline}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:inline}
+.basis{color:var(--steel);font-size:13.5px;margin-top:8px;max-width:70ch}
+.byline{font-size:14px;margin-top:10px;color:var(--ink);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.byline .links{display:inline-flex;gap:12px}
+.byline a,footer a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;font-weight:500}
+.byline a:hover,footer a:hover{text-decoration-thickness:2px}
+@media print{.byline a::after{content:" (" attr(href) ")";font-weight:400;color:var(--steel)}}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{font:500 14px var(--sans);border-radius:6px;padding:8px 14px;cursor:pointer;border:1px solid var(--rule);background:var(--panel);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--panel)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* verdict + sketch */
+.verdict{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:22px 24px;display:grid;grid-template-columns:minmax(260px,1fr) minmax(320px,1.4fr);gap:20px 32px;align-items:center;margin-bottom:22px}
+.verdict .state{font-family:var(--math);font-size:clamp(22px,2.6vw,30px);line-height:1.2}
+.verdict .state.ok{color:var(--ok)} .verdict .state.bad{color:var(--bad)}
+.verdict .sub{color:var(--steel);margin-top:6px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-size:12.5px;padding:3px 9px;border-radius:999px;border:1px solid transparent}
+.chip.ok{background:var(--ok-soft);color:var(--ok)} .chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)} .chip.info{background:var(--accent-soft);color:var(--accent)}
+.gauge svg{width:100%;height:auto;display:block;max-height:300px}
+.gauge text{font-family:var(--sans);font-size:12px;fill:var(--steel);paint-order:stroke;stroke:var(--panel);stroke-width:4px;stroke-linejoin:round}
+.gauge .lab{fill:var(--ink);font-weight:500}
+.gcap{font-size:12px;color:var(--steel);margin-top:4px}
+
+/* layout */
+.cols{display:grid;grid-template-columns:380px minmax(0,1fr);gap:22px;align-items:start}
+aside.inputs{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:6px 18px 18px;position:sticky;top:calc(12px + env(safe-area-inset-top,0px));max-height:calc(100vh - 24px - env(safe-area-inset-top,0px));overflow:auto}
+fieldset{border:0;border-top:1px solid var(--rule);margin:14px 0 0;padding:12px 0 0}
+fieldset:first-of-type{border-top:0}
+legend{font-weight:600;font-size:14px;padding:0}
+.f{display:grid;grid-template-columns:1fr 112px 46px;gap:6px;align-items:center;margin-top:7px}
+.f.wide{grid-template-columns:1fr 1.4fr}
+.f label{font-size:13px;color:var(--ink)}
+.f label i{font-family:var(--math);font-size:15px}
+.f .u{font-size:12px;color:var(--steel)}
+input,select{font:14px var(--sans);color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:5px;padding:5px 7px;width:100%;font-variant-numeric:tabular-nums}
+input[type=number]{text-align:right}
+input:disabled{opacity:.6}
+input.need{background:#FFF7D6;border-color:#D9B84A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) input.need{background:#33290F;border-color:#7A6420}}
+:root[data-theme="dark"] input.need{background:#33290F;border-color:#7A6420}
+.hint{font-size:12px;color:var(--steel);margin:4px 0 0;line-height:1.4}
+
+/* calculation report */
+main.report{display:flex;flex-direction:column;gap:18px;min-width:0}
+section.step{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 20px 12px}
+.step h2{font-size:17px;font-weight:600;margin:0;display:flex;gap:10px;align-items:baseline}
+.step h2 .n{font-family:var(--math);color:var(--accent);font-size:20px;min-width:1.2em}
+.step .ref{color:var(--steel);font-size:12.5px;margin:2px 0 8px 32px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td{padding:7px 8px;border-top:1px solid var(--rule);vertical-align:baseline}
+td.lb{width:30%;color:var(--ink)}
+td.eq{font-family:var(--math);font-size:15.5px;white-space:nowrap}
+td.sb{font-family:var(--math);font-size:15px;color:var(--steel);white-space:nowrap}
+td.v{text-align:right;font-weight:600;white-space:nowrap}
+td.v small{display:block;font-weight:400;color:var(--steel);font-size:12px}
+td.un{color:var(--steel);font-size:12.5px;white-space:nowrap;width:44px}
+.result{margin:10px 0 4px;padding:9px 12px;border-radius:6px;font-weight:500;font-size:14px}
+.result.ok{background:var(--ok-soft);color:var(--ok)} .result.bad{background:var(--bad-soft);color:var(--bad)}
+.result.warn{background:var(--warn-soft);color:var(--warn)} .result.info{background:var(--accent-soft);color:var(--accent)}
+.note{font-size:12.5px;color:var(--steel);margin:6px 0 0}
+
+/* how to use */
+section.howto{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:18px 22px 14px;margin-top:22px}
+.howto h2{font-family:var(--math);font-weight:600;font-size:24px;margin:0 0 4px}
+.howto h3{font-size:15px;font-weight:600;margin:18px 0 6px}
+.howto p,.howto li{font-size:14px;max-width:85ch}
+.howto ol,.howto ul{padding-left:22px;margin:6px 0}
+.howto li{margin:5px 0}
+.howto .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4px 32px}
+.howto figure{margin:10px 0 4px;display:grid;grid-template-columns:minmax(0,520px) minmax(0,1fr);gap:12px 28px;align-items:center}
+.howto figure img{width:100%;height:auto;border:1px solid var(--rule);border-radius:8px;background:#fff}
+.howto figcaption{font-size:13.5px;color:var(--ink)}
+.howto figcaption dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:8px 0 0}
+.howto figcaption dt{font-family:var(--math);font-style:italic;font-size:15px}
+.howto figcaption dd{margin:0;color:var(--steel)}
+
+footer{margin-top:28px;font-size:12.5px;color:var(--steel);border-top:1px solid var(--rule);padding-top:14px;display:grid;gap:6px}
+.printhead{display:none}
+
+@media (max-width:980px){
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none}
+  .verdict{grid-template-columns:1fr}
+  .howto figure{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .wrap{padding:18px 14px 36px}
+  td.eq,td.sb{white-space:normal}
+  td.lb{width:auto}
+  .howto{padding:16px 14px 12px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .verdict .state{transition:color .25s}
+}
+@media print{
+  :root{--bg:#fff;--panel:#fff}
+  body{font-size:11px}
+  .actions,.noprint{display:none!important}
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none;border:0;padding:0}
+  section.step,.verdict{break-inside:avoid;border-color:#999}
+  .printhead{display:block;font-size:11px;margin-bottom:8px}
+  input,select{border:0;background:none;padding:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <a class="home" href="../"><img class="lg-light" src="../../assets/gear-light.png" alt=""><img class="lg-dark" src="../../assets/gear-dark.png" alt=""><span>Baher Elsheikh</span><span style="font-weight:400;color:var(--steel)">| All calculators</span></a>
+      <h1>Bolted clamp</h1>
+      <div class="byline">Prepared by: <strong>Baher Elsheikh</strong>
+        <span class="links"><a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube channel</a></span></div>
+      <div class="basis">Simplified design of a non-structural, metal-to-metal bolted clamp for leak sealing with sealant injection. ASME BPVC Section VIII Division 1: UG-27 (shell), UG-34 (end plate), Appendix 2 and Appendix Y (moment arm and lug bending by analogy); ASME PCC-1 (bolt root area, tightening); ASME PCC-2 (repair context). Metric units.</div>
+    </div>
+    <div class="actions">
+      <button type="button" id="btnHow">How to use</button>
+      <button type="button" id="btnExample">Load example</button>
+      <button type="button" id="btnClear">Clear inputs</button>
+      <button type="button" class="primary" id="btnPrint">Print / save PDF</button>
+    </div>
+  </header>
+
+  <div class="printhead" id="printhead"></div>
+
+  <div class="verdict" aria-live="polite">
+    <div>
+      <div class="state" id="vState">—</div>
+      <div class="sub" id="vSub"></div>
+      <div class="chips" id="vChips"></div>
+    </div>
+    <div class="gauge">
+      <svg id="sketch" viewBox="0 0 640 280" role="img" aria-label="Clamp end view sketch"></svg>
+      <div class="gcap">End view of a two-half clamp, not to scale. The pressure force F pushes the halves apart across the split plane; the bolts and lugs hold them together.</div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <aside class="inputs" aria-label="Inputs">
+      <fieldset>
+        <legend>Report</legend>
+        <div class="f wide"><label for="prep">Prepared by</label><input id="prep" type="text"></div>
+        <div class="f wide"><label for="date">Date</label><input id="date" type="date"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Line conditions</legend>
+        <div class="f wide"><label for="punit">Pressure unit</label>
+          <select id="punit"><option value="MPa">MPa (g)</option><option value="kgcm2">kg/cm² (g)</option><option value="bar">bar (g)</option><option value="psi">psi (g)</option></select></div>
+        <div class="f"><label for="Pd">Design pressure <i>P</i><sub>d</sub></label><input id="Pd" type="number" step="any"><span class="u pu">MPa</span></div>
+        <div class="f"><label for="Td">Design temperature <i>T</i><sub>d</sub></label><input id="Td" type="number" step="any"><span class="u">°C</span></div>
+        <div class="f"><label for="Po">Operating pressure <i>P</i><sub>o</sub></label><input id="Po" type="number" step="any"><span class="u pu">MPa</span></div>
+        <div class="f"><label for="kPi">Injection factor <i>P</i><sub>i</sub>/<i>P</i><sub>o</sub></label><input id="kPi" type="number" step="any"><span class="u"></span></div>
+        <p class="hint">The sealant injection pressure is about 1.1 × operating pressure. Use the sealant contractor's value when known.</p>
+        <div class="f"><label for="OD">Line outside diameter</label><input id="OD" type="number" step="any"><span class="u">mm</span></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Clamp geometry</legend>
+        <div class="f"><label for="ID">Clamp inside diameter <i>ID</i></label><input id="ID" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">Leave an annular gap over the line OD for the sealant.</p>
+        <div class="f"><label for="Lc">Clamp sealed length <i>L</i><sub>c</sub></label><input id="Lc" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">Pressurised length along the line. Sets the separating force F.</p>
+        <div class="f"><label for="L">Total lug length <i>L</i></label><input id="L" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">All lugs together: 2 × L<sub>t</sub> for a two-half straight clamp; L<sub>1</sub> + L<sub>2</sub> + … for special shapes.</p>
+        <div class="f"><label for="C">Bolt line distance <i>C</i></label><input id="C" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">Bolt centre to bolt centre across the clamp (the bolt circle for a circular flange).</p>
+        <div class="f"><label for="ts">Shell thickness <i>t</i><sub>s</sub></label><input id="ts" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="tp">End plate thickness <i>t</i><sub>p</sub></label><input id="tp" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="T">Lug thickness <i>T</i></label><input id="T" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="CA">Corrosion allowance</label><input id="CA" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">Same as the protected line.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Clamp material (from ASME II-D)</legend>
+        <div class="f wide"><label for="matC">Clamp material</label><input id="matC" type="text"></div>
+        <div class="f"><label for="Sf">Allowable at <i>T</i><sub>d</sub>, <i>S</i><sub>f</sub></label><input id="Sf" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="Sfa">Allowable at ambient <i>S</i><sub>fa</sub></label><input id="Sfa" type="number" step="any"><span class="u">MPa</span></div>
+        <p class="hint">Table 1A or 1B. The ambient value is used only for the bolt-up check.</p>
+        <div class="f"><label for="E">Shell joint efficiency <i>E</i></label><input id="E" type="number" step="any"><span class="u"></span></div>
+        <div class="f"><label for="Cf">Flat plate factor <i>C</i></label><input id="Cf" type="number" step="any"><span class="u"></span></div>
+        <p class="hint">0.33 for the end plate (UG-34), conservative.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Bolting</legend>
+        <div class="f wide"><label for="matB">Bolt material</label><input id="matB" type="text"></div>
+        <div class="f wide"><label for="bolt">Bolt size</label><select id="bolt"></select></div>
+        <div class="f"><label for="n">Number of bolts <i>n</i></label><input id="n" type="number" step="1"><span class="u"></span></div>
+        <p class="hint">Total on all lugs.</p>
+        <div class="f"><label for="D">Bolt hole diameter <i>D</i></label><input id="D" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="Sb">Bolt allowable at <i>T</i><sub>d</sub>, <i>S</i><sub>b</sub></label><input id="Sb" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="Sa">Bolt allowable at ambient <i>S</i><sub>a</sub></label><input id="Sa" type="number" step="any"><span class="u">MPa</span></div>
+        <p class="hint">Section II Part D, Table 3. At high temperature B7 drops quickly; B16 or B8 may be needed.</p>
+        <div class="f"><label for="FS">Factor of safety on bolt load</label><input id="FS" type="number" step="any"><span class="u">%</span></div>
+        <div class="f"><label for="Aover">Root area override (optional)</label><input id="Aover" type="number" step="any"><span class="u">mm²</span></div>
+        <p class="hint">Leave blank to use the ISO metric coarse root area.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Bolt tightening</legend>
+        <div class="f"><label for="Sy">Bolt yield at ambient <i>S</i><sub>y</sub></label><input id="Sy" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="Sbsel">Assembly bolt stress <i>S</i><sub>bsel</sub></label><input id="Sbsel" type="number" step="any"><span class="u">MPa</span></div>
+        <p class="hint">Typically 40% to 70% of yield, and not less than about 140 MPa.</p>
+        <div class="f"><label for="K">Nut factor <i>K</i></label><input id="K" type="number" step="any"><span class="u"></span></div>
+      </fieldset>
+    </aside>
+
+    <main class="report" id="report"></main>
+  </div>
+
+  <section class="howto noprint" id="howto" aria-labelledby="h-how">
+    <h2 id="h-how">How to use this calculator</h2>
+    <p>A bolted clamp seals a leaking pipe without shutting it down: two split halves are bolted around the line and sealant is injected into the space between clamp and pipe. The calculator follows a simplified method for a non-structural clamp (it contains the leak; it does not reinforce the pipe), metal-to-metal without a gasket, with sealant injection and stable operating conditions.</p>
+
+    <h3>The clamp and its symbols</h3>
+    <figure>
+      <img src="clamp-sketch.jpg" width="632" height="404" alt="Hand sketch of one half of a two-half bolted clamp: two lugs of length Lt and thickness T with three bolt holes each, bolt line distance C, and the pressure area L × ID shaded across the split plane." loading="lazy">
+      <figcaption>Two-half straight clamp (author's sketch). The pressure acts on the projected area across the split plane and pushes the halves apart; the lugs on both sides carry it to the bolts.
+        <dl>
+          <dt>ID</dt><dd>clamp inside diameter</dd>
+          <dt>L<sub>c</sub></dt><dd>clamp sealed length; force area = L<sub>c</sub> × ID</dd>
+          <dt>L<sub>t</sub></dt><dd>length of one lug; total lug length L = 2 L<sub>t</sub></dd>
+          <dt>T</dt><dd>lug thickness</dd>
+          <dt>C</dt><dd>bolt line distance across the clamp</dd>
+          <dt>D, n</dt><dd>bolt hole diameter and total number of bolts (n = 6 in the sketch)</dd>
+        </dl>
+      </figcaption>
+    </figure>
+
+    <div class="grid">
+      <div>
+        <h3>Steps</h3>
+        <ol>
+          <li><strong>Enter the line conditions.</strong> Pick the pressure unit first. The clamp is designed for the higher of the line design pressure and the sealant injection pressure.</li>
+          <li><strong>Measure the line at site</strong> (OD and remaining wall) before sizing the clamp, and set the clamp ID with a gap for the sealant.</li>
+          <li><strong>Estimate the clamp dimensions:</strong> sealed length, lug length, bolt line distance, and proposed shell, end plate and lug thicknesses.</li>
+          <li><strong>Enter the clamp material and its allowable stresses</strong> from Section II Part D, using a material that matches the line.</li>
+          <li><strong>Choose the bolts:</strong> size, number, hole diameter, allowable stresses and the factor of safety on bolt load (10% is typical).</li>
+          <li><strong>Read steps 2 to 6.</strong> If a thickness check fails, increase that thickness. If the bolt check fails, increase the bolt size or number, then check the lug again: more bolt holes reduce the effective lug length.</li>
+          <li><strong>Set the assembly bolt stress and nut factor</strong> to get the tightening torque, and review the recommended checks in steps 7 and 8.</li>
+          <li><strong>Print or save as PDF</strong> and attach it to the repair procedure.</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Good practice</h3>
+        <ul>
+          <li>Check the line itself for external pressure under the sealant injection pressure.</li>
+          <li>If the leak comes from a crack, take special care before clamping; see ASME PCC-2 for guidance.</li>
+          <li>Confirm with the sealant data sheet (MSDS) that the sealant suits the fluid and temperature.</li>
+          <li>Check whether the line supports need adjusting for the clamp weight.</li>
+          <li>Keep the assembly bolt stress between about 40% and 70% of yield and not below about 140 MPa. Low-strength bolts (for example B8 Class 1, yield 205 MPa) cannot meet both.</li>
+        </ul>
+        <h3>Basis and limits</h3>
+        <ul>
+          <li>The lug is treated as a beam: Z = L T²/6 gives T = 2.45 √(M / ((L − nD) S<sub>f</sub>)), as for a flange ring in Appendix Y.</li>
+          <li>The bolt-up lug check (step 7) is a recommended addition with the Appendix 2 seating bolt load; it is shown separately from the main result.</li>
+          <li>Not covered: structural clamps (use FEA), gasketed clamps, lug-to-shell and end plate welds.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>Prepared by: Baher Elsheikh (<a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a>). Version 1.0, November 2026 (from the spreadsheet Bolted Clamp Calculator, revision 1, and the presentation "Mechanical Clamp Design, simplified method", April 2022).</div>
+    <div>© 2026 Baher Elsheikh. Free to use; not to be copied, modified or redistributed without permission.</div>
+    <div>This tool is an aid for engineering screening. Allowable stresses, yield strength and the sealant injection pressure are entered by the user and are not supplied here. Results must be verified by a qualified engineer against the applicable codes and the owner's repair procedure before use. No warranty is given.</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const PCONV = {kgcm2:0.0980665, MPa:1, bar:0.1, psi:0.00689476};
+  const PLAB = {kgcm2:'kg/cm²', MPa:'MPa', bar:'bar', psi:'psi'};
+  const BOLTS = [['M12',12,1.75],['M16',16,2],['M20',20,2.5],['M22',22,2.5],['M24',24,3],['M27',27,3],['M30',30,3.5],['M33',33,3.5],['M36',36,4],['M39',39,4],['M42',42,4.5],['M45',45,4.5],['M48',48,5]];
+  const EXAMPLE = {prep:'', date:'', punit:'MPa', Pd:2.0, Td:200, Po:1.5, kPi:1.1, OD:168.3, ID:172, Lc:200, L:400, C:252, ts:12, tp:16, T:32, CA:3,
+    matC:'SA-516 Gr. 70', Sf:138, Sfa:138, E:1, Cf:0.33, matB:'SA-193 B7', bolt:'M20', n:6, D:22, Sb:172, Sa:172, FS:10, Aover:'', Sy:720, Sbsel:300, K:0.2};
+  const IDS = Object.keys(EXAMPLE);
+  const STORE = 'bolted-clamp-inputs-v1';
+  const $ = id => document.getElementById(id);
+  BOLTS.forEach(b=>{ const o=document.createElement('option'); o.value=b[0]; o.textContent=b[0]+' (ISO coarse)'; $('bolt').appendChild(o); });
+  function setInputs(d){ IDS.forEach(k=>{const el=$(k); if(!el) return; el.value=(d[k]===undefined||d[k]===null)?'':d[k];}); if(!$('bolt').value) $('bolt').value='M20'; }
+  function getInputs(){ const d={}; IDS.forEach(k=>{d[k]=$(k).value;}); return d; }
+  function num(k){ const v=parseFloat($(k).value); return isFinite(v)?v:NaN; }
+  function f(x,d){ if(!isFinite(x)) return '—'; return x.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+  const v = s => `<i>${s}</i>`;
+  function row(label, eq, sub, val, unit, d, small){
+    return `<tr><td class="lb">${label}</td><td class="eq">${eq||''}</td><td class="sb">${sub||''}</td>`+
+      `<td class="v">${typeof val==='string'?val:f(val,d)}${small?`<small>${small}</small>`:''}</td><td class="un">${unit||''}</td></tr>`;
+  }
+  function step(n,title,ref,rows,results,notes){
+    return `<section class="step"><h2><span class="n">${n}</span>${title}</h2><div class="ref">${ref}</div>`+
+      (rows.length?`<div class="tbl"><table>${rows.filter(Boolean).join('')}</table></div>`:'')+
+      (results||[]).map(r=>`<div class="result ${r[0]}">${r[1]}</div>`).join('')+
+      (notes||[]).map(t=>`<p class="note">${t}</p>`).join('')+`</section>`;
+  }
+  const res = (ok, good, badTxt) => ok ? ['ok', good] : ['bad', badTxt];
+
+  function compute(){
+    const pu=$('punit').value, pc=PCONV[pu], pl=PLAB[pu];
+    document.querySelectorAll('.pu').forEach(e=>e.textContent=pl);
+    const back = p => isFinite(p)&&pu!=='MPa'? f(p/pc,3)+' '+pl : '';
+
+    const Pd=num('Pd')*pc, Po=num('Po')*pc, kPi=num('kPi'), Td=num('Td'), OD=num('OD');
+    const ID=num('ID'), Lc=num('Lc'), L=num('L'), C=num('C'), ts=num('ts'), tp=num('tp'), T=num('T'), CA=num('CA')||0;
+    const Sf=num('Sf'), Sfa=num('Sfa'), E=num('E'), Cf=num('Cf');
+    const n=num('n'), D=num('D'), Sb=num('Sb'), Sa=num('Sa'), FS=num('FS'), Aover=num('Aover'), Sy=num('Sy'), Sbsel=num('Sbsel'), K=num('K');
+    const bolt = BOLTS.find(b=>b[0]===$('bolt').value) || BOLTS[2];
+    const need = ['Pd','Po','kPi','ID','Lc','L','C','ts','tp','T','Sf','Sfa','E','Cf','n','D','Sb','Sa','FS','Sy','Sbsel','K'];
+    need.forEach(k=>$(k).classList.toggle('need', !isFinite(num(k))));
+    const ready = need.every(k=>isFinite(num(k)));
+
+    // 1 pressure
+    const Pi = kPi*Po, P = Math.max(Pd, Pi);
+    // 2 shell
+    const R = ID/2+CA, treq = P*R/(Sf*E-0.6*P)+CA, okS = ts>=treq;
+    // 3 end plate
+    const tpreq = ID*Math.sqrt(Cf*P/(Sf*E))+CA, okP = tp>=tpreq;
+    // 4 force and moment
+    const F = P*ID*Lc, h = (C-ID)/2, M = F*h;
+    // 5 lug
+    const Leff = L-n*D, Treq = 2.45*Math.sqrt(M/(Leff*Sf)), okT = T>=Treq && Leff>0;
+    // 6 bolting
+    const db = bolt[1], p = bolt[2], Atab = Math.PI/4*Math.pow(db-1.22687*p,2), Ab = isFinite(Aover)&&Aover>0 ? Aover : Atab;
+    const Abt = n*Ab, Wm = F*(1+FS/100), Wma = Ab*Sb*n, okB = Wm<=Wma;
+    // 7 bolt-up (recommended)
+    const Am = Wm/Sb, W = 0.5*(Am+Abt)*Sa, Treqa = 2.45*Math.sqrt(W*h/(Leff*Sfa)), okTa = T>=Treqa && Leff>0;
+    // 8 tightening (recommended)
+    const pct = Sbsel/Sy*100, okY = pct>=40 && pct<=70, okMin = Sbsel>=140, Fb = Sbsel*Ab, Wpre = Fb*n, okPre = Wpre>=Wm, Tq = K*db*Fb/1000;
+    const all = okS && okP && okT && okB, allA = okTa && okY && okMin && okPre;
+
+    let out='';
+    out += step(1,'Clamp design pressure','Higher of line design pressure and sealant injection pressure',[
+      row('Sealant injection pressure', `${v('P')}<sub>i</sub> = ${f(kPi,2)} × ${v('P')}<sub>o</sub>`, `${f(kPi,2)} × ${f(Po,3)}`, Pi,'MPa',3, back(Pi)),
+      row('Clamp design pressure', `${v('P')} = max(${v('P')}<sub>d</sub>, ${v('P')}<sub>i</sub>)`, `max(${f(Pd,3)}, ${f(Pi,3)})`, P,'MPa',3, back(P))
+    ],[]);
+
+    out += step(2,'Main shell thickness','UG-27(c)(1), corroded inside radius',[
+      row('Inside radius, corroded', `${v('R')} = ${v('ID')}/2 + CA`, `${f(ID,1)}/2 + ${f(CA,2)}`, R,'mm',2),
+      row('Required thickness', `${v('t')} = ${v('P')}${v('R')} / (${v('S')}<sub>f</sub>${v('E')} − 0.6${v('P')}) + CA`, `${f(P,3)} × ${f(R,2)} / (${f(Sf,1)} × ${f(E,2)} − 0.6 × ${f(P,3)}) + ${f(CA,2)}`, treq,'mm',2),
+      row('Proposed thickness', `${v('t')}<sub>s</sub>`, '', ts,'mm',2)
+    ],[ res(okS, `t<sub>s</sub> ${f(ts,2)} ≥ ${f(treq,2)} mm: shell thickness adequate.`, `t<sub>s</sub> ${f(ts,2)} < ${f(treq,2)} mm: increase the shell thickness.`) ]);
+
+    out += step(3,'End plate thickness','UG-34, unstayed flat plate on the clamp inside diameter (conservative)',[
+      row('Required thickness', `${v('t')} = ${v('ID')}·√(${v('C')}${v('P')} / ${v('S')}<sub>f</sub>${v('E')}) + CA`, `${f(ID,1)} × √(${f(Cf,2)} × ${f(P,3)} / (${f(Sf,1)} × ${f(E,2)})) + ${f(CA,2)}`, tpreq,'mm',2),
+      row('Proposed thickness', `${v('t')}<sub>p</sub>`, '', tp,'mm',2)
+    ],[ res(okP, `t<sub>p</sub> ${f(tp,2)} ≥ ${f(tpreq,2)} mm: end plate thickness adequate.`, `t<sub>p</sub> ${f(tp,2)} < ${f(tpreq,2)} mm: increase the end plate thickness.`) ]);
+
+    out += step(4,'Separating force and moment','Pressure on the projected area across the split plane; arm as h<sub>D</sub> for a loose flange (Appendix 2)',[
+      row('Separating force', `${v('F')} = ${v('P')} × ${v('ID')} × ${v('L')}<sub>c</sub>`, `${f(P,3)} × ${f(ID,1)} × ${f(Lc,1)}`, F,'N',0),
+      row('Moment arm', `${v('h')} = (${v('C')} − ${v('ID')})/2`, `(${f(C,1)} − ${f(ID,1)}) / 2`, h,'mm',2),
+      row('Moment on the lugs', `${v('M')} = ${v('F')} × ${v('h')}`, `${f(F,0)} × ${f(h,2)}`, M,'N·mm',0)
+    ], h<=0?[['bad','Bolt line distance C must be larger than the clamp ID.']]:[]);
+
+    out += step(5,'Lug thickness','Lug as a beam: Z = L T²/6, so T = 2.45 √(M / ((L − nD) S<sub>f</sub>)) (Appendix Y analogy)',[
+      row('Lug length less bolt holes', `${v('L')} − ${v('n')}${v('D')}`, `${f(L,1)} − ${f(n,0)} × ${f(D,1)}`, Leff,'mm',1),
+      row('Required lug thickness', `${v('T')} = 2.45·√(${v('M')} / ((${v('L')} − ${v('n')}${v('D')})${v('S')}<sub>f</sub>))`, `2.45 × √(${f(M,0)} / (${f(Leff,1)} × ${f(Sf,1)}))`, Treq,'mm',2),
+      row('Proposed lug thickness', v('T'), '', T,'mm',2)
+    ],[ Leff<=0?['bad','Bolt holes take up the whole lug length: increase L or reduce n or D.']:res(okT, `T ${f(T,2)} ≥ ${f(Treq,2)} mm: lug thickness adequate.`, `T ${f(T,2)} < ${f(Treq,2)} mm: increase the lug thickness.`) ]);
+
+    out += step(6,'Bolting','Required bolt load with a factor of safety against the allowable bolt load; root area as ASME PCC-1',[
+      row('Bolt root area', `${v('A')}<sub>b</sub>`, isFinite(Aover)&&Aover>0?'entered':`${bolt[0]}: π/4 (${f(db,0)} − 1.22687 × ${f(p,2)})²`, Ab,'mm²',1),
+      row('Required bolt load', `${v('W')}<sub>m</sub> = ${v('F')}(1 + FS)`, `${f(F,0)} × (1 + ${f(FS/100,2)})`, Wm,'N',0),
+      row('Available bolt load', `${v('W')}<sub>ma</sub> = ${v('A')}<sub>b</sub>${v('S')}<sub>b</sub>${v('n')}`, `${f(Ab,1)} × ${f(Sb,1)} × ${f(n,0)}`, Wma,'N',0)
+    ],[ res(okB, `W<sub>m</sub> ${f(Wm,0)} ≤ W<sub>ma</sub> ${f(Wma,0)} N: bolt size and number adequate.`, `W<sub>m</sub> ${f(Wm,0)} > W<sub>ma</sub> ${f(Wma,0)} N: increase the bolt size or number.`) ]);
+
+    out += step(7,'Lug at bolt-up (recommended)','Bolt-up load as for gasket seating in Appendix 2, with the allowable at ambient',[
+      row('Required bolt area', `${v('A')}<sub>m</sub> = ${v('W')}<sub>m</sub> / ${v('S')}<sub>b</sub>`, `${f(Wm,0)} / ${f(Sb,1)}`, Am,'mm²',1),
+      row('Bolt-up design load', `${v('W')} = 0.5(${v('A')}<sub>m</sub> + ${v('n')}${v('A')}<sub>b</sub>)${v('S')}<sub>a</sub>`, `0.5 × (${f(Am,1)} + ${f(Abt,1)}) × ${f(Sa,1)}`, W,'N',0),
+      row('Required lug thickness', `2.45·√(${v('W')}${v('h')} / ((${v('L')} − ${v('n')}${v('D')})${v('S')}<sub>fa</sub>))`, `2.45 × √(${f(W,0)} × ${f(h,2)} / (${f(Leff,1)} × ${f(Sfa,1)}))`, Treqa,'mm',2)
+    ],[ res(okTa, `T ${f(T,2)} ≥ ${f(Treqa,2)} mm: lug thickness adequate at bolt-up.`, `T ${f(T,2)} < ${f(Treqa,2)} mm: increase the lug thickness for bolt-up.`) ],
+      ['Not part of the simplified method: the bolts are tightened well above F, so the lug sees more moment at assembly than in operation.']);
+
+    out += step(8,'Bolt tightening (recommended)','Assembly bolt stress range and torque by the nut factor method (ASME PCC-1)',[
+      row('Bolt stress / yield', `${v('S')}<sub>bsel</sub> / ${v('S')}<sub>y</sub>`, `${f(Sbsel,0)} / ${f(Sy,0)}`, pct,'%',1),
+      row('Preload per bolt', `${v('F')}<sub>b</sub> = ${v('S')}<sub>bsel</sub>${v('A')}<sub>b</sub>`, `${f(Sbsel,0)} × ${f(Ab,1)}`, Fb,'N',0),
+      row('Total preload', `${v('F')}<sub>b</sub> × ${v('n')}`, `${f(Fb,0)} × ${f(n,0)}`, Wpre,'N',0),
+      row('Torque per bolt', `${v('T')}<sub>q</sub> = ${v('K')} · ${v('d')} · ${v('F')}<sub>b</sub> / 1000`, `${f(K,2)} × ${f(db,0)} × ${f(Fb,0)} / 1000`, Tq,'N·m',0)
+    ],[
+      res(okY, `${f(pct,1)}% of yield: within the typical 40% to 70%.`, `${f(pct,1)}% of yield: outside the typical 40% to 70%; review the assembly bolt stress.`),
+      res(okMin, `S<sub>bsel</sub> ${f(Sbsel,0)} ≥ 140 MPa.`, `S<sub>bsel</sub> ${f(Sbsel,0)} < 140 MPa: tightening scatter becomes significant; increase the bolt stress or use stronger bolts.`),
+      res(okPre, `Total preload ${f(Wpre,0)} ≥ W<sub>m</sub> ${f(Wm,0)} N.`, `Total preload ${f(Wpre,0)} < W<sub>m</sub> ${f(Wm,0)} N: increase the bolt stress, size or number.`)
+    ]);
+
+    out += step(9,'Result','Simplified method (steps 2 to 6) and recommended checks (steps 7 and 8)',[
+      row('Lug thickness utilisation', `${v('T')}<sub>req</sub> / ${v('T')}`, '', isFinite(Treq/T)?f(Treq/T*100,1)+'%':'—','',0, okT?'pass':'fail'),
+      row('Bolt load utilisation', `${v('W')}<sub>m</sub> / ${v('W')}<sub>ma</sub>`, '', isFinite(Wm/Wma)?f(Wm/Wma*100,1)+'%':'—','',0, okB?'pass':'fail')
+    ],[
+      !ready?['warn','Enter the highlighted inputs to complete the check.']:(all?['ok','Clamp design is adequate: shell, end plate, lug and bolts pass.']:['bad','Clamp design not adequate: revise the failing item above.']),
+      ready?(allA?['ok','Recommended checks are adequate.']:['warn','Review the recommended checks (steps 7 and 8).']):null
+    ].filter(Boolean));
+
+    $('report').innerHTML = out;
+
+    const st=$('vState');
+    if(!ready){ st.textContent='Enter the highlighted inputs'; st.className='state'; }
+    else if(all){ st.textContent=`Clamp design adequate: lug at ${f(Treq/T*100,0)}%, bolts at ${f(Wm/Wma*100,0)}%`; st.className='state ok'; }
+    else { st.textContent='Clamp design not adequate: revise the clamp'; st.className='state bad'; }
+    $('vSub').innerHTML = `${f(ID,0)} mm ID × ${f(Lc,0)} mm long, ${f(n,0)} × ${bolt[0]} bolts, design pressure ${f(P,2)} MPa, ${$('matC').value||'material not stated'}.`;
+    const chip=(ok,lab,soft)=>`<span class="chip ${ok?'ok':(soft?'warn':'bad')}">${lab}</span>`;
+    $('vChips').innerHTML = ready ? chip(okS,'Shell')+chip(okP,'End plate')+chip(okT,'Lug')+chip(okB,'Bolt load')+chip(okTa,'Lug at bolt-up',true)+chip(okY&&okMin,'Bolt stress',true)+chip(okPre,'Preload',true) : '';
+
+    drawSketch({ID,C,h,T,n,bolt:bolt[0]});
+    $('printhead').textContent = `${$('prep').value?'Prepared by: '+$('prep').value:''}  ${$('date').value||''}`;
+    try{ localStorage.setItem(STORE, JSON.stringify(getInputs())); }catch(e){}
+  }
+
+  function drawSketch(d){
+    const g=$('sketch'), cs=getComputedStyle(document.documentElement), c=n=>cs.getPropertyValue(n).trim();
+    const ink=c('--ink'), steel=c('--steel'), wall=c('--wall'), acc=c('--accent'), soft=c('--accent-soft'), warn=c('--warn');
+    const cx=320, cy=140, rp=58, ri=66, ro=80, lugOut=170, bx=134, tv=16;
+    let s=`<defs><marker id="ar" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,2 L10,5 L0,8 z" fill="${steel}"/></marker>`+
+      `<marker id="af" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="${warn}"/></marker></defs>`;
+    // sealant annulus + pipe
+    s+=`<circle cx="${cx}" cy="${cy}" r="${ri}" fill="${warn}" opacity=".18"/>`;
+    s+=`<circle cx="${cx}" cy="${cy}" r="${rp}" fill="none" stroke="${wall}" stroke-width="8"/>`;
+    // clamp halves (ring) and lugs
+    const half=(top)=>{ const sg=top?-1:1;
+      return `<path d="M${cx-ro},${cy} A${ro},${ro} 0 0 ${top?1:0} ${cx+ro},${cy} L${cx+ri},${cy} A${ri},${ri} 0 0 ${top?0:1} ${cx-ri},${cy} Z" fill="${soft}" stroke="${acc}" stroke-width="1.5"/>`+
+        `<rect x="${cx-lugOut}" y="${top?cy-tv:cy}" width="${lugOut-ro+6}" height="${tv}" fill="${soft}" stroke="${acc}" stroke-width="1.5"/>`+
+        `<rect x="${cx+ro-6}" y="${top?cy-tv:cy}" width="${lugOut-ro+6}" height="${tv}" fill="${soft}" stroke="${acc}" stroke-width="1.5"/>`; };
+    s+=half(true)+half(false);
+    // bolts
+    [-1,1].forEach(sg=>{ const x=cx+sg*bx;
+      s+=`<line x1="${x}" y1="${cy-tv-14}" x2="${x}" y2="${cy+tv+14}" stroke="${ink}" stroke-width="5"/>`;
+      s+=`<rect x="${x-9}" y="${cy-tv-14}" width="18" height="8" fill="${ink}"/><rect x="${x-9}" y="${cy+tv+6}" width="18" height="8" fill="${ink}"/>`; });
+    // split plane
+    s+=`<line x1="${cx-lugOut-20}" y1="${cy}" x2="${cx+lugOut+20}" y2="${cy}" stroke="${steel}" stroke-dasharray="5 4"/>`;
+    s+=`<text x="${cx+lugOut+24}" y="${cy+4}">split plane</text>`;
+    // separating force arrows
+    s+=`<line x1="${cx}" y1="${cy-ri+8}" x2="${cx}" y2="${cy-ro-20}" stroke="${warn}" stroke-width="2.5" marker-end="url(#af)"/>`;
+    s+=`<line x1="${cx}" y1="${cy+ri-8}" x2="${cx}" y2="${cy+ro+20}" stroke="${warn}" stroke-width="2.5" marker-end="url(#af)"/>`;
+    s+=`<text x="${cx+8}" y="${cy-ro-10}" style="fill:${warn};font-weight:600">F</text>`;
+    // dimensions: ID on top, C at bottom, h on right, T at left lug
+    const arrow=(x1,y1,x2,y2)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${steel}" marker-start="url(#ar)" marker-end="url(#ar)"/>`;
+    s+=`<line x1="${cx-ri}" y1="${cy-8}" x2="${cx-ri}" y2="${cy-ro-34}" stroke="${steel}" stroke-dasharray="2 2"/><line x1="${cx+ri}" y1="${cy-8}" x2="${cx+ri}" y2="${cy-ro-34}" stroke="${steel}" stroke-dasharray="2 2"/>`;
+    s+=arrow(cx-ri,cy-ro-30,cx+ri,cy-ro-30)+`<text class="lab" x="${cx-ri-8}" y="${cy-ro-26}" text-anchor="end">ID ${f(d.ID,0)}</text>`;
+    s+=`<line x1="${cx-bx}" y1="${cy+tv+16}" x2="${cx-bx}" y2="${cy+ro+44}" stroke="${steel}" stroke-dasharray="2 2"/><line x1="${cx+bx}" y1="${cy+tv+16}" x2="${cx+bx}" y2="${cy+ro+44}" stroke="${steel}" stroke-dasharray="2 2"/>`;
+    s+=arrow(cx-bx,cy+ro+40,cx+bx,cy+ro+40)+`<text class="lab" x="${cx}" y="${cy+ro+56}" text-anchor="middle">C ${f(d.C,0)}</text>`;
+    s+=arrow(cx+ri,cy+30,cx+bx,cy+30)+`<text x="${(cx+ri+cx+bx)/2}" y="${cy+46}" text-anchor="middle">h ${f(d.h,1)}</text>`;
+    s+=arrow(cx-lugOut-10,cy-tv,cx-lugOut-10,cy)+`<text x="${cx-lugOut-16}" y="${cy-4}" text-anchor="end">T ${f(d.T,0)}</text>`;
+    s+=`<text x="${cx-lugOut}" y="${cy-tv-22}">lug</text>`;
+    s+=`<text x="${cx+bx+14}" y="${cy-tv-18}">${f(d.n,0)} × ${d.bolt}</text>`;
+    s+=`<text x="${cx}" y="${cy+5}" text-anchor="middle" style="fill:${ink}">pipe</text>`;
+    g.innerHTML=s;
+  }
+
+  let saved=null; try{ saved=JSON.parse(localStorage.getItem(STORE)); }catch(e){}
+  setInputs(saved||EXAMPLE);
+  document.querySelectorAll('aside input, aside select').forEach(el=>el.addEventListener('input',compute));
+  document.querySelectorAll('aside select').forEach(el=>el.addEventListener('change',compute));
+  $('btnExample').addEventListener('click',()=>{setInputs(EXAMPLE);compute();});
+  $('btnClear').addEventListener('click',()=>{const d={}; IDS.forEach(k=>d[k]=''); d.punit='MPa'; d.kPi=1.1; d.E=1; d.Cf=0.33; d.FS=10; d.K=0.2; d.CA=0; d.bolt='M20'; setInputs(d); compute();});
+  $('btnHow').addEventListener('click',()=>$('howto').scrollIntoView({behavior:'smooth'}));
+  $('btnPrint').addEventListener('click',()=>window.print());
+  if(window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',compute);
+  compute();
+})();
+</script>
+</body>
+</html>

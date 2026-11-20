@@ -1,0 +1,39 @@
+/* Shared header, navigation and footer for article pages (their own styles define the colour variables). */
+.lg-dark{display:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg-light{display:none}:root:not([data-theme="light"]) .lg-dark{display:block}}
+:root[data-theme="dark"] .lg-light{display:none}
+:root[data-theme="dark"] .lg-dark{display:block}
+.skip{position:absolute;left:-9999px;top:8px;z-index:60;background:var(--panel);color:var(--accent);border:2px solid var(--accent);border-radius:5px;padding:8px 14px;font-weight:500}
+.skip:focus{left:12px}
+header.site{background:var(--panel);border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:20}
+header.site .wrap{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:10px 18px;min-height:62px}
+.brand{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px;white-space:nowrap}
+.brand img{height:34px;width:auto}
+.hdr-right{display:flex;align-items:center;gap:8px}
+nav.tabs{display:flex;flex-wrap:nowrap;gap:2px}
+nav.tabs a{font-size:14.5px;font-weight:500;color:var(--steel);text-decoration:none;padding:7px 9px;border-radius:5px;white-space:nowrap}
+nav.tabs a:hover{color:var(--ink);background:var(--accent-soft)}
+nav.tabs a[aria-current="page"]{color:var(--accent);background:var(--accent-soft)}
+.nav-search{display:inline-flex;align-items:center;gap:7px;font-size:14px;color:var(--steel);text-decoration:none;border:1px solid var(--rule);border-radius:5px;padding:6px 11px;background:var(--panel);white-space:nowrap}
+.nav-search:hover{border-color:var(--accent);color:var(--ink)}
+.nav-search svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
+.menu-btn{display:none;font:500 15px inherit;font-family:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--rule);border-radius:5px;padding:6px 12px;cursor:pointer}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:1180px){
+  .menu-btn{display:inline-block}
+  nav.tabs{display:none;position:absolute;left:0;right:0;top:100%;background:var(--panel);border-bottom:1px solid var(--rule);flex-direction:column;padding:8px 16px 14px}
+  nav.tabs.open{display:flex}
+  nav.tabs a{padding:10px 12px;font-size:15px}
+}
+@media (max-width:420px){.nav-search span{display:none}}
+footer .fnav{display:flex;flex-wrap:wrap;gap:4px 16px;margin-bottom:6px}
+footer .fnav a{color:var(--ink);text-decoration:none;font-weight:500}
+footer .fnav a:hover{color:var(--accent);text-decoration:underline}
+@media print{.nav-search,.skip,.menu-btn{display:none}}
+
+/* Beta label: shown while BETA = True in tools/build_pages.py */
+.beta-bar{background:var(--brass-soft,#F4ECDD);color:var(--ink);font-size:13.5px;line-height:1.45;border-bottom:1px solid var(--rule)}
+.beta-bar .wrap{padding-top:6px;padding-bottom:6px}
+.beta-bar a{color:var(--accent)}
+.beta-tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--panel,#fff);background:var(--brass,#8A6320);border-radius:3px;padding:1px 7px;margin-right:6px;vertical-align:1px}
+@media print{.beta-bar{display:none}}
