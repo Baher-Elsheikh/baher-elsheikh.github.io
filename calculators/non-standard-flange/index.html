@@ -58,6 +58,12 @@ header.top{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justif
 h1{font-family:var(--math);font-weight:600;font-size:clamp(26px,3.4vw,38px);line-height:1.1;margin:0;letter-spacing:-.01em}
 .home{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14.5px;margin-bottom:14px}
 .home img{height:40px;width:auto}
+.topnav{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;margin-bottom:14px}
+.topnav .home{margin-bottom:0}
+.navlinks{display:inline-flex;gap:14px;font-size:14.5px}
+.navlinks a{color:var(--accent);text-decoration:none;font-weight:500}
+.navlinks a:hover{text-decoration:underline}
+@media print{.topnav{display:none}}
 .home:hover span{color:var(--accent)}
 .lg-dark{display:none}
 .f input:disabled,.f select:disabled{opacity:.45}
@@ -174,7 +180,7 @@ footer{margin-top:28px;font-size:12.5px;color:var(--steel);border-top:1px solid 
 <div class="wrap">
   <header class="top">
     <div>
-      <a class="home" href="../"><img class="lg-light" src="../../assets/gear-light.png" alt=""><img class="lg-dark" src="../../assets/gear-dark.png" alt=""><span>Baher Elsheikh</span><span style="font-weight:400;color:var(--steel)">| All calculators</span></a>
+      <nav class="topnav" aria-label="Site"><a class="home" href="../../"><img class="lg-light" src="../../assets/gear-light.png" alt=""><img class="lg-dark" src="../../assets/gear-dark.png" alt=""><span>Baher Elsheikh</span></a><span class="navlinks"><a href="../../">Home</a><a href="../">All calculators</a></span></nav>
       <h1>Non-standard flange</h1>
       <div class="byline">Prepared by: <strong>Baher Elsheikh</strong>
         <span class="links"><a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube channel</a></span></div>
