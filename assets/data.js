@@ -170,6 +170,9 @@ const DOCUMENTS = [
 
 const NEWS_TOPICS = ["Codes and standards updates", "Materials and welding", "Inspection and asset integrity", "Incidents and failures", "Industry developments"];
 const NEWS = [
+  { headline: "ASM International launches Mat-E, an AI assistant that answers from ASM Handbooks and databases",
+    summary: "Mat-E answers materials questions in plain language (alloy properties, corrosion behaviour, material equivalents, failure modes, phase diagrams) and links each answer to its ASM source. A free trial gives 25 answers with access to the full ASM portfolio, including all ASM Handbooks and databases (sign-up required, no credit card). After the trial it is an annual subscription, and answers draw on the ASM content you subscribe to.",
+    date: "2026-11-22", source: "ASM International", url: "https://www.asminternational.org/mat-e/", topic: "Materials and welding" },
   { headline: "CSB final report: furnace explosion and fire at Shell Polymers Monaca",
     summary: "The CSB released its final report on the June 2025 explosion in an ethane cracking furnace in Pennsylvania (about $95 million damage). It recommends replacing administrative-only safeguards with inherently safer design or engineered controls, and an engineered control to prevent cracked gas flowing back into a furnace in all operating modes.",
     date: "2026-09-16", source: "U.S. Chemical Safety Board (CSB)", url: "https://www.csb.gov/shell-polymers-monaca-chemical-release-/", topic: "Incidents and failures" },
