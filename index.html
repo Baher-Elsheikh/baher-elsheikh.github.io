@@ -3,121 +3,483 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Engineering knowledge beyond the textbook | Static equipment, materials, welding and asset integrity</title>
-<meta name="description" content="Practical technical articles, engineering calculators with equations shown, lessons from the field and codes and standards references for static equipment, materials, welding, inspection and asset integrity.">
+<title>Heat Exchanger Tube Minimum Thickness Calculator | ASME VIII-1 UG-27, UG-28, TEMA U-bend</title>
+<link rel="icon" type="image/png" href="https://baher-elsheikh.github.io/assets/favicon.png">
+<link rel="apple-touch-icon" href="https://baher-elsheikh.github.io/assets/apple-touch-icon.png">
+<meta name="description" content="Free online calculator for heat exchanger tube minimum required thickness: internal pressure (ASME VIII-1 UG-27 / Appendix 1-1), external pressure (UG-28), U-bend thinning (TEMA RCB-2.31) and tube-side hydrotest (UG-99). Step-by-step equations, PASS/FAIL and PDF output.">
+<meta name="keywords" content="heat exchanger tube thickness calculator, tube minimum thickness, ASME Section VIII Division 1, UG-27, UG-28, Appendix 1-1, UG-99 hydrotest, TEMA RCB-2.31, U-bend thinning, shell and tube heat exchanger, BWG tube wall">
 <meta name="author" content="Baher Elsheikh">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://baher-elsheikh.github.io/">
-<link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="canonical" href="https://baher-elsheikh.github.io/Tube-Thickness-Calculator/">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://baher-elsheikh.github.io/">
-<meta property="og:site_name" content="Baher Elsheikh">
-<meta property="og:title" content="Engineering knowledge beyond the textbook | Static equipment, materials, welding and asset integrity">
-<meta property="og:description" content="Practical technical articles, engineering calculators with equations shown, lessons from the field and codes and standards references for static equipment, materials, welding, inspection and asset integrity.">
-<meta property="og:image" content="https://baher-elsheikh.github.io/preview.png">
+<meta property="og:url" content="https://baher-elsheikh.github.io/Tube-Thickness-Calculator/">
+<meta property="og:title" content="Heat Exchanger Tube Minimum Thickness Calculator">
+<meta property="og:description" content="Free online check of heat exchanger tube wall thickness to ASME VIII-1 (UG-27, UG-28, UG-99) and TEMA RCB-2.31 U-bend thinning, with step-by-step equations. Prepared by Baher Elsheikh.">
+<meta property="og:image" content="https://baher-elsheikh.github.io/Tube-Thickness-Calculator/preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Heat exchanger tube minimum thickness calculator with wall thickness gauge">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Heat Exchanger Tube Minimum Thickness Calculator">
+<meta name="twitter:description" content="Free check of tube wall thickness to ASME VIII-1 and TEMA RCB-2.31, with step-by-step equations.">
+<meta name="twitter:image" content="https://baher-elsheikh.github.io/Tube-Thickness-Calculator/preview.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
- {"@type":"WebSite","@id":"https://baher-elsheikh.github.io/#website","url":"https://baher-elsheikh.github.io/","name":"Baher Elsheikh: engineering knowledge","inLanguage":"en","publisher":{"@id":"https://baher-elsheikh.github.io/#person"},
-  "potentialAction":{"@type":"SearchAction","target":"https://baher-elsheikh.github.io/search/?q={query}","query-input":"required name=query"}},
- {"@type":"Person","@id":"https://baher-elsheikh.github.io/#person","name":"Baher Elsheikh","url":"https://baher-elsheikh.github.io/about/","description":"Engineer with 25 years of experience in static equipment, risk-based inspection, damage mechanisms and steam reformer integrity.","sameAs":["https://www.linkedin.com/in/baher-elsheikh/","https://www.youtube.com/@baherelsheikh4942"]}
-]}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Heat Exchanger Tube Minimum Thickness Calculator","url":"https://baher-elsheikh.github.io/Tube-Thickness-Calculator/","applicationCategory":"EngineeringApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Checks heat exchanger tube minimum required thickness for internal pressure (ASME VIII-1 UG-27 / Appendix 1-1), external pressure (UG-28), U-bend thinning (TEMA RCB-2.31) and tube-side hydrotest (UG-99).","author":{"@type":"Person","name":"Baher Elsheikh","sameAs":["https://www.linkedin.com/in/baher-elsheikh/","https://www.youtube.com/@baherelsheikh4942"]}}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF1F2; --panel:#FFFFFF; --ink:#16232B; --steel:#55656F; --rule:#CBD3D8;
+  --accent:#0F5E73; --accent-soft:#D7E8EC; --ok:#1E7A4C; --ok-soft:#DDF0E5;
+  --bad:#AE2A1F; --bad-soft:#F7DEDA; --warn:#8A5A00; --warn-soft:#F6EAD0;
+  --field:#F7F9FA; --wall:#7E8E98; --tol:#B9C4CA;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --math:"STIX Two Text","Cambria Math",Cambria,"Times New Roman",serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#10181D; --panel:#18232A; --ink:#E4EBEF; --steel:#9AAAB4; --rule:#2E3C45;
+    --accent:#5FB3C8; --accent-soft:#183A44; --ok:#5CC48E; --ok-soft:#163427;
+    --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+    --field:#121C22; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#10181D; --panel:#18232A; --ink:#E4EBEF; --steel:#9AAAB4; --rule:#2E3C45;
+  --accent:#5FB3C8; --accent-soft:#183A44; --ok:#5CC48E; --ok-soft:#163427;
+  --bad:#F08A7E; --bad-soft:#3E1D1A; --warn:#E3B65A; --warn-soft:#3A2E14;
+  --field:#121C22; --wall:#6E808B; --tol:#3F4E57; color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans);font-variant-numeric:tabular-nums}
+.wrap{max-width:1320px;margin:0 auto;padding:28px 24px 48px}
+header.top{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+h1{font-family:var(--math);font-weight:600;font-size:clamp(26px,3.4vw,38px);line-height:1.1;margin:0;letter-spacing:-.01em}
+.basis{color:var(--steel);font-size:13.5px;margin-top:8px;max-width:70ch}
+.byline{font-size:14px;margin-top:10px;color:var(--ink);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.byline .links{display:inline-flex;gap:12px}
+.byline a,footer a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;font-weight:500}
+.byline a:hover,footer a:hover{text-decoration-thickness:2px}
+@media print{.byline a::after{content:" (" attr(href) ")";font-weight:400;color:var(--steel)}}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{font:500 14px var(--sans);border-radius:6px;padding:8px 14px;cursor:pointer;border:1px solid var(--rule);background:var(--panel);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--panel)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* verdict + wall gauge */
+.verdict{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:22px 24px;display:grid;grid-template-columns:minmax(260px,1fr) minmax(320px,1.6fr);gap:20px 32px;align-items:center;margin-bottom:22px}
+.verdict .state{font-family:var(--math);font-size:clamp(22px,2.6vw,30px);line-height:1.2}
+.verdict .state.ok{color:var(--ok)} .verdict .state.bad{color:var(--bad)}
+.verdict .sub{color:var(--steel);margin-top:6px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-size:12.5px;padding:3px 9px;border-radius:999px;border:1px solid transparent}
+.chip.ok{background:var(--ok-soft);color:var(--ok)} .chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)} .chip.info{background:var(--accent-soft);color:var(--accent)}
+.gauge svg{width:100%;height:auto;display:block}
+.gauge text{font-family:var(--sans);font-size:11px;fill:var(--steel)}
+.gauge .lab{fill:var(--ink);font-weight:500}
+.gcap{font-size:12px;color:var(--steel);margin-top:4px}
+
+/* layout */
+.cols{display:grid;grid-template-columns:380px minmax(0,1fr);gap:22px;align-items:start}
+aside.inputs{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:6px 18px 18px;position:sticky;top:calc(12px + env(safe-area-inset-top,0px));max-height:calc(100vh - 24px - env(safe-area-inset-top,0px));overflow:auto}
+fieldset{border:0;border-top:1px solid var(--rule);margin:14px 0 0;padding:12px 0 0}
+fieldset:first-of-type{border-top:0}
+legend{font-weight:600;font-size:14px;padding:0}
+.f{display:grid;grid-template-columns:1fr 112px 46px;gap:6px;align-items:center;margin-top:7px}
+.f.wide{grid-template-columns:1fr 1.4fr}
+.f label{font-size:13px;color:var(--ink)}
+.f label i{font-family:var(--math);font-size:15px}
+.f .u{font-size:12px;color:var(--steel)}
+input,select{font:14px var(--sans);color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:5px;padding:5px 7px;width:100%;font-variant-numeric:tabular-nums}
+input[type=number]{text-align:right}
+input:disabled{opacity:.6}
+input.need{background:#FFF7D6;border-color:#D9B84A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) input.need{background:#33290F;border-color:#7A6420}}
+:root[data-theme="dark"] input.need{background:#33290F;border-color:#7A6420}
+.hint{font-size:12px;color:var(--steel);margin:4px 0 0;line-height:1.4}
+.check{display:flex;gap:8px;align-items:center;font-size:13px;margin-top:8px}
+.check input{width:auto}
+
+/* calculation report */
+main.report{display:flex;flex-direction:column;gap:18px;min-width:0}
+section.step{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 20px 12px}
+.step h2{font-size:17px;font-weight:600;margin:0;display:flex;gap:10px;align-items:baseline}
+.step h2 .n{font-family:var(--math);color:var(--accent);font-size:20px;min-width:1.2em}
+.step .ref{color:var(--steel);font-size:12.5px;margin:2px 0 8px 32px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td{padding:7px 8px;border-top:1px solid var(--rule);vertical-align:baseline}
+td.lb{width:30%;color:var(--ink)}
+td.eq{font-family:var(--math);font-size:15.5px;white-space:nowrap}
+td.sb{font-family:var(--math);font-size:15px;color:var(--steel);white-space:nowrap}
+td.v{text-align:right;font-weight:600;white-space:nowrap}
+td.v small{display:block;font-weight:400;color:var(--steel);font-size:12px}
+td.un{color:var(--steel);font-size:12.5px;white-space:nowrap;width:44px}
+.result{margin:10px 0 4px;padding:9px 12px;border-radius:6px;font-weight:500;font-size:14px}
+.result.ok{background:var(--ok-soft);color:var(--ok)} .result.bad{background:var(--bad-soft);color:var(--bad)}
+.result.warn{background:var(--warn-soft);color:var(--warn)} .result.info{background:var(--accent-soft);color:var(--accent)}
+.note{font-size:12.5px;color:var(--steel);margin:6px 0 0}
+footer{margin-top:28px;font-size:12.5px;color:var(--steel);border-top:1px solid var(--rule);padding-top:14px;display:grid;gap:6px}
+.printhead{display:none}
+
+@media (max-width:980px){
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none}
+  .verdict{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .wrap{padding:18px 14px 36px}
+  td.eq,td.sb{white-space:normal}
+  td.lb{width:auto}
+}
+@media (prefers-reduced-motion:no-preference){
+  .verdict .state{transition:color .25s}
+}
+@media print{
+  :root{--bg:#fff;--panel:#fff}
+  body{font-size:11px}
+  .actions,.noprint{display:none!important}
+  .cols{grid-template-columns:1fr}
+  aside.inputs{position:static;max-height:none;border:0;padding:0}
+  section.step,.verdict{break-inside:avoid;border-color:#999}
+  .printhead{display:block;font-size:11px;margin-bottom:8px}
+  input,select{border:0;background:none;padding:0}
+}
+</style>
 </head>
-<body data-page="home">
-<a class="skip" href="#main">Skip to content</a>
-<div class="beta-bar" role="note"><div class="wrap"><span class="beta-tag">Beta</span> This site is in its testing period. Spotted a mistake? Please tell me on <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</div></div>
-<header class="site">
-  <div class="wrap">
-    <a class="brand" href=""><img class="lg-light" src="assets/gear-light.png" alt="" width="41" height="34"><img class="lg-dark" src="assets/gear-dark.png" alt="" width="41" height="34"><span>Baher Elsheikh</span></a>
-    <div class="hdr-right">
-      <nav class="tabs" id="mainnav" aria-label="Main"><a href="" aria-current="page">Home</a><a href="knowledge/">Knowledge Areas</a><a href="documents/">Technical Documents</a><a href="articles/">Articles</a><a href="news/">Industry News</a><a href="lessons/">Lessons Learned</a><a href="calculators/">Calculators</a><a href="about/">About</a></nav>
-      <a class="nav-search" href="search/"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20.5 20.5"/></svg><span>Search</span></a>
-      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav">Menu</button>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Heat exchanger tube minimum thickness</h1>
+      <div class="byline">Prepared by: <strong>Baher Elsheikh</strong>
+        <span class="links"><a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube channel</a></span></div>
+      <div class="basis">ASME BPVC Section VIII Division 1, 2019 edition: UG-27 / Appendix 1-1 (internal pressure), UG-28(c) (external pressure), UG-99(b) (hydrotest); TEMA RCB-2.31 (U-bend thinning). Metric units.</div>
+    </div>
+    <div class="actions">
+      <button type="button" id="btnExample">Load example</button>
+      <button type="button" id="btnClear">Clear inputs</button>
+      <button type="button" class="primary" id="btnPrint">Print / save PDF</button>
+    </div>
+  </header>
+
+  <div class="printhead" id="printhead"></div>
+
+  <div class="verdict" aria-live="polite">
+    <div>
+      <div class="state" id="vState">—</div>
+      <div class="sub" id="vSub"></div>
+      <div class="chips" id="vChips"></div>
+    </div>
+    <div class="gauge">
+      <svg id="gauge" viewBox="0 0 640 112" role="img" aria-label="Tube wall thickness gauge"></svg>
+      <div class="gcap">Tube wall to scale: available minimum wall against the required thicknesses.</div>
     </div>
   </div>
-</header>
-<main class="wrap" id="main">
-  <section class="hero" aria-labelledby="h-home">
-    <div>
-      <h1 id="h-home">Engineering knowledge that goes beyond the textbook</h1>
-      <p class="lead">Practical knowledge for engineers working with static equipment, materials, welding, inspection and asset integrity: technical articles, calculation tools with their equations shown, lessons from real equipment and the codes behind them.</p>
-      <div class="cta">
-        <a class="btn primary" href="knowledge/">Explore knowledge</a>
-        <a class="btn" href="articles/">Latest insights</a>
-      </div>
-      <p class="by">By Baher Elsheikh · <a href="about/">About</a></p>
-    </div>
-    <div class="hero-logo">
-      <img class="lg-light" src="assets/logo-light.png" alt="" width="704" height="692" fetchpriority="low">
-      <img class="lg-dark" src="assets/logo-dark.png" alt="" width="704" height="692" fetchpriority="low">
-    </div>
-  </section>
 
-  <section class="sec" aria-labelledby="h-areas">
-    <div class="sec-head"><h2 id="h-areas">Knowledge areas</h2><a href="knowledge/">All knowledge areas</a></div>
-    <p class="sec-sub">Articles, documents, calculators and code explanations, organised by technical subject.</p>
-    <div class="areas" id="homeAreas"></div>
-  </section>
+  <div class="cols">
+    <aside class="inputs" aria-label="Inputs">
+      <fieldset>
+        <legend>Equipment</legend>
+        <div class="f wide"><label for="tag">Tag / description</label><input id="tag" type="text" placeholder="e.g. E-101 feed preheater"></div>
+        <div class="f wide"><label for="prep">Prepared by</label><input id="prep" type="text"></div>
+        <div class="f wide"><label for="date">Date</label><input id="date" type="date"></div>
+      </fieldset>
 
-  <section class="sec" aria-labelledby="h-tools">
-    <div class="sec-head"><h2 id="h-tools">Engineering calculators</h2><a href="calculators/">All calculators</a></div>
-    <p class="sec-sub">Each calculator shows the equations with your values substituted, step by step, with the code reference, assumptions and limitations. <span id="toolsCount"></span>.</p>
-    <div class="grid" id="homeTools"></div>
-  </section>
+      <fieldset>
+        <legend>Tube and shell dimensions</legend>
+        <div class="f"><label for="Do">Tube OD <i>D</i><sub>o</sub></label><input id="Do" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="Ls">Tube length <i>L</i><sub>s</sub></label><input id="Ls" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="tn">Nominal wall (BWG) <i>t</i><sub>n</sub></label><input id="tn" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="UT">Under-tolerance UG-16(d)</label><input id="UT" type="number" step="any"><span class="u">%</span></div>
+        <p class="hint">0% for tubes ordered on minimum wall; about 10% for average wall (SA-1016).</p>
+        <div class="f"><label for="CA">Corrosion allowance</label><input id="CA" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="Ds">Shell ID <i>D</i><sub>s</sub></label><input id="Ds" type="number" step="any"><span class="u">mm</span></div>
+        <div class="f"><label for="Dc">Channel ID <i>D</i><sub>c</sub></label><input id="Dc" type="number" step="any"><span class="u">mm</span></div>
+        <label class="check"><input id="Lfull" type="checkbox" checked> Unsupported length = full tube length (conservative)</label>
+        <div class="f"><label for="L">Unsupported length <i>L</i></label><input id="L" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">UG-28(b): <i>L</i> is the total length of the tube between tubesheets. Baffles and support plates are not lines of support for pressure collapse (the tubes pass loosely through them). U-tubes: use the straight leg, tubesheet face to bend tangent; the bend itself stiffens the tube. Once <i>L</i>/<i>D</i><sub>o</sub> &gt; 50 the result does not change.</p>
+        <div class="f wide"><label for="orient">Exchanger orientation</label>
+          <select id="orient"><option value="H">Horizontal</option><option value="V">Vertical</option></select></div>
+      </fieldset>
 
-  <section class="sec" aria-labelledby="h-feat">
-    <div class="sec-head"><h2 id="h-feat">Featured insights</h2><a href="articles/">All articles</a></div>
-    <p class="sec-sub">Selected technical content, chosen for its practical value rather than its date.</p>
-    <div class="feat" id="homeFeatured"></div>
-  </section>
+      <fieldset>
+        <legend>Material and design conditions</legend>
+        <div class="f wide"><label for="mat">Tube material</label><input id="mat" type="text"></div>
+        <div class="f"><label for="El">Long. joint eff. <i>E</i><sub>l</sub></label><input id="El" type="number" step="any"><span class="u"></span></div>
+        <p class="hint">Seamless 1.0; welded (SA-249) 0.85.</p>
+        <div class="f"><label for="Ec">Circ. joint eff. <i>E</i><sub>c</sub></label><input id="Ec" type="number" step="any"><span class="u"></span></div>
+        <div class="f"><label for="sg1">Shell fluid sp. gr.</label><input id="sg1" type="number" step="any"><span class="u"></span></div>
+        <div class="f"><label for="sg2">Tube fluid sp. gr.</label><input id="sg2" type="number" step="any"><span class="u"></span></div>
+        <div class="f"><label for="Tt">Design temp., tube side</label><input id="Tt" type="number" step="any"><span class="u">°C</span></div>
+        <div class="f"><label for="Ts">Design temp., shell side</label><input id="Ts" type="number" step="any"><span class="u">°C</span></div>
+        <div class="f"><label for="Th">Hydrotest temperature</label><input id="Th" type="number" step="any"><span class="u">°C</span></div>
+      </fieldset>
 
-  <section class="sec" aria-labelledby="h-les">
-    <div class="sec-head"><h2 id="h-les">Lessons from the field</h2><a href="lessons/">All lessons</a></div>
-    <p class="sec-sub">Failure mechanisms, inspection findings and practical recommendations from real equipment.</p>
-    <div class="ltypes" aria-label="Lesson types"><span class="ltype">Failure Analysis</span><span class="ltype">Field Experience</span><span class="ltype">Troubleshooting</span><span class="ltype">Inspection Findings</span><span class="ltype">Lessons Learned</span></div>
-    <div class="grid" id="homeLessons"></div>
-  </section>
+      <fieldset>
+        <legend>Material strengths (from ASME II-D)</legend>
+        <p class="hint">Enter from Section II Part D, Metric: Table 1A for allowable stress, Table Y-1 for yield. <i>T</i><sub>m</sub> is shown in step 1.</p>
+        <div class="f"><label for="St">Allowable at <i>T</i><sub>m</sub>, <i>S</i><sub>t</sub></label><input id="St" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="Ss">Allowable at shell temp. (info)</label><input id="Ss" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="Sh">Allowable at test temp., <i>S</i><sub>h</sub></label><input id="Sh" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="Sy">Yield at <i>T</i><sub>m</sub>, <i>S</i><sub>y</sub></label><input id="Sy" type="number" step="any"><span class="u">MPa</span></div>
+        <div class="f"><label for="Syh">Yield at test temp., <i>S</i><sub>yh</sub></label><input id="Syh" type="number" step="any"><span class="u">MPa</span></div>
+      </fieldset>
 
-  <section class="sec" aria-labelledby="h-latest">
-    <div class="sec-head"><h2 id="h-latest">Latest articles</h2><a href="articles/">All articles</a></div>
-    <div class="alist" id="homeLatest"></div>
-  </section>
+      <fieldset>
+        <legend>Design pressures</legend>
+        <div class="f wide"><label for="punit">Pressure unit</label>
+          <select id="punit"><option value="kgcm2">kg/cm² (g)</option><option value="MPa">MPa (g)</option><option value="bar">bar (g)</option><option value="psi">psi (g)</option></select></div>
+        <div class="f"><label for="Pt">Tube side internal <i>P</i><sub>t</sub></label><input id="Pt" type="number" step="any"><span class="u pu">kg/cm²</span></div>
+        <div class="f"><label for="Ps">Shell side external <i>P</i><sub>s</sub></label><input id="Ps" type="number" step="any"><span class="u pu">kg/cm²</span></div>
+      </fieldset>
 
-  <section class="sec" aria-labelledby="h-codes">
-    <div class="sec-head"><h2 id="h-codes">Codes and standards</h2><a href="standards/">Standards index</a></div>
-    <p class="sec-sub">Quick reference to the standards discussed on this site, with the content that applies them. Titles are for identification only; refer to the official publications.</p>
-    <div class="codes" id="homeCodes"></div>
-  </section>
+      <fieldset>
+        <legend>U-bend (TEMA RCB-2.31)</legend>
+        <label class="check"><input id="isU" type="checkbox" checked> U-tube bundle</label>
+        <div class="f"><label for="Rb">Inner-row bend radius <i>R</i><sub>b</sub></label><input id="Rb" type="number" step="any"><span class="u">mm</span></div>
+        <p class="hint">Enter the smallest mean bend radius (first, innermost row): thinning, and so the required wall before bending, is largest there. Outer rows with larger radii need less.</p>
+        <div class="f wide"><label for="ctype">Material type</label>
+          <select id="ctype"></select></div>
+      </fieldset>
 
-  <section class="sec authorrow" aria-labelledby="h-about">
-    <div>
-      <h2 id="h-about">About</h2>
-      <p class="sec-sub" style="margin-top:10px">Baher Elsheikh has 25 years of experience with static equipment in petrochemical, methanol and refining plants, with a focus on risk-based inspection, damage mechanisms and steam reformer integrity, and more than 11 technical publications.</p>
-      <div class="links"><a class="btn small" href="about/">About and certifications</a><a class="btn small" href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a class="btn small" href="articles/">Publications</a></div>
-    </div>
-    <div class="strip">
-      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M10 9.2v5.6l4.8-2.8z"/></svg>
-      <p>Technical videos on the YouTube channel.</p>
-      <a class="btn small" href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
-    </div>
-  </section>
-  <noscript><p class="empty">This page needs JavaScript to list its content. All articles and calculators also have their own pages.</p></noscript>
-</main>
-<footer>
-  <div class="wrap">
-    <nav class="fnav" aria-label="Footer"><a href="">Home</a><a href="knowledge/">Knowledge Areas</a><a href="documents/">Technical Documents</a><a href="articles/">Articles</a><a href="news/">Industry News</a><a href="lessons/">Lessons Learned</a><a href="calculators/">Calculators</a><a href="about/">About</a><a href="standards/">Standards Index</a><a href="search/">Search</a></nav>
-    <div>Knowledge grows when it is communicated. <a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a></div>
-    <div>Articles, documents and calculators are aids for engineering work, not a substitute for a complete engineering assessment. Users remain responsible for verifying the applicable design basis, code requirements and edition, assumptions and engineering decisions; results must be checked by a qualified engineer before use.</div>
-    <div>© 2026 Baher Elsheikh. Content and tools free to use; not to be copied or redistributed without permission.</div>
+      <fieldset>
+        <legend>External pressure chart factors</legend>
+        <p class="hint" id="chartHint">Read from Section II Part D, Subpart 3, at the <i>L</i>/<i>D</i><sub>o</sub> and <i>D</i><sub>o</sub>/<i>t</i><sub>c</sub> shown in step 3.</p>
+        <div class="f"><label for="A">Factor <i>A</i> (Fig. G)</label><input id="A" type="number" step="any"><span class="u"></span></div>
+        <div class="f"><label for="B">Factor <i>B</i> (material chart)</label><input id="B" type="number" step="any"><span class="u">MPa</span></div>
+      </fieldset>
+    </aside>
+
+    <main class="report" id="report"></main>
   </div>
-</footer>
-<script src="assets/data.js"></script>
-<script src="assets/site.js"></script>
+
+  <footer>
+    <div>Prepared by: Baher Elsheikh (<a href="https://www.linkedin.com/in/baher-elsheikh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>, <a href="https://www.youtube.com/@baherelsheikh4942" target="_blank" rel="noopener noreferrer">YouTube</a>). Version 1.1, November 2026 (from the spreadsheet of 30 Nov 2019).</div>
+    <div>© 2026 Baher Elsheikh. Free to use; not to be copied, modified or redistributed without permission.</div>
+    <div>This tool is an aid for engineering screening. Allowable stresses, yield strengths and the external-pressure factors <i>A</i> and <i>B</i> are entered by the user from ASME Section II Part D and are not supplied here. Results must be verified by a qualified engineer against the applicable code edition before use. No warranty is given.</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const CTYPES = [
+    ['Carbon steel',4],['Low alloy steel',4],['Ferritic stainless steel',4],['Austenitic stainless steel',4],
+    ['Other non-work-hardening material',4],['Copper alloy',4],['Martensitic stainless steel',2],
+    ['Duplex stainless steel',2],['Super austenitic stainless steel',2],['Titanium',2],
+    ['High nickel alloy',2],['Other work-hardening material',2]];
+  const sel = document.getElementById('ctype');
+  CTYPES.forEach((c,i)=>{const o=document.createElement('option');o.value=i;o.textContent=`${c[0]} (C = ${c[1]})`;sel.appendChild(o);});
+
+  const PCONV = {kgcm2:0.0980665, MPa:1, bar:0.1, psi:0.00689476};
+  const PLAB = {kgcm2:'kg/cm²', MPa:'MPa', bar:'bar', psi:'psi'};
+
+  const EXAMPLE = {tag:'Example: U-tube preheater', prep:'', date:'', Do:19.05, Ls:6105, tn:2.413, UT:0, CA:0, Ds:870, Dc:870,
+    Lfull:true, L:6105, orient:'V', mat:'SA-213 TP316L', El:1, Ec:1, sg1:1, sg2:1, Tt:125, Ts:165, Th:25,
+    St:113, Ss:115, Sh:115, Sy:127, Syh:170, punit:'kgcm2', Pt:275, Ps:10, isU:true, Rb:50.57, ctype:3, A:0.0132022, B:73.8311};
+  const IDS = Object.keys(EXAMPLE);
+  const STORE = 'tube-thk-inputs-v1';
+
+  const $ = id => document.getElementById(id);
+  function setInputs(d){
+    IDS.forEach(k=>{const el=$(k); if(!el) return; if(el.type==='checkbox') el.checked=!!d[k]; else el.value = (d[k]===undefined||d[k]===null)?'':d[k];});
+  }
+  function getInputs(){
+    const d={}; IDS.forEach(k=>{const el=$(k); if(el.type==='checkbox') d[k]=el.checked; else d[k]=el.value;}); return d;
+  }
+  function num(k){const v=parseFloat($(k).value); return isFinite(v)?v:NaN;}
+
+  // number formatting
+  function f(x,d){ if(!isFinite(x)) return '—'; return x.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+  const mmin = x => isFinite(x)? f(x/25.4,4)+' in' : '';
+  const v = s => `<i>${s}</i>`;
+
+  function row(label, eq, sub, val, unit, d, small){
+    return `<tr><td class="lb">${label}</td><td class="eq">${eq||''}</td><td class="sb">${sub||''}</td>`+
+      `<td class="v">${typeof val==='string'?val:f(val,d)}${small?`<small>${small}</small>`:''}</td><td class="un">${unit||''}</td></tr>`;
+  }
+  function step(n,title,ref,rows,results,notes){
+    return `<section class="step"><h2><span class="n">${n}</span>${title}</h2><div class="ref">${ref}</div>`+
+      `<div class="tbl"><table>${rows.join('')}</table></div>`+
+      (results||[]).map(r=>`<div class="result ${r[0]}">${r[1]}</div>`).join('')+
+      (notes||[]).map(t=>`<p class="note">${t}</p>`).join('')+`</section>`;
+  }
+
+  function compute(){
+    const pu = $('punit').value, pc = PCONV[pu], pl = PLAB[pu];
+    document.querySelectorAll('.pu').forEach(e=>e.textContent=pl);
+    if($('Lfull').checked){ $('L').value = $('Ls').value; $('L').disabled = true; } else { $('L').disabled = false; }
+    $('Rb').disabled = !$('isU').checked; $('ctype').disabled = !$('isU').checked;
+
+    const Do=num('Do'), Ls=num('Ls'), tn=num('tn'), UT=num('UT')/100, CA=num('CA'), Ds=num('Ds'), Dc=num('Dc'), L=num('L');
+    const H = $('orient').value==='H';
+    const El=num('El'), Ec=num('Ec'), sg1=num('sg1'), sg2=num('sg2'), Tt=num('Tt'), Ts=num('Ts'), Th=num('Th');
+    const St=num('St'), Ss=num('Ss'), Sh=num('Sh'), Sy=num('Sy'), Syh=num('Syh');
+    const Pt=num('Pt')*pc, Ps=num('Ps')*pc;
+    const isU=$('isU').checked, Rb=num('Rb'), C=CTYPES[+$('ctype').value][1];
+    const A=num('A'), B=num('B');
+    const back = p => isFinite(p)? f(p/pc,2)+' '+pl : '';
+
+    // step 1
+    const tm = tn*(1-UT), tc = tm-CA, Ro = Do/2, Tm = Math.max(Tt,Ts);
+    const hS = H?Ds:L, hT = H?Dc:L;
+    const Pss = 0.0098*sg1*hS/1000, Pst = 0.0098*sg2*hT/1000;
+    const P = Pt+Pst, Pe = Ps+Pss;
+    // step 2
+    const ta = P*Ro/(St*El+0.4*P)+CA, tl = P*Ro/(2*St*Ec+1.4*P)+CA, tr = Math.max(ta,tl);
+    const app11 = P<=0.385*St*El && tr<=Ro/2;
+    const okInt = tr<=tm;
+    // step 3
+    const LDraw = L/Do, LD = Math.min(50,Math.max(0.05,LDraw)), Dt = Do/tc;
+    const Pa_a = 4*B/(3*Dt), Pa1 = (2.167/Dt-0.0833)*B, Sx = Math.min(2*St,0.9*Sy), Pa2 = 2*Sx/Dt*(1-1/Dt);
+    const thin = Dt>=10, Pa = thin?Pa_a:Math.min(Pa1,Pa2);
+    const extReady = isFinite(B) && isFinite(A);
+    const okExt = extReady && Pa>=Pe;
+    // step 4
+    const t = tr, t0 = isU ? t*(1+Do/(C*Rb)) : t;
+    const okU = t0<=tm;
+    const gov = Math.max(t,t0), margin = (tm-gov)/tm;
+    // step 5
+    const PT = 1.3*Pt*Sh/St, sh = PT*(Ro-0.4*tm)/(El*tm), lim = 0.9*Syh, okH = sh<=lim;
+
+    // warnings
+    ['A','B'].forEach(k=>$(k).classList.toggle('need', !isFinite(num(k))));
+
+    let out = '';
+    out += step(1,'Available wall and design pressures','UG-16(d) under-tolerance; static heads added to design pressures',[
+      row('Minimum available wall', `${v('t')}<sub>m</sub> = ${v('t')}<sub>n</sub>(1 − UT)`, `${f(tn,3)} × (1 − ${f(UT,3)})`, tm,'mm',3, mmin(tm)),
+      row('Corroded minimum wall', `${v('t')}<sub>c</sub> = ${v('t')}<sub>m</sub> − CA`, `${f(tm,3)} − ${f(CA,3)}`, tc,'mm',3, mmin(tc)),
+      row('Tube design metal temperature', `${v('T')}<sub>m</sub> = max(${v('T')}<sub>t</sub>, ${v('T')}<sub>s</sub>)`, `max(${f(Tt,0)}, ${f(Ts,0)})`, Tm,'°C',0, isFinite(Tm)?f(Tm*1.8+32,0)+' °F':''),
+      row('Tube side design pressure', `${v('P')}<sub>t</sub>`, `${f(num('Pt'),2)} ${pl}`, Pt,'MPa',4),
+      row('Shell side design pressure', `${v('P')}<sub>s</sub>`, `${f(num('Ps'),2)} ${pl}`, Ps,'MPa',4),
+      row('Shell side static head', `${v('P')}<sub>ss</sub> = 0.0098·sg<sub>1</sub>·${v('H')}`, `0.0098 × ${f(sg1,2)} × ${f(hS/1000,3)}`, Pss,'MPa',4, H?'H = shell ID':'H = tube length'),
+      row('Tube side static head', `${v('P')}<sub>st</sub> = 0.0098·sg<sub>2</sub>·${v('H')}`, `0.0098 × ${f(sg2,2)} × ${f(hT/1000,3)}`, Pst,'MPa',4, H?'H = channel ID':'H = tube length'),
+      row('Internal pressure on tube', `${v('P')} = ${v('P')}<sub>t</sub> + ${v('P')}<sub>st</sub>`, `${f(Pt,4)} + ${f(Pst,4)}`, P,'MPa',4, back(P)),
+      row('External pressure on tube', `${v('P')}<sub>e</sub> = ${v('P')}<sub>s</sub> + ${v('P')}<sub>ss</sub>`, `${f(Ps,4)} + ${f(Pss,4)}`, Pe,'MPa',4, back(Pe))
+    ], tc<=0?[['bad','Corroded wall is zero or negative: check t<sub>n</sub>, under-tolerance and CA.']]:[]);
+
+    out += step(2,'Internal pressure','UG-27(c) with Appendix 1-1(a), outside-radius formulas',[
+      row('Circumferential stress', `${v('t')}<sub>a</sub> = ${v('P')}${v('R')}<sub>o</sub> / (${v('S')}<sub>t</sub>${v('E')}<sub>l</sub> + 0.4${v('P')}) + CA`,
+          `${f(P,3)} × ${f(Ro,3)} / (${f(St,1)} × ${f(El,2)} + 0.4 × ${f(P,3)}) + ${f(CA,2)}`, ta,'mm',4, mmin(ta)),
+      row('Longitudinal stress', `${v('t')}<sub>l</sub> = ${v('P')}${v('R')}<sub>o</sub> / (2${v('S')}<sub>t</sub>${v('E')}<sub>c</sub> + 1.4${v('P')}) + CA`,
+          `${f(P,3)} × ${f(Ro,3)} / (2 × ${f(St,1)} × ${f(Ec,2)} + 1.4 × ${f(P,3)}) + ${f(CA,2)}`, tl,'mm',4, mmin(tl)),
+      row('Required thickness', `${v('t')}<sub>r</sub> = max(${v('t')}<sub>a</sub>, ${v('t')}<sub>l</sub>)`, `max(${f(ta,4)}, ${f(tl,4)})`, tr,'mm',4, mmin(tr)),
+      row('Validity limits', `${v('P')} ≤ 0.385${v('S')}<sub>t</sub>${v('E')}<sub>l</sub> ; ${v('t')}<sub>r</sub> ≤ ${v('R')}<sub>o</sub>/2`,
+          `${f(P,2)} ≤ ${f(0.385*St*El,2)} ; ${f(tr,3)} ≤ ${f(Ro/2,3)}`, app11?'Valid':'Not valid','',0)
+    ],[
+      app11?['info','Appendix 1-1 is applicable.']:['warn','Appendix 1-1 limits exceeded: use Appendix 1-2 (thick wall).'],
+      okInt?['ok',`t<sub>m</sub> ${f(tm,3)} ≥ t<sub>r</sub> ${f(tr,3)} mm: acceptable for internal pressure.`]
+           :['bad',`t<sub>m</sub> ${f(tm,3)} < t<sub>r</sub> ${f(tr,3)} mm: increase the nominal wall t<sub>n</sub>.`]
+    ]);
+
+    const s3rows = [
+      row('Length ratio', `${v('L')}/${v('D')}<sub>o</sub>`, `${f(L,0)} / ${f(Do,2)} = ${f(LDraw,2)}`, LD,'',2, LDraw!==LD?'limited to 0.05–50':''),
+      row('Diameter ratio', `${v('D')}<sub>o</sub>/${v('t')}<sub>c</sub>`, `${f(Do,2)} / ${f(tc,3)}`, Dt,'',3, thin?'≥ 10: UG-28(c)(1)':'< 10: UG-28(c)(2)'),
+      row('Factor A (entered)', v('A'), Dt<4?`1.1/(${v('D')}<sub>o</sub>/${v('t')}<sub>c</sub>)² = ${f(1.1/Dt/Dt,5)}`:'Fig. G', A,'',5),
+      row('Factor B (entered)', v('B'), 'material chart at T<sub>m</sub>', B,'MPa',3)
+    ];
+    if(thin){
+      s3rows.push(row('Allowable external pressure', `${v('P')}<sub>a</sub> = 4${v('B')} / [3(${v('D')}<sub>o</sub>/${v('t')}<sub>c</sub>)]`, `4 × ${f(B,3)} / (3 × ${f(Dt,3)})`, Pa,'MPa',3, back(Pa)));
+    } else {
+      s3rows.push(row('Buckling limit', `${v('P')}<sub>a1</sub> = [2.167/(${v('D')}<sub>o</sub>/${v('t')}<sub>c</sub>) − 0.0833]${v('B')}`, `(2.167 / ${f(Dt,3)} − 0.0833) × ${f(B,3)}`, Pa1,'MPa',3));
+      s3rows.push(row('Stress for plastic limit', `${v('S')} = min(2${v('S')}<sub>t</sub>, 0.9${v('S')}<sub>y</sub>)`, `min(2 × ${f(St,1)}, 0.9 × ${f(Sy,1)})`, Sx,'MPa',1));
+      s3rows.push(row('Plastic limit', `${v('P')}<sub>a2</sub> = (2${v('S')}/(${v('D')}<sub>o</sub>/${v('t')}<sub>c</sub>))[1 − 1/(${v('D')}<sub>o</sub>/${v('t')}<sub>c</sub>)]`, `(2 × ${f(Sx,1)} / ${f(Dt,3)}) × (1 − 1/${f(Dt,3)})`, Pa2,'MPa',3));
+      s3rows.push(row('Allowable external pressure', `${v('P')}<sub>a</sub> = min(${v('P')}<sub>a1</sub>, ${v('P')}<sub>a2</sub>)`, `min(${f(Pa1,3)}, ${f(Pa2,3)})`, Pa,'MPa',3, back(Pa)));
+    }
+    const s3res = !extReady ? [['warn','Enter factors A and B to complete the external pressure check.']]
+      : okExt ? [['ok',`P<sub>a</sub> ${f(Pa,3)} ≥ P<sub>e</sub> ${f(Pe,3)} MPa: acceptable for external pressure.`]]
+              : [['bad',`P<sub>a</sub> ${f(Pa,3)} < P<sub>e</sub> ${f(Pe,3)} MPa: increase the nominal wall t<sub>n</sub>.`]];
+    const s3notes = [];
+    if(!thin && A>0.1) s3notes.push('For D<sub>o</sub>/t<sub>c</sub> < 10, use A = 0.10 where the chart value exceeds 0.10.');
+    if(Dt<4) s3notes.push('For D<sub>o</sub>/t<sub>c</sub> < 4, A = 1.1/(D<sub>o</sub>/t<sub>c</sub>)² is shown as the reference value.');
+    s3notes.push(`L/D<sub>o</sub> = ${f(L/Do,1)}${L/Do>50?': above 50, so the chart value at 50 applies and the length chosen does not change the result':''}. L per UG-28(b): total tube length between tubesheets; baffles are not lines of support.`);
+    out += step(3,'External pressure','UG-28(c), tube loaded by shell side pressure; corroded wall',s3rows,s3res,s3notes);
+
+    out += step(4,'U-bend thinning','TEMA RCB-2.31; required wall before bending',[
+      row('Required wall, straight tube', `${v('t')} = ${v('t')}<sub>r</sub>`, '', t,'mm',4, mmin(t)),
+      isU ? row('Required wall before bending', `${v('t')}<sub>0</sub> = ${v('t')}[1 + ${v('D')}<sub>o</sub>/(${v('C')}${v('R')}<sub>b</sub>)]`,
+          `${f(t,4)} × [1 + ${f(Do,2)} / (${C} × ${f(Rb,2)})]`, t0,'mm',4, mmin(t0))
+          : row('Required wall before bending', `${v('t')}<sub>0</sub> = ${v('t')}`, 'straight tubes', t0,'mm',4)
+    ],[
+      !isU ? ['info','Not a U-tube bundle: straight tube governs.']
+      : okU ? ['ok',`t<sub>m</sub> ${f(tm,3)} ≥ t<sub>0</sub> ${f(t0,3)} mm: U-bend acceptable.`]
+            : ['bad',`t<sub>m</sub> ${f(tm,3)} < t<sub>0</sub> ${f(t0,3)} mm: increase the nominal wall t<sub>n</sub>.`]
+    ], isU ? ['Checked at the innermost row (smallest R<sub>b</sub>), which governs. Outer rows can be ordered at a thinner wall if the bundle is split by rows.'] : []);
+
+    out += step(5,'Hydrostatic test, tube side','UG-99(b); hoop stress at uncorroded minimum wall',[
+      row('Test pressure', `${v('P')}<sub>T</sub> = 1.3${v('P')}<sub>t</sub>(${v('S')}<sub>h</sub>/${v('S')}<sub>t</sub>)`, `1.3 × ${f(Pt,3)} × (${f(Sh,1)} / ${f(St,1)})`, PT,'MPa',3, back(PT)),
+      row('Hoop stress at test', `σ<sub>h</sub> = ${v('P')}<sub>T</sub>(${v('R')}<sub>o</sub> − 0.4${v('t')}<sub>m</sub>)/(${v('E')}<sub>l</sub>${v('t')}<sub>m</sub>)`,
+          `${f(PT,3)} × (${f(Ro,3)} − 0.4 × ${f(tm,3)}) / (${f(El,2)} × ${f(tm,3)})`, sh,'MPa',1),
+      row('Recommended limit', `0.9${v('S')}<sub>yh</sub>`, `0.9 × ${f(Syh,1)}`, lim,'MPa',1)
+    ],[ okH?['ok',`σ<sub>h</sub> ${f(sh,1)} ≤ ${f(lim,1)} MPa: acceptable under hydrotest.`]
+           :['bad',`σ<sub>h</sub> ${f(sh,1)} > ${f(lim,1)} MPa: review test pressure or wall thickness.`]],
+      ['P<sub>t</sub> is taken as the MAWP. The 0.9 S<sub>yh</sub> limit follows common UG-99(d) practice.']);
+
+    const mClass = margin<0?'bad':(margin<0.2?'warn':'ok');
+    out += step(6,'Result','Governing required wall against minimum available wall',[
+      row('Required wall, straight tube', `${v('t')}`, '', t,'mm',3, mmin(t)),
+      row('Required wall, U-bend', `${v('t')}<sub>0</sub>`, isU?'':'not applicable', t0,'mm',3, mmin(t0)),
+      row('Minimum available wall', `${v('t')}<sub>m</sub>`, '', tm,'mm',3, mmin(tm)),
+      row('Wall margin', `(${v('t')}<sub>m</sub> − ${v('t')}<sub>gov</sub>)/${v('t')}<sub>m</sub>`, `(${f(tm,3)} − ${f(gov,3)}) / ${f(tm,3)}`, isFinite(margin)?f(margin*100,1)+'%':'—','',0)
+    ],[[mClass, margin<0?'No margin: required wall exceeds available wall.':(margin<0.2?'Tight margin: below 20%.':'Margin above 20%.')]]);
+
+    $('report').innerHTML = out;
+
+    // verdict
+    const allOk = okInt && okU && okH && (okExt);
+    const anyFail = !okInt || !okU || !okH || (extReady && !okExt);
+    const st = $('vState');
+    if(anyFail){ st.textContent = 'Not accepted: increase the nominal wall'; st.className='state bad'; }
+    else if(!extReady){ st.textContent = 'Pending external pressure factors'; st.className='state'; }
+    else { st.textContent = `Accepted with ${f(margin*100,1)}% wall margin`; st.className='state ok'; }
+    $('vSub').innerHTML = `${$('tag').value||'Tube'}: ${f(Do,2)} mm OD × ${f(tn,3)} mm nominal, ${$('mat').value||'material not stated'}.`;
+    const chip=(ok,lab)=>`<span class="chip ${ok===null?'warn':(ok?'ok':'bad')}">${lab}</span>`;
+    $('vChips').innerHTML = chip(okInt,'Internal pressure')+chip(extReady?okExt:null,'External pressure')+
+      chip(isU?okU:true, isU?'U-bend':'U-bend n/a')+chip(okH,'Hydrotest')+(app11?'':`<span class="chip warn">App. 1-1 limits exceeded</span>`);
+
+    drawGauge(tn,tm,CA,tr,t0,isU);
+    $('printhead').textContent = `${$('tag').value||''}  ${$('prep').value?'Prepared by: '+$('prep').value:''}  ${$('date').value||''}`;
+    try{ localStorage.setItem(STORE, JSON.stringify(getInputs())); }catch(e){}
+  }
+
+  function drawGauge(tn,tm,CA,tr,t0,isU){
+    const g=$('gauge'); if(!isFinite(tn)||tn<=0){ g.innerHTML=''; return; }
+    const maxT = Math.max(tn, tr||0, t0||0)*1.08, x0=20, W=600, sx=t=>x0+W*t/maxT;
+    const cs=getComputedStyle(document.documentElement), c=n=>cs.getPropertyValue(n).trim();
+    let s='';
+    // wall bar: tm (solid), tn-tm (under-tolerance), CA band at outer face
+    s+=`<rect x="${x0}" y="40" width="${sx(tm)-x0}" height="24" fill="${c('--wall')}" rx="2"/>`;
+    if(tn>tm) s+=`<rect x="${sx(tm)}" y="40" width="${sx(tn)-sx(tm)}" height="24" fill="${c('--tol')}"/>`;
+    if(CA>0) s+=`<rect x="${sx(tm-CA)}" y="40" width="${sx(tm)-sx(tm-CA)}" height="24" fill="${c('--warn')}" opacity=".45"/>`;
+    s+=`<line x1="${x0}" y1="72" x2="${x0+W}" y2="72" stroke="${c('--rule')}"/>`;
+    for(let i=0;i<=4;i++){const t=maxT*i/4, x=sx(t); s+=`<line x1="${x}" y1="72" x2="${x}" y2="76" stroke="${c('--steel')}"/><text x="${x}" y="88" text-anchor="middle">${f(t,2)}</text>`;}
+    s+=`<text x="${x0+W}" y="104" text-anchor="end">mm</text>`;
+    const mark=(t,lab,col,y)=>{ if(!isFinite(t)) return ''; const x=sx(t); return `<line x1="${x}" y1="${y+6}" x2="${x}" y2="68" stroke="${col}" stroke-width="2"/><text class="lab" x="${x}" y="${y}" text-anchor="middle" style="fill:${col}">${lab} ${f(t,3)}</text>`; };
+    s+=mark(tr,'tr',c('--accent'),16);
+    if(isU) s+=mark(t0,'t0',(t0<=tm)?c('--ok'):c('--bad'),30);
+    s+=`<text x="${x0+4}" y="56" style="fill:#fff;font-weight:500">tm ${f(tm,3)}</text>`;
+    g.innerHTML=s;
+  }
+
+  // init
+  let saved=null; try{ saved=JSON.parse(localStorage.getItem(STORE)); }catch(e){}
+  setInputs(saved||EXAMPLE);
+  document.querySelectorAll('aside input, aside select').forEach(el=>el.addEventListener('input',compute));
+  document.querySelectorAll('aside input[type=checkbox], aside select').forEach(el=>el.addEventListener('change',compute));
+  $('btnExample').addEventListener('click',()=>{setInputs(EXAMPLE);compute();});
+  $('btnClear').addEventListener('click',()=>{const d={}; IDS.forEach(k=>d[k]=''); d.Lfull=true; d.isU=false; d.punit='kgcm2'; d.orient='H'; d.ctype=0; setInputs(d); compute();});
+  $('btnPrint').addEventListener('click',()=>window.print());
+  if(window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',compute);
+  compute();
+})();
+</script>
 </body>
 </html>
